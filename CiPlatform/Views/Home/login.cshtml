@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogIn Page</title>
+  <link href="/css/login.css" type="text/css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <div class="row">
+
+
+    <div id="carouselExampleCaptions" class="carousel slide col-lg-8 col-md-12 col-sm-12 " data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+            class=" image1 d-block w-100" alt="...">
+          <div class="carousel-caption  d-md-block">
+            <h3>Sed ut perspiciatis unde omnis iste natus voluptatem.</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam et porro quibusdam harum? Molestiae
+              officia odio amet, a beatae, repellat consectetur dolores sunt aliquid commodi inventore similique quas
+              placeat doloremque.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="d-block w-100 image1"
+            alt="...">
+          <div class="carousel-caption  d-md-block">
+            <h3>Sed ut perspiciatis unde omnis iste natus voluptatem.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="d-block w-100 image1"
+            alt="...">
+          <div class="carousel-caption d-md-block">
+            <h3>Sed ut perspiciatis unde omnis iste natus voluptatem.</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+              ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+              fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.</p>
+          </div>
+
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class=" col-lg-4 col-md-12 col-sm-12">
+      <div class="loginform">
+
+        <label for="exampleFormControlInput1" class="form-label email-2">Email address</label>
+        <input type="email" class="form-control email-1" id="exampleFormControlInput1" placeholder="name@example.com">
+
+
+        <label for="exampleFormControlInput1" class="pswd-2form-label pswd-2">Password</label>
+        <input type="email" class="form-control pswd-1" id="exampleFormControlInput2" placeholder="name@example.com">
+
+
+
+        <button type="button" class="loginbtn">LogIn</button>
+
+
+        <p class="lost"><a asp-controller = "Home" asp-action = "forgotpassword" class="lost">Lost Your Password</a></p>
+
+
+        <p class="create">Don't have any account?
+          <a asp-controller = "Home" asp-action = "registration" class="create">Create a new account</a>
+        </p>
+        <p class="privacy">Privacy Policy</p>
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

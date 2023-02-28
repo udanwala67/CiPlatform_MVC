@@ -1,0 +1,199 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+.loginform {
+    width: 75%;
+    margin-left: 40px;
+    margin-top: 40%;
+}
+
+.form-label {
+    color: #414141;
+}
+
+.loginbtn {
+    border: 2px solid #F88634;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 25px;
+    height: 49px;
+    background-color: white;
+    color: #F88634;
+}
+
+/* .image1 {
+    height: 855px;
+} */
+
+.pswd-2 {
+    margin-top: 20px;
+}
+
+.pswd-1 {
+    margin-top: 10px
+}
+
+.email-1 {
+    margin-top: 0px;
+}
+
+.email-2 {
+    color: #414411;
+}
+
+.a.lost {
+    margin-left: 37%;
+    border: none;
+    border-bottom-color: white;
+    text-decoration: none;
+    color: black;
+}
+
+a.create {
+    text-decoration: none;
+}
+
+input#exampleFormControlInput1 {
+    width: 100%
+}
+
+
+a.lost {
+    text-decoration: none;
+    font-size: 12px;
+    margin-left: 41%;
+    color: #414411;
+}
+
+.row > * {
+    padding-right: calc(var(--bs-gutter-x) * 0);
+}
+
+*, ::after, ::before {
+    box-sizing: initial;
+}
+
+.lost {
+    margin-top: 5%;
+}
+
+p.create {
+    text-align: center;
+    font-size: 13px;
+}
+
+#carouselExampleCaptions {
+    padding-right: calc(var(--bs-gutter-x) * 0);
+}
+
+h3 {
+    font-size: 50px !important;
+    text-align: left;
+    font-family: NotoSans;
+}
+
+p {
+    text-align: left;
+}
+
+    p.privacy {
+        margin-top: 17%;
+        font-size: 12px;
+        margin-left: 45%;
+    }
+
+.carousel-indicators button {
+    height: 10px !important;
+    width: 10px !important;
+    border-radius: 100%;
+    margin: 0 10px !important;
+    background-color: white !important;
+}
+
+@media screen and (max-width:768px) {
+    .loginform {
+        width: 77%;
+        margin-left: 60px;
+        margin-top: 15%;
+    }
+
+    h3 {
+        font-size: 20px !important;
+        text-align: left;
+        font-family: NotoSans;
+    }
+
+    p {
+        font-size: 10px;
+    }
+
+    .carousel-indicators button {
+        height: 5px !important;
+        width: 5px !important;
+        margin: 0 10px !important;
+        background-color: white !important;
+    }
+
+    p {
+        display: none;
+    }
+
+    .row > * {
+        padding-right: calc(var(--bs-gutter-x) * 0);
+    }
+
+    *, ::after, ::before {
+        box-sizing: initial;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+
+
+
+@media screen and (max-width:768px) {
+    .carousel-inner img {
+        background-image: url("file:///C:/Users/pci60/Desktop/project/CI%20Project/images/Grow-Trees-On-the-path-to-environment-sustainability-5.png");
+        height: 50%;
+        width: 100%;
+    }
+
+    .row > * {
+        padding-right: calc(var(--bs-gutter-x) * 0);
+    }
+
+    *, ::after, ::before {
+        box-sizing: initial;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .loginform {
+        margin-top: 10%;
+        margin-left: 12%;
+    }
+
+    .row > * {
+        padding-right: calc(var(--bs-gutter-x) * 0);
+    }
+
+    *, ::after, ::before {
+        box-sizing: initial;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 360px) {
+
+    *, ::after::before {
+        box-sizing: initial;
+    }
+
+    .loginform {
+        margin-top: 10%;
+        margin-left: 12%;
+    }
+}

@@ -1,0 +1,47 @@
+﻿
+.card {
+    margin-left: 0% !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+
+
+/* .explore{
+    align-items: flex-end;
+} */
+
+/* .col-md-4 button{
+
+align-items: center;
+margin-top: -50px;
+margin-left: 20px;
+} */
+
+
+/* .card-body{
+    width: 100%;
+    height:100%
+  } */
+
+
+
+.justify-content-between {
+    text-align: center;
+}
+/* 
+  .button1{ */
+
+/* margin-top:100%; */
+/* position:relative ;
+        
+        
+        -ms-transform: translate(-10%, -10%); 
+         transform: translate(40%, +5%);
+        text-transform: lowercase;
+
+  } */
+
+.strong {
+    font-weight: 1000;
+}

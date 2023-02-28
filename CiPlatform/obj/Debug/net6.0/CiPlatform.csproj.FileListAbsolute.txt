@@ -1,0 +1,8 @@
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.csproj.AssemblyReference.cache
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.GeneratedMSBuildEditorConfig.editorconfig
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.AssemblyInfoInputs.cache
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.AssemblyInfo.cs
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.csproj.CoreCompileInputs.cache
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.MvcApplicationPartsAssemblyInfo.cache
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.RazorAssemblyInfo.cache
+C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.RazorAssemblyInfo.cs
