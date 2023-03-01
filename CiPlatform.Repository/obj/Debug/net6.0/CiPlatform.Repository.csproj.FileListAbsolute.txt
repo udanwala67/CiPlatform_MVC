@@ -1,0 +1,17 @@
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Repository.deps.json
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Repository.runtimeconfig.json
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Repository.dll
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\ref\CiPlatform.Repository.dll
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Repository.pdb
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.csproj.AssemblyReference.cache
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.AssemblyInfoInputs.cache
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.AssemblyInfo.cs
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.csproj.CoreCompileInputs.cache
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.dll
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\ref\CiPlatform.Repository.dll
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.pdb
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.genruntimeconfig.cache
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPlatform.Repository\bin\Debug\net6.0\CiPlatform.Entitites.pdb
+C:\CiPlatform\CiPlatform.Repository\obj\Debug\net6.0\CiPlatform.Repository.csproj.CopyComplete

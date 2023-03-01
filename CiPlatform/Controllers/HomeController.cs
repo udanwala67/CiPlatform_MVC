@@ -1,4 +1,7 @@
-﻿using CiPlatform.Models;
+﻿using CiPlatform.Entitites.Models;
+using CiPlatform.Models;
+using CiPlatform.Repository.Interface;
+using CiPlatform.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -6,23 +9,43 @@ namespace CiPlatform.Controllers
 {
     public class HomeController : Controller
     {
+
         private readonly ILogger<HomeController> _logger;
+        private readonly ICiRepository _CiRepository;
+      /*  public ILogger<HomeController> Logger => _logger;*/
 
-        public ILogger<HomeController> Logger => _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, ICiRepository ciRepository)
         {
             _logger = logger;
+            _CiRepository = ciRepository;
         }
+
 
         public IActionResult Index()
         {
-            return View();
+          return View();
+
         }
+
 
         public IActionResult login()
         {
             return View();
+        }
+
+        [HttpPost]
+
+        public IActionResult Login(User user)
+        {
+            var cuser = _CiRepository.GetUserEmail(user.Email);
+            if (cuser != null && cuser.Password.Equals(user.Password) && !ModelState.IsValid) 
+            {
+                return RedirectToAction("Platformlandingpage");
+            }
+            else
+            {
+                return View();
+            }
         }
         public IActionResult forgotpassword()
         {
@@ -31,6 +54,22 @@ namespace CiPlatform.Controllers
         public IActionResult registration()
         {
             return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Registration(User user)
+        {
+            if (ModelState.IsValid)
+            {
+
+                _CiRepository.RegisterUser(user);
+                return RedirectToAction("login");
+            }
+            else
+            {
+                return View();
+            }
         }
         public IActionResult resetpassword()
         {

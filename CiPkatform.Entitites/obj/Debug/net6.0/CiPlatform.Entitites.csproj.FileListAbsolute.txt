@@ -1,0 +1,14 @@
+C:\CiPlatform\CiPkatform.Entitites\bin\Debug\net6.0\CiPlatform.Entitites.deps.json
+C:\CiPlatform\CiPkatform.Entitites\bin\Debug\net6.0\CiPlatform.Entitites.runtimeconfig.json
+C:\CiPlatform\CiPkatform.Entitites\bin\Debug\net6.0\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPkatform.Entitites\bin\Debug\net6.0\ref\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPkatform.Entitites\bin\Debug\net6.0\CiPlatform.Entitites.pdb
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.GeneratedMSBuildEditorConfig.editorconfig
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.AssemblyInfoInputs.cache
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.AssemblyInfo.cs
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.csproj.CoreCompileInputs.cache
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\ref\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.pdb
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.genruntimeconfig.cache
+C:\CiPlatform\CiPkatform.Entitites\obj\Debug\net6.0\CiPlatform.Entitites.csproj.AssemblyReference.cache
