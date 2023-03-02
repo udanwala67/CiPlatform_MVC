@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model CiPlatform.Entitites.Models.User
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -16,6 +17,7 @@
 
 <body>
 
+    <form method = "post">
   <div class="row">
 
 
@@ -40,7 +42,7 @@
           </div>
         </div>
         <div class="carousel-item">
-          <img src="images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="d-block w-100 image1"
+          <img src="/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="d-block w-100 image1"
             alt="...">
           <div class="carousel-caption  d-md-block">
             <h3>Sed ut perspiciatis unde omnis iste natus voluptatem.</h3>
@@ -80,16 +82,16 @@
     <div class=" col-lg-4 col-md-12 col-sm-12">
       <div class="loginform">
 
-        <label for="exampleFormControlInput1" class="form-label email-2">Email address</label>
-        <input type="email" class="form-control email-1" id="exampleFormControlInput1" placeholder="name@example.com">
+        <label for="exampleFormControlInput1" class="form-label email-2" asp-for ="Email">Email address</label>
+        <input type="email" class="form-control email-1" id="exampleFormControlInput1" asp-for = "Email" placeholder="Enter Your Email Address">
 
 
-        <label for="exampleFormControlInput1" class="pswd-2form-label pswd-2">Password</label>
-        <input type="email" class="form-control pswd-1" id="exampleFormControlInput2" placeholder="name@example.com">
+        <label for="exampleFormControlInput1" class="pswd-2form-label pswd-2" asp-for= "Password" >Password</label>
+        <input type="password" class="form-control pswd-1" id="exampleFormControlInput2" asp-for = "Password" placeholder="name@example.com">
 
 
 
-        <button type="button" class="loginbtn">LogIn</button>
+        <button type="submit" class="loginbtn">LogIn</button>
 
 
         <p class="lost"><a asp-controller="Home"  asp-action = "forgotpassword" class="lost">Lost Your Password</a></p>
@@ -107,7 +109,7 @@
     </div>
   </div>
 
-
+  </form>
 </body>
 
 </html>

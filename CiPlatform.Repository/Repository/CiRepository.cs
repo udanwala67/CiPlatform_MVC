@@ -1,11 +1,14 @@
 ﻿using CiPlatform.Entitites.Data;
 using CiPlatform.Entitites.Models;
 using CiPlatform.Repository.Interface;
+using CiPlatform.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using CiPlatform.Entitites.ViewModels;
 
 namespace CiPlatform.Repository.Repository
 {
@@ -21,6 +24,7 @@ namespace CiPlatform.Repository.Repository
 
         public void RegisterUser(User user)
         {
+           
             var data = new User()
             {
                 FirstName = user.FirstName,
@@ -30,6 +34,7 @@ namespace CiPlatform.Repository.Repository
                 Password = user.Password,
                 CityId = 1,
                 CountryId = 1,
+                
             };
 
             _ciContext.Users.Add(data);
@@ -41,13 +46,17 @@ namespace CiPlatform.Repository.Repository
             return _ciContext.Users.FirstOrDefault(u => u.Email == email);
         }
 
+        public void SaveToken(string email, string token)
+        {
+            var data = new PasswordReset()
+            {
+                Email = email,
+                Token = token,
+            };
+            _ciContext.PasswordResets.Add(data);
+            _ciContext.SaveChanges();
+        }
 
-        /*   public List<User> GetUserData()
-         {
-             List<User> users = _ciContext.Users.ToList();
-             return users;
-         }
-       */
 
     }
 }

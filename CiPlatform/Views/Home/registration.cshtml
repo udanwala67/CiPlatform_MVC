@@ -1,5 +1,4 @@
 ﻿@model CiPlatform.Entitites.Models.User
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,7 +16,7 @@
 </head>
 
 <body>
-     <form method = "post" action = "registration">
+     <form method = "post">
     <div class="row">
 
         
@@ -71,27 +70,27 @@
            
             <div class="registrationform">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" asp-for = "FirstName">First Name</label>
+                    <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "FirstName">First Name</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" asp-for = "FirstName">
                     @Html.ValidationMessageFor(model => model.FirstName,"",new { @class = "text-danger"})
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" asp-for = "LastName">Last Name</label>
+                    <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "LastName">Last Name</label>
                     <input type="text" class="form-control" id="exampleFormControlInput1" asp-for = "LastName">
                     @Html.ValidationMessageFor(model => model.LastName,"",new { @class = "text-danger"})
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" asp-for = "PhoneNumber">Phone Number</label>
+                    <label for="exampleFormControlInput1" class="form-label" autocomplete = "on"  asp-for = "PhoneNumber">Phone Number</label>
                     <input type="number" class="form-control" id="exampleFormControlInput1" asp-for = "PhoneNumber">
                    @* @Html.ValidationMessageFor(model => model.PhoneNumber,"",new { @class = "text-danger"})*@
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" asp-for = "Email">Email address</label>
+                    <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "Email">Email address</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder = "Enter Your Email Address..." asp-for = "Email">
                    @* @Html.ValidationMessageFor(model => model.Email,"",new { @class = "text-danger"})*@
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" asp-for = "Password">Password</label>
+                    <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "Password">Password</label>
                     <input type="password" class="form-control" id="exampleFormControlInput1" asp-for = "Password">
                    @* @Html.ValidationMessageFor(model => model.Password,"",new { @class = "text-danger"})*@
                 </div>

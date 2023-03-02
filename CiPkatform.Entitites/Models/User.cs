@@ -26,7 +26,7 @@ namespace CiPlatform.Entitites.Models
         [Required(ErrorMessage = "First Name is required")]
         public string? FirstName { get; set; }
 
-        [Required(ErrorMessage ="LastName is Required") ]
+        [Required(ErrorMessage ="LastName is Required")]
         public string? LastName { get; set; }
 
         [Required(ErrorMessage ="Email is Required")]
@@ -36,8 +36,8 @@ namespace CiPlatform.Entitites.Models
         [Required(ErrorMessage = "Password is required")]
        /* [StringLength(100, ErrorMessage = "Password should be minimum 8 character", MinimumLength = 8)]*/
         public string Password { get; set; } = null!;
-        
-        public int PhoneNumber { get; set; }
+
+        public int PhoneNumber { get; set; } 
         public string? Avatar { get; set; }
         public string? WhyIVolunteer { get; set; }
         public string? EmployeeId { get; set; }

@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Models;
+using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Models;
 using CiPlatform.Repository.Interface;
 using CiPlatform.Repository.Repository;
@@ -38,9 +39,9 @@ namespace CiPlatform.Controllers
         public IActionResult Login(User user)
         {
             var cuser = _CiRepository.GetUserEmail(user.Email);
-            if (cuser != null && cuser.Password.Equals(user.Password) && !ModelState.IsValid) 
+            if (cuser != null && cuser.Password.Equals(user.Password) && (!ModelState.IsValid) )
             {
-                return RedirectToAction("Platformlandingpage");
+                return RedirectToAction("platformlandingpage");
             }
             else
             {
@@ -51,6 +52,19 @@ namespace CiPlatform.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Forgotpassword(ForgotPasswordView forgotView ,PasswordReset passwordReset)
+        {
+            string email = forgotView.Email;
+            string token = (string);
+            UriBuilder builder = new UriBuilder();
+            builder.Scheme = "https";
+            builder.Host = "localhost";
+
+            return View("Index");
+
+        }
         public IActionResult registration()
         {
             return View();
@@ -60,7 +74,7 @@ namespace CiPlatform.Controllers
         [HttpPost]
         public IActionResult Registration(User user)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
 
                 _CiRepository.RegisterUser(user);
