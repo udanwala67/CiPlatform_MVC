@@ -8,9 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<CiContext>();
 builder.Services.AddScoped<ICiRepository, CiRepository>();
-builder.Services.AddTransient<EmailServices>();
+/*builder.Services.AddTransient<EmailServices>();
 builder.Services.AddSession();
-
+*/
 
 var app = builder.Build();
 

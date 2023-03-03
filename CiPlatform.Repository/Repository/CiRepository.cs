@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
-using CiPlatform.Entitites.ViewModels;
+
 
 namespace CiPlatform.Repository.Repository
 {
@@ -40,23 +40,12 @@ namespace CiPlatform.Repository.Repository
             _ciContext.Users.Add(data);
             _ciContext.SaveChanges();
         }
-
-        public User GetUserEmail(string email)
+        public string Email(string userId)
         {
             return _ciContext.Users.FirstOrDefault(u => u.Email == email);
+                
         }
-
-        public void SaveToken(string email, string token)
-        {
-            var data = new PasswordReset()
-            {
-                Email = email,
-                Token = token,
-            };
-            _ciContext.PasswordResets.Add(data);
-            _ciContext.SaveChanges();
-        }
-
+    
 
     }
 }

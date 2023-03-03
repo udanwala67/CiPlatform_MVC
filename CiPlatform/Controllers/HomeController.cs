@@ -1,5 +1,5 @@
 ﻿using CiPlatform.Entitites.Models;
-using CiPlatform.Entitites.ViewModels;
+
 using CiPlatform.Models;
 using CiPlatform.Repository.Interface;
 using CiPlatform.Repository.Repository;
@@ -53,7 +53,7 @@ namespace CiPlatform.Controllers
             return View();
         }
 
-        [HttpPost]
+       /* [HttpPost]
         public IActionResult Forgotpassword(ForgotPasswordView forgotView ,PasswordReset passwordReset)
         {
             string email = forgotView.Email;
@@ -64,7 +64,7 @@ namespace CiPlatform.Controllers
 
             return View("Index");
 
-        }
+        }*/
         public IActionResult registration()
         {
             return View();
