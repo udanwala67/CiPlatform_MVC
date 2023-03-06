@@ -55,9 +55,7 @@ C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.csproj.CopyComplete
-C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Entitites.dll
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Repository.dll
-C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Entitites.pdb
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Repository.pdb
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\MessagePack.dll
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\MessagePack.Annotations.dll
@@ -272,3 +270,5 @@ C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
 C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.MvcApplicationPartsAssemblyInfo.cs
+C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Entitites.dll
+C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.Entitites.pdb

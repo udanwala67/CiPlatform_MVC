@@ -14,17 +14,17 @@ namespace CiPlatform.Repository.Repository
 {
     public class CiRepository : ICiRepository
     {
-        public readonly CiContext _ciContext;
+        private readonly CiContext _CiContext;
 
-        public CiRepository(CiContext ciContext)
+        public CiRepository(CiContext CiContext)
         {
-            _ciContext = ciContext;
+            _CiContext = CiContext;
         }
 
 
         public void RegisterUser(User user)
         {
-           
+
             var data = new User()
             {
                 FirstName = user.FirstName,
@@ -34,18 +34,28 @@ namespace CiPlatform.Repository.Repository
                 Password = user.Password,
                 CityId = 1,
                 CountryId = 1,
-                
+                CreatedAt = DateTime.Now,
             };
 
-            _ciContext.Users.Add(data);
-            _ciContext.SaveChanges();
+            _CiContext.Users.Add(data);
+            _CiContext.SaveChanges();
         }
-        public string Email(string userId)
-        {
-            return _ciContext.Users.FirstOrDefault(u => u.Email == email);
-                
-        }
-    
 
+
+        public User GetUserEmail(string email)
+        {
+            return _CiContext.Users.FirstOrDefault(u => u.Email == email);
+        }
+        public void SaveToken(string email, string token)
+        {
+            var data = new PasswordReset()
+            {
+                Email = email,
+                Token = token,
+            };
+            _CiContext.PasswordResets.Add(data);
+            _CiContext.PasswordResets.Add(data);
+        }
     }
 }
+

@@ -10,7 +10,8 @@ namespace CiPlatform.Repository.Interface
     public interface ICiRepository
     {
         public void RegisterUser(User user);
-        object GetUserEmail(string email);
+        public User GetUserEmail(string email);
+        public void SaveToken(string email, string token);
 
 
 
