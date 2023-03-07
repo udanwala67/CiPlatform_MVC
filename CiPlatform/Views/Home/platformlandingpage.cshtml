@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model CiPlatform.Entitites.Models.Mission
+
+<!DOCTYPE html>
 <HTML lang="en">
 
 <head>
@@ -28,6 +30,7 @@
 </head>
 
 <body>
+    <form method=post>
   <div class="d-flex">
     <div class="col-md-2 col-0 border-bottom">
 
@@ -72,7 +75,7 @@
 
                       <li>
                         <div class="d-flex align-items-center">
-                          <a class="dropdown-item justify-content-space" href="#">Top Theams
+                          <a class="dropdown-item justify-content-space" href="#">Top Themes
                             <!-- <img src="images/right-arrow1.png" class="ms-5" height="10"> -->
                           </a>
                         </div>
@@ -121,7 +124,7 @@
                       </li>
 
                       <li>
-                        <a class="dropdown-item justify-content-between" href="#">Top Organisation
+                        <a class="dropdown-item justify-content-between" asp-for= "TopOrganisation">Top Organisation
                           <!-- <img src="images/right-arrow1.png" class="ms-5" height="10"> -->
                         </a>
                         <!-- Sub Dropdown -->
@@ -285,12 +288,12 @@
               id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
               <img src="~/Images/user-img-large.png" class="rounded-circle" height="40" width="40" alt=""
                 loading="lazy" />
-              <span class="ms-2">Evan Donohue <img src="~/Images/drop-down.png"> </span>
+              <span class="ms-2">Evan Donohue<img src="~/Images/drop-down.png" class= "mx-2"> </span>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="#">My profile</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" asp-for = "Logout">Logout</a></li>
+              <li><a class="dropdown-item" asp-for = "Logout" asp-action ="login">Logout</a></li>
             </ul>
           </div>
         </form>
@@ -439,6 +442,8 @@
       <div class="container grid-container mt-3">
         <div class="row">
           <div class="col-12 col-md-6 col-lg-4 mb-4">
+
+          
             <div class="card">
               <div class="col">
                 <div class="card h-100">
@@ -485,6 +490,8 @@
               </div>
 
             </div>
+            
+            
           </div>
 
           <div class="col-12 col-md-6 col-lg-4 mb-4">
@@ -1027,4 +1034,5 @@
   <div class="col-md-2 col-0 border-bottom"></div>
  @* </div>*@
   <!--Main Navigation-->
+  </form>
 </body>

@@ -79,22 +79,25 @@
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label" autocomplete = "on"  asp-for = "PhoneNumber">Phone Number</label>
                     <input type="number" class="form-control" id="exampleFormControlInput1" asp-for = "PhoneNumber">
-                   @* @Html.ValidationMessageFor(model => model.PhoneNumber,"",new { @class = "text-danger"})*@
+                    @Html.ValidationMessageFor(model => model.PhoneNumber,"",new { @class = "text-danger"})
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "Email">Email address</label>
                     <input type="email" class="form-control" id="exampleFormControlInput1" placeholder = "Enter Your Email Address..." asp-for = "Email">
-                   @* @Html.ValidationMessageFor(model => model.Email,"",new { @class = "text-danger"})*@
+                    @Html.ValidationMessageFor(model => model.Email,"",new { @class = "text-danger"})
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label" autocomplete = "on" asp-for = "Password">Password</label>
                     <input type="password" class="form-control" id="exampleFormControlInput1" asp-for = "Password">
-                   @* @Html.ValidationMessageFor(model => model.Password,"",new { @class = "text-danger"})*@
+                    @Html.ValidationMessageFor(model => model.Password,"",new { @class = "text-danger"})
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label" >Confirm Password</label>
+                    <label for="exampleFormControlInput1" class="form-label"  >Confirm Password</label>
                     <input type="password" class="form-control" id="exampleFormControlInput1">
-                </div> <button type="submit" class="loginbtn">Register</button>
+                    @Html.ValidationMessageFor(model => model.Password,"",new { @class = "text-danger"})
+                </div>
+                
+                <button type="submit" class="loginbtn">Register</button>
                 <p class="lost2"><a asp-controller= "Home" asp-action = "forgotpassword" class="lost1"><label class="lostpswd">Lost Your Password?</label></a></p>
 
                 <p class="already">

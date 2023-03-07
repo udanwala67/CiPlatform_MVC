@@ -45,15 +45,20 @@ namespace CiPlatform.Controllers
 
         public IActionResult Login(User user)
         {
-            var cuser = _CiRepository.GetUserEmail(user.Email);
-            if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
-            {
-                return RedirectToAction("platformlandingpage");
-            }
+            
+           
+
+                var cuser = _CiRepository.GetUserEmail(user.Email);
+                if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
+                {
+                    return RedirectToAction("platformlandingpage");
+                }
+            
             else
             {
                 return View();
             }
+        return View();
         }
         public IActionResult forgotpassword()
         {
@@ -62,7 +67,7 @@ namespace CiPlatform.Controllers
 
         [HttpPost]
 
-        public IActionResult Forgotpassword(ForgotPasswordView forgotView, PasswordReset passwordReset)
+        public IActionResult Forgotpassword(ForgotPasswordView forgotView,PasswordReset passwordReset)
 
         {
             string email = forgotView.Email;
@@ -126,9 +131,9 @@ namespace CiPlatform.Controllers
             }
 
             [HttpPost]
-            public IActionResult Resetpassword(ResetPasswordView resetView, IFormCollection form)
+            public IActionResult resetpassword(ResetPasswordView resetView, IFormCollection form)
             {
-                string token = HttpContext.Session.GetString("token_session");
+                /*string token = HttpContext.Session.GetString("token_session");*/
                 string email = resetView.Email;
                 var passreset = new PasswordReset();
                 var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();

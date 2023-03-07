@@ -241,7 +241,8 @@ namespace CiPlatform.Entitites.Data
 
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("created_at");
+                    .HasColumnName("created_at")
+                    .HasDefaultValueSql("(((18)-(1))-(2023))");
 
                 entity.Property(e => e.DeletedAt)
                     .HasColumnType("datetime")
@@ -686,7 +687,8 @@ namespace CiPlatform.Entitites.Data
 
                 entity.Property(e => e.UpdatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("updated_at");
+                    .HasColumnName("updated_at")
+                    .HasDefaultValueSql("(((7)/(3))/(2023))");
             });
 
             modelBuilder.Entity<PasswordReset>(entity =>

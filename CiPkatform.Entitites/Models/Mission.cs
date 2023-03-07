@@ -34,7 +34,7 @@ namespace CiPlatform.Entitites.Models
         public string? OrganizationName { get; set; }
         public string? OrganizationDetail { get; set; }
         public string? Availability { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
 
