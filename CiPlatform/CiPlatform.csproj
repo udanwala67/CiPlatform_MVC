@@ -26,4 +26,8 @@
     <ProjectReference Include="..\CiPlatform.Repository\CiPlatform.Repository.csproj" />
   </ItemGroup>
 
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="tasklist /fi &quot;imagename eq iisexpress.exe&quot; |find &quot;:&quot; &gt; nul&#xD;&#xA;if errorlevel 1 taskkill /f /im &quot;iisexpress.exe&quot;&#xD;&#xA;" />
+  </Target>
+
 </Project>

@@ -1,12 +1,12 @@
 ﻿function showList(e) {
     var $gridCont = $('.grid-container');
     e.preventDefault();
-    $gridCont.addClass('list-view');
+    $gridCont.addClass('listview');
 }
 function gridList(e) {
     var $gridCont = $('.grid-container')
     e.preventDefault();
-    $gridCont.removeClass('list-view');
+    $gridCont.removeClass('listview');
 }
 
 $(document).on('click', '.btn-grid', gridList);
