@@ -13,7 +13,7 @@ $(document).on('click', '.btn-grid', gridList);
 $(document).on('click', '.btn-list', showList);
 
 
-clearbutton.onclick = () => {
+function.onclick = () => {
     const myNode = document.querySelector(".filters-section");
     while (myNode.lastElementChild) {
         myNode.removeChild(myNode.lastElementChild);

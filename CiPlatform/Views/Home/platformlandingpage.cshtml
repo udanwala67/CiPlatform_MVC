@@ -1,488 +1,142 @@
-﻿@model IEnumerable<CiPlatform.Entitites.Models.Mission>
+﻿@{
+    Layout = "_navbar1";
+}
+@model List<CiPlatform.Entitites.Models.Mission>
 <!DOCTYPE html>
-<HTML lang="en">
-<form method=post>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
-  <title>Home Page</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing-Page</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-    crossorigin="anonymous"></script>
-   <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  <link rel="icon" href="" type="image/x-icon">
-  <link rel="stylesheet" href="/CSS/platformlandingpage.css">
-  <script src = ~/js/Home.js></script>
-
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
-  <!-- MDB -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
-
-  <!-- MDB -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/Css/text.css"> -->
+    <link rel="stylesheet" href="/css/platformlandingpage.css">
 </head>
 
 <body>
-    
-  <div class="d-flex">
-    <div class="col-md-2 col-0 border-bottom">
-
+    <div class="filters-section d-flex align-items-center flex-wrap justify-content-center mt-2">
     </div>
+    <div class="container grid-container mt-2">
+        <div class="row mb-2">
+            <div class="d-flex">
+                <div class="firstdiv me-auto d-flex">
+                    <p class="fs-4 me-2">Explore</p>
+                    <h4>@ViewBag.TotalMissions mission</h4>
+                </div>
 
-    <!--Main Navigation-->
-    <div class="col-md-8 col-12">
+                <div class="sort-list-grid d-flex">
 
-      <!-- Navbar -->
+                    <div class="dropdown sort me-2 mt-1">
+                        <button class=" btn dropdown d-flex " type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
 
-
-      <nav class="navbar navbar-expand-lg bg-white d-flex align-items-center">
-
-        <!-- Logo -->
-        <div class="col-md-8 d-flex align-items-center justify-content-md-start mb-md-0">
-          <button class="navbar-toggler navcollapse" href="#offcanvasExample" role="button" data-bs-toggle="offcanvas"
-            aria-controls="offcanvasExample">
-            <span class="navbar-toggler-icon" onclick="handleInOut()"></span>
-          </button>
-          <a href="#!" class="ms-md-2 mt-2">
-            <img src="~/Images/logo.png" alt="" height="35">
-          </a>
-
-          <!-- Top navbar content -->
-          <div class="container-fluid">
-            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-              aria-labelledby="offcanvasExampleLabel" style="width:50%;">
-              <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasExample"></h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                  aria-label="Close"></button>
-              </div>
-              <div class="offcanvas-body">
-                <ul class="navbar-nav me-auto my-2 my-lg-0">
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Explore
-                    </a>
-                    <!-- Dropdown -->
-                    <ul class="dropdown-menu dropend">
-
-                      <li>
-                        <div class="d-flex align-items-center">
-                          <a class="dropdown-item justify-content-space" href="#">Top Themes
-                            <!-- <img src="images/right-arrow1.png" class="ms-5" height="10"> -->
-                          </a>
-                        </div>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
+                            <span class="sortby me-5 ">@ViewBag.Order By</span>
+                            <img src="~/Images/drop-down.png" alt="" class="sortaerrow">
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Newest">Newest</a></li>
+                            <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Oldest ">Oldest </a></li>
+                            <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Theme">Theme</a></li>
                         </ul>
-                      </li>
 
-                      <li>
-                        <a class="dropdown-item align-items-end" href="#">Top Countries
-                          <!-- <img src="images/right-arrow1.png" class="ms-5" height="10"> -->
-                        </a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
+                        @*<select>
+                            <option selected>Choose a number</option>
+                            <option><a class="dropdown-item" asp-action="landingpage" asp-controller="landingpage" asp-route-sortOrder="1">Title</a></option>
+                            <option><a class="dropdown-item" asp-action="landingpage" asp-controller="landingpage" asp-route-sortOrder="2">Start Date</a></option>
+                            <option><a class="dropdown-item" asp-action="landingpage" asp-controller="landingpage" asp-route-sortOrder="3">End Date</a></option>
+                            </select>*@
+                    </div>
 
-                      <li>
-                        <a class="dropdown-item justify-content-between" asp-for= "TopOrganisation">Top Organisation
-                          <!-- <img src="images/right-arrow1.png" class="ms-5" height="10"> -->
-                        </a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
 
-                      <li>
-                        <a class="dropdown-item" href="#">Top Ranked</a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
 
-                      <li>
-                        <a class="dropdown-item" href="#">Top Favourite</a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
+                    <div class="me-2 mt-1">
+                        <button onclick="grid()" class="grid"><img src="~/Images/grid.png"></button>
+                    </div>
+                    <div class="mt-1 me-4">
+                        <button onclick="list()" class="list"><img src="~/Images/list.png" alt="list"></button>
+                    </div>
+                </div>
 
-                      <li>
-                        <a class="dropdown-item" href="#">Recommended</a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <a class="dropdown-item" href="#">Random</a>
-                        <!-- Sub Dropdown -->
-                        <ul class="dropdown-menu dropdown-submenu">
-                          <li>
-                            <a class="dropdown-item" href="#">Education</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Children</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Health</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Animals</a>
-                          </li>
-                          <li>
-                            <a class="dropdown-item" href="#">Nutrition</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Stories</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">News</a>
-                  </li>
-
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                      aria-expanded="false">
-                      Policy
-                    </a>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Volunteering</a></li>
-                      <li><a class="dropdown-item" href="#">Sponsered</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
             </div>
-          </div>
         </div>
 
-        <!-- Notification, User -->
-        <form class="col-md-4 d-flex align-items-center justify-content-end pe-1">
-          <!-- Notification -->
-          <div class="dropdown">
-            <a class="text-reset me-3 dropdown-toggle hidden-arrow" href="#" id="navbarDropdownMenuLink" role="button"
-              data-mdb-toggle="dropdown" aria-expanded="false">
-              <img src="~/Images/bell.png">
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-              <li>
-                <a class="dropdown-item" href="#">
-                  <label class="form-check-label" for="Checkme1">Check me</label>
-                  <input class="form-check-input" type="checkbox" value="" id="Checkme1" />
-                </a>
-              </li>
-              <li><a class="dropdown-item" href="#">Another news</a></li>
+        <div class="row " id="myItems">
 
-              <li>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- User -->
-          <div class="dropdown name">
-            <a class="text-reset dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
-              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-              <img src="~/Images/user-img-large.png" class="rounded-circle" height="40" width="40" alt=""
-                loading="eager" />
-              <span class="ms-2">Evan Donohue<img src="~/Images/drop-down.png" class= "mx-2"> </span>
-            </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">My profile</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" asp-for = "Logout" asp-action ="login">Logout</a></li>
-            </ul>
-          </div>
-        </form>
-      </nav>
-      <!-- Second -->
-      <!-- Second nav bar -->
-      <nav class="navbar navbar-expand-lg bg-white d-flex align-items-center border-bottom border-top"
-        style="box-shadow: none;">
-        <!-- Search -->
-        <!-- <div class="d-flex align-items-center justify-content-md-start mb-md-0"> -->
-        <div class="col-md-6 col-8">
-          <form class="d-flex">
-            <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
-            <input class="form-control me-2 border-0" type="search" placeholder="Search" aria-label="Search">
-          </form>
-
-        </div>
-        <div class="">
-          <button class="navbar-toggler navcollapse" type="button" href="#offcanvasExample2" data-bs-toggle="offcanvas"
-            aria-controls="offcanvasExample">
-            <img src="~/Images/filter.png">
-          </button>
-        </div>
-        <div class="container-fluid col-md-6 col-4 p-0">
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample2"
-            aria-labelledby="offcanvasExampleLabel" style="width:50%">
-            <div class="offcanvas-header">
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body justify-content-end">
-              <ul class="navbar-nav my-2 my-lg-0">
-
-                <li class="nav-item dropdown me-0 ">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Country
-                  </a>
-                  <!-- Dropdown -->
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="#">India</a>
-                    <li>
-                      <a class="dropdown-item" href="#">China</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">USA</a>
-                    <li>
-                      <a class="dropdown-item" href="#">UK</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    City
-                  </a>
-                  <!-- Dropdown -->
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="#">Ahmedabad</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Rajkot</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Surat</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Vadodara</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Themes
-                  </a>
-                  <!-- Dropdown -->
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="#">Classis</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Rock</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">POP</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Western</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="nav-item dropdown">
-                  <a class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Skills
-                  </a>
-                  <!-- Dropdown -->
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="#">Drawing</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Singing</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Dancing</a>
-                    <li>
-                      <a class="dropdown-item" href="#">Painting</a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!--Nav Ended-->
-      <!--Div For Filters -->
-      <div>
-      </div>
-      <!--Div For Sort by -->
-      <div class="sorting d-flex justify-content-between mt-3">
-        <div class="explore"> Explore <strong>72 missions</strong> </div>
-
-<div class="col-lg-4">
-          <div class="d-flex flex-row justify-content-end align-items-center filters">
-            <button type="button" onclick="gridList()" class="icngrid mx-2"><img src="~/images/grid.png" /></button>
-            <button type="button" onclick="showList()" class="icnlist"><img src="~/images/list.png" /></button>
-            <!-- <input type="image" src="~/images/grid.png" class="icngrid me-2" onclick="displaygrid()" />
-          <input type="image" src="~/images/list.png" class="icnlist" onclick="displaylist()" /> -->
-          </div>
-        </div>
-      </div>
-      <!--Crads-->
-      <div class="container grid-container mt-3">
-        <div class="row">
-
-            @foreach(var item in Model)
+            @foreach (var item in Model)
             {
-             <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 " id="myItems">
 
-          
-            <div class="card">
-              <div class="col">
-                <div class="card h-100">
-                  <img src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability.png" class="card-img-top"
-                    alt="Palm Springs Road" />
+                    <div class="card">
 
-                  <!-- <button type="button" class="btn btn-light btn-rounded">Environment</button> -->
-                  <span class="mission-theme position-relative border-bottom mx-auto">Enviornment</span>
+                        <div class="img-event">
+                            <img class="card-img-top card-img"
+                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
+                             alt="Card image cap">
+                            <div class="landing-page-top-right "><img src="~/Images/pin.png" alt="">--- </div>
 
-                  <div class="card-body">
-                    <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text text-secondary">@item.ShortDescription</p>
+                            <div class="landing-page-bottom-right d-flex flex-column">
+                                <button class="mb-2 landing-page-btn-img">
+                                    <img src="~/Images/heart.png" alt="">
+                                </button>
+                                <button class="landing-page-btn-img">
+                                    <img src="~/Images/user.png" alt="">
+                                </button>
+                            </div>
 
-                    <div class="d-flex">
-                      <div class="card-text">@item.OrganizationName</div>
-                      <div class="ms-auto">
-                        <img src="~/Images/star.png" class="star" alt="">
-                        <img src="~/Images/selected-star.png" class="star" alt="">
-                        <img src="~/Images/selected-star.png" class="star" alt="">
-                        <img src="~/Images/star.png" class="star" alt="">
-                        <img src="~/Images/star.png" class="star" alt="">
-                      </div>
+                            <div><button class="theme-btn ">Environment</button></div>
+                            <!-- <button class="theme-btn ">Environment</button> -->
                     </div>
-                  </div>
-                  <hr>
-                  <!-- <div class="btn btn-light btn-rounded">From 10/01/2019 until 25/02/2019</div> -->
-                  <span class="mission-theme1 position-relative mx-auto border-bottom">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</span>
-                  
-                   
-                  <div class="d-flex">
-                    <div><img src="~/Images/Seats-left.png" class="mt-2 ms-2"></div>
-                    <div class="ms-2">10 <p class="seat">seat Left</p>
-                    </div>
-                    @if(item.MissionType == "Time")
-                                                {
-                                                    <div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
-                                                    <div class="me-2">@item.EndDate.ToString().Split(" ")[0]<p>Deadline</p>
-                                                    </div>
-                                                }
-                                            </div>
-                    
-                        else {
 
-                                   <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
+
+                        <div class="card-body mt-2">
+                            <h5 class="card-title " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+                                @item.Title
+                            </h5>
+                            <p class="card-text text-secondary " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                                @item.ShortDescription
+                            </p>
+
+                            <div class="d-flex">
+                                <div class="card-text">@item.OrganizationName</div>
+                                <div class="ms-auto">
+                                    <img src="~/Images/selected-star.png" class="star" alt="">
+                                    <img src="~/Images/selected-star.png" class="star" alt="">
+                                    <img src="~/Images/selected-star.png" class="star" alt="">
+                                    <img src="~/Images/star-empty.png" class="star" alt="">
+                                    <img src="~/Images/star-empty.png" class="star" alt="">
+                                </div>
+                            </div>
+
+                            <div class="rule mt-1">
+                                <hr>
+                                <button class="date-btn mt-1">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</button>
+                                <hr>
+                            </div>
+
+                            <div class="d-flex">
+                                <div><img src="~/Images/Seats-left.png" class="mt-2"></div>
+                                <div class="ms-2">
+                                    @item.Availability <p class="seat">seat Left</p>
+                                </div>
+
+
+                                @if (item.MissionType == "Time")
+                                {
+                                    <div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
+                                    <div class="ms-2">
+                                        @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
+                                    </div>
+                                }
+                                else
+                                {
+
+                                    <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
                                     <div class="ms-2 me-5" stye="width:100%">
                                         <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                                             <div class="progress-bar bg-warning" style="width: 25%">25%</div>
@@ -490,103 +144,112 @@
                                         <fs-5>Deadline</fs-5>
                                     </div>
                                 }
-                     
-                  <div class="card-footer text-center"> 
-                    <button type="button" class="btn btn-rounded btn-outline-warning">Apply
-                      <img src="~/Images/right-arrow.png" alt="">
-                      </button>
-                  </div>
+
+                                @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
+                                    <div class="ms-2">
+                                    09/01/2019 <p>Deadline</p>
+                                    </div>*@
+                            </div>
+                            <hr class="mt-0">
+
+                            <div class="text-center">
+                                <button class="Apply-btn p-2">
+                                    &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png"
+                                                             alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-              </div>
 
-            </div>
-            
-            
-          </div>       
-           }
-         
-
-          
-
-
+            }
 
         </div>
 
-      </div>
+
     </div>
-  </div>
-   <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+@*    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
 
         <ul class="pagination">
-        
+
             <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
                 <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@(ViewBag.CurrentPage - 1)" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                 </a>
-             </li>
-            
+            </li>
+
             @for (int i = 0; i < ViewBag.TotalPages; i++)
             {
-            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
                     <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@i">@((i + 1).ToString())</a>
                 </li>
             }
-           
+
             <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
                 <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                 </a>
             </li>
-         
+
         </ul>
-    </nav>
+    </nav>*@
     <hr />
     <footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
-    
+
     <script>
         var card = document.getElementsByClassName("missioncard")
         var cardimg = document.getElementsByClassName("card-img");
         var carddisplay = document.getElementsByClassName("card");
         var theme = document.getElementsByClassName("theme-btn");
 
-        function list() {
-            for (i = 0; i < card.length; i++) {
-                card[i].style.width = "100%";
-                card[i].style.marginTop = "1%";
-                carddisplay[i].style.display = "flex";
-                carddisplay[i].style.flexDirection = "row";
-                cardimg[i].style.height = "48vh";
-                theme[i].style.top = "95%";
-                // theme[i].style.left = "34%";
-            }
+        if (localStorage.getItem("view") === "list")
+        {
+        list();
         }
+
+
+        function list()
+        {
+        localStorage.setItem("view", "list");
+        for (i = 0; i < card.length; i++) {
+        card[i].style.width = "100%";
+        card[i].style.marginTop = "1%";
+        carddisplay[i].style.display = "flex";
+        carddisplay[i].style.flexDirection = "row";
+        cardimg[i].style.height = "48vh";
+        theme[i].style.top = "95%";
+        // theme[i].style.left = "34%";
+        }
+        }
+
+
         function grid() {
-            for (i = 0; i < card.length; i++) {
 
-                if (screen.width > 1023) {
-                    card[i].style.width = "33%";
-                    carddisplay[i].style.flexDirection = "column";
-                    cardimg[i].style.width = "100%";
-                    theme[i].style.top = "95%";
-                    theme[i].style.left = "35%";
-                }
-                else {
-                    card[i].style.width = "50%";
-                    carddisplay[i].style.flexDirection = "column";
-                    cardimg[i].style.width = "100%";
-                    theme[i].style.top = "95%";
-                    theme[i].style.left = "35%";
+        localStorage.setItem("view" ,"grid");
+        for (i = 0; i < card.length; i++) {
 
-                }
-            }
+        if (screen.width > 1023) {
+        card[i].style.width = "33%";
+        carddisplay[i].style.flexDirection = "column";
+        cardimg[i].style.width = "100%";
+        theme[i].style.top = "95%";
+        theme[i].style.left = "35%";
         }
-      
-    </script>
-    <script src="~/js/Home.js"></script>
+        else {
+        card[i].style.width = "50%";
+        carddisplay[i].style.flexDirection = "column";
+        cardimg[i].style.width = "100%";
+        theme[i].style.top = "95%";
+        theme[i].style.left = "35%";
 
-  <div class="col-md-2 col-0 border-bottom"></div>
- @* </div>*@
-  <!--Main Navigation-->
-  
+        }
+        }
+        }
+
+    </script>
+
+    <script src="~/js/filter.js"></script>
+
 </body>
-</form>
+</html>

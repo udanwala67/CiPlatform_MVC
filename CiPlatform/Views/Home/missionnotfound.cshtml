@@ -255,7 +255,7 @@
             </div>
           </div>
         </div>
-
+        <form method = "post">
         <!-- Notification, User -->
         <form class="col-md-4 d-flex align-items-center justify-content-end pe-1">
           <!-- Notification -->
@@ -290,12 +290,15 @@
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="#">My profile</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li><a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
             </ul>
           </div>
+          </form>
         </form>
       </nav>
+      
 
+      
       <div class="container-fluid">
         <div class="col-lg-11">
           <div class="row">
@@ -308,8 +311,8 @@
 
           </div>
           <div class="button1 my-3 justify-content-between ">
-            <button type="button" class="btn btn-rounded btn-outline-warning">Go To Homepage
-              <img src="/~/images/right-arrow.png" alt=""></button>
+            <button type="button" class="btn btn-rounded btn-outline-warning" asp-controller = "Home" asp-action="platformlandingpage">Go To Homepage
+              <img src="~/images/right-arrow.png" asp-controller = "Home" asp-action="platformlandingpage" alt=""></button>
           </div>
 
         </div>

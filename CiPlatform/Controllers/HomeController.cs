@@ -6,7 +6,7 @@ using CiPlatform.Repository.Interface;
 using CiPlatform.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
+using System.Linq;
 
 namespace CiPlatform.Controllers
 {
@@ -158,13 +158,58 @@ namespace CiPlatform.Controllers
                 return token;
             }
 
-            public IActionResult platformlandingpage()
+            public IActionResult platformlandingpage(string searchQuery ,string sortOrder)
             {
                 List<Mission> mission = _ciContext.Missions.ToList();
-                return View(mission);
+
+            List<Country> country = _ciContext.Countries.ToList();
+            ViewBag.Country = country;
+
+            List<City> city = _ciContext.Cities.ToList();
+            ViewBag.City = city;
+
+            List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
+            ViewBag.Themes = themes;
+
+            if (searchQuery != null)
+            {
+                mission = _ciContext.Missions.Where(m => m.Title.Contains(searchQuery)).ToList();
+                //ViewBag.InputSearch = searchQuery;
+
+                if (mission.Count() == 0)
+                {
+                    return RedirectToAction("missionnotfound", "home");
+                }
             }
 
-            public IActionResult listview()
+
+            switch(sortOrder)
+            {
+                case "Newest":
+                    mission = _ciContext.Missions.OrderByDescending(m => m.StartDate).ToList();
+                    break;
+
+                case "Oldest":
+                    mission = _ciContext.Missions.OrderByDescending(mission => mission.EndDate).ToList();
+                    break;
+
+                case "Theme":
+                    mission = _ciContext.Missions.OrderByDescending(mission => mission.Theme).ToList();
+                    break;
+            }
+
+            return View(mission);
+            }
+
+        /*[HttpPost]
+
+        public IActionResult Platformlandingpage(platformlandingpage,Platformlandingpage)
+        {
+            return View();
+        }*/
+
+     
+        public IActionResult listview()
             {
                 return View();
             }
