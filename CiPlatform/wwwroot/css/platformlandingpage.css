@@ -54,8 +54,8 @@ display: none !important;
 }
 
 .div {
-    / border: 1px solid black;
-    /
+     border: 1px solid black;
+   
 }
 
 .vertical {
@@ -164,9 +164,9 @@ display: none !important;
 
 .rule {
     display: flex;
-    / flex-direction: row;
-    / / flex-wrap: nowrap;
-    /
+     flex-direction: row;
+     flex-wrap: nowrap;
+    
 }
 
 hr {
@@ -191,8 +191,8 @@ hr {
 }
 
 .card-img {
-    / height: 33vh;
-    /
+     height: 33vh;
+    
 }
 
 /*.theme {

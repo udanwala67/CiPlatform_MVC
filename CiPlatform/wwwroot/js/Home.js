@@ -122,3 +122,44 @@ function removeElement(value) {
     }
 
 }
+
+const items = document.querySelectorAll('#myItems');
+const itemsPerPage = 4;
+
+const totalPages = Math.ceil(items.length / itemsPerPage);
+console.log(items);
+function displayPage(pageNumber) {
+    const startIndex = (pageNumber - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+
+    items.forEach((item, index) => {
+        if (index >= startIndex && index < endIndex) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+function createPaginationLinks() {
+    const pagination = document.querySelector('#pagination .pagination');
+
+    for (let i = 1; i <= totalPages; i++) {
+        const listItem = document.createElement('li');
+        listItem.classList.add('page-item');
+
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = i;
+        link.classList.add('page-link');
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            displayPage(i);
+        });
+        listItem.appendChild(link);
+        pagination.appendChild(listItem);
+    }
+}
+
+displayPage(1);
+createPaginationLinks();

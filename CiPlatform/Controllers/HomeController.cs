@@ -158,7 +158,7 @@ namespace CiPlatform.Controllers
                 return token;
             }
 
-            public IActionResult platformlandingpage(string searchQuery ,string sortOrder)
+            public IActionResult platformlandingpage(string searchQuery ,string sortOrder,CityView cityView)
             {
                 List<Mission> mission = _ciContext.Missions.ToList();
 
@@ -171,10 +171,12 @@ namespace CiPlatform.Controllers
             List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
             ViewBag.Themes = themes;
 
+            
+
             if (searchQuery != null)
             {
                 mission = _ciContext.Missions.Where(m => m.Title.Contains(searchQuery)).ToList();
-                //ViewBag.InputSearch = searchQuery;
+                ViewBag.InputSearch = searchQuery;
 
                 if (mission.Count() == 0)
                 {
@@ -182,6 +184,7 @@ namespace CiPlatform.Controllers
                 }
             }
 
+           
 
             switch(sortOrder)
             {
@@ -198,17 +201,17 @@ namespace CiPlatform.Controllers
                     break;
             }
 
+            foreach (var item in mission)
+            {
+                var City = _ciContext.Cities.FirstOrDefault(u => u.CityId == item.CityId);
+                var Theme = _ciContext.MissionThemes.FirstOrDefault(u => u.MissionThemeId == item.ThemeId);
+             /*   var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
+            }
             return View(mission);
             }
 
-        /*[HttpPost]
 
-        public IActionResult Platformlandingpage(platformlandingpage,Platformlandingpage)
-        {
-            return View();
-        }*/
 
-     
         public IActionResult listview()
             {
                 return View();

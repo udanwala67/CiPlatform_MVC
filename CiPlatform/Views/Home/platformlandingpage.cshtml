@@ -2,6 +2,7 @@
     Layout = "_navbar1";
 }
 @model List<CiPlatform.Entitites.Models.Mission>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,7 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="/Css/text.css"> -->
     <link rel="stylesheet" href="/css/platformlandingpage.css">
+    @*<script type="text/javascript" src="~/js/Home.js"></script>*@
 </head>
 
 <body>
@@ -66,7 +68,7 @@
             </div>
         </div>
 
-        <div class="row " id="myItems">
+        <div class="row " id="">
 
             @foreach (var item in Model)
             {
@@ -78,7 +80,7 @@
                             <img class="card-img-top card-img"
                              src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                              alt="Card image cap">
-                            <div class="landing-page-top-right "><img src="~/Images/pin.png" alt="">--- </div>
+                            <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
 
                             <div class="landing-page-bottom-right d-flex flex-column">
                                 <button class="mb-2 landing-page-btn-img">
@@ -89,7 +91,7 @@
                                 </button>
                             </div>
 
-                            <div><button class="theme-btn ">Environment</button></div>
+                            <div><button class="theme-btn m-auto ">@item.Theme.Title</button></div>
                             <!-- <button class="theme-btn ">Environment</button> -->
                     </div>
 
@@ -122,7 +124,7 @@
                             <div class="d-flex">
                                 <div><img src="~/Images/Seats-left.png" class="mt-2"></div>
                                 <div class="ms-2">
-                                    @item.Availability <p class="seat">seat Left</p>
+                                    @item.Availability <p class="seat">seats Left</p>
                                 </div>
 
 
@@ -154,8 +156,8 @@
 
                             <div class="text-center">
                                 <button class="Apply-btn p-2">
-                                    &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png"
-                                                             alt="">
+                                    &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+
                                 </button>
                             </div>
                         </div>
@@ -169,87 +171,106 @@
 
 
     </div>
-@*    <nav aria-label="Page navigation example" class="d-flex justify-content-center">
-
-        <ul class="pagination">
-
-            <li class="page-item @(ViewBag.CurrentPage == 0 ? "disabled" : "")">
-                <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@(ViewBag.CurrentPage - 1)" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-
-            @for (int i = 0; i < ViewBag.TotalPages; i++)
-            {
-                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                    <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@i">@((i + 1).ToString())</a>
-                </li>
-            }
-
-            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPages - 1 ? "disabled" : "")">
-                <a class="page-link" href="/Landingpage/Landingpage/?sortOreder=@ViewBag.Order&searchQuery=@ViewBag.searchQuery&pageIndex=@(ViewBag.CurrentPage + 1)" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-
-        </ul>
-    </nav>*@
+    <div id="pagination" class="pagination justify-content-center">
+        <ul class="pagination"></ul>
+    </div>
     <hr />
     <footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
 
     <script>
-        var card = document.getElementsByClassName("missioncard")
-        var cardimg = document.getElementsByClassName("card-img");
-        var carddisplay = document.getElementsByClassName("card");
-        var theme = document.getElementsByClassName("theme-btn");
+                var card = document.getElementsByClassName("missioncard")
+                var cardimg = document.getElementsByClassName("card-img");
+                var carddisplay = document.getElementsByClassName("card");
+                var theme = document.getElementsByClassName("theme-btn");
 
-        if (localStorage.getItem("view") === "list")
-        {
-        list();
-        }
-
-
-        function list()
-        {
-        localStorage.setItem("view", "list");
-        for (i = 0; i < card.length; i++) {
-        card[i].style.width = "100%";
-        card[i].style.marginTop = "1%";
-        carddisplay[i].style.display = "flex";
-        carddisplay[i].style.flexDirection = "row";
-        cardimg[i].style.height = "48vh";
-        theme[i].style.top = "95%";
-        // theme[i].style.left = "34%";
-        }
-        }
+                if (localStorage.getItem("view") === "list")
+                {
+                list();
+                }
 
 
-        function grid() {
+                function list()
+                {
+                localStorage.setItem("view", "list");
+                for (i = 0; i < card.length; i++) {
+                card[i].style.width = "100%";
+                card[i].style.marginTop = "1%";
+                carddisplay[i].style.display = "flex";
+                carddisplay[i].style.flexDirection = "row";
+                cardimg[i].style.height = "48vh";
+                theme[i].style.top = "95%";
+                // theme[i].style.left = "34%";
+                }
+                }
 
-        localStorage.setItem("view" ,"grid");
-        for (i = 0; i < card.length; i++) {
 
-        if (screen.width > 1023) {
-        card[i].style.width = "33%";
-        carddisplay[i].style.flexDirection = "column";
-        cardimg[i].style.width = "100%";
-        theme[i].style.top = "95%";
-        theme[i].style.left = "35%";
+                function grid() {
+
+                localStorage.setItem("view" ,"grid");
+                for (i = 0; i < card.length; i++) {
+
+                if (screen.width > 1023) {
+                card[i].style.width = "33%";
+                carddisplay[i].style.flexDirection = "column";
+                cardimg[i].style.width = "100%";
+                theme[i].style.top = "95%";
+                theme[i].style.left = "35%";
+                }
+                else {
+                card[i].style.width = "50%";
+                carddisplay[i].style.flexDirection = "column";
+                cardimg[i].style.width = "100%";
+                theme[i].style.top = "95%";
+                theme[i].style.left = "35%";
+
+                }
+                }
+                }
+                const items = document.querySelectorAll('#myItems');
+        const itemsPerPage = 4;
+
+        const totalPages = Math.ceil(items.length / itemsPerPage);
+        console.log(items);
+        function displayPage(pageNumber) {
+        const startIndex = (pageNumber - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        items.forEach((item, index) => {
+        if (index >= startIndex && index < endIndex) {
+        item.style.display = 'block';
         }
         else {
-        card[i].style.width = "50%";
-        carddisplay[i].style.flexDirection = "column";
-        cardimg[i].style.width = "100%";
-        theme[i].style.top = "95%";
-        theme[i].style.left = "35%";
+        item.style.display = 'none';
+        }
+        });
+        }
 
+        function createPaginationLinks() {
+        const pagination = document.querySelector('#pagination .pagination');
+
+        for (let i = 1; i <= totalPages; i++) {
+        const listItem = document.createElement('li');
+        listItem.classList.add('page-item');
+
+        const link = document.createElement('a');
+        link.href = '#';
+        link.textContent = i;
+        link.classList.add('page-link');
+        link.addEventListener('click', (event) => {
+        event.preventDefault();
+        displayPage(i);
+        });
+        listItem.appendChild(link);
+        pagination.appendChild(listItem);
         }
         }
-        }
+
+        displayPage(1);
+        createPaginationLinks();
 
     </script>
 
-    <script src="~/js/filter.js"></script>
+  @*  <script src="~/js/filter.js"></script>*@
 
 </body>
 </html>
