@@ -1,4 +1,4 @@
-﻿function showList(e) {
+﻿/* function showList(e) {
     var $gridCont = $('.grid-container');
     e.preventDefault();
     $gridCont.addClass('listview');
@@ -20,8 +20,8 @@ function.onclick = () => {
     }
 
 
-}
-// Filter
+} */
+
 
 let filtersSection = document.querySelector(".filters-section");
 var filterList = document.querySelector(".filter-list");
@@ -32,7 +32,6 @@ for (var i = 0; i < cbs.length; i++) {
             addElement(this, this.value);
         }
         else {
-
             removeElement(this.value);
             console.log("unchecked");
         }
@@ -110,7 +109,7 @@ function ClearAllElement() {
 function removeElement(value) {
 
     let filtersSection = document.querySelector(".filters-section");
-    let clearAllButton = document.getElementById("ClearBtn");
+    //let clearAllButton = document.getElementById("ClearBtn");
     let elementToBeRemoved = document.getElementById(value);
     document.getElementById(value).checked = false;
     filtersSection.removeChild(elementToBeRemoved);
@@ -123,43 +122,41 @@ function removeElement(value) {
 
 }
 
-const items = document.querySelectorAll('#myItems');
-const itemsPerPage = 4;
 
-const totalPages = Math.ceil(items.length / itemsPerPage);
-console.log(items);
-function displayPage(pageNumber) {
-    const startIndex = (pageNumber - 1) * itemsPerPage;
-    const endIndex = startIndex + itemsPerPage;
 
-    items.forEach((item, index) => {
-        if (index >= startIndex && index < endIndex) {
-            item.style.display = 'block';
+//Filter
+
+$(document).ready(function () {
+    $('input[type=checkbox][id=FilterData]').change(function () {
+        var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {
+            return $(this).val();
+        }).get();
+        console.log(selectCity);
+        if (selectCity.length > 0) {
+            $('.carddiv').hide();
+            $.each(selectCity, function (index, value) {
+                $('.cardpdiv:contains("' + value + '")').show();
+            });
         } else {
-            item.style.display = 'none';
+            $('.carddiv').show();
         }
     });
-}
+});
 
-function createPaginationLinks() {
-    const pagination = document.querySelector('#pagination .pagination');
+/************Theme Filter*************/
+$(document).ready(function () {
+    $('input[type=checkbox][id=FilterData]').change(function () {
+        var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {
+            return $(this).val();
+        }).get();
 
-    for (let i = 1; i <= totalPages; i++) {
-        const listItem = document.createElement('li');
-        listItem.classList.add('page-item');
-
-        const link = document.createElement('a');
-        link.href = '#';
-        link.textContent = i;
-        link.classList.add('page-link');
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-            displayPage(i);
-        });
-        listItem.appendChild(link);
-        pagination.appendChild(listItem);
-    }
-}
-
-displayPage(1);
-createPaginationLinks();
+        if (selectCity.length > 0) {
+            $('#myItems').hide();
+            $.each(selectCity, function (index, value) {
+                $('.cardpdiv:contains("' + value + '")').show();
+            });
+        } else {
+            $('#myItems').show();
+        }
+    });
+});

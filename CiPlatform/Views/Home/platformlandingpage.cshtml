@@ -1,7 +1,9 @@
-﻿@{
+﻿@model List<CiPlatform.Entitites.Models.Mission>
+
+@{
     Layout = "_navbar1";
 }
-@model List<CiPlatform.Entitites.Models.Mission>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,18 +20,19 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="/Css/text.css"> -->
     <link rel="stylesheet" href="/css/platformlandingpage.css">
-    @*<script type="text/javascript" src="~/js/Home.js"></script>*@
+    <script type="text/javascript" src="~/js/Home.js"></script>
 </head>
 
 <body>
+    <form method = "post">
     <div class="filters-section d-flex align-items-center flex-wrap justify-content-center mt-2">
     </div>
     <div class="container grid-container mt-2">
         <div class="row mb-2">
-            <div class="d-flex">
-                <div class="firstdiv me-auto d-flex">
-                    <p class="fs-4 me-2">Explore</p>
-                    <h4>@ViewBag.TotalMissions mission</h4>
+            <div class="d-flex">                                @* @ViewBag.TotalMissions*@
+                <div class="firstdiv me-auto d-flex"> 
+                    <h4 class="me-2">Explore</h4>
+                    <h4>@ViewBag.TotalMissions missions</h4>
                 </div>
 
                 <div class="sort-list-grid d-flex">
@@ -68,11 +71,11 @@
             </div>
         </div>
 
-        <div class="row " id="">
+        <div class="row">
 
             @foreach (var item in Model)
             {
-                <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 " id="myItems">
+                <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
 
                     <div class="card">
 
@@ -155,16 +158,16 @@
                             <hr class="mt-0">
 
                             <div class="text-center">
-                                <button class="Apply-btn p-2">
-                                    &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
-
-                                </button>
+                               <button  type= "submit" class="Apply-btn p-2"> <a href="/Home/storydetails?missionid=@item.MissionId" >
+                                   &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+                                   </a>
+                                
+                                    </button>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
             }
 
         </div>
@@ -182,13 +185,10 @@
                 var cardimg = document.getElementsByClassName("card-img");
                 var carddisplay = document.getElementsByClassName("card");
                 var theme = document.getElementsByClassName("theme-btn");
-
                 if (localStorage.getItem("view") === "list")
                 {
                 list();
                 }
-
-
                 function list()
                 {
                 localStorage.setItem("view", "list");
@@ -202,13 +202,9 @@
                 // theme[i].style.left = "34%";
                 }
                 }
-
-
                 function grid() {
-
                 localStorage.setItem("view" ,"grid");
                 for (i = 0; i < card.length; i++) {
-
                 if (screen.width > 1023) {
                 card[i].style.width = "33%";
                 carddisplay[i].style.flexDirection = "column";
@@ -222,19 +218,17 @@
                 cardimg[i].style.width = "100%";
                 theme[i].style.top = "95%";
                 theme[i].style.left = "35%";
+                }
+                }
+                }
 
-                }
-                }
-                }
-                const items = document.querySelectorAll('#myItems');
+         const items = document.querySelectorAll('#myItems');
         const itemsPerPage = 4;
-
         const totalPages = Math.ceil(items.length / itemsPerPage);
         console.log(items);
         function displayPage(pageNumber) {
         const startIndex = (pageNumber - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
-
         items.forEach((item, index) => {
         if (index >= startIndex && index < endIndex) {
         item.style.display = 'block';
@@ -244,14 +238,11 @@
         }
         });
         }
-
         function createPaginationLinks() {
         const pagination = document.querySelector('#pagination .pagination');
-
         for (let i = 1; i <= totalPages; i++) {
         const listItem = document.createElement('li');
         listItem.classList.add('page-item');
-
         const link = document.createElement('a');
         link.href = '#';
         link.textContent = i;
@@ -264,13 +255,11 @@
         pagination.appendChild(listItem);
         }
         }
-
         displayPage(1);
         createPaginationLinks();
-
     </script>
 
   @*  <script src="~/js/filter.js"></script>*@
-
+  </form>
 </body>
 </html>

@@ -184,10 +184,11 @@ namespace CiPlatform.Controllers
                 }
             }
 
-           
+             int TotalMissions = mission.Count();
+             ViewBag.TotalMissions = TotalMissions;
 
             switch(sortOrder)
-            {
+            {   
                 case "Newest":
                     mission = _ciContext.Missions.OrderByDescending(m => m.StartDate).ToList();
                     break;
@@ -220,9 +221,11 @@ namespace CiPlatform.Controllers
             {
                 return View();
             }
-            public IActionResult sharestory()
+            public IActionResult storydetails(int misionid)
             {
-                return View();
+             var mission = _ciContext.Missions.FirstOrDefault(m => m.MissionId == misionid);
+             ViewBag.Mission = mission;
+             return View();
             }
             public IActionResult Privacy()
             {
@@ -238,7 +241,7 @@ namespace CiPlatform.Controllers
         {
             return View();
         }
-        public IActionResult storydetails()
+        public IActionResult sharestory()
         {
             return View();
         }
