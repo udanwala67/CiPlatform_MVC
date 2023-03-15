@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Models;
+using CiPlatform.Entitites.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace CiPlatform.Repository.Interface
         public User GetUserEmail(string email);
         public void SaveToken(string email, string token);
 
-
+        public VolunteeringMissionView GetMission();
 
 
         /*   public User FindUserByEmail(string email);

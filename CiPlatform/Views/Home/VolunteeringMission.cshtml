@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@model List<CiPlatform.Entitites.Models.Mission>
+
+    @{
+        var abc= ViewBag.Mission;
+    }
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,8 +19,8 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
     <link rel="icon" href="" type="image/x-icon">
-    <script type="text/javascript" src="JS/Home.js"></script>
-    <link rel="stylesheet" href="CSS/platformlandingpage.css">
+    <script type="text/javascript" src="js/Home.js"></script>
+    <link rel="stylesheet" href="~/css/storydetails.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -29,6 +34,7 @@
 </head>
 
 <body>
+
     <div class="d-flex">
         <div class="col-md-1 col-0 border-bottom"></div>
 
@@ -71,7 +77,7 @@
 
                                                 <li>
 
-                                                    <a class="dropdown-item" href="#">Top Theams</a>
+                                                    <a class="dropdown-item" href="#">Top Themes</a>
 
                                                     <!-- Sub Dropdown -->
                                                     <ul class="dropdown-menu dropdown-submenu">
@@ -341,7 +347,7 @@
                                         alt="..." style="height: 100%;" />
                                 </div>
                             </div>
-                            <!-- Slides -->
+                          @*  <!-- Slides -->*@
 
                             <!-- Controls -->
                             <button class="carousel-control-prev" type="button"
@@ -354,15 +360,15 @@
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
-                            <!-- Controls -->
+                           @* <!-- Controls -->*@
 
-                            <!-- Thumbnails -->
+                            @*<!-- Thumbnails -->*@
                             <div class="carousel-indicators list-inline thumbnailimg img-fluid" style="margin-bottom: -20px;">
                                 <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
                                     class="active" aria-current="true" aria-label="Slide 1" style="width: 40%;">
                                     <img class="d-block w-100"
                                         src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                                        class="img-fluid" />
+                                        class ="img-fluid" />
                                 </button>
                                 <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
                                     aria-label="Slide 2" style="width: 40%;">
@@ -385,23 +391,42 @@
                                 </button>
                                
                             </div>
-                            <!-- Thumbnails -->
+                         @*   <!-- Thumbnails -->*@
                         </div>
-                        <!-- Carousel wrapper -->
+                        @*<!-- Carousel wrapper -->*@
                     </div>
+                   
                     <div class="col-lg-6 " style="margin-top: 3%;">
-                        <div class="csrtitle">
-                            <span>CSR initiative stands for Coffee & Farmer Equity</span>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi est consectetur maxime
-                                ducimus doloribus culpa, mollitia enim magnam nostrum corporis</p>
+                        <div class="csrtitle fs-2">
+                            <span> @abc.Title </span>
+                         </div>
+                        
+                         <div class = "shortdescription mt-2 fs-4">
+                            <p>@abc.ShortDescription</p>
                         </div>
                         <div class="border-bottom mt-5"></div>
                         <div class="text-center">
-                            <button class="btn btn-rounded disabled"
+
+                             @if (@abc.MissionType == "Time")
+                                {
+                                     <button class="btn btn-rounded disabled"
                                 style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
-                                <span style="font-size: 17px;color: #414141; font-weight: 400;">Plant 10,000
-                                    Trees</span>
+                                <span style="font-size: 17px;color: #414141; font-weight: 400;"> 
+                                     From @abc.StartDate.ToString().Split(" ")[0] until @abc.EndDate.ToString().Split(" ")[0]</span>
                             </button>
+                                }
+                                else
+                                {
+
+                                    <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
+                                    <div class="ms-2 me-5" stye="width:100%">
+                                        <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+                                        </div>
+                                        <fs-5>Deadline</fs-5>
+                                    </div>
+                                }
+                           
                         </div>
 
                         <div class="d-flex justify-content-around mt-2">
@@ -426,16 +451,16 @@
                                             </div>
                                         </div>
                                     </h5>
-                                    <p class="mb-0 " style="color: #757575;">8000 Achieved</p>
+                                    <p class="mb-0 " style="color: #757575;"> abc.MissionType</p>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex favbtn mt-4 justify-content-between">
                             <a href="" class="btn btn-outline-dark btn-rounded px-2"
-                                style="width:45%; border-radius: 5;"><img src="~/Images/heart1.png" alt=""> Add to
+                                style="width:45%; border-radius: 5px;"><img src="~/Images/heart1.png" alt=""> Add to
                                 Favourite</a>
                             <a href="" class="btn btn-outline-dark btn-rounded px-2"
-                                style="width:45%; border-radius: 5;"><img src="~/Images/add1.png" alt=""> Recommend to a
+                                style="width:45%; border-radius: 5px;"><img src="~/Images/add1.png" alt=""> Recommend to a
                                 Co-Worker</a>
                         </div>
                         <!--Stars-->
@@ -840,16 +865,16 @@
                     <!-- 1 st -->
 
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+           
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
 
                             <div class="position-relative">
-                                <img class="card-img-top"
-                                    src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity.png"
+                                <img class="card-img-top" src="~/Images/Animal-welfare-_-save-birds-campaign.png"
                                     alt="Card image cap">
                                 <div class="position-absolute c1-location py-1 px-2">
                                     <img src="~/Images/pin.png" alt="Location">
-                                    London
+                                    Cape Town
                                 </div>
                                 <div class="position-absolute c1-heart" style="height:35px; width: 38px;">
                                     <img src="~/Images/heart.png" alt="Heart" class="ps-2 py-2">
@@ -885,18 +910,25 @@
                                     <div class="d-flex justify-content-between mt-2">
                                         <div class="d-flex align-items-center">
                                             <div class="mt-1 pe-0 me-2">
-                                                <img src="~/Images/Already-volunteered.png" alt="" width="25px"
-                                                    height="25px">
+                                                <img src="~/Images/Seats-left.png" alt="" width="25px" height="25px">
                                             </div>
                                             <div class="px-0">
-                                                <h5 class="mb-0 mt-1">250</h5>
-                                                <p class="mb-0">Already Volunteered</p>
+                                                <h5 class="mb-0 mt-1">10</h5>
+                                                <p class="mb-0">Seats left</p>
                                             </div>
                                         </div>
-
+                                        <div class="d-flex align-items-center">
+                                            <div class="mt-1 me-2 p-0">
+                                                <img src="~/Images/deadline.png" alt="" width="30px" height="30px">
+                                            </div>
+                                            <div class="px-0">
+                                                <h5 class="mb-0 mt-1">09/01/2019</h5>
+                                                <p class="mb-0">Deadline</p>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="roundedSection text-center position-absolute" id="missionDeadline">
-                                        <p class="mb-0 px-1" style="font-size: 10px;">Ongoing Opportunity
+                                        <p class="mb-0 px-1" style="font-size: 10px;">Plant 10,000 Trees
                                         </p>
                                     </div>
                                 </div>
@@ -908,7 +940,7 @@
                         </div>
                     </div>
                     <!-- 2 nd -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+             <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
 
                             <div class="position-relative">
@@ -983,7 +1015,7 @@
                     </div>
 
                     <!-- 3 rd -->
-                    <div class="col-12 col-md-6 col-lg-4 mb-4">
+             <div class="col-12 col-md-6 col-lg-4 mb-4">
                         <div class="card">
 
                             <div class="position-relative">
@@ -1062,6 +1094,7 @@
                 </div>
 
             </div>
+            
             <!--Crads Ended-->
         </div>
         <div class="col-md-1 col-0 border-bottom"></div>

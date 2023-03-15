@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
-
+using CiPlatform.Entitites.ViewModels;
 
 namespace CiPlatform.Repository.Repository
 {
@@ -55,6 +55,31 @@ namespace CiPlatform.Repository.Repository
             };
             _CiContext.PasswordResets.Add(data);
             _CiContext.PasswordResets.Add(data);
+        }
+
+        public VolunteeringMissionView GetMission()
+        {
+            var missions = _CiContext.Missions.ToList();
+            var cities =  _CiContext.Cities.ToList();
+            var country = _CiContext.Countries.ToList();
+            var goalMissions = _CiContext.GoalMissions.ToList();    
+            var favouriteMission = _CiContext.FavoriteMissions.ToList();
+            var missionRating = _CiContext.MissionRatings.ToList();
+            var missiontheme = _CiContext.MissionThemes.ToList();
+            var user = _CiContext.Users.ToList();
+           
+            VolunteeringMissionView mission = new VolunteeringMissionView();
+            mission.mission = missions;
+
+            mission.city = cities;
+            mission.country = country;
+            mission.goalMission = goalMissions;
+            mission.favoriteMission = favouriteMission;
+            mission.missionRating = missionRating;
+            mission.missionTheme =  missiontheme;
+            mission.user = user;
+
+            return mission;
         }
     }
 }

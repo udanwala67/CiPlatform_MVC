@@ -131,14 +131,16 @@ $(document).ready(function () {
         var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {
             return $(this).val();
         }).get();
-        console.log(selectCity);
+
+        console.log();
         if (selectCity.length > 0) {
-            $('.carddiv').hide();
+            $('.cardpdiv').hide();
             $.each(selectCity, function (index, value) {
                 $('.cardpdiv:contains("' + value + '")').show();
+                console.log(value);
             });
         } else {
-            $('.carddiv').show();
+            $('.cardpdiv').show();
         }
     });
 });

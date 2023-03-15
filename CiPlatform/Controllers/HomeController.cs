@@ -162,14 +162,14 @@ namespace CiPlatform.Controllers
             {
                 List<Mission> mission = _ciContext.Missions.ToList();
 
-            List<Country> country = _ciContext.Countries.ToList();
-            ViewBag.Country = country;
+                List<Country> country = _ciContext.Countries.ToList();
+                ViewBag.Country = country;
 
-            List<City> city = _ciContext.Cities.ToList();
-            ViewBag.City = city;
+                List<City> city = _ciContext.Cities.ToList();
+                ViewBag.City = city;
 
-            List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
-            ViewBag.Themes = themes;
+                List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
+                ViewBag.Themes = themes;
 
             
 
@@ -221,9 +221,9 @@ namespace CiPlatform.Controllers
             {
                 return View();
             }
-            public IActionResult storydetails(int misionid)
+            public IActionResult VolunteeringMission(int missionid)
             {
-             var mission = _ciContext.Missions.FirstOrDefault(m => m.MissionId == misionid);
+             var mission = _ciContext.Missions.FirstOrDefault(m => m.MissionId == missionid);
              ViewBag.Mission = mission;
              return View();
             }
@@ -237,10 +237,10 @@ namespace CiPlatform.Controllers
                 return View();
             }
 
-        public IActionResult VolunteeringMission()
+      /*  public IActionResult VolunteeringMission()
         {
             return View();
-        }
+        }*/
         public IActionResult sharestory()
         {
             return View();
