@@ -39,10 +39,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwbGFuZGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CiPlatform/CiPlatform/Views/Home/platformlandingpage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxwbGF0Zm9ybWxhbmRpbmdwYWdlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/CiPlatform/CiPlatform/Views/Home/registration.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxyZWdpc3RyYXRpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -59,8 +55,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxzaGFyZXN0b3J5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CiPlatform/CiPlatform/Views/Home/VolunteeringMission.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxWb2x1bnRlZXJpbmdNaXNzaW9uLmNzaHRtbA==
+[C:/CiPlatform/CiPlatform/Views/MissionCard/platformlandingpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzc2lvbkNhcmRccGxhdGZvcm1sYW5kaW5ncGFnZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CiPlatform/CiPlatform/Views/MissionCard/VolunteeringMission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzc2lvbkNhcmRcVm9sdW50ZWVyaW5nTWlzc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/CiPlatform/CiPlatform/Views/Shared/Error.cshtml]

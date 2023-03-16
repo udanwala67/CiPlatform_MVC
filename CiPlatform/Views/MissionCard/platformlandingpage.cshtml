@@ -1,4 +1,4 @@
-﻿@model List<CiPlatform.Entitites.Models.Mission>
+﻿@model CiPlatform.Entitites.ViewModels.VolunteeringMissionView
 
 <!DOCTYPE html>
 
@@ -146,9 +146,8 @@
                     </a>
 
                     <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                    @if (ViewBag.Country != null)
-                    {
-                    @foreach (var item in ViewBag.Country)
+                   
+                    @foreach (var item in Model.country)
                     {
                     <li>
                     <a class="dropdown-item p-0 mt-1" href="#">
@@ -168,9 +167,8 @@
                     City
                     </a>
                     <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                    @if (ViewBag.City != null)
-                    {
-                    @foreach (var item in ViewBag.City)
+                    
+                    @foreach (var item in Model.city)
                     {
                     <li>
                     <a class="dropdown-item p-0 mt-1" href="#">
@@ -178,7 +176,7 @@
                     @item.Name
                     </a>
                     </li>
-                    }
+                    
                     }
                     </ul>
                     </li>
@@ -189,19 +187,18 @@
                     Theme
                     </a>
                     <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                    @if (ViewBag.Themes != null)
-                    {
-                    @foreach (var item in ViewBag.Themes)
+                    
+                    @foreach (var item in Model.missionTheme)
                     {
                     <li>
 
                     <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" id="" class="checkbox ms-3 " id="@item.Title" value="@item.Title">
+                    <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
                     @item.Title
                     </a>
 
                     </li>
-                    }
+                    
                     }
                     </ul>
                     </li>
@@ -249,9 +246,8 @@
                             </a>
 
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="ItemList">
-                                @if (ViewBag.Country != null)
-                                {
-                                    @foreach (var item in ViewBag.Country)                          // id="@item.CountryId
+                               
+                                    @foreach (var item in Model.country)                          // id="@item.CountryId
                                     {
                                         <li>
                                             <a class="dropdown-item p-0 mt-1" href="#">
@@ -261,7 +257,7 @@
                                         </li>
 
                                     }
-                                }
+                                
                             </ul>
                         </li>
 
@@ -272,9 +268,8 @@
                                 <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
                             </a>
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                                @if (ViewBag.city != null)
-                                {
-                                    @foreach (var item in ViewBag.city)
+                                
+                                    @foreach (var item in Model.city)
                                     {
                                         <li>
                                             <a class="dropdown-item p-0 mt-1" href="#">
@@ -283,7 +278,7 @@
                                             </a>
                                         </li>
                                     }
-                                }
+                                
                             </ul>
                         </li>
 
@@ -294,18 +289,17 @@
                                 <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
                             </a>
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                                @if (ViewBag.Themes != null)
-                                {
-                                    @foreach (var item in ViewBag.Themes)
+                                
+                                    @foreach (var item in Model.missionTheme)
                                     {
                                         <li>
                                             <a class="dropdown-item p-0 mt-1" href="#">
-                                                <input type="checkbox" id="" class="checkbox ms-3 " id="FilterData" value="@item.Title">
+                                                <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
                                                 @item.Title
                                             </a>
                                         </li>
                                     }
-                                }
+                                
                             </ul>
                         </li>
 
@@ -368,9 +362,9 @@
                                 <img src="~/Images/drop-down.png" alt="" class="sortaerrow">
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Newest">Newest</a></li>
-                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Oldest ">Oldest </a></li>
-                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="Home" asp-route-sortOrder="Theme">Theme</a></li>
+                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="MissionCard" asp-route-sortOrder="Newest">Newest</a></li>
+                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="MissionCard" asp-route-sortOrder="Oldest ">Oldest </a></li>
+                                <li><a class="dropdown-item" asp-action="platformlandingpage" asp-controller="MissionCard" asp-route-sortOrder="Theme">Theme</a></li>
                             </ul>
 
                             @*<select>
@@ -396,7 +390,7 @@
 
             <div class="row">
 
-                @foreach (var item in Model)
+                @foreach (var item in Model.mission)
                 {
                     <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
 
@@ -488,11 +482,12 @@
                                 <hr class="mt-0">
 
                                 <div class="text-center">
-                                    <button type="submit" class="Apply-btn p-2" asp-action="VolunteeringMission" asp-controller="Home" asp-route-missionid="@item.MissionId">
+                                    <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
+                                    <button type="submit" class="Apply-btn p-2" >
                                         &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
-
-
-                                    </button>
+                                      
+                                   </button>
+                                   </a>
                                 </div>
                             </div>
                         </div>
@@ -509,7 +504,7 @@
         </div>
         <hr />
         <footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
-
+         </form>
         <script>
                 $(document).ready(function () {
             $('input[type=checkbox][id=FilterData]').change(function () {
@@ -529,7 +524,22 @@
             });
             });
 
+            $(document).ready(function () {
+    $('input[type=checkbox][id=FilterTheme]').change(function () {
+        var selectTheme = $('input[type=checkbox][id=FilterTheme]:checked').map(function () {
+            return $(this).val();
+        }).get();
 
+        if (selectTheme.length > 0) {
+            $('.cardpdiv').hide();
+            $.each(selectTheme, function (index, value) {
+                $('.cardpdiv:contains("' + value + '")').show();
+            });
+        } else {
+            $('.cardpdiv').show();
+        }
+    });
+});
 
                         var card = document.getElementsByClassName("missioncard")
                         var cardimg = document.getElementsByClassName("card-img");
@@ -649,6 +659,6 @@
         </script>
 
         @*  <script src="~/js/filter.js"></script>*@
-    </form>
+   
 </body>
 </html>

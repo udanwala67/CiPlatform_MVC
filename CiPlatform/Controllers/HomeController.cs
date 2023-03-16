@@ -45,20 +45,26 @@ namespace CiPlatform.Controllers
 
         public IActionResult Login(User user)
         {
-            
-           
 
-                var cuser = _CiRepository.GetUserEmail(user.Email);
-                if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
-                {
-                    return RedirectToAction("platformlandingpage");
-                }
-            
+
+
+            var cuser = _CiRepository.GetUserEmail(user.Email);
+
+            if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
+            {
+                HttpContext.Session.SetString("Email", cuser.Email);
+                return RedirectToAction("platformlandingpage","MissionCard");
+            }
+
             else
             {
                 return View();
             }
-        return View();
+
+            
+
+
+            return View();
         }
         public IActionResult forgotpassword()
         {
@@ -67,7 +73,7 @@ namespace CiPlatform.Controllers
 
         [HttpPost]
 
-        public IActionResult Forgotpassword(ForgotPasswordView forgotView,PasswordReset passwordReset)
+        public IActionResult Forgotpassword(ForgotPasswordView forgotView, PasswordReset passwordReset)
 
         {
             string email = forgotView.Email;
@@ -97,150 +103,93 @@ namespace CiPlatform.Controllers
             _ciContext.SaveChanges();
             return RedirectToAction("login");
         }
-            public IActionResult registration()
+        public IActionResult registration()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+
+        public IActionResult Registration(User user)
+        {
+            if (ModelState.IsValid)
             {
-                return View();
-            }
 
-
-            [HttpPost]
-
-            public IActionResult Registration(User user)
-            {
-                if (ModelState.IsValid)
-                {
-
-                    _CiRepository.RegisterUser(user);
-                    return RedirectToAction("login");
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            [HttpGet]
-            public IActionResult resetpassword(string token, string email, PasswordReset passwordReset)
-            {
-                if (token != null && token == passwordReset.Token)
-                {
-                    ResetPasswordView resetView = new ResetPasswordView();
-                    resetView.Email = email;
-                    return View(resetView);
-                }
-                return View();
-            }
-
-            [HttpPost]
-            public IActionResult resetpassword(ResetPasswordView resetView, IFormCollection form)
-            {
-                /*string token = HttpContext.Session.GetString("token_session");*/
-                string email = resetView.Email;
-                var passreset = new PasswordReset();
-                var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();
-                /*if (form["confirmpass"] == form["password"])
-               {*/
-
-                user.Password = resetView.Password;
-                user.UpdatedAt = DateTime.Now;
-                _ciContext.Users.Update(user);
-                _ciContext.SaveChanges();
+                _CiRepository.RegisterUser(user);
                 return RedirectToAction("login");
             }
-            /* else{
-             return View()
-             }*/
-
-            private object GenerateToken()
+            else
             {
-                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-                var random = new Random();
-                var token = new String(Enumerable.Repeat(chars, 32).Select(s => s[random.Next(s.Length)]).ToArray());
-                return token;
+                return View();
             }
-
-            public IActionResult platformlandingpage(string searchQuery ,string sortOrder,CityView cityView)
+        }
+        [HttpGet]
+        public IActionResult resetpassword(string token, string email, PasswordReset passwordReset)
+        {
+            if (token != null && token == passwordReset.Token)
             {
-                List<Mission> mission = _ciContext.Missions.ToList();
-
-                List<Country> country = _ciContext.Countries.ToList();
-                ViewBag.Country = country;
-
-                List<City> city = _ciContext.Cities.ToList();
-                ViewBag.City = city;
-
-                List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
-                ViewBag.Themes = themes;
-
-            
-
-            if (searchQuery != null)
-            {
-                mission = _ciContext.Missions.Where(m => m.Title.Contains(searchQuery)).ToList();
-                ViewBag.InputSearch = searchQuery;
-
-                if (mission.Count() == 0)
-                {
-                    return RedirectToAction("missionnotfound", "home");
-                }
+                ResetPasswordView resetView = new ResetPasswordView();
+                resetView.Email = email;
+                return View(resetView);
             }
+            return View();
+        }
 
-             int TotalMissions = mission.Count();
-             ViewBag.TotalMissions = TotalMissions;
+        [HttpPost]
+        public IActionResult resetpassword(ResetPasswordView resetView, IFormCollection form)
+        {
+            /*string token = HttpContext.Session.GetString("token_session");*/
+            string email = resetView.Email;
+            var passreset = new PasswordReset();
+            var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();
+            /*if (form["confirmpass"] == form["password"])
+           {*/
 
-            switch(sortOrder)
-            {   
-                case "Newest":
-                    mission = _ciContext.Missions.OrderByDescending(m => m.StartDate).ToList();
-                    break;
+            user.Password = resetView.Password;
+            user.UpdatedAt = DateTime.Now;
+            _ciContext.Users.Update(user);
+            _ciContext.SaveChanges();
+            return RedirectToAction("login");
+        }
+        /* else{
+         return View()
+         }*/
 
-                case "Oldest":
-                    mission = _ciContext.Missions.OrderByDescending(mission => mission.EndDate).ToList();
-                    break;
+        private object GenerateToken()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            var token = new String(Enumerable.Repeat(chars, 32).Select(s => s[random.Next(s.Length)]).ToArray());
+            return token;
+        }
 
-                case "Theme":
-                    mission = _ciContext.Missions.OrderByDescending(mission => mission.Theme).ToList();
-                    break;
-            }
-
-            foreach (var item in mission)
-            {
-                var City = _ciContext.Cities.FirstOrDefault(u => u.CityId == item.CityId);
-                var Theme = _ciContext.MissionThemes.FirstOrDefault(u => u.MissionThemeId == item.ThemeId);
-             /*   var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
-            }
-            return View(mission);
-            }
 
 
 
         public IActionResult listview()
-            {
-                return View();
-            }
-            public IActionResult missionnotfound()
-            {
-                return View();
-            }
-            public IActionResult VolunteeringMission(int missionid)
-            {
-             var mission = _ciContext.Missions.FirstOrDefault(m => m.MissionId == missionid);
-             ViewBag.Mission = mission;
-             return View();
-            }
-            public IActionResult Privacy()
-            {
-                return View();
-            }
-
-            public IActionResult relatedmission()
-            {
-                return View();
-            }
-
-      /*  public IActionResult VolunteeringMission()
         {
             return View();
-        }*/
+        }
+        public IActionResult missionnotfound()
+        {
+            return View();
+        }
+
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult relatedmission()
+        {
+            return View();
+        }
+
+        /*  public IActionResult VolunteeringMission()
+          {
+              return View();
+          }*/
         public IActionResult sharestory()
         {
             return View();
@@ -253,9 +202,9 @@ namespace CiPlatform.Controllers
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-            public IActionResult Error()
-            {
-                return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-            }
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+}

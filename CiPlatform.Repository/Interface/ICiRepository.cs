@@ -15,6 +15,7 @@ namespace CiPlatform.Repository.Interface
         public void SaveToken(string email, string token);
 
         public VolunteeringMissionView GetMission();
+        void AddToFavourite(int mid, int uid);
 
 
         /*   public User FindUserByEmail(string email);
