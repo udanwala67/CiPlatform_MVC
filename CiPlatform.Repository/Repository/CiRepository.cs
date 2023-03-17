@@ -81,6 +81,27 @@ namespace CiPlatform.Repository.Repository
 
             return mission;
         }
+
+        public void AddToFavourite(int uid ,int mid)
+        {
+            var sahil = _CiContext.FavoriteMissions.Where(f=> f.UserId == uid && f.MissionId==mid).FirstOrDefault();
+            if(sahil == null)
+            {
+                FavoriteMission favourite = new FavoriteMission();
+                favourite.MissionId = mid;
+                favourite.UserId = uid;
+                favourite.CreatedAt = DateTime.Now;
+
+                _CiContext.Add(favourite);
+                _CiContext.SaveChanges();
+            }
+            else
+            {
+                _CiContext.Remove(sahil);
+                _CiContext.SaveChanges();
+            }
+           
+        }
     }
 }
 

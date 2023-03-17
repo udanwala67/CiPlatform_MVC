@@ -15,13 +15,13 @@ namespace CiPlatform.Repository.Interface
         public void SaveToken(string email, string token);
 
         public VolunteeringMissionView GetMission();
-        void AddToFavourite(int mid, int uid);
+        public void AddToFavourite(int mid, int uid);
 
 
         /*   public User FindUserByEmail(string email);
            public void AddPassResetToken(PasswordReset passwordReset);
            public PasswordReset FindPassResetToken(string token);
-           public void UpdateUser(User user);*/
-
+           public void UpdateUser(User user);
+   */
     }
 }

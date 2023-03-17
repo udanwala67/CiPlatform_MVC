@@ -118,10 +118,9 @@
             <div class="container">
                 <div class="col-9 col-lg-6 col-md-5 me-2">
                     <form role="search" class="d-flex">
-                        <img src="~/Images/search.png" height="22px" width="21px" class="m-2">
-                        <!-- <i class="bi bi-search mt-2"></i> -->
-                        <input class="form-control searchbox" placeholder="Search mission....." aria-label="Search"
-                               id="search-bar" name="searchQuery" value="@ViewBag.InputSearch">
+
+                        <input type="search" class="form-control searchbox" placeholder="Search mission....." aria-label="Search"
+                               id="search_bar" name="searchQuery" value="@ViewBag.InputSearch" onkeyup="mysearchFun()">
                     </form>
                 </div>
 
@@ -132,109 +131,109 @@
 
                 @*--------------------------------------------OffCanvas------------------------*@
                 <div class="offcanvas offcanvas-end offcanvas2" data-bs-scroll="true" tabindex="-1"
-                    id="filteroffcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                     id="filteroffcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
                     <div class="offcanvas-header ">
-                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
                     <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item dropdown mt-3">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Country
-                    </a>
+                        <li class="nav-item dropdown mt-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Country
+                            </a>
 
-                    <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                   
-                    @foreach (var item in Model.country)
-                    {
-                    <li>
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" id="" class="checkbox ms-3 " id="@item.Name" value="@item.Name">
-                    @item.Name
-                    </a>
-                    </li>
-                    }
-                    }
-                    </ul>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
 
-                    </li>
+                                @foreach (var item in Model.country)
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" id="" class="checkbox ms-3 " id="@item.Name" value="@item.Name">
+                                            @item.Name
+                                        </a>
+                                    </li>
+                                }
+                                }
+                            </ul>
 
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    City
-                    </a>
-                    <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                    
-                    @foreach (var item in Model.city)
-                    {
-                    <li>
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" id="FilterData" class="checkbox ms-3" value="@item.Name">
-                    @item.Name
-                    </a>
-                    </li>
-                    
-                    }
-                    </ul>
-                    </li>
+                        </li>
 
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Theme
-                    </a>
-                    <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                    
-                    @foreach (var item in Model.missionTheme)
-                    {
-                    <li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                City
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
 
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
-                    @item.Title
-                    </a>
+                                @foreach (var item in Model.city)
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" id="FilterData" class="checkbox ms-3" value="@item.Name">
+                                            @item.Name
+                                        </a>
+                                    </li>
 
-                    </li>
-                    
-                    }
-                    </ul>
-                    </li>
+                                }
+                            </ul>
+                        </li>
 
-                    <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    Skill
-                    </a>
-                    <ul class="dropdown-menu">
-                    <li>
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" value="Skill1" name="Skill1" id=""
-                    class="ms-3 checkbox ">Skill1
-                    </a>
-                    </li>
-                    <li>
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" value="Skill2" name="Skill2" id=""
-                    class="ms-3 checkbox ">Skill2
-                    </a>
-                    </li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                    <a class="dropdown-item p-0 mt-1" href="#">
-                    <input type="checkbox" value="Skill3" name="Skill3" id=""
-                    class="ms-3 checkbox ">Skill3
-                    </a>
-                    </li>
-                    </ul>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Theme
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+                                @foreach (var item in Model.missionTheme)
+                                {
+                                    <li>
+
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
+                                            @item.Title
+                                        </a>
+
+                                    </li>
+
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Skill
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill1" name="Skill1" id=""
+                                               class="ms-3 checkbox ">Skill1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill2" name="Skill2" id=""
+                                               class="ms-3 checkbox ">Skill2
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill3" name="Skill3" id=""
+                                               class="ms-3 checkbox ">Skill3
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
 
                     </div>
-                    </div>
+                </div>
 
                 <div class="second-div col-lg-6 col-md-7">
                     <ul class="navbar-nav">
@@ -246,18 +245,18 @@
                             </a>
 
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="ItemList">
-                               
-                                    @foreach (var item in Model.country)                          // id="@item.CountryId
-                                    {
-                                        <li>
-                                            <a class="dropdown-item p-0 mt-1" href="#">
-                                                <input type="checkbox" class="checkbox ms-3 " id="FilterData" value="@item.Name" name="country" onchange="updateUrlForCountry()">
-                                                @item.Name
-                                            </a>
-                                        </li>
 
-                                    }
-                                
+                                @foreach (var item in Model.country)                          // id="@item.CountryId
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" class="checkbox ms-3 " id="FilterData" value="@item.Name" name="country" onchange="updateUrlForCountry()">
+                                            @item.Name
+                                        </a>
+                                    </li>
+
+                                }
+
                             </ul>
                         </li>
 
@@ -268,17 +267,17 @@
                                 <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
                             </a>
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                                
-                                    @foreach (var item in Model.city)
-                                    {
-                                        <li>
-                                            <a class="dropdown-item p-0 mt-1" href="#">
-                                                <input type="checkbox" id="FilterData" class="checkbox ms-3 " value="@item.Name">
-                                                @item.Name
-                                            </a>
-                                        </li>
-                                    }
-                                
+
+                                @foreach (var item in Model.city)
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" id="FilterData" class="checkbox ms-3 " value="@item.Name">
+                                            @item.Name
+                                        </a>
+                                    </li>
+                                }
+
                             </ul>
                         </li>
 
@@ -289,17 +288,17 @@
                                 <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
                             </a>
                             <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-                                
-                                    @foreach (var item in Model.missionTheme)
-                                    {
-                                        <li>
-                                            <a class="dropdown-item p-0 mt-1" href="#">
-                                                <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
-                                                @item.Title
-                                            </a>
-                                        </li>
-                                    }
-                                
+
+                                @foreach (var item in Model.missionTheme)
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
+                                            @item.Title
+                                        </a>
+                                    </li>
+                                }
+
                             </ul>
                         </li>
 
@@ -403,9 +402,28 @@
                                 <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
 
                                 <div class="landing-page-bottom-right d-flex flex-column">
-                                    <button class="mb-2 landing-page-btn-img">
-                                        <img src="~/Images/heart.png" alt="">
-                                    </button>
+
+                                    @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
+                                    {
+                                        <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                            <button class="mb-2 landing-page-btn-img">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                            <button class="mb-2 landing-page-btn-img">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                </svg>
+                                            </button>
+                                        </a>
+                                    }
+
                                     <button class="landing-page-btn-img">
                                         <img src="~/Images/user.png" alt="">
                                     </button>
@@ -483,11 +501,11 @@
 
                                 <div class="text-center">
                                     <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
-                                    <button type="submit" class="Apply-btn p-2" >
-                                        &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
-                                      
-                                   </button>
-                                   </a>
+                                        <button type="submit" class="Apply-btn p-2">
+                                            &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -504,161 +522,185 @@
         </div>
         <hr />
         <footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
-         </form>
-        <script>
-                $(document).ready(function () {
-            $('input[type=checkbox][id=FilterData]').change(function () {
-                var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {
+    </form>
+    <script>
+                        $(document).ready(function () {
+                    $('input[type=checkbox][id=FilterData]').change(function () {
+                        var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {
+                            return $(this).val();
+                        }).get();
+
+                        if (selectCity.length > 0) {
+                            $('.cardpdiv').hide();
+                            $.each(selectCity, function (index, value) {
+                                $('.cardpdiv:contains("' + value + '")').show();
+
+                            });
+                        } else {
+                            $('.cardpdiv').show();
+                        }
+                    });
+                    });
+
+
+                    $(document).ready(function () {
+            $('input[type=checkbox][id=FilterTheme]').change(function () {
+                var selectTheme = $('input[type=checkbox][id=FilterTheme]:checked').map(function () {
                     return $(this).val();
                 }).get();
 
-                if (selectCity.length > 0) {
+                if (selectTheme.length > 0) {
                     $('.cardpdiv').hide();
-                    $.each(selectCity, function (index, value) {
+                    $.each(selectTheme, function (index, value) {
                         $('.cardpdiv:contains("' + value + '")').show();
-
                     });
                 } else {
                     $('.cardpdiv').show();
                 }
             });
-            });
+        });
 
-            $(document).ready(function () {
-    $('input[type=checkbox][id=FilterTheme]').change(function () {
-        var selectTheme = $('input[type=checkbox][id=FilterTheme]:checked').map(function () {
-            return $(this).val();
-        }).get();
+                                var card = document.getElementsByClassName("missioncard")
+                                var cardimg = document.getElementsByClassName("card-img");
+                                var carddisplay = document.getElementsByClassName("card");
+                                var theme = document.getElementsByClassName("theme-btn");
+                                if (localStorage.getItem("view") === "list")
+                                {
+                                list();
+                                }
+                                function list()
+                                {
+                                localStorage.setItem("view", "list");
+                                for (i = 0; i < card.length; i++) {
+                                card[i].style.width = "100%";
+                                card[i].style.marginTop = "1%";
+                                carddisplay[i].style.display = "flex";
+                                carddisplay[i].style.flexDirection = "row";
+                                cardimg[i].style.height = "48vh";
+                                theme[i].style.top = "95%";
+                                // theme[i].style.left = "34%";
+                                }
+                                }
+                                function grid() {
+                                localStorage.setItem("view" ,"grid");
+                                for (i = 0; i < card.length; i++) {
+                                if (screen.width > 1023) {
+                                card[i].style.width = "33%";
+                                carddisplay[i].style.flexDirection = "column";
+                                cardimg[i].style.width = "100%";
+                                theme[i].style.top = "95%";
+                                theme[i].style.left = "35%";
+                                }
+                                else {
+                                card[i].style.width = "50%";
+                                carddisplay[i].style.flexDirection = "column";
+                                cardimg[i].style.width = "100%";
+                                theme[i].style.top = "95%";
+                                theme[i].style.left = "35%";
+                                }
+                                }
+                                }
 
-        if (selectTheme.length > 0) {
-            $('.cardpdiv').hide();
-            $.each(selectTheme, function (index, value) {
-                $('.cardpdiv:contains("' + value + '")').show();
-            });
-        } else {
-            $('.cardpdiv').show();
-        }
-    });
-});
-
-                        var card = document.getElementsByClassName("missioncard")
-                        var cardimg = document.getElementsByClassName("card-img");
-                        var carddisplay = document.getElementsByClassName("card");
-                        var theme = document.getElementsByClassName("theme-btn");
-                        if (localStorage.getItem("view") === "list")
-                        {
-                        list();
-                        }
-                        function list()
-                        {
-                        localStorage.setItem("view", "list");
-                        for (i = 0; i < card.length; i++) {
-                        card[i].style.width = "100%";
-                        card[i].style.marginTop = "1%";
-                        carddisplay[i].style.display = "flex";
-                        carddisplay[i].style.flexDirection = "row";
-                        cardimg[i].style.height = "48vh";
-                        theme[i].style.top = "95%";
-                        // theme[i].style.left = "34%";
-                        }
-                        }
-                        function grid() {
-                        localStorage.setItem("view" ,"grid");
-                        for (i = 0; i < card.length; i++) {
-                        if (screen.width > 1023) {
-                        card[i].style.width = "33%";
-                        carddisplay[i].style.flexDirection = "column";
-                        cardimg[i].style.width = "100%";
-                        theme[i].style.top = "95%";
-                        theme[i].style.left = "35%";
+                         const items = document.querySelectorAll('#myItems');
+                        const itemsPerPage = 4;
+                        const totalPages = Math.ceil(items.length / itemsPerPage);
+                        console.log(items);
+                        function displayPage(pageNumber) {
+                        const startIndex = (pageNumber - 1) * itemsPerPage;
+                        const endIndex = startIndex + itemsPerPage;
+                        items.forEach((item, index) => {
+                        if (index >= startIndex && index < endIndex) {
+                        item.style.display = 'block';
                         }
                         else {
-                        card[i].style.width = "50%";
-                        carddisplay[i].style.flexDirection = "column";
-                        cardimg[i].style.width = "100%";
-                        theme[i].style.top = "95%";
-                        theme[i].style.left = "35%";
+                        item.style.display = 'none';
+                        }
+                        });
+                        }
+                        function createPaginationLinks() {
+                        const pagination = document.querySelector('#pagination .pagination');
+                        for (let i = 1; i <= totalPages; i++) {
+                        const listItem = document.createElement('li');
+                        listItem.classList.add('page-item');
+                        const link = document.createElement('a');
+                        link.href = '#';
+                        link.textContent = i;
+                        link.classList.add('page-link');
+                        link.addEventListener('click', (event) => {
+                        event.preventDefault();
+                        displayPage(i);
+                        });
+                        listItem.appendChild(link);
+                        pagination.appendChild(listItem);
                         }
                         }
-                        }
+                        displayPage(1);
+                        createPaginationLinks();
 
-                 const items = document.querySelectorAll('#myItems');
-                const itemsPerPage = 4;
-                const totalPages = Math.ceil(items.length / itemsPerPage);
-                console.log(items);
-                function displayPage(pageNumber) {
-                const startIndex = (pageNumber - 1) * itemsPerPage;
-                const endIndex = startIndex + itemsPerPage;
-                items.forEach((item, index) => {
-                if (index >= startIndex && index < endIndex) {
-                item.style.display = 'block';
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script>
+        @*$('.modal-backdrop').remove();
+            $(document.body).removeClass("modal-open");*@
+
+                    function updateUrlForCountry() {
+
+                    const country = Array.from(document.querySelectorAll('input[name="country"]:checked')).map(el => el.id);
+                    let url = window.location.href;
+                    let separator = url.indexOf('?') !== -1 ? '&' : '?';
+
+                    //if (url.includes('ACountries=')) {
+                    // url = url.replace(/ACountries=([^&]*)/, 'ACountries=' + country);
+                    //}
+                    //else {
+
+                    url += separator + 'ACountries=' + country;
+
+                    //}
+                    window.location.href = url;
+
+
+                    }
+
+
+                    function countryBtn() {
+                    var c = document.getElementById("co");
+                    c.style.display = "none";
+                    let url = window.location.href;
+                    c = "";
+                    url = url.replace(/ACountries=([^&]*)/, 'ACountries=' + c);
+                    window.location.href = url;
+                    }
+
+                    function mysearchFun() {
+            console.log("Hello");
+            var input = document.getElementById("search_bar");
+            console.log(input);
+            var lower = input.value.toLowerCase();
+            var card = document.getElementsByClassName("cardpdiv");
+            console.log(card);
+
+            for (i = 0; i < card.length; i++) {
+
+                var title = card[i].getElementsByClassName("card-title")[0];
+                console.log(title);
+                if (title.innerHTML.toLowerCase().indexOf(lower) > -1) {
+                    card[i].style.display = "";
+
                 }
                 else {
-                item.style.display = 'none';
+                    card[i].style.display = "none";
                 }
-                });
-                }
-                function createPaginationLinks() {
-                const pagination = document.querySelector('#pagination .pagination');
-                for (let i = 1; i <= totalPages; i++) {
-                const listItem = document.createElement('li');
-                listItem.classList.add('page-item');
-                const link = document.createElement('a');
-                link.href = '#';
-                link.textContent = i;
-                link.classList.add('page-link');
-                link.addEventListener('click', (event) => {
-                event.preventDefault();
-                displayPage(i);
-                });
-                listItem.appendChild(link);
-                pagination.appendChild(listItem);
-                }
-                }
-                displayPage(1);
-                createPaginationLinks();
-
-        </script>
-
-
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        <script>
-            @*$('.modal-backdrop').remove();
-                $(document.body).removeClass("modal-open");*@
-
-            function updateUrlForCountry() {
-
-            const country = Array.from(document.querySelectorAll('input[name="country"]:checked')).map(el => el.id);
-            let url = window.location.href;
-            let separator = url.indexOf('?') !== -1 ? '&' : '?';
-
-            //if (url.includes('ACountries=')) {
-            // url = url.replace(/ACountries=([^&]*)/, 'ACountries=' + country);
-            //}
-            //else {
-
-            url += separator + 'ACountries=' + country;
-
-            //}
-            window.location.href = url;
-
-
             }
+        }
 
 
-            function countryBtn() {
-            var c = document.getElementById("co");
-            c.style.display = "none";
-            let url = window.location.href;
-            c = "";
-            url = url.replace(/ACountries=([^&]*)/, 'ACountries=' + c);
-            window.location.href = url;
-            }
+    </script>
 
-        </script>
+    @*  <script src="~/js/filter.js"></script>*@
 
-        @*  <script src="~/js/filter.js"></script>*@
-   
 </body>
 </html>

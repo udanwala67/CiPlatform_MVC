@@ -30,8 +30,8 @@ namespace CiPlatform.Controllers
             
 
             List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
-         
 
+           
 
 
             if (searchQuery != null)
@@ -43,6 +43,7 @@ namespace CiPlatform.Controllers
                 {
                     return RedirectToAction("missionnotfound", "home");
                 }
+  
             }
 
             int TotalMissions = mission.Count();
@@ -69,6 +70,10 @@ namespace CiPlatform.Controllers
                 var Theme = _ciContext.MissionThemes.FirstOrDefault(u => u.MissionThemeId == item.ThemeId);
                 /*   var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
             }
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            ViewBag.uid = (int)user.UserId;
+            ViewBag.mission = mission;
             return View(ms);
         }
 
@@ -85,14 +90,16 @@ namespace CiPlatform.Controllers
 
             return View(mission);
 }
-        
-        /*public IActionResult AddtoFav(int mid)
+
+        public IActionResult AddtoFav(int mid)
         {
             //var obj = _cardRepository.GetAllMissions();
-            int uid = (int)HttpContext.Session.GetInt32("UserId");
-            _CiRepository.AddToFavourite(mid, uid);
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            int uid = (int)user.UserId;
+            _CiRepository.AddToFavourite(uid, mid);
             ViewBag.mid = mid;
-            return RedirectToAction("Platform_landing");
-        }*/
+            return RedirectToAction("platformlandingpage");
+        }
     }
 }

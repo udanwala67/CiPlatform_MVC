@@ -399,14 +399,14 @@
                     </div>
                    
                     <div class="col-lg-6 " style="margin-top: 3%;">
-                        <div class="csrtitle fs-2">
+                        <div class="csrtitle fs-4">
                             <span> @s.Title</span>
                          </div>
                         
-                         <div class = "shortdescription mt-2 fs-4">
+                         <div class = "shortdescription mt-2 fs-5">
                             <p>@s.ShortDescription</p>
                         </div>
-                        <div class="border-bottom mt-5"></div>
+                        <div class="border-bottom mt-4"></div>
                         <div class="text-center">
 
                              @if (@s.MissionType == "Time")
@@ -421,7 +421,7 @@
                                 {
                                    <button class="btn btn-rounded disabled"
                                       style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
-                                      <span style="font-size: 17px;color: #414141; font-weight: 400;">
+                                      <span style="font-size: 10px;color: #414141; font-weight: 400;">
                                           @s.MissionType </span>
                                    </button>
                                 }
@@ -459,12 +459,16 @@
                         </div>
                       </div>
                         <div class="d-flex favbtn mt-1 justify-content-between">
+                            <div>
                             <a href="" class="btn btn-outline-dark btn-rounded px-2"
                                 style="width:45%; border-radius: 5px;"><img src="~/Images/heart1.png" alt=""> Add to
                                 Favourite</a>
+                                </div>
+                                <div>
                             <a href="" class="btn btn-outline-dark btn-rounded px-2"
                                 style="width:45%; border-radius: 5px;"><img src="~/Images/add1.png" alt=""> Recommend to a
                                 Co-Worker</a>
+                                </div>
                         </div>
                         <!--Stars-->
                         <div class=" border-top mt-4 ">
@@ -480,19 +484,17 @@
                        
                         <div class="container-fluid flex-wrap">
                             <div class="row d-flex mx-auto" style="margin-top: 4%;">
-                                 @foreach(var item in Model.city)
                                 
-                                  {
                                  <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
                                     <img src="/images/pin1.png">
                                     <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">City</p>
-                                    <p class="mb-0" style="font-size: 15px;color: #414141;">@item.Name</p>
+                                    <p class="mb-0" style="font-size: 15px;color: #414141;">@s.City.Name</p>
                                 </div>
-                                   }
+                                   
                                 <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
                                     <img src="/images/web.png">
                                     <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Theme</p>
-                                    <p class="mb-0" style="font-size: 15px;color: #414141;">@s.Theme</p>
+                                    <p class="mb-0" style="font-size: 15px;color: #414141;">@s.Theme.Title</p>
                                 </div>
                                 <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
                                     <img src="/images/calender.png">
@@ -502,7 +504,7 @@
                                 <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
                                     <img src="/images/organization.png">
                                     <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Organization</p>
-                                    <p class="mb-0" style="font-size: 15px;color: #414141;">CSE Network</p>
+                                    <p class="mb-0" style="font-size: 15px;color: #414141;">@s.OrganizationName</p>
                                 </div>
                             </div>
                         </div>
@@ -875,7 +877,8 @@
 
                 @foreach (var item in Model.mission)
                 {
-                    
+                  @if (item.Theme.Title == @ViewBag.Title && item.MissionId != @ViewBag.missionId)
+                  {
                     <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
 
                         <div class="card">
@@ -958,6 +961,8 @@
                                         </div>
                                     }
 
+                                    <hr class = "mt-2"><hr>
+
                                     @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
                                         <div class="ms-2">
                                         09/01/2019 <p>Deadline</p>
@@ -977,6 +982,7 @@
                         </div>
 
                     </div>
+                }
                 }
                 
             </div>
