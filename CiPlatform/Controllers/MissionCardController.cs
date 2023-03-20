@@ -12,11 +12,12 @@ namespace CiPlatform.Controllers
     {
         private readonly CiContext _ciContext;
         private readonly ICiRepository _CiRepository;
-
-        public MissionCardController(ICiRepository ciRepository , CiContext ciContext)
+        private readonly EmailServices _emailServices;
+        public MissionCardController(ICiRepository ciRepository, CiContext ciContext, EmailServices emailServices)
         {
             _ciContext = ciContext;
             _CiRepository = ciRepository;
+            _emailServices = emailServices;
         }
         public IActionResult platformlandingpage(string searchQuery, string sortOrder, CityView cityView)
         {
@@ -84,9 +85,9 @@ namespace CiPlatform.Controllers
 
             var user = _ciContext.Users.Where(u=>u.Email == email).FirstOrDefault();
 
-            
+            ViewBag.uid = (int)user.UserId;
 
-           var mission = _CiRepository.GetMission();
+            var mission = _CiRepository.GetMission();
 
             return View(mission);
 }
@@ -100,6 +101,35 @@ namespace CiPlatform.Controllers
             _CiRepository.AddToFavourite(uid, mid);
             ViewBag.mid = mid;
             return RedirectToAction("platformlandingpage");
+        }
+
+        public IActionResult coworker(int missionId, string email)
+        {
+            UriBuilder builder = new UriBuilder();
+            builder.Scheme = "https";
+            builder.Host = "localhost";
+            builder.Port = 7148;
+            builder.Path = "MissionCard/VolunteeringMission";
+            builder.Query = "?missionid="+missionId;
+
+            var resetLink = builder.ToString();
+
+            _emailServices.SendEmailAsync(email, "Recommand Coworker", resetLink);
+
+            return RedirectToAction("VolunteeringMission",new {missionId= missionId });
+        }
+        [HttpPost]
+        public IActionResult AddToComment(int missionId, int userId, string comment)
+        {
+            Comment com = new Comment();
+            com.UserId = userId;
+            com.MissionId = missionId;
+            com.Comment1 = comment;
+
+            _ciContext.Comments.Add(com);
+            _ciContext.SaveChanges();
+
+            return RedirectToAction("VolunteeringMission");
         }
     }
 }

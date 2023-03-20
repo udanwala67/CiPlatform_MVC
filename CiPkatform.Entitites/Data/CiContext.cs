@@ -204,6 +204,10 @@ namespace CiPlatform.Entitites.Data
                     .HasColumnName("approval_status")
                     .HasDefaultValueSql("('PENDING')");
 
+                entity.Property(e => e.Comment1)
+                    .HasColumnType("text")
+                    .HasColumnName("comment");
+
                 entity.Property(e => e.CreatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("created_at");

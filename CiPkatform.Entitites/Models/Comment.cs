@@ -12,6 +12,7 @@ namespace CiPlatform.Entitites.Models
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public string? Comment1 { get; set; }
 
         public virtual Mission Mission { get; set; } = null!;
         public virtual User User { get; set; } = null!;

@@ -162,3 +162,22 @@ $(document).ready(function () {
         }
     });
 });
+
+
+//$(function () {
+//    $('postCommentBtn').click(function () {
+
+//        $.ajax({
+//            type: 'POST',
+//            url: 'MissionCard/addToComment',
+
+//            success: function (result) { }
+//        });
+
+//    });
+//});
+
+
+
+
+

@@ -461,21 +461,21 @@
                                     }
                                     else
                                     {
-                                        <button class="date-btn mt-1">@item.MissionType</button>
+                                        <button class="date-btn mt-1">@item.MissionType Based Mission</button>
                                     }
                                     <hr>
                                 </div>
 
-                                <div class="d-flex">
-                                    <div><img src="~/Images/Seats-left.png" class="mt-2"></div>
+                                <div class="d-flex mx-2 mt-2">
+                                    <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
                                     <div class="ms-2">
-                                        @item.Availability <p class="seat">seats Left</p>
+                                        @item.Availability <p class="seat">25 Sests Left</p>
                                     </div>
 
 
                                     @if (item.MissionType == "Time")
                                     {
-                                        <div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
+                                        <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
                                         <div class="ms-2">
                                             @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
                                         </div>
