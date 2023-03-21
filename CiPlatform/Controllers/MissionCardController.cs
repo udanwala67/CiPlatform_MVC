@@ -85,16 +85,21 @@ namespace CiPlatform.Controllers
 
             var user = _ciContext.Users.Where(u=>u.Email == email).FirstOrDefault();
 
-            ViewBag.uid = (int)user.UserId;
 
-            var mission = _CiRepository.GetMission();
-
-            return View(mission);
+            if (user == null)
+            {
+                return RedirectToAction("Login", "Home");
+            }
+            else
+            {
+                ViewBag.uid = (int)user.UserId;
+                var mission = _CiRepository.GetMission();
+                return View(mission);
+            }
 }
 
         public IActionResult AddtoFav(int mid)
         {
-            //var obj = _cardRepository.GetAllMissions();
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             int uid = (int)user.UserId;
@@ -114,10 +119,11 @@ namespace CiPlatform.Controllers
 
             var resetLink = builder.ToString();
 
-            _emailServices.SendEmailAsync(email, "Recommand Coworker", resetLink);
+            _emailServices.SendEmailAsync(email, "Recommend Coworker", resetLink);
 
             return RedirectToAction("VolunteeringMission",new {missionId= missionId });
         }
+
         [HttpPost]
         public IActionResult AddToComment(int missionId, int userId, string comment)
         {
@@ -125,7 +131,7 @@ namespace CiPlatform.Controllers
             com.UserId = userId;
             com.MissionId = missionId;
             com.Comment1 = comment;
-
+            com.CreatedAt = DateTime.Now;
             _ciContext.Comments.Add(com);
             _ciContext.SaveChanges();
 

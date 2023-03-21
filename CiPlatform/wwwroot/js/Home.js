@@ -177,7 +177,28 @@ $(document).ready(function () {
 //    });
 //});
 
+//console.log("Hiiiiiiii");
+//$(function () {
+//    $('postCommentBtn').click(function () {
+//        var missionId = $(this).data('missionId');
+//        console.log(missionId);
+//        var userId = @ViewBag.uid;
+//        console.log(userId);
+//        var comment = $('#textinput').val();
+//        console.log(comment);
+//        $.ajax({
+//            type: 'POST',
+//            url: 'MissionCard/AddToComment',
+//            data: {
+//                missionId: missionId,
+//                userId: userId,
+//                comment: comment
+//            }
+//    success: function (result) { }
+//        });
 
+//    });
+//});
 
 
 

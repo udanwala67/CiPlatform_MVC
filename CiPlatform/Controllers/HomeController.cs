@@ -45,9 +45,6 @@ namespace CiPlatform.Controllers
 
         public IActionResult Login(User user)
         {
-
-
-
             var cuser = _CiRepository.GetUserEmail(user.Email);
 
             if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
@@ -89,7 +86,7 @@ namespace CiPlatform.Controllers
             var resetLink = builder.ToString();
             _emailServices.SendEmailAsync(email, "Reset Password Link", resetLink);
 
-            /* ("token_session", token.ToString());*/
+            /*("token_session", token.ToString());*/
 
             HttpContext.Session.SetString("token_session", token.ToString());
             var view = new PasswordReset()

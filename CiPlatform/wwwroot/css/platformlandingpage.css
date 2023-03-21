@@ -157,9 +157,18 @@ display: none !important;
 
 .landing-page-btn-img {
     border: none;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: #000000;
     border-radius: 30px;
     padding: 6px;
+}
+
+.Co-Worker {
+    border: none;
+    background-color: #000000;
+    border-radius: 30px;
+    padding: 6px;
+    width:6px;
+    height:16px;
 }
 
 .rule {
@@ -191,10 +200,14 @@ hr {
 }
 
 .card-img {
-     height: 33vh;
-    
+     height: 33vh;  
 }
 
+.imgstar{
+    background-size :auto;
+   margin:auto;
+   justify-content:space-evenly;
+}
 /*.theme {
 border: 2px solid black;
 border-radius: 25px;

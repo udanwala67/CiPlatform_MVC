@@ -67,7 +67,7 @@ namespace CiPlatform.Repository.Repository
             var missionRating = _CiContext.MissionRatings.ToList();
             var missiontheme = _CiContext.MissionThemes.ToList();
             var user = _CiContext.Users.ToList();
-           
+            var comments = _CiContext.Comments.ToList();
             VolunteeringMissionView mission = new VolunteeringMissionView();
             mission.mission = missions;
 
@@ -78,7 +78,7 @@ namespace CiPlatform.Repository.Repository
             mission.missionRating = missionRating;
             mission.missionTheme =  missiontheme;
             mission.user = user;
-
+            mission.comments = comments;
             return mission;
         }
 
