@@ -299,9 +299,15 @@
                                data-bs-toggle="dropdown" aria-expanded="false">
                                 <img src="~/Images/user-img.png" class="rounded-circle" height="40" width="40" alt=""
                                      loading="lazy" />
-                                <span class="ms-2">Evan Donohue <img src="~/Images/drop-down.png"></span>
+                                <span class="ms-2">
+                                    @{
+                                        var firstname = Context.Session.GetString("Firstname");
+                                    }
+                                    @ViewBag.firstname
+                                    <img src="~/Images/drop-down.png">
+                                </span>
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <li><a class="dropdown-item" href="#">Dashboard</a></li>
                                 <li><a class="dropdown-item" href="#">My Account</a></li>
                                 <li><a class="dropdown-item" href="#">Help Setting</a></li>
@@ -315,625 +321,670 @@
 
             </header>
             @*@{int mid = ViewBag.missionid;}*@
-            @foreach (var s in Model.mission)
-            {
-                @if (s.MissionId == @ViewBag.missionid)
+
+            @{
+                int mr = 0;
+                int tr = 0;
+
+
+                @foreach (var s in Model.mission)
                 {
+                    @if (s.MissionId == @ViewBag.missionid)
+                    {
 
-                    <div class="container-fluid">
+                        <div class="container-fluid">
 
-                        <div class="row mt-4 mediavolunteer">
-                            <div class="col-lg-6 ">
-                                <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark"
-                             data-mdb-ride="carousel">
-                                    <div class="carousel-inner mb-5">
-                                        <div class="carousel-item active" style="height: 60.5vh;">
-                                            <img src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+                            <div class="row mt-4 mediavolunteer">
+                                <div class="col-lg-6 ">
+                                    <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark"
+                                 data-mdb-ride="carousel">
+                                        <div class="carousel-inner mb-5">
+                                            <div class="carousel-item active" style="height: 60.5vh;">
+                                                <img src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
                                          class="d-block w-100" alt="..." style="height: 100%;" />
-                                        </div>
-                                        <div class="carousel-item" style="height: 60.5vh" ;>
-                                            <img src="~/Images/img1.png" class="d-block w-100" alt="..."
+                                            </div>
+                                            <div class="carousel-item" style="height: 60.5vh" ;>
+                                                <img src="~/Images/img1.png" class="d-block w-100" alt="..."
                                          style="height: 100%;" />
-                                        </div>
-                                        <div class="carousel-item" style="height: 60.5vh">
-                                            <img src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                                            </div>
+                                            <div class="carousel-item" style="height: 60.5vh">
+                                                <img src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
                                          class="d-block w-100" alt="..." style="height: 100%;" />
-                                        </div>
-                                        <div class="carousel-item" style="height: 60.5vh">
-                                            <img src="~/Images/img11.png" class="d-block w-100" alt="..."
+                                            </div>
+                                            <div class="carousel-item" style="height: 60.5vh">
+                                                <img src="~/Images/img11.png" class="d-block w-100" alt="..."
                                          style="height: 100%;" />
-                                        </div>
-                                        <div class="carousel-item" style="height: 60.5vh">
-                                            <img src="~/Images/Plantation-and-Afforestation-programme.png" class="d-block w-100"
+                                            </div>
+                                            <div class="carousel-item" style="height: 60.5vh">
+                                                <img src="~/Images/Plantation-and-Afforestation-programme.png" class="d-block w-100"
                                          alt="..." style="height: 100%;" />
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <button class="carousel-control-prev" type="button"
-                                    data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Previous</span>
-                                    </button>
+                                        <button class="carousel-control-prev" type="button"
+                                        data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </button>
 
-                                    <button class="carousel-control-next" type="button"
-                                    data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Next</span>
-                                    </button>
+                                        <button class="carousel-control-next" type="button"
+                                        data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </button>
 
-                                    <div class="carousel-indicators list-inline thumbnailimg img-fluid" style="margin-bottom: -20px;">
-                                        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
-                                        class="active" aria-current="true" aria-label="Slide 1" style="width: 40%;">
-                                            <img class="d-block w-100"
+                                        <div class="carousel-indicators list-inline thumbnailimg img-fluid" style="margin-bottom: -20px;">
+                                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
+                                            class="active" aria-current="true" aria-label="Slide 1" style="width: 40%;">
+                                                <img class="d-block w-100"
                                          src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
                                          class="img-fluid" />
-                                        </button>
-                                        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
-                                        aria-label="Slide 2" style="width: 40%;">
-                                            <img class="d-block w-100" src="~/Images/img1.png" class="img-fluid" />
-                                        </button>
-                                        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
-                                        aria-label="Slide 3" style="width: 40%;">
-                                            <img class="d-block w-100"
+                                            </button>
+                                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
+                                            aria-label="Slide 2" style="width: 40%;">
+                                                <img class="d-block w-100" src="~/Images/img1.png" class="img-fluid" />
+                                            </button>
+                                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
+                                            aria-label="Slide 3" style="width: 40%;">
+                                                <img class="d-block w-100"
                                          src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
                                          class="img-fluid" />
-                                        </button>
-                                        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="3"
-                                        aria-label="Slide 4" style="width: 40%;">
-                                            <img class="d-block w-100" src="~/Images/img11.png" class="img-fluid" />
-                                        </button>
-                                        <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="4"
-                                        aria-label="Slide 5" style="width: 40%;">
-                                            <img class="d-block w-100"
+                                            </button>
+                                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="3"
+                                            aria-label="Slide 4" style="width: 40%;">
+                                                <img class="d-block w-100" src="~/Images/img11.png" class="img-fluid" />
+                                            </button>
+                                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="4"
+                                            aria-label="Slide 5" style="width: 40%;">
+                                                <img class="d-block w-100"
                                          src="~/Images/Plantation-and-Afforestation-programme-1.png" class="img-fluid" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-6 " style="margin-top: 0%;">
-                                <div class="csrtitle fs-5">
-                                    <span> @s.Title</span>
-                                </div>
-
-                                <div class="shortdescription mt-2 fs-6">
-                                    <p>@s.ShortDescription</p>
-                                </div>
-                                <div class="border-bottom mt-4"></div>
-                                <div class="text-center">
-
-                                    @if (@s.MissionType == "Time")
-                                    {
-                                        <button class="btn btn-rounded disabled"
-                                    style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
-                                            <span style="font-size: 17px;color: #414141; font-weight: 400;">
-                                                From @s.StartDate.ToString().Split(" ")[0] until @s.EndDate.ToString().Split(" ")[0]
-                                            </span>
-                                        </button>
-                                    }
-                                    else
-                                    {
-                                        <button class="btn btn-rounded disabled"
-                                    style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
-                                            <span style="font-size: 10px;color: #414141; font-weight: 400;">
-                                                @s.MissionType Based Mission
-                                            </span>
-                                        </button>
-                                    }
-
-                                </div>
-
-                                <div class="d-flex justify-content-around mt-2 mx-auto">
-                                    <div class="d-flex align-items-center mx-auto">
-                                        <div class="mt-1 pe-0 me-2">
-                                            <img src="/Images/Seats-left.png" alt="" width="25px" height="25px">
-                                        </div>
-                                        <div class="px-0" style="color: #757575;">
-                                            <h5 class="mb-0 mt-1">10</h5>
-                                            <p class="mb-0">Seats left</p>
+                                            </button>
                                         </div>
                                     </div>
-                                    <div class="d-flex align-items-center mx-auto">
-                                        @if (s.MissionType == "Time")
-                                        {
-                                            <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-1 pe-0 me-1"></div>
-                                            <div class="ms-1 mt-3">
-                                                @s.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
-                                            </div>
-                                        }
-                                        else
-                                        {
-                                            <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
-                                            <div class="ms-2 me-5" style="width:100%">
-                                                <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-warning" style="width: 50%">50%</div>
-                                                </div>
-                                                <fs-5>Deadline</fs-5>
-                                            </div>
-                                        }
-                                    </div>
                                 </div>
-                                <hr>
-                                <div class="d-flex favbtn mt-3 justify-content-between mx-2">
-                                    <div>
-                                        @if (@s.FavoriteMissions.Where(f => f.MissionId == @s.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
-                                        {
 
-                                            <button type="button" class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;">
-                                                <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId">
-                                                    @*<button class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;"> *@
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                    </svg>
-                                                    Remove From Favourite
-                                                </a>
+                                <div class="col-lg-6 " style="margin-top: 0%;">
+                                    <div class="csrtitle fs-5">
+                                        <span> @s.Title</span>
+                                    </div>
+
+                                    <div class="shortdescription mt-2 fs-6">
+                                        <p>@s.ShortDescription</p>
+                                    </div>
+                                    <div class="border-bottom mt-4"></div>
+                                    <div class="text-center">
+
+                                        @if (@s.MissionType == "Time")
+                                        {
+                                            <button class="btn btn-rounded disabled"
+                                        style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
+                                                <span style="font-size: 17px;color: #414141; font-weight: 400;">
+                                                    From @s.StartDate.ToString().Split(" ")[0] until @s.EndDate.ToString().Split(" ")[0]
+                                                </span>
                                             </button>
                                         }
                                         else
                                         {
-                                            <button type="button" class="btn btn-outline-dark btn-rounded" style="width:100%; border-radius: 5px;">
-                                                <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId">
-
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
-                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                    </svg>
-                                                    Add To Favourite
-
-                                                </a>
+                                            <button class="btn btn-rounded disabled"
+                                        style="box-shadow: none; border: 1px solid #bbb4b4;background: white; margin-top: -20px;">
+                                                <span style="font-size: 10px;color: #414141; font-weight: 400;">
+                                                    @s.MissionType Based Mission
+                                                </span>
                                             </button>
                                         }
+
                                     </div>
-                                    <div>
-                                        <button type="button" class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        style="width:100%; border-radius: 5px;">
-                                            <img src="~/Images/add1.png" alt=""> Recommend to a
-                                            Co-Worker
-                                        </button>
 
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        <style>
-                                                            table, th, td {
-                                                                border: 1px solid black;
-                                                            }
-                                                        </style>
-
-
-
-                                                        <table style="width:100%">
-                                                            <tr>
-                                                                <th>User Name</th>
-                                                                <th>  Email</th>
-                                                                <th>link of email</th>
-                                                            </tr>
-                                                            @foreach (var r in Model.user)
-                                                            {
-                                                                <tr>
-                                                                    <td>@r.FirstName</td>
-                                                                    <td>@r.Email</td>
-                                                                    <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@r.Email">Send Link</a></td>
-                                                                </tr>
-                                                            }
-
-
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
+                                    <div class="d-flex justify-content-around mt-2 mx-auto">
+                                        <div class="d-flex align-items-center mx-auto">
+                                            <div class="mt-1 pe-0 me-2">
+                                                <img src="/Images/Seats-left.png" alt="" width="25px" height="25px">
+                                            </div>
+                                            <div class="px-0" style="color: #757575;">
+                                                <h5 class="mb-0 mt-1">10</h5>
+                                                <p class="mb-0">Seats left</p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <hr>
-
-                                <div class=" border-top mt-4 ">
-                                    <div class="d-flex mt-4  justify-content-center" id="starposition">
-                                        <img src="~/Images/star-empty.png" alt="">
-                                        <img src="~/Images/star-empty.png" alt="">
-                                        <img src="~/Images/star-empty.png" alt="">
-                                        <img src="~/Images/star-empty.png" alt="">
-                                        <img src="~/Images/star-empty.png" alt="">
-                                    </div>
-                                </div>
-
-
-                                <div class="container-fluid flex-wrap">
-                                    <div class="row d-flex mx-auto" style="margin-top: 4%;">
-
-                                        <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
-                                            <img src="/images/pin1.png">
-                                            <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">City</p>
-                                            <p class="mb-0" style="font-size: 15px;color: #414141;">@s.City.Name</p>
-                                        </div>
-
-                                        <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
-                                            <img src="/images/web.png">
-                                            <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Theme</p>
-                                            <p class="mb-0" style="font-size: 15px;color: #414141;">@s.Theme.Title</p>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
-                                            <img src="/images/calender.png">
-                                            <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Date</p>
-                                            <p class="mb-0" style="font-size: 15px;color: #414141;">Ongoing Opportunity</p>
-                                        </div>
-                                        <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
-                                            <img src="/images/organization.png">
-                                            <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Organization</p>
-                                            <p class="mb-0" style="font-size: 15px;color: #414141;">@s.OrganizationName</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="apply text-center mt-4">
-                                    <a type="button" class="btn btn-rounded btn-outline-warning">
-                                        Apply <img src="/Images/right-arrow.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="row container-fluid" style="margin-top: 5%;">
-                        <div class="col-lg-8">
-              
-                            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
-                                    data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
-                                    aria-selected="true">
-                                        Mission
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
-                                    data-bs-target="#profile-tab-pane" type="button" role="tab"
-                                    aria-controls="profile-tab-pane" aria-selected="false">
-                                        Organization
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
-                                    data-bs-target="#contact-tab-pane" type="button" role="tab"
-                                    aria-controls="contact-tab-pane" aria-selected="false">
-                                        Comments
-                                    </button>
-                                </li>
-                            </ul>
-                            
-                     
-                         
-                            <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
-                             aria-labelledby="home-tab" tabindex="0">
-                          
-                              
-                                    <p style="font-size: 25px;color: #414141;">@s.Title</p>
-                              
-                                    <p style="color: #414141; font-size: 15px;">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Reiciendis ipsum perspiciatis laboriosam nemo accusantium eligendi
-                                        quis perferendis, porro facilis ullam?
-                                    </p>
-                                    <p style="color: #414141; font-size: 15px;">
-                                        Lorem ipsum, dolor sit amet consectetur
-                                        adipisicing elit. Libero distinctio, ex mollitia, voluptas inventore adipisci animi
-                                        porro ea odit alias eos? Tempora ad perferendis illum rerum blanditiis quidem illo
-                                        voluptatibus?
-                                    </p>
-                                    <p style="color: #414141; font-size: 15px;">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. Ipsa laboriosam voluptates vitae animi quibusdam quis voluptas dolore
-                                        error et doloremque inventore earum sunt totam deserunt, dicta cupiditate consectetur.
-                                        Asperiores aut praesentium incidunt vel? Ut placeat dolore dicta doloribus tempora ad,
-                                        quidem deleniti, eos corporis delectus libero nobis natus aperiam quo.
-                                    </p>
-                                    <p style="font-size: 25px;color: #414141;">Challenge</p>
-                                    <p style="color: #414141; font-size: 15px;">
-                                        Lorem ipsum dolor sit amet consectetur
-                                        adipisicing elit. A, dolorum neque! Necessitatibus libero officia ab! Repellat, dolorum
-                                        in voluptatem assumenda laborum molestias itaque deleniti sapiente. Ad quis minus facere
-                                        repudiandae quaerat quae aliquid nobis fugiat perspiciatis rerum labore enim odio,
-                                        numquam incidunt hic optio alias aspernatur voluptatibus reprehenderit dignissimos eos?
-                                    </p>
-                                    <p style="color: #414141; font-size: 15px;">
-                                        Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing elit. Cupiditate fugit asperiores esse praesentium in alias debitis suscipit
-                                        eveniet. Non quas quo repellendus vitae! Minus beatae sed alias maxime, velit iure totam
-                                        similique. Ad, quae ipsum! Praesentium explicabo nam perspiciatis commodi!
-                                    </p>
-                                    <p style="font-size: 25px;color: #414141;">Documents</p>
-                                    <div class="d-flex flex-lg-row flex-md-column flex-sm-column flex-column mx-lg-0 mx-md-auto mx-sm-auto mx-auto ">
-                                        <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50 " style="border: 1px solid #E8E8E8; border-radius: 23px;">
-                                            <img src="~/Images/pdf.png" alt="">
-                                            <span>Lorem-ipsum.pdf</span>
-                                        </button>
-                                        <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50" style="border: 1px solid #E8E8E8; border-radius: 23px;">
-                                            <img src="~/Images/doc.png" alt="">
-                                            <span>at_vero_eos_accusamus.doc</span>
-                                        </button>
-                                        <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50" style="border: 1px solid #E8E8E8; border-radius: 23px;">
-                                            <img src="~/Images/xlsx.png" alt="">
-                                            <span>important_doc.xls</span>
-                                        </button>
-                                    </div>
-                                </div>
-
-                             
-                                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
-                             tabindex="0">
-                                    <div>
-                                        <div class="divces d-flex m-4">
-                                       
-                                   
-                                            <div class="divname ms-5 mt-3">
-                                                <p style="font-size: 25px;">@s.OrganizationName</p>
-                                                <div class="d-flex">
-                                                    <img src="~/Images/Already-volunteered.png" alt="" height="20px"
-                                                 width="20px">
-                                                    <p class="ms-2">Melvin A. Sawyer, Managing Director</p>
-                                                   
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <p>
-                                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente magni vero
-                                            reiciendis omnis soluta nostrum, quasi nam quod fugit pariatur.
-                                        </p>
-                                        <div class="divlocation d-flex">
-                                            <img src="~/Images/pin1.png" alt="" height="20px" width="18px">
-                                            <p class="ms-3">
-                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
-                                                animi?
-                                            </p>
-                                        </div>
-                                        <div class="divcall d-flex">
-                                            <i class="bi bi-telephone"></i>
-                                            <p class="ms-3">+1 7788554422</p>
-                                        </div>
-                                        <div class="divmail d-flex">
-                                            <i class="bi bi-envelope"></i>
-                                            <p class="ms-3">abc@gmail.com</p>
-                                        </div>
-                                        <div class="divworld d-flex">
-                                            <img src="~/Images/web.png" alt="" height="20px" width="20px">
-                                            <p class="ms-3">www.abc.com</p>
-                                        </div>
-                                        <p style="font-size: 25px;color: #414141;">About Organization</p>
-                                      @*  <p style="color: #414141; font-size: 15px;">
-                                            @s.OrganizationDetail
-                                        </p>*@
-                                        <p style="color: #414141; font-size: 15px;">
-                                            Lorem ipsum dolor, sit amet consectetur
-                                            adipisicing elit. Minima nihil fugiat, laudantium, ipsam in eveniet necessitatibus
-                                            molestiae soluta sapiente commodi, inventore possimus quos natus perferendis
-                                            adipisci veritatis ea earum? Ex tenetur quod iusto sequi veritatis, veniam,
-                                            repellendus illo quas eius deserunt perspiciatis. Voluptatem necessitatibus quo modi
-                                            voluptatum nostrum enim corrupti!
-                                        </p>
-
-                                    </div>
-                                </div>
-                               
-                                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
-                             tabindex="0">
-
-                                    <div class="tab-pane fade ms-2 pb-2 active show"
-                                 style="background-color: rgb(243, 243, 243);" id="ex1-tabs-3" role="tabpanel"
-                                 aria-labelledby="ex1-tab-3">
-                                        <form method="post">
-                                            <div class="form-group ps-2 pt-2 pe-2">
-                                                <textarea class="form-control " id="textinput" rows="3"
-                                                  placeholder="Enter your comment..."></textarea>
-                                            </div>
-
-                                            <button class="btn btn-outline-warning ms-2 mt-2" id="postCommentBtn" value="@s.MissionId">
-                                                Post
-                                                Comment
-                                            </button>
-                                        </form>
-                                        <div class="Scroll">
-                                            @foreach (var n in s.Comments)
+                                        <div class="d-flex align-items-center mx-auto">
+                                            @if (s.MissionType == "Time")
                                             {
-                                                <div class="d-flex mt-2 ms-2 bg-light rounded-2 me-2">
-                                                    <div class="my-auto">
-                                                        <img src="~/Images/volunteer1.png" width="50px" height="50px"
-                                                 class="imgcircle ms-2" alt="">
+                                                <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-1 pe-0 me-1"></div>
+                                                <div class="ms-1 mt-3">
+                                                    @s.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
+                                                <div class="ms-2 me-5" style="width:100%">
+                                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar bg-warning" style="width: 50%">50%</div>
                                                     </div>
-                                                    <div class="ps-3">
-                                                        <p class="mb-0">@n.User.FirstName</p>
-                                                        <small style="font-size: 12px;">@n.CreatedAt</small>
-                                                        <p>@n.Comment1</p>
-                                                    </div>
+                                                    <fs-5>Deadline</fs-5>
                                                 </div>
                                             }
                                         </div>
                                     </div>
+                                    <hr>
+                                    <div class="d-flex favbtn mt-3 justify-content-between mx-2">
+                                        <div>
+                                            @if (@s.FavoriteMissions.Where(f => f.MissionId == @s.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
+                                            {
+
+                                                <button type="button" class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;">
+                                                    <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId">
+                                                        @*<button class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;"> *@
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                        </svg>
+                                                        Remove From Favourite
+                                                    </a>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-outline-dark btn-rounded" style="width:100%; border-radius: 5px;">
+                                                    <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId">
+
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                        </svg>
+                                                        Add To Favourite
+
+                                                    </a>
+                                                </button>
+                                            }
+                                        </div>
+                                        <div>
+                                            <button type="button" class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            style="width:100%; border-radius: 5px;">
+                                                <img src="~/Images/add1.png" alt=""> Recommend to a
+                                                Co-Worker
+                                            </button>
+
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <style>
+                                                                table, th, td {
+                                                                    border: 1px solid black;
+                                                                }
+                                                            </style>
+
+
+
+                                                            <table style="width:100%">
+                                                                <tr>
+                                                                    <th>User Name</th>
+                                                                    <th>  Email</th>
+                                                                    <th>link of email</th>
+                                                                </tr>
+                                                                @foreach (var r in Model.user)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@r.FirstName</td>
+                                                                        <td>@r.Email</td>
+                                                                        <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@r.Email">Send Link</a></td>
+                                                                    </tr>
+                                                                }
+
+
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="d-flex mt-4 justify-content-center">
+                                        <div class="d-flex">
+                                            @{
+                                                mr = 0;
+                                                var count = 0;
+
+
+                                                @foreach (var rating in s.MissionRatings)
+                                                {
+
+                                                    @if (rating.MissionId == s.MissionId)
+                                                    {
+                                                        mr = rating.Rating + mr;
+                                                        count = count + 1;
+                                                    }
+                                                    tr = mr + tr;
+                                                }
+
+                                                @if (count > 0)
+                                                {
+                                                    double num = mr / count;
+                                                    int avg = Convert.ToInt32(num);
+                                                    @for (var i = 0; i < avg; i++)
+                                                    {
+                                                        <img src="~/images/selected-star.png" class="mx-auto imgstar" />
+                                                    }
+                                                    @for (var i = avg + 1; i <= 5; i++)
+                                                    {
+                                                        <img src="~/images/star-empty.png" class="mx-auto imgstar" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        <img src="~/images/star-empty.png" class="m-auto imgstar" />
+                                                    }
+                                                }
+                                            }
+
+                                        </div>
+                                    </div>
+                                    <div class="container-fluid flex-wrap">
+                                        <div class="row d-flex mx-auto" style="margin-top: 4%;">
+
+                                            <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
+                                                <img src="/images/pin1.png">
+                                                <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">City</p>
+                                                <p class="mb-0" style="font-size: 15px;color: #414141;">@s.City.Name</p>
+                                            </div>
+
+                                            <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
+                                                <img src="/images/web.png">
+                                                <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Theme</p>
+                                                <p class="mb-0" style="font-size: 15px;color: #414141;">@s.Theme.Title</p>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
+                                                <img src="/images/calender.png">
+                                                <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Date</p>
+                                                <p class="mb-0" style="font-size: 15px;color: #414141;">Ongoing Opportunity</p>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6 col-6 border ps-1 pt-1">
+                                                <img src="/images/organization.png">
+                                                <p class="mt-4 mb-0" style="font-size: 13px;color: #757575;">Organization</p>
+                                                <p class="mb-0" style="font-size: 15px;color: #414141;">@s.OrganizationName</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="apply text-center mt-4">
+                                        <a type="button" class="btn btn-rounded btn-outline-warning" asp-route-userId="@ViewBag.uid" asp-route-missionId="@s.MissionId" asp-controller="MissionCard" asp-action="applyvol">
+                                            Apply <img src="/Images/right-arrow.png" alt="">
+                                        </a>
+                                    </div>
                                 </div>
+
                             </div>
-                         
                         </div>
-                        <div class="col-lg-4 flex-column row2 right mt-3">
-                            <div class="mb-5 col-12 border">
-                                <div class="tab-content ms-3 mt-3">
-                                    <span>
-                                        Information
-                                        </span>
-                                    <div class="d-flex border-bottom mt-2">
-                                        <p> Skills</p>
-                                        <p class="ms-5">Cool, Easy going, Math, Computer</p>
-                                    </div>
-                                </div>
-                                <div class="tab-content ms-3 mt-3">
-                                    <div class="d-flex border-bottom mt-2">
-                                        <p> Days</p>
-                                        <p class="ms-5">Weekends Only</p>
-                                    </div>
-                                </div>
-                                <div class="tab-content ms-3 mt-3">
-                                    <div class="d-flex border-bottom mt-2 ">
-                                        <p> Skills</p>
-                                        <p class="ms-5" style=" font-size: 14px;color: #757575;font-style:NotoSans-Light;">
 
-                                            <img src="~/Images/selected-star.png" alt="">
-                                            <img src="~/Images/selected-star.png" alt="">
-                                            <img src="~/Images/selected-star.png" alt="">
-                                            <img src="~/Images/selected-star.png" alt="">
-                                            <img src="~/Images/selected-star.png" alt="">
+                        <div class="row container-fluid" style="margin-top: 5%;">
+                            <div class="col-lg-8">
 
-                                            (by 125 volunteers)
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
+                                        data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane"
+                                        aria-selected="true">
+                                            Mission
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="profile-tab" data-bs-toggle="tab"
+                                        data-bs-target="#profile-tab-pane" type="button" role="tab"
+                                        aria-controls="profile-tab-pane" aria-selected="false">
+                                            Organization
+                                        </button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="contact-tab" data-bs-toggle="tab"
+                                        data-bs-target="#contact-tab-pane" type="button" role="tab"
+                                        aria-controls="contact-tab-pane" aria-selected="false">
+                                            Comments
+                                        </button>
+                                    </li>
+                                </ul>
+
+
+
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                                 aria-labelledby="home-tab" tabindex="0">
+
+
+                                        <p style="font-size: 25px;color: #414141;">@s.Title</p>
+
+                                        <p style="color: #414141; font-size: 15px;">
+                                            Lorem ipsum dolor sit amet consectetur
+                                            adipisicing elit. Reiciendis ipsum perspiciatis laboriosam nemo accusantium eligendi
+                                            quis perferendis, porro facilis ullam?
                                         </p>
+                                        <p style="color: #414141; font-size: 15px;">
+                                            Lorem ipsum, dolor sit amet consectetur
+                                            adipisicing elit. Libero distinctio, ex mollitia, voluptas inventore adipisci animi
+                                            porro ea odit alias eos? Tempora ad perferendis illum rerum blanditiis quidem illo
+                                            voluptatibus?
+                                        </p>
+                                        <p style="color: #414141; font-size: 15px;">
+                                            Lorem ipsum dolor sit amet consectetur
+                                            adipisicing elit. Ipsa laboriosam voluptates vitae animi quibusdam quis voluptas dolore
+                                            error et doloremque inventore earum sunt totam deserunt, dicta cupiditate consectetur.
+                                            Asperiores aut praesentium incidunt vel? Ut placeat dolore dicta doloribus tempora ad,
+                                            quidem deleniti, eos corporis delectus libero nobis natus aperiam quo.
+                                        </p>
+                                        <p style="font-size: 25px;color: #414141;">Challenge</p>
+                                        <p style="color: #414141; font-size: 15px;">
+                                            Lorem ipsum dolor sit amet consectetur
+                                            adipisicing elit. A, dolorum neque! Necessitatibus libero officia ab! Repellat, dolorum
+                                            in voluptatem assumenda laborum molestias itaque deleniti sapiente. Ad quis minus facere
+                                            repudiandae quaerat quae aliquid nobis fugiat perspiciatis rerum labore enim odio,
+                                            numquam incidunt hic optio alias aspernatur voluptatibus reprehenderit dignissimos eos?
+                                        </p>
+                                        <p style="color: #414141; font-size: 15px;">
+                                            Lorem ipsum dolor, sit amet consectetur
+                                            adipisicing elit. Cupiditate fugit asperiores esse praesentium in alias debitis suscipit
+                                            eveniet. Non quas quo repellendus vitae! Minus beatae sed alias maxime, velit iure totam
+                                            similique. Ad, quae ipsum! Praesentium explicabo nam perspiciatis commodi!
+                                        </p>
+                                        <p style="font-size: 25px;color: #414141;">Documents</p>
+                                        <div class="d-flex flex-lg-row flex-md-column flex-sm-column flex-column mx-lg-0 mx-md-auto mx-sm-auto mx-auto ">
+                                            <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50 " style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                                <img src="~/Images/pdf.png" alt="">
+                                                <span>Lorem-ipsum.pdf</span>
+                                            </button>
+                                            <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50" style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                                <img src="~/Images/doc.png" alt="">
+                                                <span>at_vero_eos_accusamus.doc</span>
+                                            </button>
+                                            <button class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50" style="border: 1px solid #E8E8E8; border-radius: 23px;">
+                                                <img src="~/Images/xlsx.png" alt="">
+                                                <span>important_doc.xls</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                                 tabindex="0">
+                                        <div>
+                                            <div class="divces d-flex m-4">
+
+
+                                                <div class="divname ms-5 mt-3">
+                                                    <p style="font-size: 25px;">@s.OrganizationName</p>
+                                                    <div class="d-flex">
+                                                        <img src="~/Images/Already-volunteered.png" alt="" height="20px"
+                                                 width="20px">
+                                                        <p class="ms-2">Melvin A. Sawyer, Managing Director</p>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sapiente magni vero
+                                                reiciendis omnis soluta nostrum, quasi nam quod fugit pariatur.
+                                            </p>
+                                            <div class="divlocation d-flex">
+                                                <img src="~/Images/pin1.png" alt="" height="20px" width="18px">
+                                                <p class="ms-3">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
+                                                    animi?
+                                                </p>
+                                            </div>
+                                            <div class="divcall d-flex">
+                                                <i class="bi bi-telephone"></i>
+                                                <p class="ms-3">+1 7788554422</p>
+                                            </div>
+                                            <div class="divmail d-flex">
+                                                <i class="bi bi-envelope"></i>
+                                                <p class="ms-3">abc@gmail.com</p>
+                                            </div>
+                                            <div class="divworld d-flex">
+                                                <img src="~/Images/web.png" alt="" height="20px" width="20px">
+                                                <p class="ms-3">www.abc.com</p>
+                                            </div>
+                                            <p style="font-size: 25px;color: #414141;">About Organization</p>
+                                            @*  <p style="color: #414141; font-size: 15px;">
+                                                @s.OrganizationDetail
+                                                </p>*@
+                                            <p style="color: #414141; font-size: 15px;">
+                                                Lorem ipsum dolor, sit amet consectetur
+                                                adipisicing elit. Minima nihil fugiat, laudantium, ipsam in eveniet necessitatibus
+                                                molestiae soluta sapiente commodi, inventore possimus quos natus perferendis
+                                                adipisci veritatis ea earum? Ex tenetur quod iusto sequi veritatis, veniam,
+                                                repellendus illo quas eius deserunt perspiciatis. Voluptatem necessitatibus quo modi
+                                                voluptatum nostrum enim corrupti!
+                                            </p>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab"
+                                 tabindex="0">
+
+                                        <div class="tab-pane fade ms-2 pb-2 active show"
+                                     style="background-color: rgb(243, 243, 243);" id="ex1-tabs-3" role="tabpanel"
+                                     aria-labelledby="ex1-tab-3">
+                                            <form method="post">
+                                                <div class="form-group ps-2 pt-2 pe-2">
+                                                    <textarea class="form-control " id="textinput" rows="3"
+                                                      placeholder="Enter your comment..."></textarea>
+                                                </div>
+
+                                                <button class="btn btn-outline-warning ms-2 mt-2" id="postCommentBtn" value="@s.MissionId">
+                                                    Post
+                                                    Comment
+                                                </button>
+                                            </form>
+                                            <div class="Scroll">
+                                                @foreach (var n in s.Comments)
+                                                {
+                                                    <div class="d-flex mt-2 ms-2 bg-light rounded-2 me-2">
+                                                        <div class="my-auto">
+                                                            <img src="~/Images/volunteer1.png" width="50px" height="50px"
+                                                 class="imgcircle ms-2" alt="">
+                                                        </div>
+                                                        <div class="ps-3">
+                                                            <p class="mb-0">@n.User.FirstName</p>
+                                                            <small style="font-size: 12px;">@n.CreatedAt</small>
+                                                            <p>@n.Comment1</p>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                             </div>
-                            <div class="me-5 border mb-4 col-12">
-
-                                <span class="ms-3 mt-3">Recent Volunteeres</span>
-
-                                <div class="tab-content mt-4" id="ex1-content">
-                                    <div class="tab-pane fade show active ps-2" id="ex1-tabs-1" role="tabpanel"
-                                 aria-labelledby="ex1-tab-1">
-                                        <div class="d-flex justify-content-evenly">
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer1.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Andrew Johnson</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer2.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Charlis vigue</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer3.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">kathryn Robert</p>
-                                            </div>
+                            <div class="col-lg-4 flex-column row2 right mt-3">
+                                <div class="mb-5 col-12 border">
+                                    <div class="tab-content ms-3 mt-3">
+                                        <span class="mb-1">
+                                            Information
+                                        </span>
+                                        <hr>
+                                        <div class="d-flex border-bottom mt-2">
+                                            <p> Skills</p>
+                                            <p class="ms-5">Cool, Easy going, Math, Computer</p>
                                         </div>
-                                        <div class="d-flex justify-content-evenly">
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer4.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Estella Fowles</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer5.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Travis steen</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer6.png" class=" imgcircle " width="70px" height="70px" alt="">
-                                                <p style="font-size: 13px;">Andrew Johnson</p>
-                                            </div>
+                                    </div>
+                                    <div class="tab-content ms-3 mt-3">
+                                        <div class="d-flex border-bottom mt-2">
+                                            <p> Days</p>
+                                            <p class="ms-5">Weekends Only</p>
                                         </div>
-                                        <div class="d-flex justify-content-evenly ">
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer7.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Rose lewis</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer8.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Andrew Johnson</p>
-                                            </div>
-                                            <div class="text-center">
-                                                <img src="~/Images/volunteer9.png" class="imgcircle" width="70px" height="70px"
-                                             alt="">
-                                                <p style="font-size: 13px;">Ramond Paybon</p>
-                                            </div>
+                                    </div>
+                                    <div class="tab-content ms-3 mt-3">
+                                        <div class="d-flex border-bottom mt-2 ">
+                                            <p> Skills</p>
+                                            <p class="ms-5" style=" font-size: 10px ;color: #757575;font-style:NotoSans-Light;">
+
+                                                @{
+                                                    mr = 0;
+                                                    var count1 = 0;
+
+
+                                                    @foreach (var rating in s.MissionRatings)
+                                                    {
+
+                                                        @if (rating.MissionId == s.MissionId)
+                                                        {
+                                                            mr = rating.Rating + mr;
+                                                            count1 = count1 + 1;
+                                                        }
+                                                        tr = mr + tr;
+
+
+
+                                                    }
+                                                    @if (count1 > 0)
+                                                    {
+                                                        double num = mr / count1;
+                                                        int avg = Convert.ToInt32(num);
+                                                        @for (var i = 0; i < avg; i++)
+                                                        {
+                                                            <img src="~/images/selected-star.png" class="imgstar" />
+                                                        }
+                                                        @for (var i = avg + 1; i <= 5; i++)
+                                                        {
+                                                            <img src="~/images/star-empty.png" class="imgstar" />
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        @for (var i = 1; i <= 5; i++)
+                                                        {
+                                                            <img src="~/images/star-empty.png" class="imgstar" />
+                                                        }
+                                                    }
+                                                }
+
+                                                <div class="mx-2">
+                                                    <span>(@count Volunteers)</span>
+                                                </div>
+                                            </p>
                                         </div>
-
-                                        <nav aria-label="Page navigation example">
-                                            <ul class="pagination justify-content-between">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true">&laquo;</span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item px-3 mt-2">
-                                                    <a class="page-link" href="#">
-                                                        1-9 of 15 Recent
-                                                        Volunteeres
-                                                    </a>
-                                                </li>
-                                                <li class="page-item ps-1">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true">&raquo;</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
-
                                     </div>
                                 </div>
+                                <div class="me-5 border mb-4 col-12">
 
+                                    <span class="ms-3 mt-3">Recent Volunteeres</span>
+
+                                    <div class="tab-content mt-4" id="ex1-content">
+                                        <div class="tab-pane fade show active ps-2" id="ex1-tabs-1" role="tabpanel"
+                                     aria-labelledby="ex1-tab-1">
+                                   
+                                            @foreach (var item in Model.user)
+                                            {
+                                                @if (s.MissionApplications.Where(m => m.UserId == item.UserId && m.MissionId == s.MissionId).Count() > 0)
+                                                {
+                                                    <div class="d-flex justify-content-around">
+
+                                                        <div class="text-center">
+                                                            <img src="~/Images/volunteer1.png" class="imgcircle" width="70px" height="70px"
+                                             alt="">
+                                                            <p style="font-size: 13px;">@item.FirstName @item.LastName</p>
+                                                        </div>
+
+                                                    </div>
+                                                }
+
+                                            }
+                                      
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#" aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item px-3 mt-2">
+                                                        <a class="page-link" href="#">
+                                                            1-9 of 15 Recent
+                                                            Volunteeres
+                                                        </a>
+                                                    </li>
+                                                    <li class="page-item ps-1">
+                                                        <a class="page-link" href="#" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+
+                                        </div>
+                                    </div>
+
+                                </div>
                             </div>
+
                         </div>
+                    }
 
-                    </div>
                 }
-
             }
-
             <!--First container ended-->
             <!--Realted Missions Started-->
-            <h1 class="text-center" style="margin-bottom:20px;">Related Missions</h1>
+            <h1 class="text-center" style="margin-bottom:20px; margin-top:20px ">Related Missions</h1>
 
             <div class="row">
 
-                   @foreach (var item in Model.mission)
-                {
-                    <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
+                @{
+                    var tot = 0;
+                    @foreach (var item in Model.mission)
+                    {
+                        @if(item.Theme.Title == ViewBag.theme)
+                        {
+                            <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
 
-                        <div class="card">
+                            <div class="card">
 
-                            <div class="img-event">
-                                <img class="card-img-top card-img"
+                                <div class="img-event">
+                                    <img class="card-img-top card-img"
                                  src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                                  alt="Card image cap">
-                                <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
+                                    <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
 
-                                <div class="landing-page-bottom-right d-flex flex-column">
+                                    <div class="landing-page-bottom-right d-flex flex-column">
 
-                                    @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
-                                    {
-                                        <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
-                                            <button class="mb-2 landing-page-btn-img">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    }
-                                    else
-                                    {
-                                        <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
-                                            <button class="mb-2 landing-page-btn-img">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
-                                                    <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    }
+                                        @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
+                                        {
+                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                                <button class="mb-2 landing-page-btn-img">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                                <button class="mb-2 landing-page-btn-img">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
+                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        }
 
-                                  
-                                       
-                                        
+
+
+
                                         <div>
-                                            <button class = "Co-Worker" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            style="width:100%; border-radius: 5px;">
-                                                <img src="~/Images/add1.png"width="16" height="16" viewBox="0 0 16 16">
+                                            <button class="Co-Worker" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                style="width:100%; border-radius: 5px;">
+                                                <img src="~/Images/add1.png" width="16" height="16" viewBox="0 0 16 16">
                                             </button>
 
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -960,14 +1011,14 @@
                                                                     <th>link of email</th>
                                                                 </tr>
 
-                                                  @foreach (var u in Model.user)
-                                                {
-                                                                <tr>
-                                                                    <td>@u.FirstName</td>
-                                                                    <td>@u.Email</td>
-                                                                    <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@u.Email">Send Link</a></td>
-                                                                </tr>
-                                                   }      
+                                                                @foreach (var u in Model.user)
+                                                                {
+                                                                    <tr>
+                                                                        <td>@u.FirstName</td>
+                                                                        <td>@u.Email</td>
+                                                                        <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@u.Email">Send Link</a></td>
+                                                                    </tr>
+                                                                }
 
 
                                                             </table>
@@ -979,93 +1030,137 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    
-                                    
-                                </div>
-
-                                <div><button class="theme-btn m-auto ">@item.Theme.Title</button></div>
-                                <!-- <button class="theme-btn ">Environment</button> -->
-                        </div>
 
 
-                            <div class="card-body mt-2">
-                                <h5 class="card-title " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
-                                    @item.Title
-                                </h5>
-                                <p class="card-text text-secondary " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
-                                    @item.ShortDescription
-                                </p>
-
-                                <div class="d-flex">
-                                    <div class="card-text">@item.OrganizationName</div>
-                                    <div class="ms-auto">
-                                        <img src="~/Images/selected-star.png" class="star" alt="">
-                                        <img src="~/Images/selected-star.png" class="star" alt="">
-                                        <img src="~/Images/selected-star.png" class="star" alt="">
-                                        <img src="~/Images/star-empty.png" class="star" alt="">
-                                        <img src="~/Images/star-empty.png" class="star" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="rule mt-1">
-                                    <hr>
-                                    @if (@item.MissionType == "Time")
-                                    {
-                                        <button class="date-btn mt-1">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</button>
-                                    }
-                                    else
-                                    {
-                                        <button class="date-btn mt-1">@item.MissionType Based Mission</button>
-                                    }
-                                    <hr>
-                                </div>
-
-                                <div class="d-flex mx-2 mt-2">
-                                    <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
-                                    <div class="ms-2">
-                                        @item.Availability <p class="seat">25 Sests Left</p>
                                     </div>
 
+                                    <div><button class="theme-btn m-auto ">@item.Theme.Title</button></div>
+                                    <!-- <button class="theme-btn ">Environment</button> -->
+                            </div>
 
-                                    @if (item.MissionType == "Time")
-                                    {
-                                        <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
+
+                                <div class="card-body mt-2">
+                                    <h5 class="card-title " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+                                        @item.Title
+                                    </h5>
+                                    <p class="card-text text-secondary " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                                        @item.ShortDescription
+                                    </p>
+
+                                    <div class="d-flex">
+                                        <div class="card-text">@item.OrganizationName</div>
+                                        @{
+                                            mr = 0;
+                                            var count = 0;
+
+
+                                            @foreach (var rating in item.MissionRatings)
+                                            {
+
+                                                @if (rating.MissionId == item.MissionId)
+                                                {
+                                                    mr = rating.Rating + mr;
+                                                    count = count + 1;
+                                                }
+                                                tr = mr + tr;
+
+
+
+                                            }
+                                            @if (count > 0)
+                                            {
+                                                double num = mr / count;
+                                                int avg = Convert.ToInt32(num);
+                                                @for (var i = 0; i < avg; i++)
+                                                {
+                                                    <img src="~/images/selected-star.png" class="mx-auto imgstar" />
+                                                }
+                                                @for (var i = avg + 1; i <= 5; i++)
+                                                {
+                                                    <img src="~/images/star-empty.png" class="mx-auto imgstar" />
+                                                }
+                                            }
+                                            else
+                                            {
+                                                @for (var i = 1; i <= 5; i++)
+                                                {
+                                                    <img src="~/images/star-empty.png" class="m-auto imgstar" />
+                                                }
+                                            }
+                                        }
+                                    </div>
+
+                                    <div class="rule mt-1">
+                                        <hr>
+                                        @if (@item.MissionType == "Time")
+                                        {
+                                            <button class="date-btn mt-1">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</button>
+                                        }
+                                        else
+                                        {
+                                            <button class="date-btn mt-1">@item.MissionType Based Mission</button>
+                                        }
+                                        <hr>
+                                    </div>
+
+                                    <div class="d-flex mx-2 mt-2">
+                                        <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
                                         <div class="ms-2">
-                                            @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
+                                            @item.Availability <p class="seat">25 Sests Left</p>
                                         </div>
-                                    }
-                                    else
-                                    {
 
-                                        <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
-                                        <div class="ms-2 me-5" stye="width:100%">
-                                            <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+
+                                        @if (item.MissionType == "Time")
+                                        {
+                                            <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
+                                            <div class="ms-2">
+                                                @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
                                             </div>
-                                            <fs-5>Deadline</fs-5>
-                                        </div>
-                                    }
+                                        }
+                                        else
+                                        {
 
-                                    @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
-                                        <div class="ms-2">
-                                        09/01/2019 <p>Deadline</p>
-                                        </div>*@
-                                </div>
-                                <hr class="mt-0">
+                                            <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
+                                            <div class="ms-2 me-5" stye="width:100%">
+                                                <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                    <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+                                                </div>
+                                                <fs-5>Deadline</fs-5>
+                                            </div>
+                                        }
 
-                                <div class="text-center">
-                                    <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
-                                        <button type="submit" class="Apply-btn p-2">
-                                            &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+                                        @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
+                                            <div class="ms-2">
+                                            09/01/2019 <p>Deadline</p>
+                                            </div>*@
+                                    </div>
+                                    <hr class="mt-0">
 
-                                        </button>
-                                    </a>
+                                    <div class="text-center">
+                                        <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
+                                            <button type="submit" class="Apply-btn p-2">
+                                                &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+
+                                            </button>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        }
+                        tot = tot + 1;
 
-                    </div>
+                        
+                        if (tot == 3)
+                        {
+                            break;
+
+                        }
+                    }
+
                 }
+
+
             </div>
 
             <div class="col-md-1 col-0 border-bottom"></div>
@@ -1076,7 +1171,7 @@
 @*<script type="text/javascript" src="js/Home.js"></script>*@
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script>
-   
+
     $(function(){
         $('#postCommentBtn').click(function () {
                 var missionId = this.value;

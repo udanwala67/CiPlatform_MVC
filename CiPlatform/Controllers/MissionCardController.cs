@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CiPlatform.Controllers
 {
-   
+
     public class MissionCardController : Controller
     {
         private readonly CiContext _ciContext;
@@ -23,16 +23,16 @@ namespace CiPlatform.Controllers
         {
             List<Mission> mission = _ciContext.Missions.ToList();
             var ms = _CiRepository.GetMission();
-           
+
             List<Country> country = _ciContext.Countries.ToList();
-           
+
 
             List<City> city = _ciContext.Cities.ToList();
-            
+
 
             List<MissionTheme> themes = _ciContext.MissionThemes.ToList();
 
-           
+
 
 
             if (searchQuery != null)
@@ -44,7 +44,7 @@ namespace CiPlatform.Controllers
                 {
                     return RedirectToAction("missionnotfound", "home");
                 }
-  
+
             }
 
             int TotalMissions = mission.Count();
@@ -69,7 +69,7 @@ namespace CiPlatform.Controllers
             {
                 var City = _ciContext.Cities.FirstOrDefault(u => u.CityId == item.CityId);
                 var Theme = _ciContext.MissionThemes.FirstOrDefault(u => u.MissionThemeId == item.ThemeId);
-                /*   var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
+                /*var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
             }
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
@@ -78,13 +78,15 @@ namespace CiPlatform.Controllers
             return View(ms);
         }
 
-        public IActionResult VolunteeringMission(int missionid)
+        public IActionResult VolunteeringMission(int missionid, string theme)
         {
             ViewBag.missionid = missionid;
             string email = HttpContext.Session.GetString("Email");
 
-            var user = _ciContext.Users.Where(u=>u.Email == email).FirstOrDefault();
-
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            ViewBag.theme = theme;
+            
+            
 
             if (user == null)
             {
@@ -94,9 +96,16 @@ namespace CiPlatform.Controllers
             {
                 ViewBag.uid = (int)user.UserId;
                 var mission = _CiRepository.GetMission();
+                
                 return View(mission);
             }
-}
+        }
+
+        public IActionResult applyvol(int userId,int missionId)
+        {
+            _CiRepository.applyvol(userId, missionId);
+            return RedirectToAction("VolunteeringMission", "MissionCard" , new { missionId = missionId });
+        }
 
         public IActionResult AddtoFav(int mid)
         {
@@ -115,14 +124,16 @@ namespace CiPlatform.Controllers
             builder.Host = "localhost";
             builder.Port = 7148;
             builder.Path = "MissionCard/VolunteeringMission";
-            builder.Query = "?missionid="+missionId;
+            builder.Query = "?missionid=" + missionId;
 
             var resetLink = builder.ToString();
 
             _emailServices.SendEmailAsync(email, "Recommend Coworker", resetLink);
 
-            return RedirectToAction("VolunteeringMission",new {missionId= missionId });
+            return RedirectToAction("VolunteeringMission", new { missionId = missionId });
         }
+
+
 
         [HttpPost]
         public IActionResult AddToComment(int missionId, int userId, string comment)

@@ -68,6 +68,7 @@ namespace CiPlatform.Repository.Repository
             var missiontheme = _CiContext.MissionThemes.ToList();
             var user = _CiContext.Users.ToList();
             var comments = _CiContext.Comments.ToList();
+            var missionapplication =  _CiContext.MissionApplications.ToList();
             VolunteeringMissionView mission = new VolunteeringMissionView();
             mission.mission = missions;
 
@@ -79,6 +80,7 @@ namespace CiPlatform.Repository.Repository
             mission.missionTheme =  missiontheme;
             mission.user = user;
             mission.comments = comments;
+            mission.application = missionapplication;
             return mission;
         }
 
@@ -101,6 +103,15 @@ namespace CiPlatform.Repository.Repository
                 _CiContext.SaveChanges();
             }
            
+        }
+
+        public void applyvol (int userId , int missionId)
+        {
+           MissionApplication missionApplication = new MissionApplication();
+            missionApplication.UserId = userId;
+            missionApplication.MissionId = missionId;
+            _CiContext.Add(missionApplication);
+            _CiContext.SaveChanges();
         }
     }
 }

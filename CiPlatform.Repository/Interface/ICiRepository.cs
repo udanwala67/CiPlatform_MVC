@@ -16,6 +16,7 @@ namespace CiPlatform.Repository.Interface
 
         public VolunteeringMissionView GetMission();
         public void AddToFavourite(int mid, int uid);
+        public void applyvol(int userId, int missionId);
 
 
         /*   public User FindUserByEmail(string email);
