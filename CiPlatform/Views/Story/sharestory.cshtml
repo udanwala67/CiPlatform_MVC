@@ -1,0 +1,427 @@
+﻿@model CiPlatform.Entitites.ViewModels.StoryView
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
+    <title>Share Story</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="~/css/sharestory.css">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
+</head>
+
+<body>
+    <div class="d-flex">
+        <div class="col-md-2 col-0 border-bottom">
+
+        </div>
+
+        <!--Main Navigation-->
+        <div class="col-md-8 col-12">
+
+            <!-- Navbar -->
+
+
+         <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+            <div class="container">
+
+                <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <img src="~/Images/list.png">
+                </button>
+
+                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                    <div class="offcanvas-header">
+                        <h2>CI-PLATFORM</h2>
+                        <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @{
+                                    var firstname = Context.Session.GetString("Firstname");
+                                }
+                                @ViewBag.firstname
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">New project</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" href="#">Story</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                               aria-expanded="false">Policy</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+
+                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Story</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                           aria-expanded="false">Policy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @foreach(var p in Model.user)
+                {
+                    if (p.UserId == ViewBag.uid)
+                    {
+                        <div class="dropdown text-end user-profile ">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+
+                                @p.FirstName
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">New project...</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+        </nav>
+
+        
+        <nav class="navbar navbar-expand-md navbar-lighte header2" aria-label="Second navbar example">
+            <div class="container">
+                <div class="col-9 col-lg-6 col-md-5 me-2">
+                    <form role="search" class="d-flex">
+
+                        <input type="search" class="form-control searchbox" placeholder="Search mission....." aria-label="Search"
+                               id="search_bar" name="searchQuery" value="@ViewBag.InputSearch" onkeyup="mysearchFun()">
+                    </form>
+                </div>
+
+                <button class="btn hamburger" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#filteroffcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <img src="~/Images/filter.png">
+                </button>
+
+                @*--------------------------------------------OffCanvas------------------------*@
+                <div class="offcanvas offcanvas-end offcanvas2" data-bs-scroll="true" tabindex="-1"
+                     id="filteroffcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                    <div class="offcanvas-header ">
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 ">
+                        <li class="nav-item dropdown mt-3">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Country
+                            </a>
+
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+                               
+                              
+                            </ul>
+
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                City
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Theme
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+                                @foreach (var item in Model.missionTheme)
+                                {
+                                    <li>
+
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
+                                            @item.Title
+                                        </a>
+
+                                    </li>
+
+                                }
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                Skill
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill1" name="Skill1" id=""
+                                               class="ms-3 checkbox ">Skill1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill2" name="Skill2" id=""
+                                               class="ms-3 checkbox ">Skill2
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item p-0 mt-1" href="#">
+                                        <input type="checkbox" value="Skill3" name="Skill3" id=""
+                                               class="ms-3 checkbox ">Skill3
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </div>
+                </div>
+
+                <div class="second-div col-lg-6 col-md-7">
+                    <ul class="navbar-nav">
+                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item">
+                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <p class="me-auto mt-2">Country</p>
+                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
+                            </a>
+
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="ItemList">
+
+                          
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item">
+                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <p class="me-auto mt-2">City</p>
+                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item">
+                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <p class="me-auto mt-2">Theme</p>
+                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
+                            </a>
+                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
+
+                                @foreach (var item in Model.missionTheme)
+                                {
+                                    <li>
+                                        <a class="dropdown-item p-0 mt-1" href="#">
+                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
+                                            @item.Title
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+
+                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item filter-item-skill">
+                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <p class="me-auto mt-2">Skill</p>
+                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <input type="checkbox" value="Skill1" name="Skill1" id="FilterData"
+                                               class="ms-3 checkbox ">Skill1
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <input type="checkbox" value="Skill2" name="Skill2" id="FilterData"
+                                               class="ms-3 checkbox ">Skill2
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <input type="checkbox" value="Skill3" name="Skill3" id="FilterData"
+                                               class="ms-3 checkbox ">Skill3
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+            <!-- Second -->
+            <!-- Second nav bar -->
+            <nav class="navbar navbar-expand-lg bg-white d-flex align-items-center border-bottom border-top"
+                style="box-shadow: none;">
+                <!-- Search -->
+                <!-- <div class="d-flex align-items-center justify-content-md-start mb-md-0"> -->
+                <div class="col-md-6 col-8">
+                    <form class="d-flex">
+                        <span class="input-group-text border-0 d-none d-lg-flex"><i class="fas fa-search"></i></span>
+                        <input class="form-control me-2 border-0" type="search" placeholder="Search"
+                            aria-label="Search">
+                    </form>
+
+                </div>
+                <div class="">
+                    <button class="navbar-toggler navcollapse" type="button" href="#offcanvasExample2"
+                        data-bs-toggle="offcanvas" aria-controls="offcanvasExample">
+                        <img src="~/images/filter.png">
+                    </button>
+                </div>
+                <div class="container-fluid col-md-6 col-4 p-0">
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample2"
+                        aria-labelledby="offcanvasExampleLabel" style="width:50%">
+                        <div class="offcanvas-header">
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </nav>
+            <!--Nav Ended-->
+            <!--Div For Filters -->
+            <div>
+            </div>
+            <!--Div For Sort by -->
+            <div class="sorting d-flex justify-content-between mt-4 my-2">
+                <div class="explore my-2"> Explore <strong>@ViewBag.TotalMissions Missons</strong> </div>
+
+
+            
+            </div>
+
+            <div class="container mt-3">
+                <div class="fs-3">Share your story</div>
+                <div class="row mt-4">
+                    <div class="col-lg-4">
+                        <label class="my-2">Select Mission</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Select Your Mission</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="my-2">My Story Title</label>
+                        <input type="text" class="form-control" id="" placeholder="Enter story title" />
+                    </div>
+                    <div class="col-lg-4">
+                        <label class="my-2">Date</label>
+                        <input type="date" class="form-control" />
+                    </div>
+                </div>
+                <div class="row mx-0 my-2">
+                    <label class="my-2 ps-0">My Story</label>
+                    <textarea id="ckeditorcontent" name="ckeditorcontent"></textarea>
+                    <script
+                        type="text/javascript">CKEDITOR.replace('ckeditorcontent'); CKEDITOR.config.width = '100%'; CKEDITOR.config.height = '275px';</script>
+                </div>
+                <div>
+                    <label class = "my-3 mt-2">Enter Video URL</label>
+                    <input type="url" class="form-control" placeholder="Enter your url" />
+                </div>
+                <div class="my-4">
+                    <label>Upload Your Photos</label>
+                    <div class="upload_box">
+                        <div class="upload_imagebox my-3" id="upload_imagebox">
+                            <img src="~/images/drag-and-drop.png" id="myselectimg" />
+                            <input type="file" id="myimgfile" style="display: none" multiple />
+                        </div>
+                        <div class="upload_imgwrap row"></div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="d-flex col-lg-6 my-2 my-lg-0 justify-content-center">
+                        <button type="button" class="btnstrcancel">Cancel</button>
+                    </div>
+                    <div class="d-flex col-lg-6 justify-content-center">
+                        <button type="button" class="btnstrss">Save</button>
+                        <button type="button" class="btnstrss ms-4">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -10,13 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
     <title>Volunteering Mission page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gDpost comment" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-            crossorigin="anonymous"></script>
+       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gDpost" crossorigin="anonymous">
+
     <link rel="icon" href="" type="image/x-icon">
 
-    <link rel="stylesheet" href="/css/platformlandingpage.css">
+    <link rel="stylesheet" href="~/css/platformlandingpage.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -38,286 +36,111 @@
         <!--Main Navigation-->
         <div class="col-md-10 col-12">
             <header>
+
+
                 <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg bg-white border-bottom" style="box-shadow: none;">
-
-                    <!-- Logo -->
-                    <div class="col-md-8 d-flex align-items-center justify-content-md-start mb-md-0">
-                        <button class="navbar-toggler navcollapse" type="button" href="#offcanvasExample"
-                                data-bs-toggle="offcanvas" aria-controls="offcanvasExample">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <a href="#!" class="ms-md-2 mt-1">
-                            <img src="~/Images/logo.png" alt="" height="35">
-                        </a>
-
-                        <!-- Top navbar content -->
-                        <div class="container-fluid ms-4">
+              <!-- --------------------------------------first navbar-------------------------------------->
 
 
-                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
-                                 aria-labelledby="offcanvasExampleLabel" style="width:50%">
-                                <div class="offcanvas-header">
-                                    <h5 class="offcanvas-title" id="offcanvasExample"></h5>
-                                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="offcanvas-body">
-                                    <ul class="navbar-nav me-auto my-2 my-lg-0">
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link active dropdown-toggle" href="#" role="button"
-                                               data-bs-toggle="dropdown" aria-expanded="false">
-                                                Explore
-                                            </a>
-                                            <!-- Dropdown -->
-                                            <ul class="dropdown-menu">
+           <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+            <div class="container">
 
-                                                <li>
+                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" id ="hamburgerbut"
+                      data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <img src="~/Images/list.png">
+                </button>
 
-                                                    <a class="dropdown-item" href="#">Top Themes</a>
+                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Top Countries</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Top Organization</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Top Ranked</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Top Favourite</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Recommended</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-
-                                                <li>
-                                                    <a class="dropdown-item" href="#">Random</a>
-                                                    <!-- Sub Dropdown -->
-                                                    <ul class="dropdown-menu dropdown-submenu">
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Education</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Children</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Health</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Animals</a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item" href="#">Nutrition</a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="#">Stories</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" href="#">News</a>
-                                        </li>
-
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link active dropdown-toggle" href="#" role="button"
-                                               data-bs-toggle="dropdown" aria-expanded="false">
-                                                Policy
-                                            </a>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Volunteering</a></li>
-                                                <li><a class="dropdown-item" href="#">Sponsered</a></li>
-                                            </ul>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="offcanvas-header">
+                        <h2>CI-PLATFORM</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
 
-
-                    <!-- Notification, User -->
-
-                    <div class="align-items-center d-flex justify-content-end col-md-4 pe-1">
-
-                        <!-- Notification -->
-
-                        <div class="dropdown">
-                            <a class="nav-link me-3 active dropdown-toggle hidden-arrow" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/bell.png">
+                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @{
+                                    var firstname = Context.Session.GetString("Firstname");
+                                }
+                                @ViewBag.firstname
                             </a>
-                            <ul class="dropdown-menu " aria-labelledby="navbarDropdownMenuLink">
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">New project</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
                                 <li>
-                                    <a class="dropdown-item" href="#">Notification Settings</a>
+                                    <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item disabled" href="#">Get a Notification for</a>
-                                </li>
-
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <label class="form-check-label" for="Checkme1">Recommanded missions</label>
-                                        <input class="form-check-input" type="checkbox" value="" id="Checkme1" />
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <label class="form-check-label" for="Checkme1">Volunteering Hour</label>
-                                        <input class="form-check-input" type="checkbox" value="" id="Checkme2" />
-                                    </a>
-                                </li>
-                                <li><a class="dropdown-item" href="#">Another news</a></li>
-
-                                <li>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
                                 </li>
                             </ul>
                         </div>
 
-                        <!-- User -->
-                        <div class="dropdown name">
-                            <a class="nav-link active dropdown-toggle hidden-arrow" href="#" role="button"
-                               data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" class="rounded-circle" height="40" width="40" alt=""
-                                     loading="lazy" />
-                                <span class="ms-2">
-                                    @{
-                                        var firstname = Context.Session.GetString("Firstname");
-                                    }
-                                    @ViewBag.firstname
-                                    <img src="~/Images/drop-down.png">
-                                </span>
-                            </a>
-                               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="#">Dashboard</a></li>
-                                <li><a class="dropdown-item" href="#">My Account</a></li>
-                                <li><a class="dropdown-item" href="#">Help Setting</a></li>
-                                <li><a class="dropdown-item" asp-for="logout" asp-action="login" asp-controller="Home">Logout</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                        </li>
 
-                        </div>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                               aria-expanded="false">Policy</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
                     </div>
-                </nav>
-                <!--Main  Navbar end -->
+                </div>
+
+               <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                           aria-expanded="false">Policy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @foreach (var p in Model.user)
+                {
+                   if(p.UserId == ViewBag.uid)
+                   {
+                    
+                        <div class="dropdown text-end user-profile ">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+
+                                @p.FirstName
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">New project...</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            </ul>
+                        </div>    
+                     }
+                }
+            </div>
+        </nav>
+
+       
+
 
             </header>
             @*@{int mid = ViewBag.missionid;}*@
@@ -438,7 +261,7 @@
                                     <div class="d-flex justify-content-around mt-2 mx-auto">
                                         <div class="d-flex align-items-center mx-auto">
                                             <div class="mt-1 pe-0 me-2">
-                                                <img src="/Images/Seats-left.png" alt="" width="25px" height="25px">
+                                                <img src="/Images/Seats-left.png" alt="" width="25" height="25">
                                             </div>
                                             <div class="px-0" style="color: #757575;">
                                                 <h5 class="mb-0 mt-1">10</h5>
@@ -618,7 +441,7 @@
                                     </div>
 
                                     <div class="apply text-center mt-4">
-                                        <a type="button" class="btn btn-rounded btn-outline-warning" asp-route-userId="@ViewBag.uid" asp-route-missionId="@s.MissionId" asp-controller="MissionCard" asp-action="applyvol">
+                                        <a class="btn btn-rounded btn-outline-warning" onclick = "changeText()" id="apply-button" asp-route-userId="@ViewBag.uid" asp-route-missionId="@s.MissionId" asp-controller="MissionCard" asp-action="applyvol">
                                             Apply <img src="/Images/right-arrow.png" alt="">
                                         </a>
                                     </div>
@@ -827,7 +650,7 @@
                                     <div class="tab-content ms-3 mt-3">
                                         <div class="d-flex border-bottom mt-2 ">
                                             <p> Skills</p>
-                                            <p class="ms-5" style=" font-size: 10px ;color: #757575;font-style:NotoSans-Light;">
+                                            <p class="ms-5" style=" font-size: 10px ;color: #757575;">
 
                                                 @{
                                                     mr = 0;
@@ -883,7 +706,7 @@
                                     <div class="tab-content mt-4" id="ex1-content">
                                         <div class="tab-pane fade show active ps-2" id="ex1-tabs-1" role="tabpanel"
                                      aria-labelledby="ex1-tab-1">
-                                   
+
                                             @foreach (var item in Model.user)
                                             {
                                                 @if (s.MissionApplications.Where(m => m.UserId == item.UserId && m.MissionId == s.MissionId).Count() > 0)
@@ -900,7 +723,7 @@
                                                 }
 
                                             }
-                                      
+
                                             <nav aria-label="Page navigation example">
                                                 <ul class="pagination justify-content-center">
                                                     <li class="page-item">
@@ -943,214 +766,214 @@
                     var tot = 0;
                     @foreach (var item in Model.mission)
                     {
-                        @if(item.Theme.Title == ViewBag.theme)
+                        @if (item.Theme.Title == ViewBag.theme)
                         {
                             <div class="missioncard col-12 col-md-6 col-lg-4 mb-2 cardpdiv" id="myItems">
 
-                            <div class="card">
+                                <div class="card">
 
-                                <div class="img-event">
-                                    <img class="card-img-top card-img"
+                                    <div class="img-event">
+                                        <img class="card-img-top card-img"
                                  src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-login.png"
                                  alt="Card image cap">
-                                    <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
+                                        <div class="landing-page-top-right "><img src="~/Images/pin.png" alt=""> @item.City.Name </div>
 
-                                    <div class="landing-page-bottom-right d-flex flex-column">
+                                        <div class="landing-page-bottom-right d-flex flex-column">
 
-                                        @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
-                                        {
-                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
-                                                <button class="mb-2 landing-page-btn-img">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
-                                                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
-                                                    </svg>
-                                                </button>
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
-                                                <button class="mb-2 landing-page-btn-img">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
-                                                        <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
-                                                    </svg>
-                                                </button>
-                                            </a>
-                                        }
-
-
+                                            @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
+                                            {
+                                                <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                                    <button class="mb-2 landing-page-btn-img">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                                            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                                                        </svg>
+                                                    </button>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                                    <button class="mb-2 landing-page-btn-img">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
+                                                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
+                                                        </svg>
+                                                    </button>
+                                                </a>
+                                            }
 
 
-                                        <div>
-                                            <button class="Co-Worker" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+
+
+                                            <div>
+                                                <button class="Co-Worker" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                                 style="width:100%; border-radius: 5px;">
-                                                <img src="~/Images/add1.png" width="16" height="16" viewBox="0 0 16 16">
-                                            </button>
+                                                    <img src="~/Images/add1.png" width="16" height="16" viewBox="0 0 16 16">
+                                                </button>
 
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
-                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
+                                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
 
-                                                            <style>
-                                                                table, th, td {
-                                                                    border: 1px solid black;
-                                                                }
-                                                            </style>
+                                                                <style>
+                                                                    table, th, td {
+                                                                        border: 1px solid black;
+                                                                    }
+                                                                </style>
 
 
 
-                                                            <table style="width:100%">
-                                                                <tr>
-                                                                    <th>User Name</th>
-                                                                    <th> Email</th>
-                                                                    <th>link of email</th>
-                                                                </tr>
-
-                                                                @foreach (var u in Model.user)
-                                                                {
+                                                                <table style="width:100%">
                                                                     <tr>
-                                                                        <td>@u.FirstName</td>
-                                                                        <td>@u.Email</td>
-                                                                        <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@u.Email">Send Link</a></td>
+                                                                        <th>User Name</th>
+                                                                        <th> Email</th>
+                                                                        <th>link of email</th>
                                                                     </tr>
-                                                                }
+
+                                                                    @foreach (var u in Model.user)
+                                                                    {
+                                                                        <tr>
+                                                                            <td>@u.FirstName</td>
+                                                                            <td>@u.Email</td>
+                                                                            <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@u.Email">Send Link</a></td>
+                                                                        </tr>
+                                                                    }
 
 
-                                                            </table>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                                </table>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+
+
                                         </div>
 
-
-                                    </div>
-
-                                    <div><button class="theme-btn m-auto ">@item.Theme.Title</button></div>
-                                    <!-- <button class="theme-btn ">Environment</button> -->
+                                        <div><button class="theme-btn m-auto ">@item.Theme.Title</button></div>
+                                        <!-- <button class="theme-btn ">Environment</button> -->
                             </div>
 
 
-                                <div class="card-body mt-2">
-                                    <h5 class="card-title " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
-                                        @item.Title
-                                    </h5>
-                                    <p class="card-text text-secondary " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
-                                        @item.ShortDescription
-                                    </p>
+                                    <div class="card-body mt-2">
+                                        <h5 class="card-title " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 1;-webkit-box-orient: vertical;">
+                                            @item.Title
+                                        </h5>
+                                        <p class="card-text text-secondary " style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">
+                                            @item.ShortDescription
+                                        </p>
 
-                                    <div class="d-flex">
-                                        <div class="card-text">@item.OrganizationName</div>
-                                        @{
-                                            mr = 0;
-                                            var count = 0;
+                                        <div class="d-flex">
+                                            <div class="card-text">@item.OrganizationName</div>
+                                            @{
+                                                mr = 0;
+                                                var count = 0;
 
 
-                                            @foreach (var rating in item.MissionRatings)
-                                            {
-
-                                                @if (rating.MissionId == item.MissionId)
+                                                @foreach (var rating in item.MissionRatings)
                                                 {
-                                                    mr = rating.Rating + mr;
-                                                    count = count + 1;
+
+                                                    @if (rating.MissionId == item.MissionId)
+                                                    {
+                                                        mr = rating.Rating + mr;
+                                                        count = count + 1;
+                                                    }
+                                                    tr = mr + tr;
+
+
+
                                                 }
-                                                tr = mr + tr;
-
-
-
+                                                @if (count > 0)
+                                                {
+                                                    double num = mr / count;
+                                                    int avg = Convert.ToInt32(num);
+                                                    @for (var i = 0; i < avg; i++)
+                                                    {
+                                                        <img src="~/images/selected-star.png" class="mx-auto imgstar" />
+                                                    }
+                                                    @for (var i = avg + 1; i <= 5; i++)
+                                                    {
+                                                        <img src="~/images/star-empty.png" class="mx-auto imgstar" />
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        <img src="~/images/star-empty.png" class="m-auto imgstar" />
+                                                    }
+                                                }
                                             }
-                                            @if (count > 0)
+                                        </div>
+
+                                        <div class="rule mt-1">
+                                            <hr>
+                                            @if (@item.MissionType == "Time")
                                             {
-                                                double num = mr / count;
-                                                int avg = Convert.ToInt32(num);
-                                                @for (var i = 0; i < avg; i++)
-                                                {
-                                                    <img src="~/images/selected-star.png" class="mx-auto imgstar" />
-                                                }
-                                                @for (var i = avg + 1; i <= 5; i++)
-                                                {
-                                                    <img src="~/images/star-empty.png" class="mx-auto imgstar" />
-                                                }
+                                                <button class="date-btn mt-1">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</button>
                                             }
                                             else
                                             {
-                                                @for (var i = 1; i <= 5; i++)
-                                                {
-                                                    <img src="~/images/star-empty.png" class="m-auto imgstar" />
-                                                }
+                                                <button class="date-btn mt-1">@item.MissionType Based Mission</button>
                                             }
-                                        }
-                                    </div>
-
-                                    <div class="rule mt-1">
-                                        <hr>
-                                        @if (@item.MissionType == "Time")
-                                        {
-                                            <button class="date-btn mt-1">From @item.StartDate.ToString().Split(" ")[0] until @item.EndDate.ToString().Split(" ")[0]</button>
-                                        }
-                                        else
-                                        {
-                                            <button class="date-btn mt-1">@item.MissionType Based Mission</button>
-                                        }
-                                        <hr>
-                                    </div>
-
-                                    <div class="d-flex mx-2 mt-2">
-                                        <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
-                                        <div class="ms-2">
-                                            @item.Availability <p class="seat">25 Sests Left</p>
+                                            <hr>
                                         </div>
 
-
-                                        @if (item.MissionType == "Time")
-                                        {
-                                            <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
+                                        <div class="d-flex mx-2 mt-2">
+                                            <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
                                             <div class="ms-2">
-                                                @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
+                                                @item.Availability <p class="seat">25 Sests Left</p>
                                             </div>
-                                        }
-                                        else
-                                        {
 
-                                            <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
-                                            <div class="ms-2 me-5" stye="width:100%">
-                                                <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-                                                    <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+
+                                            @if (item.MissionType == "Time")
+                                            {
+                                                <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
+                                                <div class="ms-2">
+                                                    @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
                                                 </div>
-                                                <fs-5>Deadline</fs-5>
-                                            </div>
-                                        }
+                                            }
+                                            else
+                                            {
 
-                                        @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
-                                            <div class="ms-2">
-                                            09/01/2019 <p>Deadline</p>
-                                            </div>*@
-                                    </div>
-                                    <hr class="mt-0">
+                                                <div class="ms-auto me-2"><img src="~/Images/achieved.png" class="mt-2"></div>
+                                                <div class="ms-2 me-5" stye="width:100%">
+                                                    <div class="progress mt-2" role="progressbar" aria-label="Example with label" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                                        <div class="progress-bar bg-warning" style="width: 25%">25%</div>
+                                                    </div>
+                                                    <fs-5>Deadline</fs-5>
+                                                </div>
+                                            }
 
-                                    <div class="text-center">
-                                        <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
-                                            <button type="submit" class="Apply-btn p-2">
-                                                &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+                                            @*<div class="ms-auto"><img src="~/Images//deadline.png" class="mt-2"></div>
+                                                <div class="ms-2">
+                                                09/01/2019 <p>Deadline</p>
+                                                </div>*@
+                                        </div>
+                                        <hr class="mt-0">
 
-                                            </button>
-                                        </a>
+                                        <div class="text-center">
+                                            <a asp-action="VolunteeringMission" asp-controller="MissionCard" asp-route-missionid="@item.MissionId">
+                                                <button type="submit" class="Apply-btn p-2">
+                                                    &nbsp;Apply &nbsp;&nbsp;<img src="~/Images/right-arrow.png" alt="">
+
+                                                </button>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         }
                         tot = tot + 1;
 
-                        
+
                         if (tot == 3)
                         {
                             break;
@@ -1162,35 +985,51 @@
 
 
             </div>
-
+       </div>
             <div class="col-md-1 col-0 border-bottom"></div>
         </div>
         <!--Main Navigation ENDED-->
-</body>
 
-@*<script type="text/javascript" src="js/Home.js"></script>*@
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
-<script>
 
-    $(function(){
-        $('#postCommentBtn').click(function () {
-                var missionId = this.value;
+      <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        
+        <script>
 
-            console.log(this.value);
-            var userId = @ViewBag.uid;
-            console.log(userId);
-            var comment = $('#textinput').val();
-            console.log(comment);
-            $.ajax({
-                type: 'POST',
-                url: '/MissionCard/AddToComment',
-                data:{
-                    missionId: missionId,
-                    userId:userId,
-                    comment:comment
-                }
+            $(function(){
+                $('#postCommentBtn').click(function () {
+                        var missionId = this.value;
 
+                    console.log(this.value);
+                    var userId = @ViewBag.uid;
+                    console.log(userId);
+                    var comment = $('#textinput').val();
+                    console.log(comment);
+                    $.ajax({
+                        type: 'POST',
+                        url: '/MissionCard/AddToComment',
+                        data:{
+                            missionId: missionId,
+                            userId:userId,
+                            comment:comment
+                        }
+
+                    });
+                });
             });
-        });
-    });
-</script>
+        </script>
+
+
+        <script>
+
+            function changeText() {
+                console.log("changetext");
+              var button = document.getElementById("apply-button");
+              button.innerHTML = "Applied";
+              button.classList.add("applied");
+            
+            }
+
+
+        </script>
+</body>
+</html>

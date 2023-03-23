@@ -182,15 +182,7 @@ namespace CiPlatform.Controllers
         {
             return View();
         }
-
-        /*  public IActionResult VolunteeringMission()
-          {
-              return View();
-          }*/
-        public IActionResult sharestory()
-        {
-            return View();
-        }
+     
         public IActionResult planding()
         {
             return View();

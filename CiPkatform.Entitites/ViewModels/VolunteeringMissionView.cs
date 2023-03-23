@@ -17,7 +17,6 @@ namespace CiPlatform.Entitites.ViewModels
         public List<MissionRating> missionRating { get; set; }
         public List<MissionTheme> missionTheme { get; set; }    
         public List<User>user { get; set; }
-
         public List<Comment> comments { get; set; }
         public List<MissionApplication> application { get; set; }   
 

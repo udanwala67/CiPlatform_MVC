@@ -124,7 +124,7 @@ function removeElement(value) {
 
 
 
-//Filter
+//Filter city
 
 $(document).ready(function () {
     $('input[type=checkbox][id=FilterData]').change(function () {
@@ -146,6 +146,7 @@ $(document).ready(function () {
 });
 
 /************Theme Filter*************/
+
 $(document).ready(function () {
     $('input[type=checkbox][id=FilterData]').change(function () {
         var selectCity = $('input[type=checkbox][id=FilterData]:checked').map(function () {

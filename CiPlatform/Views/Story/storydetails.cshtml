@@ -1,0 +1,227 @@
+﻿@model CiPlatform.Entitites.ViewModels.StoryView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/css/storydetails.css">
+    <script type="text/javascript" src="~/js/Home.js"></script>
+
+</head>
+<body>
+    <form method="post">
+     <!-- --------------------------------------first navbar-------------------------------------->
+
+
+           <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+            <div class="container">
+
+                <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <img src="~/Images/list.png">
+                </button>
+
+                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                    <div class="offcanvas-header">
+                        <h2>CI-PLATFORM</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @{
+                                    var firstname = Context.Session.GetString("Firstname");
+                                }
+                                @ViewBag.firstname
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="#">New project</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                               aria-expanded="false">Policy</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+
+               <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                           aria-expanded="false">Policy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @foreach (var p in Model.user)
+                {
+                   if(p.UserId == ViewBag.uid)
+                   {
+                    
+                        <div class="dropdown text-end user-profile ">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+
+                                @p.FirstName
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" href="#">New project...</a></li>
+                                <li><a class="dropdown-item" href="#">Settings</a></li>
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            </ul>
+                        </div>    
+                     }
+                }
+            </div>
+        </nav>
+
+
+        <!------------------------------------------------ second navbar----------------------------------- -->
+
+
+           <nav class="navbar navbar-expand-md navbar-lighte header2" aria-label="Second navbar example">
+            <div class="container">
+                <div class="col-12 col-lg-12 col-md-12 me-0">
+                    <form role="search" class="d-flex">
+
+                        <input type="search" class="form-control searchbox" placeholder="Search mission....." aria-label="Search"
+                               id="search_bar" name="searchQuery" value="@ViewBag.InputSearch" onkeyup="mysearchFun()">
+                    </form>
+                </div>
+            </div>
+         </nav>
+     
+
+        <div class="story_container">
+            <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-login.png" class="imgstory" />
+            <p class="textstory">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            <div><a asp-controller="StoryCard" asp-action="Share_story">
+                <button class="btnstory">Share Your Story<img src="~/images/right-arrow2.png" class="ms-3" />
+                </button>
+                 </a>
+            </div>
+        </div>
+        <div class="container-fluid px-5 py-2">
+            <div class="row d-flex justify-content-around">
+                @foreach (var item in Model.stories)
+                {
+                    <div class="cardpdiv col-lg-4 col-md-6">
+                        <div class="card card_hover">
+                            <div class="parent storycard_container">
+                                <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png" alt="" class="imgcardstory" />
+                                <button type="button" class="btncardstory">View Details<img src="~/images/right-arrow2.png" class="ms-3" /></button>
+                                <div class="storyimg_text">
+                                    Customer Experience
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Title</h5>
+                                <p class="card-text">@item.Description</p>
+                                <div class="row d-flex align-items-center">
+                                    <div class="col-2">
+                                        <img src="~/images/volunteer1.png" class="storycardimg" />
+                                    </div>
+                                    <div class="col-10">
+                                        @item.User.FirstName @item.User.LastName
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="d-flex justify-content-center mt-2">
+                <nav>
+                    <ul class="pagination">
+                        <li class="page-item me-2"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#">5</a></li>
+                        <li class="page-item me-2"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </form>
+
+
+    <script>
+
+
+           function mysearchFun() {
+            console.log("Hello");
+            var input = document.getElementById("search_bar");
+            console.log(input);
+            var lower = input.value.toLowerCase();
+            var card = document.getElementsByClassName("cardpdiv");
+            console.log(card);
+
+            for (i = 0; i < card.length; i++) {
+
+                var title = card[i].getElementsByClassName("card-title")[0];
+                console.log(title);
+                if (title.innerHTML.toLowerCase().indexOf(lower) > -1) {
+                    card[i].style.display = "";
+
+                }
+                else {
+                    card[i].style.display = "none";
+                }
+            }
+        }
+
+
+    
+
+
+    </script>
+</body>
+</html>

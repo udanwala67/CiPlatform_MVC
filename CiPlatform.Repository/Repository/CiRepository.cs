@@ -60,15 +60,15 @@ namespace CiPlatform.Repository.Repository
         public VolunteeringMissionView GetMission()
         {
             var missions = _CiContext.Missions.ToList();
-            var cities =  _CiContext.Cities.ToList();
+            var cities = _CiContext.Cities.ToList();
             var country = _CiContext.Countries.ToList();
-            var goalMissions = _CiContext.GoalMissions.ToList();    
+            var goalMissions = _CiContext.GoalMissions.ToList();
             var favouriteMission = _CiContext.FavoriteMissions.ToList();
             var missionRating = _CiContext.MissionRatings.ToList();
             var missiontheme = _CiContext.MissionThemes.ToList();
             var user = _CiContext.Users.ToList();
             var comments = _CiContext.Comments.ToList();
-            var missionapplication =  _CiContext.MissionApplications.ToList();
+            var missionapplication = _CiContext.MissionApplications.ToList();
             VolunteeringMissionView mission = new VolunteeringMissionView();
             mission.mission = missions;
 
@@ -77,17 +77,17 @@ namespace CiPlatform.Repository.Repository
             mission.goalMission = goalMissions;
             mission.favoriteMission = favouriteMission;
             mission.missionRating = missionRating;
-            mission.missionTheme =  missiontheme;
+            mission.missionTheme = missiontheme;
             mission.user = user;
             mission.comments = comments;
             mission.application = missionapplication;
             return mission;
         }
 
-        public void AddToFavourite(int uid ,int mid)
+        public void AddToFavourite(int uid, int mid)
         {
-            var sahil = _CiContext.FavoriteMissions.Where(f=> f.UserId == uid && f.MissionId==mid).FirstOrDefault();
-            if(sahil == null)
+            var sahil = _CiContext.FavoriteMissions.Where(f => f.UserId == uid && f.MissionId == mid).FirstOrDefault();
+            if (sahil == null)
             {
                 FavoriteMission favourite = new FavoriteMission();
                 favourite.MissionId = mid;
@@ -102,17 +102,18 @@ namespace CiPlatform.Repository.Repository
                 _CiContext.Remove(sahil);
                 _CiContext.SaveChanges();
             }
-           
+
         }
 
-        public void applyvol (int userId , int missionId)
+        public void applyvol(int userId, int missionId)
         {
-           MissionApplication missionApplication = new MissionApplication();
+            MissionApplication missionApplication = new MissionApplication();
             missionApplication.UserId = userId;
             missionApplication.MissionId = missionId;
             _CiContext.Add(missionApplication);
             _CiContext.SaveChanges();
         }
+
     }
 }
 
