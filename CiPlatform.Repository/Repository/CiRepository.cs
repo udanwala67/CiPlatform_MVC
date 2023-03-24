@@ -69,6 +69,7 @@ namespace CiPlatform.Repository.Repository
             var user = _CiContext.Users.ToList();
             var comments = _CiContext.Comments.ToList();
             var missionapplication = _CiContext.MissionApplications.ToList();
+            var missiondocument = _CiContext.MissionDocuments.ToList();
             VolunteeringMissionView mission = new VolunteeringMissionView();
             mission.mission = missions;
 
@@ -81,6 +82,7 @@ namespace CiPlatform.Repository.Repository
             mission.user = user;
             mission.comments = comments;
             mission.application = missionapplication;
+            mission.document = missiondocument;
             return mission;
         }
 

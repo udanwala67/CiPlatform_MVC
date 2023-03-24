@@ -39,7 +39,7 @@ for (var i = 0; i < cbs.length; i++) {
 }
 
 
-clearbutton.onclick = () => {
+/*clearbutton.onclick = () => {
     const myNode = document.querySelector(".filters-section");
 
     while (myNode.lastElementChild) {
@@ -52,7 +52,8 @@ clearbutton.onclick = () => {
         document.getElementById("ClearBtn").style.display = "none";
     }
 
-}
+}*/
+
 
 
 function addElement(current, value) {

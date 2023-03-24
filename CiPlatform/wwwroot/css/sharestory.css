@@ -1,4 +1,5 @@
 ﻿.upload_imagebox {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7,10 +8,16 @@
     border: 1px dotted black;
 }
 
-    .upload_imagebox image {
-        width: auto;
-        height: auto;
-    }
+      .upload_imagebox image {
+          width: auto;
+          height: auto;
+      }
+
+
+
+#storytitle {
+    border: 1px dotted black;
+}
 
 .upload_img-box {
     width: 150px;
@@ -32,13 +39,16 @@
     cursor: pointer;
 }
 
-    .upload_imgclose:after {
-        content: "\2716";
-        font-size: 12px;
-        color: white;
-    }
+          .upload_imgclose:after{
+               
+                 content: "\2716";
+                 font-size: 12px;
+                 color: white;       
+             }
+  
 
-.img-bg {
+.img-bg
+{
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -46,7 +56,8 @@
     padding-bottom: 100%;
 }
 
-.btnstrcancel {
+.btnstrcancel 
+{
     width: 100%;
     max-width: 200px;
     height: 48px;
@@ -56,7 +67,8 @@
     border-radius: 24px;
 }
 
-.btnstrss {
+.btnstrss 
+{
     width: 100%;
     max-width: 160px;
     height: 48px;
@@ -66,7 +78,105 @@
     border-radius: 24px;
 }
 
-    .btnstrss:hover {
+.btnstrss:hover
+{
         background: #f88634;
         color: white;
+}
+
+
+
+
+/*----------------------------navbar--------------------------------------------------*/
+
+@media screen and (min-width:767px) {
+
+    .btn,
+    #offcanvasWithBothOptions {
+        display: none;
     }
+
+
+    .hamburger,
+    #offcanvasWithBothOptions,
+    #filteroffcanvasWithBothOptions {
+        display: none;
+    }
+
+    .nav-brand {
+        display: none;
+    }
+}
+
+@media screen and (max-width:767px) {
+    .first-nav {
+        display: none;
+    }
+
+    .user-profile {
+        display: none;
+    }
+
+    .second-div {
+        display: none;
+    }
+}
+/* @media screen and (max-width:1023px) {
+.sort-list-grid {
+display: none !important;
+}
+
+} */
+.offcanvas1 {
+    width: max-content !important;
+}
+
+.header {
+    border-bottom: 1px solid black;
+}
+
+.offcanvas2 {
+    width: max-content !important;
+}
+
+.form-control {
+    border:1px dotted black;
+   
+
+.div {
+    border: 1px solid black;
+}
+
+.vertical {
+    border-left: 6px solid black;
+    height: 100px;
+    position: absolute;
+    left: 50%;
+}
+
+.offcanvas {
+    width: fit-content;
+}
+
+.filter-item {
+    border-left: 1px solid black;
+}
+
+.header2 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    border-bottom: 1px solid black;
+}
+
+.filter-item-skill {
+    border-right: 1px solid black;
+}
+
+.sortaerrow {
+    margin-top: 10%;
+}
+
+.sort {
+    border: 1px solid grey;
+    height: max-content;
+}
