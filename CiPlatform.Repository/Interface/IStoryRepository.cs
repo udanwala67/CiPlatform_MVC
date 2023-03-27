@@ -9,6 +9,9 @@ namespace CiPlatform.Repository.Interface
 {
     public interface IStoryRepository
     {
+     
+
         public StoryView GetStory();
+     
     }
 }

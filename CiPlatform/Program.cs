@@ -12,7 +12,10 @@ builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddTransient<EmailServices>();
 builder.Services.AddSession();
 
-
+builder.Services.AddControllersWithViews()
+.AddNewtonsoftJson(options =>
+options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

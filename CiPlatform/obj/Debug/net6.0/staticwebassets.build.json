@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TVyotf28Hr/Ml5q4RTMtgNU3MU86BqIqxdZQ6iV5Jhc=",
+  "Hash": "hKHoe0QcJVCVfBrGQAGszDmJfwjyUS/6hm2W47xNFCI=",
   "Source": "CiPlatform",
   "BasePath": "_content/CiPlatform",
   "Mode": "Default",
@@ -238,23 +238,6 @@
       "OriginalItemSpec": "wwwroot\\css\\storydetails.css"
     },
     {
-      "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\doc\\CISRSFinal23.docx",
-      "SourceId": "CiPlatform",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\CiPlatform\\CiPlatform\\wwwroot\\",
-      "BasePath": "_content/CiPlatform",
-      "RelativePath": "doc/CISRSFinal23.docx",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\doc\\CISRSFinal23.docx"
-    },
-    {
       "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\doc\\NPTEL20HS06S1AS593466.pdf",
       "SourceId": "CiPlatform",
       "SourceType": "Discovered",
@@ -270,6 +253,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\doc\\NPTEL20HS06S1AS593466.pdf"
+    },
+    {
+      "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\doc\\PlatformDetails.pdf",
+      "SourceId": "CiPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CiPlatform\\CiPlatform\\wwwroot\\",
+      "BasePath": "_content/CiPlatform",
+      "RelativePath": "doc/PlatformDetails.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\doc\\PlatformDetails.pdf"
     },
     {
       "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\favicon.ico",

@@ -9,14 +9,18 @@ using System.Threading.Tasks;
 
 namespace CiPlatform.Repository.Repository
 {
-    public class StoryRepository:IStoryRepository
+    public class StoryRepository : IStoryRepository
     {
         private readonly CiContext _CiContext;
+ 
 
         public StoryRepository(CiContext CiContext)
         {
             _CiContext = CiContext;
         }
+
+
+
         public StoryView GetStory()
         {
 
@@ -28,9 +32,12 @@ namespace CiPlatform.Repository.Repository
             storyView.stories = Story;
             storyView.mission= Mission;
             storyView.user = User;
+         
 
             return storyView;
         }
+   
 
+       
     }
 }

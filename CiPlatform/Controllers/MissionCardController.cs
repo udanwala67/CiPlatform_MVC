@@ -77,7 +77,12 @@ namespace CiPlatform.Controllers
             ViewBag.mission = mission;
             return View(ms);
         }
-
+        public JsonResult getCities(string country)
+        {
+            var con = _ciContext.Countries.Where(c => c.Name == country).FirstOrDefault();
+            var city = _ciContext.Cities.Where(c => c.CountryId == con.CountryId);
+            return Json(city);
+        }
         public IActionResult VolunteeringMission(int missionid, string theme)
         {
             ViewBag.missionid = missionid;

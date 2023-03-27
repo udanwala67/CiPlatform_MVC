@@ -272,3 +272,6 @@ C:\CiPlatform\CiPlatform\bin\Debug\net6.0\ref\CiPlatform.dll
 C:\CiPlatform\CiPlatform\bin\Debug\net6.0\CiPlatform.pdb
 C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.csproj.CopyComplete
 C:\CiPlatform\CiPlatform\obj\Debug\net6.0\CiPlatform.genruntimeconfig.cache
+C:\CiPlatform\CiPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\CiPlatform\CiPlatform\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\CiPlatform\CiPlatform\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

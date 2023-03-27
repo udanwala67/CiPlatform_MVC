@@ -13,6 +13,7 @@ namespace CiPlatform.Entitites.ViewModels
         public List<Mission> mission { get; set; }
         public List<Story> stories { get; set; }
         public List<MissionTheme> missionTheme { get; set; }
+      
 
     }
 }
