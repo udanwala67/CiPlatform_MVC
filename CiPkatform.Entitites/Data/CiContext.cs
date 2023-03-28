@@ -17,7 +17,7 @@ namespace CiPlatform.Entitites.Data
         {
         }
 
-        public virtual DbSet<Admin> Admins { get; set; } = null!;
+        public virtual DbSet<Admin> Admins { get; set; } 
         public virtual DbSet<Banner> Banners { get; set; } = null!;
         public virtual DbSet<City> Cities { get; set; } = null!;
         public virtual DbSet<CmsPage> CmsPages { get; set; } = null!;

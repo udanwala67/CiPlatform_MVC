@@ -23,3 +23,11 @@ namespace CiPlatform.Entitites.ViewModels
 
     }
 }
+
+
+/*$(document).ready(function(){
+            $('.custom-file-input').on("change", function()  {
+        var fileName = $(this).val().split("\\").pop();
+                $(this).next('#file').html(fileName);
+    });
+}*/

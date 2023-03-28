@@ -19,7 +19,7 @@
     border: 1px dotted black;
 }
 
-.upload_img-box {
+.upload_imgbox {
     width: 150px;
     height: 150px;
     padding: 2px;
@@ -85,14 +85,11 @@
 }
 
 
-
+  
 
 /*----------------------------navbar--------------------------------------------------*/
-
 @media screen and (min-width:767px) {
-
-    .btn,
-    #offcanvasWithBothOptions {
+    .btn, #offcanvasWithBothOptions {
         display: none;
     }
 
