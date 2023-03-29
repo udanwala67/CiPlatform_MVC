@@ -1,5 +1,4 @@
 ﻿.upload_imagebox {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,23 +7,22 @@
     border: 1px dotted black;
 }
 
-      .upload_imagebox image {
-          width: auto;
-          height: auto;
-      }
-
+    .upload_imagebox image {
+        width: auto;
+        height: auto;
+    }
 
 
 #storytitle {
     border: 1px dotted black;
 }
 
-.upload_imgbox {
+/*.upload_imagebox {
     width: 150px;
     height: 150px;
     padding: 2px;
     margin: 5px;
-}
+}*/
 
 .upload_imgclose {
     width: 25px;
@@ -39,16 +37,14 @@
     cursor: pointer;
 }
 
-          .upload_imgclose:after{
-               
-                 content: "\2716";
-                 font-size: 12px;
-                 color: white;       
-             }
-  
+    .upload_imgclose:after {
+        content: "\2716";
+        font-size: 12px;
+        color: white;
+    }
 
-.img-bg
-{
+
+.img-bg {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -56,8 +52,7 @@
     padding-bottom: 100%;
 }
 
-.btnstrcancel 
-{
+.btnstrcancel {
     width: 100%;
     max-width: 200px;
     height: 48px;
@@ -67,8 +62,7 @@
     border-radius: 24px;
 }
 
-.btnstrss 
-{
+.btnstrss {
     width: 100%;
     max-width: 160px;
     height: 48px;
@@ -78,16 +72,17 @@
     border-radius: 24px;
 }
 
-.btnstrss:hover
-{
+    .btnstrss:hover {
         background: #f88634;
         color: white;
-}
+    }
 
 
-  
+
 
 /*----------------------------navbar--------------------------------------------------*/
+
+
 @media screen and (min-width:767px) {
     .btn, #offcanvasWithBothOptions {
         display: none;
@@ -137,10 +132,13 @@ display: none !important;
 }
 
 .form-control {
-    border:1px dotted black;
-   
+    border: 1px dotted black;
+    
+}
 
-.div {
+
+.div
+{
     border: 1px solid black;
 }
 
@@ -177,3 +175,56 @@ display: none !important;
     border: 1px solid grey;
     height: max-content;
 }
+
+
+/*UPLOAD image CSS*/
+
+.img-thumbs {
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    margin: 1.5rem 0;
+    padding: 0.75rem;
+}
+
+.img-thumbs-hidden {
+    display: none;
+}
+
+.wrapper-thumb {
+    position: relative;
+    display: inline-block;
+    margin: 1rem 0;
+    justify-content: space-around;
+}
+
+.img-preview-thumb {
+    background: #fff;
+    border: 1px solid none;
+    border-radius: 0.25rem;
+    box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+    margin-right: 1rem;
+    max-width: 140px;
+    padding: 0.25rem;
+}
+
+.remove-btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: .7rem;
+    top: -5px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .remove-btn:hover {
+        box-shadow: 0px 0px 3px grey;
+        transition: all .3s ease-in-out;
+    }

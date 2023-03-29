@@ -125,7 +125,7 @@ function removeElement(value) {
 
 
 
-//Filter city
+//------------------------Filter city------------------------------------------//
 
 $(document).ready(function () {
     $('input[type=checkbox][id=FilterData]').change(function () {
@@ -202,5 +202,7 @@ $(document).ready(function () {
 //    });
 //});
 
+
+/*---------------------------------------------FOR UPLOAD IMAGES IN SHARESTORY PAGE---------------------------------------*/
 
 

@@ -33,6 +33,27 @@ namespace CiPlatform.Controllers
             ViewBag.uid = (int)user.UserId;
             return View(shares);
         }
+        [HttpPost]
+        public IActionResult sharestory(int mid,string storytitle, string sdate, string url)
+        {
+            
+            string email = HttpContext.Session.GetString("Email");
+            long userid = _ciContext.Users.Where(u => u.Email == email).Select(m=>m.UserId).FirstOrDefault();
+
+
+
+            var story = new Story();
+            story.UserId = userid;
+            story.MissionId = mid;
+            story.Title = storytitle;
+            /* storymodel.PublishedAt = DateTime.Parse(sdate);*/
+            story.Status = "PUBLISHED";
+            story.CreatedAt = DateTime.Now;
+            _ciContext.Stories.Add(story);
+            _ciContext.SaveChanges();
+
+            return RedirectToAction("sharestory");
+        }
 
 
         public IActionResult storydetails()
