@@ -1,4 +1,5 @@
-﻿@model CiPlatform.Entitites.ViewModels.StoryView
+﻿@using CiPlatform.Entitites.ViewModels
+@model StoryView
 
 
 
@@ -20,7 +21,7 @@
 </head>
 
 <body>
-    <form method="post">
+    <form method="post" asp-action="storydetails" asp-controller="Story">
         <div class="d-flex">
             <div class="col-md-2 col-0 border-bottom">
             </div>
@@ -169,7 +170,7 @@
                     </div>
                     <div>
                         <label class="my-3">Enter Video URL</label>
-                        <input type="url" id = "url" class="form-control" placeholder="Enter your url" />
+                        <input type="text" id = "url" class="form-control" placeholder="Enter your url" />
                     </div>
 
 
@@ -210,7 +211,7 @@
                             </div>
                             <div class="d-flex col-lg-6 justify-content-center">
                                 <button type="button" id = "save" class="btnstrss">Save</button>
-                                <button id ="submitt" class="btnstrss ms-4">Submit</button>
+                                <button type="submit" id ="submitt" class="btnstrss ms-4">Submit</button>
                             </div>
                         </div>
                     </div>
@@ -255,6 +256,8 @@
             });
           }
         }
+
+
 
         $(function(){
             $('#submitt').click(function(){

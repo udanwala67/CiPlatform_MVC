@@ -61,7 +61,7 @@ namespace CiPlatform.Controllers
             
 
 
-            return View();
+           /* return View();*/
         }
         public IActionResult forgotpassword()
         {

@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   
- 
+
+
     <title>Volunteering Mission page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gDpost" crossorigin="anonymous">
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gDpost" crossorigin="anonymous">
 
     <link rel="icon" href="" type="image/x-icon">
 
@@ -38,112 +38,109 @@
             <header>
 
 
-                <!-- Navbar -->
-              <!-- --------------------------------------first navbar-------------------------------------->
+                
+                <!-- --------------------------------------first navbar-------------------------------------->
 
 
-           <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
-            <div class="container">
+                <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+                    <div class="container">
 
-                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" id ="hamburgerbut"
-                      data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    <img src="~/Images/list.png">
-                </button>
+                        <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" id="hamburgerbut"
+                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                            <img src="~/Images/list.png">
+                        </button>
 
-                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
-                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+                        <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                             id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                    <div class="offcanvas-header">
-                        <h2>CI-PLATFORM</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
+                            <div class="offcanvas-header">
+                                <h2>CI-PLATFORM</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
 
-                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                @{
-                                    var firstname = Context.Session.GetString("Firstname");
-                                }
-                                @ViewBag.firstname
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">New project</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
+                            <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                        @{
+                                            var firstname = Context.Session.GetString("Firstname");
+                                        }
+                                        @ViewBag.firstname
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="#">New project</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider" />
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <li class="nav-item">
+                                    <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                       aria-expanded="false">Policy</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                    </ul>
                                 </li>
-                            </ul>
+                            </div>
                         </div>
 
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                               aria-expanded="false">Policy</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-
-               <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
-                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                           aria-expanded="false">Policy</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                        <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                   aria-expanded="false">Policy</a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
-                @foreach (var p in Model.user)
-                {
-                   if(p.UserId == ViewBag.uid)
-                   {
-                    
-                        <div class="dropdown text-end user-profile ">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                        @foreach (var p in Model.user)
+                        {
+                            if (p.UserId == ViewBag.uid)
+                            {
 
-                                @p.FirstName
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                            </ul>
-                        </div>    
-                     }
-                }
-            </div>
-        </nav>
+                                <div class="dropdown text-end user-profile ">
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                        <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
 
-       
-
+                                        @p.FirstName
+                                    </a>
+                                    <ul class="dropdown-menu text-small">
+                                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                    </ul>
+                                </div>
+                            }
+                        }
+                    </div>
+                </nav>
 
             </header>
-            @*@{int mid = ViewBag.missionid;}*@
+            @{int mid = ViewBag.missionid;}
 
             @{
                 int mr = 0;
@@ -441,7 +438,7 @@
                                     </div>
 
                                     <div class="apply text-center mt-4">
-                                        <a class="btn btn-rounded btn-outline-warning" onclick = "changeText()" id="apply-button" asp-route-userId="@ViewBag.uid" asp-route-missionId="@s.MissionId" asp-controller="MissionCard" asp-action="applyvol">
+                                        <a class="btn btn-rounded btn-outline-warning" onclick="changeText()" id="apply-button" asp-route-userId="@ViewBag.uid" asp-route-missionId="@s.MissionId" asp-controller="MissionCard" asp-action="applyvol">
                                             Apply <img src="/Images/right-arrow.png" alt="">
                                         </a>
                                     </div>
@@ -518,19 +515,19 @@
                                             eveniet. Non quas quo repellendus vitae! Minus beatae sed alias maxime, velit iure totam
                                             similique. Ad, quae ipsum! Praesentium explicabo nam perspiciatis commodi!
                                         </p>
-                                     
+
                                         <p style="font-size: 25px;color: #414141;">Documents</p>
                                         <div class="d-flex flex-lg-row flex-md-column flex-sm-column flex-column mx-lg-0 mx-md-auto mx-sm-auto mx-auto ">
-                                         @foreach(var d in s.MissionDocuments)
-                                        {
-                                            <a class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50 " style="border: 1px solid #E8E8E8; border-radius: 23px;" href="@d.DocumentPath" target="_blank">
-                                                <img src="~/Images/pdf.png" alt="">
-                                                <span>@d.DocumentName </span>
-                                            </a>
-                                          
-                                         }
+                                            @foreach (var d in s.MissionDocuments)
+                                            {
+                                                <a class="btn px-4 ms-3 w-lg-auto w-md-50 w-sm-50 " style="border: 1px solid #E8E8E8; border-radius: 23px;" href="@d.DocumentPath" target="_blank">
+                                                    <img src="~/Images/pdf.png" alt="">
+                                                    <span>@d.DocumentName </span>
+                                                </a>
+
+                                            }
                                         </div>
-                                        
+
                                     </div>
 
 
@@ -983,51 +980,51 @@
 
 
             </div>
-       </div>
-            <div class="col-md-1 col-0 border-bottom"></div>
         </div>
-        <!--Main Navigation ENDED-->
+        <div class="col-md-1 col-0 border-bottom"></div>
+    </div>
+    <!--Main Navigation ENDED-->
 
 
-      <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        
-        <script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
 
-            $(function(){
-                $('#postCommentBtn').click(function () {
-                        var missionId = this.value;
+    <script>
 
-                    console.log(this.value);
-                    var userId = @ViewBag.uid;
-                    console.log(userId);
-                    var comment = $('#textinput').val();
-                    console.log(comment);
-                    $.ajax({
-                        type: 'POST',
-                        url: '/MissionCard/AddToComment',
-                        data:{
-                            missionId: missionId,
-                            userId:userId,
-                            comment:comment
-                        }
+        $(function(){
+            $('#postCommentBtn').click(function () {
+                    var missionId = this.value;
 
-                    });
+                console.log(this.value);
+                var userId = @ViewBag.uid;
+                console.log(userId);
+                var comment = $('#textinput').val();
+                console.log(comment);
+                $.ajax({
+                    type: 'POST',
+                    url: '/MissionCard/AddToComment',
+                    data:{
+                        missionId: missionId,
+                        userId:userId,
+                        comment:comment
+                    }
+
                 });
             });
-        </script>
+        });
 
 
-        <script>
-
-            function changeText() {
-                console.log("changetext");
-              var button = document.getElementById("apply-button");
-              button.innerHTML = "Applied";
-              button.classList.add("applied");
-            
-            }
 
 
-        </script>
+
+        function changeText() {
+            console.log("changetext");
+          var button = document.getElementById("apply-button");
+          button.innerHTML = "Applied";
+          button.classList.add("applied");
+
+        }
+
+
+    </script>
 </body>
 </html>

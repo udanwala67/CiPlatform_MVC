@@ -9,9 +9,8 @@ namespace CiPlatform.Repository.Interface
 {
     public interface IStoryRepository
     {
-     
 
         public StoryView GetStory();
-     
+        public void PushStory(long userid, int mid, string storytitle);
     }
 }

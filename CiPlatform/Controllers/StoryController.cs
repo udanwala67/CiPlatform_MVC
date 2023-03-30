@@ -29,32 +29,23 @@ namespace CiPlatform.Controllers
 
             var shares = _storyRepository.GetStory();
             string email = HttpContext.Session.GetString("Email");
-            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            ViewBag.uid = (int)user.UserId;
+            long user = _ciContext.Users.Where(u => u.Email == email).Select(m=> m.UserId).FirstOrDefault();
+            ViewBag.uid = user;
             return View(shares);
         }
         [HttpPost]
-        public IActionResult sharestory(int mid,string storytitle, string sdate, string url)
+        public IActionResult sharestory(int mid, string storytitle)
         {
-            
-            string email = HttpContext.Session.GetString("Email");
-            long userid = _ciContext.Users.Where(u => u.Email == email).Select(m=>m.UserId).FirstOrDefault();
-
-
-
-            var story = new Story();
-            story.UserId = userid;
-            story.MissionId = mid;
-            story.Title = storytitle;
-            /* storymodel.PublishedAt = DateTime.Parse(sdate);*/
-            story.Status = "PUBLISHED";
-            story.CreatedAt = DateTime.Now;
-            _ciContext.Stories.Add(story);
-            _ciContext.SaveChanges();
-
-            return RedirectToAction("sharestory");
+            var stories = _storyRepository.GetStory();
+            string Email = HttpContext.Session.GetString("Email");
+            long userid = _ciContext.Users.Where(u => u.Email == Email).Select(m => m.UserId).FirstOrDefault();
+            _storyRepository.PushStory(userid, mid, storytitle);
+        
+           
+            return View(stories);
+     
         }
-
+        
 
         public IActionResult storydetails()
         {
@@ -63,6 +54,17 @@ namespace CiPlatform.Controllers
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             return View(sunglass);
+        }
+
+        public IActionResult Story_Details(int user,int missionId)
+        {
+            ViewBag.uid = (int)user.CompareTo(missionId);
+            ViewBag.missionid = missionId;
+            var sunglass1 = _storyRepository.GetStory();
+            return View(sunglass1); 
+           
+
+           ;
         }
     }
 }

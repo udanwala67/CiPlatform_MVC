@@ -115,7 +115,6 @@ namespace CiPlatform.Repository.Repository
             _CiContext.Add(missionApplication);
             _CiContext.SaveChanges();
         }
-
     }
 }
 

@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Data;
+using CiPlatform.Entitites.Models;
 using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Repository.Interface;
 using System;
@@ -12,7 +13,7 @@ namespace CiPlatform.Repository.Repository
     public class StoryRepository : IStoryRepository
     {
         private readonly CiContext _CiContext;
- 
+            
 
         public StoryRepository(CiContext CiContext)
         {
@@ -36,8 +37,24 @@ namespace CiPlatform.Repository.Repository
 
             return storyView;
         }
-   
 
+        public void PushStory(long userid ,int mid,string storytitle)
+        {
+            var story = new Story()
+            {
+                UserId = userid,
+                MissionId = mid,
+                Title = storytitle,
+                Status = "PUBLISHED",
+                CreatedAt = DateTime.Now
+            };
+            _CiContext.Stories.Add(story);
+            _CiContext.SaveChanges();
+            
+            
+        }
+   
+        
        
     }
 }
