@@ -13,8 +13,6 @@ namespace CiPlatform.Repository.Repository
     public class StoryRepository : IStoryRepository
     {
         private readonly CiContext _CiContext;
-            
-
         public StoryRepository(CiContext CiContext)
         {
             _CiContext = CiContext;
@@ -28,11 +26,13 @@ namespace CiPlatform.Repository.Repository
             var Story = _CiContext.Stories.ToList();
             var User = _CiContext.Users.ToList();
             var Mission = _CiContext.Missions.ToList();
+            var MissionApplications = _CiContext.MissionApplications.ToList();
             
             StoryView storyView = new StoryView();
             storyView.stories = Story;
             storyView.mission= Mission;
             storyView.user = User;
+            storyView.missionApplication = MissionApplications;
          
 
             return storyView;

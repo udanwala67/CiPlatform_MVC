@@ -1,5 +1,5 @@
-﻿@using CiPlatform.Entitites.ViewModels
-@model StoryView
+﻿@model CiPlatform.Entitites.ViewModels.StoryView
+
 
 
 
@@ -109,9 +109,8 @@
 
                                 <div class="dropdown text-end user-profile ">
                                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                               aria-expanded="false">
+                                            aria-expanded="false">
                                         <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
-
                                         @p.FirstName
                                     </a>
                                     <ul class="dropdown-menu text-small">
@@ -138,20 +137,25 @@
                     <div class="row mt-4">
 
                         <div class="col-lg-4">
-
+                           
                             <label class="my-2">Select Mission</label>
-
-                            <select class="form-select" id ="mid"aria-label="Default select example">
-                                @foreach (var items in Model.mission)
+                         
+                                
+                            <select class="form-select"  id ="mid" aria-label="Default select example">
+                                 <option selected>select your mission</option>
+                                @foreach(var m in Model.mission)
                                 {
-                                    @* <option selected>Select Your Mission</option>*@
-                                    <option value="@items.MissionId" id= "mtitle">@items.Title</option>
-                                   
-                                }
-                               
-                                    
-                            </select>
+                                    @if(m.MissionApplications.Where(b => b.UserId == ViewBag.uid && b.MissionId == m.MissionId).Count() > 0)
+                                    {
+                                        <option value="@m.MissionId">@m.Title</option>
+                                    }
+                                    else
+                                    {
+                                        
+                                    }
 
+                                }                   
+                            </select>
                         </div>
 
                         <div class="col-lg-4">
@@ -219,6 +223,9 @@
             </div>
     </form>
 
+
+ @*-------------------------------------------------------for image upload-----------------------------------------------------------*@
+
     <script>
            var imgUpload = document.getElementById('upload-img')
           , imgPreview = document.getElementById('img-preview')
@@ -261,7 +268,7 @@
 
         $(function(){
             $('#submitt').click(function(){
-                console.log("hii");
+               // console.log("hii");
                
                 var mid  = $('#mid').val();
                 var storytitle = $('#storytitle').val();
@@ -283,6 +290,33 @@
                 });
             });
         });
+
+   //  ------------------------------------for displaying  applied missions------------------------------------------------
+
+
+
+
+
+//   
+//{
+ 
+//        $("#mtitle").change(function () {
+//            var v = $(this).val();
+//            $.getJSON("/Story/Mission?mission=" + v, function (data) {
+//                console.log(data);
+//                $("#mtitle").append('<label>' + data+'</label>');
+                
+//            });
+//        });
+
+//}
+
+
+
+
+
+
+
     </script>
 
 </body>
