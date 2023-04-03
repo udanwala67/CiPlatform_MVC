@@ -35,13 +35,15 @@ namespace CiPlatform.Controllers
 
             return View(shares);
         }
+
+
         [HttpPost]
-        public IActionResult sharestory(int mid, string storytitle)
-        {
+        public IActionResult sharestory(StoryView storyView)
+         {
             var stories = _storyRepository.GetStory();
             string Email = HttpContext.Session.GetString("Email");
             long userid = _ciContext.Users.Where(u => u.Email == Email).Select(m => m.UserId).FirstOrDefault();
-            _storyRepository.PushStory(userid, mid, storytitle);
+            _storyRepository.PushStory(userid ,storyView );
 
 
             return View(stories);
@@ -75,26 +77,3 @@ namespace CiPlatform.Controllers
     }
 }
 
-/*@model Country
-<div class= "form-group" >
-    < label asp -for= "CountryName" class= "control-label" ></ label >
-   
-       < select id = "CountryList" asp -for= "CountryName" class= "form-control" asp - items = "@ViewBag.Country" >
-         
-                 < option > Select a Country</option>
-                </select>
-</div>
-<div id = "DisplayCurrency" ></ div >
-            @section Scripts
-            {
-    <script>
-        $("#CountryList").change(function() {
-    var v = $(this).val();
-            $.getJSON("/Home/GetCurrency?countryName=" + v, function(data) {
-        console.log(data);
-                $("#DisplayCurrency").append('<label>' + data + '</label>');
-
-    });
-});
-    </ script >
-}*/

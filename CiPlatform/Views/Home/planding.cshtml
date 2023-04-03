@@ -1,1 +1,356 @@
-﻿
+﻿@*@model CiPlatform.Entitites.ViewModels.StoryView
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-light border-bottom bd-navbar sticky-top">
+        <div class="container-fluid mx-3">
+            <div class="bd-navbar-toggle">
+                <button class="btn d-lg-none"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasResponsive"
+                        aria-controls="offcanvasResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+
+            <div class="d-flex flex-fill">
+                <div class="d-flex align-items-center">
+                    <img src="~/images/logo.png" class="imglogo" />
+                </div>
+                <div class="offcanvas-lg d-flex align-items-center">
+                    <div class="offcanvas-lg offcanvas-start"
+                         tabindex="-1"
+                         id="offcanvasResponsive"
+                         aria-labelledby="offcanvasResponsiveLabel">
+                        <div class="offcanvas-header">
+                            <button type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="offcanvas"
+                                    data-bs-target="#offcanvasResponsive"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav me-auto align-items-center">
+                                <li class="nav-item ms-4">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle nav-link"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                data-bs-auto-close="true">
+                                            <span>Explore</span>
+                                            <img src="~/images/drop-down.png" />
+                                        </button>
+                                        <ul class="dropdown-menu dropend">
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Top Theme</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                    <li><a class="dropdown-item">Health</a></li>
+                                                    <li><a class="dropdown-item">Animals</a></li>
+                                                    <li><a class="dropdown-item">Nutritions</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Top Countries</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Top Organization</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Most Ranked</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Top Favourite</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Recommended</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="dropdown">
+                                                <button class="dropdown-item subdrop_menu"
+                                                        type="button"
+                                                        data-bs-toggle="dropdown">
+                                                    <span>Random</span>
+                                                    <img src="~/images/arrow.png" />
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li><a class="dropdown-item">Education</a></li>
+                                                    <li><a class="dropdown-item">Children</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link text-dark" asp-controller="StoryCard" asp-action="Volunteering_story">Story</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <a class="nav-link text-dark">News</a>
+                                </li>
+                                <li class="nav-item ms-2">
+                                    <div class="dropdown">
+                                        <button class="dropdown-toggle"
+                                                type="button"
+                                                data-bs-toggle="dropdown"
+                                                data-bs-auto-close="true">
+                                            <span class="hovdrop">Policy</span>
+                                            <img src="~/images/drop-down.png" />
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="">Volunteering</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="">Sponsored</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex ms-auto">
+                    <button class="dropdown-toggle col-6"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        <img src="~/images/bell.png" class="m-3" />
+                    </button>
+
+                    <li class="nav-item dropdown ms-auto" style="list-style: none">
+                        <button class="nav-link dropdown-toggle p-1"
+                                id="navbarDropdown"
+                                role="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                            <img src="~/images/user-img.png"
+                                 alt="avatar"
+                                 class="imgprofile d-flex" />
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <span class="text-dark collapse navbar-collapse col">@User.Identity.Name</span>
+                            }
+                            <img src="~/images/drop-down.png" />
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item">Dashboard</a></li>
+                            <li><a class="dropdown-item">My Account</a></li>
+                            <li><a class="dropdown-item">Help Center</a></li>
+                            <li><a class="dropdown-item" asp-controller="Home" asp-action="Logout">Logout</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container-fluid p-2">
+
+    <div class="row mt-3 border-bottom pb-5 mx-0">
+        <div class="col-xl-6 px-0 mx-0">
+
+            <div class="carousel">
+                <input type="radio"
+                       name="slides"
+                       checked="checked"
+                       id="slide-1" />
+                <input type="radio" name="slides" id="slide-2" />
+                <input type="radio" name="slides" id="slide-3" />
+                <input type="radio" name="slides" id="slide-4" />
+                <input type="radio" name="slides" id="slide-5" />
+                <ul class="carousel__slides">
+                    @if (Model.storyMedia.Count() == 0)
+                    {
+                        <li class="carousel__slide">
+                            <figure>
+                                <div>
+                                    <img src="~/images/image2.png"
+                                     alt="" />
+                                </div>
+                            </figure>
+                        </li>
+                    }
+                    @foreach (var img in Model.storyMedia)
+                    {
+                        <li class="carousel__slide">
+                            <figure>
+                                <div>
+                                    <img src="@img.Path"
+                                     alt="" />
+                                </div>
+                            </figure>
+                        </li>
+                    }
+                </ul>
+                <ul class="carousel__thumbnails">
+                    @{
+                        int count = 1;
+                        @foreach (var img in Model.storyMedia)
+                        {
+                            <li>
+                                <label for="slide-@count">
+                                    <img src="@img.Path" alt="" />
+                                </label>
+                            </li>
+                            count++;
+                            if (count > 4)
+                            {
+                                break;
+                            }
+                        }
+                    }
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="col-xl-6 p-2">
+            @foreach (var i in Model.stories)
+            {
+                @if (i.UserId == i.User.UserId)
+                {
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="recentvol">
+                                <img src="~/images/volunteer1.png" alt="">
+                                <p>@i.User.FirstName @i.User.LastName</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-end">
+                            <p class="rounded-pill border px-3">@i.StoryViews Views</p>
+                        </div>
+                    </div>
+                    <div class="px-4 border-top border-bottom my-3">
+                        <div class="row mx-0 py-3">
+                            <div>@i.User.WhyIVolunteer</div>
+                            <div>@Html.Raw(@i.Description)</div>
+                        </div>
+                    </div>
+                }
+                <div class="row py-2 d-flex">
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <button type="button" class="btnAddtoFav my-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><img src="~/images/add1.png" class="me-3" />Recommend to a Co-Worker</button>
+
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Recommend to a Co-Worker</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-hover">
+                                            @foreach (var u in Model.users)
+                                            {
+                                                if (u.UserId == ViewBag.uid)
+                                                {
+
+                                                }
+                                                else
+                                                {
+                                                    <tr>
+                                                        <td class="mx-auto">@u.FirstName @u.LastName</td>
+                                                        <td class="mx-auto">@u.Email</td>
+                                                        <td class="mx-auto">
+                                                            <a class="text-dark text-decoration-none" asp-route-recuid="@u.UserId" asp-route-recmid="@i.MissionId" asp-controller="MissionCard" asp-action="RecommendedWorker">Send Email</a>
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            }
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Understood</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> *@
+@*
+                   <div class="col-lg-6 d-flex justify-content-center">
+                        <a asp-controller="MissionCard" asp-action="Volunteering_mission" asp-route-mid="@i.MissionId" class="my-2">
+                            <button type="button" class="btnApply">
+                                Open Mission
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right ms-3" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                </svg>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        <div class="col-xl-12 mb-5">
+            @foreach (var i in Model.stories)
+            {
+                @if (i.MissionId == i.Mission.MissionId)
+                {
+                    <div class="nav-tabs border p-3">
+                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button"
+                        role="tab" aria-controls="home" aria-selected="true">
+                            @i.Mission.Title
+                        </button>
+                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                            @i.Mission.Description
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>*@

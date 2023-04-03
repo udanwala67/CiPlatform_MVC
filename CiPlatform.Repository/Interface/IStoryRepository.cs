@@ -11,6 +11,8 @@ namespace CiPlatform.Repository.Interface
     {
 
         public StoryView GetStory();
-        public void PushStory(long userid, int mid, string storytitle);
+        public void PushStory(long userid, StoryView storyView);
+
+
     }
 }

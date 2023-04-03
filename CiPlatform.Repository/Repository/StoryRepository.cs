@@ -38,23 +38,63 @@ namespace CiPlatform.Repository.Repository
             return storyView;
         }
 
-        public void PushStory(long userid ,int mid,string storytitle)
+        public void PushStory(long userid ,StoryView storyView)
         {
-            var story = new Story()
+            var exist = _CiContext.Stories.FirstOrDefault(s => s.UserId == userid && s.MissionId == storyView.mid);
+            if(exist == null)
             {
-                UserId = userid,
-                MissionId = mid,
-                Title = storytitle,
-                Status = "PUBLISHED",
-                CreatedAt = DateTime.Now
-            };
-            _CiContext.Stories.Add(story);
+                var story = new Story()
+                {
+                    UserId = userid,
+                    MissionId = storyView.mid,
+                    Title = storyView.Title,
+                    Status = "PUBLISHED",
+                    // PublishedAt = storyView.date,
+                    CreatedAt = DateTime.Now
+                };
+                _CiContext.Stories.Add(story);
+
+            }
+            else
+            {
+                exist.Title = storyView.Title;
+
+                exist.Description = storyView.Description;
+                //exist.UpdatedAt = DateTime.Now;
+
+            }
+
+           
             _CiContext.SaveChanges();
-            
-            
+
+            long StoryId = _CiContext.Stories.Where(s => s.UserId == userid && s.MissionId == storyView.mid).Select(x => x.StoryId).FirstOrDefault();
+            foreach(var files in storyView.UploadedFiles)
+            {
+                string FileName = Path.GetFullPath(files.FileName);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles",FileName);
+                var fileStream = new FileStream(path, FileMode.Create);
+                files.CopyTo(fileStream);
+                string ModelPath = "/UploadedFiles/" + FileName;
+                StoryMedium storyMedium = new StoryMedium()
+                {
+                    StoryId = StoryId,
+                    Path = ModelPath,
+                    Type = "png",
+                    CreatedAt = DateTime.Now
+
+                };
+                _CiContext.StoryMedia.Add(storyMedium);
+                _CiContext.SaveChanges();
+            }
+          
+
+
+
         }
-   
-        
-       
+
+
+
+
+
     }
 }

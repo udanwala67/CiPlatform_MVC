@@ -21,7 +21,7 @@
 </head>
 
 <body>
-    <form method="post" asp-action="storydetails" asp-controller="Story">
+    <form method="post" asp-action="sharestory" asp-controller="Story" enctype="multipart/form-data">
         <div class="d-flex">
             <div class="col-md-2 col-0 border-bottom">
             </div>
@@ -141,7 +141,7 @@
                             <label class="my-2">Select Mission</label>
                          
                                 
-                            <select class="form-select"  id ="mid" aria-label="Default select example">
+                            <select class="form-select"  name ="mid" aria-label="Default select example">
                                  <option selected>select your mission</option>
                                 @foreach(var m in Model.mission)
                                 {
@@ -160,21 +160,21 @@
 
                         <div class="col-lg-4">
                             <label class="my-2">My Story Title</label>
-                            <input type="text" class="form-control" id="storytitle" placeholder="Enter story title" />
+                            <input type="text" asp-for ="Title"  class="form-control" id="storytitle" placeholder="Enter story title" />
                         </div>
                         <div class="col-lg-4">
                             <label class="my-2">Date</label>
-                            <input type="date" class="form-control" id="sdate" />
+                            <input type="date" asp-for ="date" class="form-control" id="sdate" />
                         </div>
                     </div>
                     <div class="row mx-1 my-2">
                         <label class="my-2">My Story</label>
-                        <textarea id="ckeditorcontent" name="ckeditorcontent"></textarea>
+                        <textarea asp-for = "Description" id="ckeditorcontent" name="ckeditorcontent"></textarea>
                         <script type="text/javascript">CKEDITOR.replace('ckeditorcontent');CKEDITOR.config.width='100%';CKEDITOR.config.height='275px';</script>
                     </div>
                     <div>
                         <label class="my-3">Enter Video URL</label>
-                        <input type="text" id = "url" class="form-control" placeholder="Enter your url" />
+                        <input type="text" asp-for ="url" id = "url" class="form-control" placeholder="Enter your url" />
                     </div>
 
 
@@ -190,7 +190,7 @@
 
                         <div class="form-group mt-3">
                             <label class="my-3" for="">Upload Your Photos</label>
-                            <input type="file" class="form-control" name="images[]" multiple id="upload-img" />
+                            <input type="file" asp-for ="UploadedFiles" class="form-control" id="upload-img" multiple/>
                             <div class="upload_imagebox mb-3" id="upload_imagebox">
                                 <img src="~/images/drag-and-drop.png" asp-for="" id="myselectimg" />
 
@@ -214,13 +214,14 @@
                                 <button type="button" asp-action="storydetails" asp-controller = "Story" class="btnstrcancel">Cancel</button>
                             </div>
                             <div class="d-flex col-lg-6 justify-content-center">
-                                <button type="button" id = "save" class="btnstrss">Save</button>
+                                <button type="submit" id = "save" class="btnstrss">Save</button>
                                 <button type="submit" id ="submitt" class="btnstrss ms-4">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+          </div>
     </form>
 
 
@@ -266,30 +267,7 @@
 
 
 
-        $(function(){
-            $('#submitt').click(function(){
-               // console.log("hii");
-               
-                var mid  = $('#mid').val();
-                var storytitle = $('#storytitle').val();
-                var sdate = $('#sdate').val();
-                var url = $('#url').val();
-                console.log(mid);
-                console.log(storytitle);
-                console.log(sdate);
-                console.log(url);
-                $.ajax({
-                    type:'POST',
-                    url: '/Story/sharestory',
-                    data:{
-                        mid : mid,
-                        storytitle : storytitle,
-                        sdate : sdate,
-                        url : url,
-                    }
-                });
-            });
-        });
+        h
 
    //  ------------------------------------for displaying  applied missions------------------------------------------------
 

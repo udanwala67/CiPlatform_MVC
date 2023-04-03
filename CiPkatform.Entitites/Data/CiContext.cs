@@ -17,7 +17,7 @@ namespace CiPlatform.Entitites.Data
         {
         }
 
-        public virtual DbSet<Admin> Admins { get; set; } 
+        public virtual DbSet<Admin> Admins { get; set; } = null!;
         public virtual DbSet<Banner> Banners { get; set; } = null!;
         public virtual DbSet<City> Cities { get; set; } = null!;
         public virtual DbSet<CmsPage> CmsPages { get; set; } = null!;
@@ -772,6 +772,8 @@ namespace CiPlatform.Entitites.Data
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("status");
+
+                entity.Property(e => e.StoryViews).HasColumnName("story_views");
 
                 entity.Property(e => e.Title)
                     .HasMaxLength(255)

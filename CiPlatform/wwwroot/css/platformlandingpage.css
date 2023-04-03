@@ -339,3 +339,8 @@ color: #888;
 .applied {
     color: green;
 }
+
+
+.imgcircle{
+    border-radius:50%;
+}
