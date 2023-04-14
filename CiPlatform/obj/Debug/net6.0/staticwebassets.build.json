@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IP6u8Tdov7mVVezvIplai7IrF3d+GnyXDm/dB0vf+n4=",
+  "Hash": "99mn1iPPM7ZN/wxfwzwZgVEgEa2+40WdZrug/fYrdVE=",
   "Source": "CiPlatform",
   "BasePath": "_content/CiPlatform",
   "Mode": "Default",
@@ -7922,6 +7922,23 @@
       "OriginalItemSpec": "wwwroot\\css\\storydetails.css"
     },
     {
+      "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\css\\UserEdit.css",
+      "SourceId": "CiPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CiPlatform\\CiPlatform\\wwwroot\\",
+      "BasePath": "_content/CiPlatform",
+      "RelativePath": "css/UserEdit.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\UserEdit.css"
+    },
+    {
       "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\doc\\NPTEL20HS06S1AS593466.pdf",
       "SourceId": "CiPlatform",
       "SourceType": "Discovered",
@@ -10810,6 +10827,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\UploadedFiles\\Screenshot (10).png",
+      "SourceId": "CiPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CiPlatform\\CiPlatform\\wwwroot\\",
+      "BasePath": "_content/CiPlatform",
+      "RelativePath": "UploadedFiles/Screenshot (10).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedFiles\\Screenshot (10).png"
+    },
+    {
+      "Identity": "C:\\CiPlatform\\CiPlatform\\wwwroot\\UploadedFiles\\Screenshot (12).png",
+      "SourceId": "CiPlatform",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\CiPlatform\\CiPlatform\\wwwroot\\",
+      "BasePath": "_content/CiPlatform",
+      "RelativePath": "UploadedFiles/Screenshot (12).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\UploadedFiles\\Screenshot (12).png"
     }
   ]
 }

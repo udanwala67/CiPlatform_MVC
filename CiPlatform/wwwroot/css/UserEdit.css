@@ -1,0 +1,25 @@
+﻿#profileimg {
+    width: 150px;
+    height: 150px;
+}
+
+.username {
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.changepassword {
+    font-weight: lighter;
+    color: #414141;
+    font-size: 14px;
+}
+
+@media only screen and (max-width:768px) {
+    .adjust {
+        height: fit-content !important;
+    }
+
+        .adjust img {
+            margin-top: 0px;
+        }
+}

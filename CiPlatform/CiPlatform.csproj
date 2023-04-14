@@ -28,7 +28,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\UploadedFiles\" />
+    <None Include="wwwroot\UploadedFiles\Screenshot %2810%29.png" />
+    <None Include="wwwroot\UploadedFiles\Screenshot %2812%29.png" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

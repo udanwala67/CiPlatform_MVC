@@ -71,10 +71,10 @@ namespace CiPlatform.Repository.Repository
             foreach(var files in storyView.UploadedFiles)
             {
                 string FileName = Path.GetFullPath(files.FileName);
-                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles",FileName);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot//UploadedFiles",FileName);
                 var fileStream = new FileStream(path, FileMode.Create);
                 files.CopyTo(fileStream);
-                string ModelPath = "/UploadedFiles/" + FileName;
+                string ModelPath = "/UploadedFiles" + FileName;
                 StoryMedium storyMedium = new StoryMedium()
                 {
                     StoryId = StoryId,
@@ -87,14 +87,6 @@ namespace CiPlatform.Repository.Repository
                 _CiContext.SaveChanges();
             }
           
-
-
-
         }
-
-
-
-
-
     }
 }
