@@ -1,0 +1,415 @@
+﻿@model CiPlatform.Entitites.ViewModels.UserProfileView
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/UserEdit.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+   
+</head>
+
+<body>
+<div class="container-fluid stickyheader">
+<form method="post" asp-action="ChangeAvatar" asp-controller="Home" enctype="multipart/form-data">
+<div class="row mx-4">
+<div class="col-lg-3 d-flex justify-content-center">
+<div class="userprofile">
+<input type="file" id="ImgAvatar" name="ImgAvatar" onchange="form.submit()" accept="image/jpg, image/jpeg, image/png" hidden />
+
+@if (Model.Avatar != null)
+{
+<img src="" class="rounded-circle" onclick="changeAvatar()" />
+}
+else
+{
+<img src="~/images/volunteer1.png" class="rounded-circle" onclick="changeAvatar()" />
+}
+
+<p class="my-2">@ViewBag.Name</p>
+<a data-bs-toggle="modal" data-bs-target="#modalChangePassword">Change Password</a>
+<div class="modal fade" id="modalChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="staticBackdropLabel">Change Password</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<div class="my-2 px-3">
+<input type="password" class="form-control" id="oldpass" placeholder="Enter Old password">
+</div>
+<div class="my-2 px-3">
+<input type="password" class="form-control" id="newpass" placeholder="Enter New password">
+</div>
+<div class="valid-feedback">Good</div>
+<div class="invalid-feedback">Wrong</div>
+<div class="my-2 px-3">
+<input type="password" class="form-control" id="cnewpass" placeholder="Enter Confirm password">
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
+<button type="button" id="modalbtnchangepass" class="modalchangepass">Change Password</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-9">
+<div class="border-bottom my-2"><h3 class="border-bottom mb-0">Basic Information</h3></div>
+<div class="row">
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Name*</label>
+<input type="text" class="form-control" placeholder="Enter Your Name" id="fname">
+</div>
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Surname*</label>
+<input type="text" class="form-control" placeholder="Enter Your surname" id="lname">
+</div>
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Employee ID</label>
+<input type="text" class="form-control" placeholder="Enter Your employee id" id="empid">
+</div>
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Manager</label>
+<input type="text" class="form-control" placeholder="Enter Your manager details" id="manager">
+</div>
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Title</label>
+<input type="text" class="form-control" placeholder="Enter Your title" id="title">
+</div>
+<div class="my-2 col-lg-6 px-3">
+<label class="form-label mb-0">Department</label>
+<input type="text" class="form-control" placeholder="Enter Your department" id="department">
+</div>
+<div class="my-2 col-lg-12 px-3">
+<label class="form-label mb-0">My Profile*</label>
+<textarea class="form-control" rows="4" placeholder="Enter your comments.." id="profiletxt"></textarea>
+</div>
+<div class="my-2 col-lg-12 px-3">
+<label class="form-label mb-0">Why I Volunteer?*</label>
+<textarea class="form-control" rows="4" placeholder="Enter your comments.." id="volunteertxt"></textarea>
+</div>
+</div>
+<div class="border-bottom my-2 mt-5"><h3 class="border-bottom mb-0">Address Information</h3></div>
+<div class="row">
+<div class="my-2 col-lg-6 p-2">
+<label class="form-label mb-0">Country*</label>
+<select class="form-select" id="country">
+<option selected>Select your country</option>
+@foreach (var item in Model.country)
+{
+<option value="@item.CountryId">@item.Name</option>
+}
+</select>
+</div>
+<div class="my-2 col-lg-6 p-2">
+<label class="form-label mb-0">City*</label>
+<select class="form-select" id="city">
+@foreach (var item in Model.city)
+{
+<option value="@item.CityId">@item.Name</option>
+}
+</select>
+</div>
+</div>
+<div class="border-bottom my-2 mt-5"><h3 class="border-bottom mb-0">Professional Information</h3></div>
+<div class="row">
+<div class="my-1 col-lg-6 p-2">
+<label class="form-label">Availablity*</label>
+<select class="form-select" id="availablity">
+<option selected>Select your availablity</option>
+<option value="1">One</option>
+<option value="2">Two</option>
+<option value="3">Three</option>
+</select>
+</div>
+<div class="my-1 col-lg-6 p-2">
+<label class="form-label">LinkdIn*</label>
+<input type="url" class="form-control" placeholder="Enter LinkdIn URL" id="linkedinUrl">
+</div>
+</div>
+<div class="border-bottom my-2 mt-5"><h3 class="border-bottom mb-0">My Skills</h3></div>
+<div class="my-4">
+<div class="skillshowdiv">
+<ul class="list-group border">
+@foreach (var item in Model.skills)
+{
+@foreach (var item2 in Model.userSkills)
+{
+@if (item2.SkillId == item.SkillId)
+{
+<li class="list-group-item" id="@item.SkillId">@item.SkillName</li>
+}
+}
+}
+</ul>
+</div>
+<button type="button" class="btnaddskills" data-bs-toggle="modal" data-bs-target="#modalAddSkills">Add Skills</button>
+<div class="modal fade" id="modalAddSkills" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal-dialog modal-xl modal-dialog-scrollable">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="staticBackdropLabel">Add your Skills</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+<div class="row justify-content-center">
+<div class="dual-list list-left col-5">
+<div>
+<ul class="list-group" id="getAllSkills">
+@foreach (var item in Model.skills)
+{
+if (item.UserSkills.Where(a => a.SkillId == item.SkillId).Count() > 0)
+{
+continue;
+}
+else
+{
+<li class="list-group-item" id="@item.SkillId">@item.SkillName</li>
+}
+}
+</ul>
+
+</div>
+</div>
+<div class="col-1 d-flex justify-content-center align-items-center">
+<div class="list-arrows row">
+<button type="button" class="btnskillarrow move-right">
+<i class="bi bi-caret-right-fill fs-4"></i>
+</button>
+<button type="button" class="btnskillarrow move-left">
+<i class="bi bi-caret-left-fill fs-4"></i>
+</button>
+</div>
+</div>
+<div class="dual-list list-right col-5">
+<ul class="list-group">
+@foreach (var item in Model.skills)
+{
+@foreach (var item2 in Model.userSkills)
+{
+@if (item2.SkillId == item.SkillId)
+{
+<li class="list-group-item" id="@item.SkillId">@item.SkillName</li>
+}
+}
+}
+</ul>
+<input type="text" id="hiddenskill" hidden />
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
+<button type="button" id="btnmodalskill" class="modaladdskills">Add Skill</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</form>
+<div class="d-flex justify-content-end mx-4">
+<button type="button" class="btnprofilesave" id="postprofile">Save</button>
+</div>
+</div>
+@*<partial name="_footer" />*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+console.log("User Details");
+$.ajax({
+url: "/Home/GetUserProfile",
+type: 'GET',
+data:{},
+success: function (data) {
+console.log(data);
+$('#fname').val(data.firstName);
+$('#lname').val(data.lastName);
+$('#empid').val(data.employeeId);
+$('#title').val(data.title);
+$('#department').val(data.department);
+$('#profiletxt').val(data.profileText);
+$('#volunteertxt').val(data.whyIVolunteer);
+$('#city').val(data.cityId);
+$('#country').val(data.countryId);
+$('#linkedinUrl').val(data.linkedInUrl);
+},
+error: function (e) {
+console.log(e);
+}
+});
+});
+
+$(function(){
+$('#modalbtnchangepass').click(function(){
+var oldpass = $('#oldpass').val();
+var newpass = $('#newpass').val();
+var cnewpass = $('#cnewpass').val();
+
+console.log(oldpass);
+console.log(newpass);
+console.log(cnewpass);
+
+$.ajax({
+type:'POST',
+url:'/Home/ChangePass',
+data:{
+oldpass:oldpass,
+newpass:newpass,
+cnewpass:cnewpass
+},
+success: function(result){
+alert("Password Changed.");
+},
+error: function (xhr,status,error){
+console.log(error);
+}
+})
+
+
+})
+})
+
+$(function(){
+$('#postprofile').click(function(){
+var fname = $('#fname').val();
+var lname = $('#lname').val();
+var empid = $('#empid').val();
+var title = $('#title').val();
+var department = $('#department').val();
+var profiletxt = $('#profiletxt').val();
+var volunteertxt = $('#volunteertxt').val();
+var country = $('#country').val();
+var city = $('#city').val();
+var linkedinUrl = $('#linkedinUrl').val();
+var hiddentext = $('#hiddenskill').val();
+console.log(hiddentext);
+$.ajax({
+type:'POST',
+url:'/Home/UserProfile',
+data:{
+fname:fname,
+lname:lname,
+empid:empid,
+title:title,
+department:department,
+profiletxt:profiletxt,
+volunteertxt:volunteertxt,
+country:country,
+linkedinUrl:linkedinUrl,
+hiddentext:hiddentext,
+city:city,
+},
+success: function(result){
+alert("Profile Updated.");
+},
+error: function (xhr,status,error){
+console.log(error);
+}
+})
+})
+})
+
+$(function () {
+$("body").on("click", ".list-group .list-group-item", function () {
+$(this).toggleClass("active")
+})
+$(".list-arrows button").click(function () {
+var $button = $(this),
+actives = ""
+if ($button.hasClass("move-left")) {
+actives = $(".list-right ul li.active")
+actives.clone().appendTo(".list-left ul")
+actives.remove()
+} else if ($button.hasClass("move-right")) {
+actives = $(".list-left ul li.active")
+actives.clone().appendTo(".list-right ul")
+actives.remove()
+}
+})
+$(".dual-list .selector").click(function () {
+var $checkBox = $(this)
+if (!$checkBox.hasClass("selected")) {
+$checkBox
+.addClass("selected")
+.find("ul li:not(.active)")
+.addClass("active")
+$checkBox
+.children("i")
+} else {
+$checkBox
+.removeClass("selected")
+.find("ul li.active")
+.removeClass("active")
+$checkBox
+.children("i")
+}
+})
+
+$('#btnmodalskill').click(function(){
+$('.skillshowdiv ul').empty();
+console.log("hello");
+var selectedskill = ""
+selectedskill = $(".list-right ul li")
+var a = [];
+selectedskill.clone().appendTo(".skillshowdiv ul")
+console.log(selectedskill);
+for(i=0; i<selectedskill.length;i++)
+{
+console.log(selectedskill[i].id);
+a+= selectedskill[i].id + ",";
+}
+$('#hiddenskill').val(a);
+console.log(a);
+})
+})
+
+
+function changeAvatar(){
+$('#ImgAvatar').click();
+}
+
+$('#country').on('change', function () {
+var selectedcountry = $(this).val();
+console.log(selectedcountry);
+$.ajax({
+url: "/Home/getCities",
+data: { country: selectedcountry },
+type: 'GET',
+dataType: 'json',
+success: function (result) {
+console.log(result);
+$('#city').empty();
+$('#city').append('<option value="" selected disable>Select City</option>');
+
+for(i=0;i<result.length;i++)
+{
+console.log(result[i].name);
+$('#city').append('<option value="'+result[i].cityId+'">'+result[i].name+'</option>');
+}
+},
+error: function (xhr, ajaxOptions, thrownError) {
+console.log(xhr.responseText);
+}
+});
+});
+</script>
+
+</body>
+</html>

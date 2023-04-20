@@ -10,6 +10,8 @@ builder.Services.AddDbContext<CiContext>();
 builder.Services.AddScoped<ICiRepository, CiRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddTransient<EmailServices>();
+builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
+/*builder.Services.AddControllersWithViews();*/
 builder.Services.AddSession();
 
 builder.Services.AddControllersWithViews()

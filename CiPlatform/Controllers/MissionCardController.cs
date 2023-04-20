@@ -154,13 +154,6 @@ namespace CiPlatform.Controllers
             return RedirectToAction("VolunteeringMission");
         }
 
-        public IActionResult UserEdit()
-        {
-            string email = HttpContext.Session.GetString("Email");
-            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            ViewBag.uid = (int)user.UserId;
-           
-            return View(user);
-        }
+        
     }
 }

@@ -7,6 +7,7 @@ using CiPlatform.Repository.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 
 namespace CiPlatform.Controllers
 {
@@ -17,15 +18,17 @@ namespace CiPlatform.Controllers
         private readonly ICiRepository _CiRepository;
         private readonly EmailServices _emailServices;
         private readonly CiContext _ciContext;
-        /*  public ILogger<HomeController> Logger => _logger;*/
+        private readonly IUserDetailsRepository _userDetailsRepository;
+        public ILogger<HomeController> Logger => _logger;
 
-        public HomeController(ILogger<HomeController> logger, ICiRepository ciRepository, EmailServices emailServices, CiContext ciContext)
+        public HomeController(ILogger<HomeController> logger, ICiRepository ciRepository, EmailServices emailServices, IUserDetailsRepository userDetailsRepository, CiContext ciContext)
         {
             _logger = logger;
             _CiRepository = ciRepository;
             _emailServices = emailServices;
+            _userDetailsRepository = userDetailsRepository;
             _ciContext = ciContext;
-
+            
         }
 
 
@@ -55,14 +58,12 @@ namespace CiPlatform.Controllers
 
             else
             {
+                ModelState.AddModelError("Password", "Invalid email or password.");
                 return View();
             }
-
-            
-
-
-           /* return View();*/
         }
+
+
         public IActionResult forgotpassword()
         {
             return View();
@@ -114,7 +115,7 @@ namespace CiPlatform.Controllers
             {
 
                 _CiRepository.RegisterUser(user);
-                return RedirectToAction("login");
+                return RedirectToAction("login","Home");
             }
             else
             {
@@ -188,6 +189,47 @@ namespace CiPlatform.Controllers
             return View();
         }
 
+        public IActionResult UserEdit()
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
+            /*ViewBag.Name = name;*/
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            
+
+           
+            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            return View(model);
+
+        }
+
+        [HttpPost]
+        public IActionResult UserEdit(string fname, string lname, string employeeid, string title, string department, string profiletext, string volunteertext, int country, int city, string linkedinurl, string hiddentext)
+        {
+            var identity = User.Identity as ClaimsIdentity;
+            string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);
+            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            return View(model);
+        }
+
+        public JsonResult GetUserProfile()
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            var profile = _userDetailsRepository.GetUserById((int)user.UserId);
+            if (profile != null)
+            {
+                return Json(profile);
+            }
+            else
+            {
+                return Json(false);
+            }
+        }
 
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

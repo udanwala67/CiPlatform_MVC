@@ -51,12 +51,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxyZXNldHBhc3N3b3JkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CiPlatform/CiPlatform/Views/MissionCard/platformlandingpage.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzc2lvbkNhcmRccGxhdGZvcm1sYW5kaW5ncGFnZS5jc2h0bWw=
+[C:/CiPlatform/CiPlatform/Views/Home/UserEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2VyRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/CiPlatform/CiPlatform/Views/MissionCard/UserEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzc2lvbkNhcmRcVXNlckVkaXQuY3NodG1s
+[C:/CiPlatform/CiPlatform/Views/MissionCard/platformlandingpage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWlzc2lvbkNhcmRccGxhdGZvcm1sYW5kaW5ncGFnZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/CiPlatform/CiPlatform/Views/MissionCard/VolunteeringMission.cshtml]

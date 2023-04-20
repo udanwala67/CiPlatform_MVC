@@ -73,10 +73,10 @@ namespace CiPlatform.Controllers
 
 
         }
-        public IActionResult sdx()
+       /* public IActionResult sdx()
         {
             return View();
-        }
+        }*/
 
     }
 }
