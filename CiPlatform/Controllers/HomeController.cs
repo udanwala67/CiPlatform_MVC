@@ -192,13 +192,10 @@ namespace CiPlatform.Controllers
         public IActionResult UserEdit()
         {
             var identity = User.Identity as ClaimsIdentity;
-            /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
-            /*ViewBag.Name = name;*/
+            /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            ViewBag.Name = name;*/
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            
-
-           
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
             return View(model);
 
@@ -208,7 +205,7 @@ namespace CiPlatform.Controllers
         public IActionResult UserEdit(string fname, string lname, string employeeid, string title, string department, string profiletext, string volunteertext, int country, int city, string linkedinurl, string hiddentext)
         {
             var identity = User.Identity as ClaimsIdentity;
-            string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);

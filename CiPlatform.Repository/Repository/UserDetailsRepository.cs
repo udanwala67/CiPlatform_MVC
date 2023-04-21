@@ -56,6 +56,7 @@ namespace CiPlatform.Repository.Repository
             user.CountryId = country;
             user.CityId = city;
             user.LinkedInUrl = linkedinurl;
+            user.CreatedAt = DateTime.Now;
             user.UpdatedAt = DateTime.Now;
             _CiContext.Users.Update(user);
             _CiContext.Database.ExecuteSqlRaw($"delete from user_skill where user_id={uid}");
@@ -71,6 +72,7 @@ namespace CiPlatform.Repository.Repository
                     var userskill = new UserSkill();
                     userskill.UserId = uid;
                     userskill.SkillId = item;
+                    userskill.CreatedAt = DateTime.Now;
                     userskill.UpdatedAt = DateTime.Now;
                     _CiContext.UserSkills.Add(userskill);
 
