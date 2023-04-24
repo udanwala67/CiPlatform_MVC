@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace CiPlatform.Entitites.ViewModels
         public List<Country> country { get; set; }
         public List<City> city { get; set; }
         public string? Avatar { get; set; }
+        public List<IFormFile> UploadedFiles { get; set; }
 
     }
 }

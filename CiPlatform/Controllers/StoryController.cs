@@ -70,13 +70,18 @@ namespace CiPlatform.Controllers
             ViewBag.missionid = missionId;
             var sunglass1 = _storyRepository.GetStory();
             return View(sunglass1);
+        }
 
+
+       public IActionResult Timesheet()
+        {
+            string email = HttpContext.Session.GetString("Email");
+            long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
+            ViewBag.uid = user;
+            var timesheet = _storyRepository.GetStory();
+            return View(timesheet);
 
         }
-       /* public IActionResult sdx()
-        {
-            return View();
-        }*/
 
     }
 }

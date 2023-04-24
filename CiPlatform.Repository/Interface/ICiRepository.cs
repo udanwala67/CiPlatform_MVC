@@ -13,7 +13,6 @@ namespace CiPlatform.Repository.Interface
         public void RegisterUser(User user);
         public User GetUserEmail(string email);
         public void SaveToken(string email, string token);
-
         public VolunteeringMissionView GetMission();
         public void AddToFavourite(int mid, int uid);
         public void applyvol(int userId, int missionId);

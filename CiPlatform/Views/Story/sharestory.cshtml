@@ -107,22 +107,21 @@
                             if (p.UserId == ViewBag.uid)
                             {
 
-                                <div class="dropdown text-end user-profile ">
-                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                                        <div class="dropdown text-end user-profile ">
+                                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                                             aria-expanded="false">
-                                        <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
                                         @p.FirstName
-                                    </a>
-                                    <ul class="dropdown-menu text-small">
-                                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                                    </ul>
-                                </div>
+                                            </a>
+                                            <ul class="dropdown-menu text-small">
+                                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
+                                                <li>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                            </ul>
+                                        </div>
                             }
                         }
                     </div>
@@ -137,21 +136,21 @@
                     <div class="row mt-4">
 
                         <div class="col-lg-4">
-                           
+
                             <label class="my-2">Select Mission</label>
-                         
-                                
+
+
                             <select class="form-select"  name ="mid" aria-label="Default select example">
                                  <option selected>select your mission</option>
-                                @foreach(var m in Model.mission)
+                                @foreach (var m in Model.mission)
                                 {
-                                    @if(m.MissionApplications.Where(b => b.UserId == ViewBag.uid && b.MissionId == m.MissionId).Count() > 0)
+                                    @if (m.MissionApplications.Where(b => b.UserId == ViewBag.uid && b.MissionId == m.MissionId).Count() > 0)
                                     {
-                                        <option value="@m.MissionId">@m.Title</option>
+                                                <option value="@m.MissionId">@m.Title</option>
                                     }
                                     else
                                     {
-                                        
+
                                     }
 
                                 }                   
@@ -194,7 +193,7 @@
                             <div class="upload_imagebox mb-3" id="upload_imagebox">
                                 <img src="~/images/drag-and-drop.png" asp-for="" id="myselectimg" />
 
-                                
+
                             </div>
                             <div class="img-thumbs img-thumbs-hidden" id="img-preview"></div>
 
@@ -225,7 +224,7 @@
     </form>
 
 
- @*-------------------------------------------------------for image upload-----------------------------------------------------------*@
+    @*-------------------------------------------------------for image upload-----------------------------------------------------------*@
 
     <script>
            var imgUpload = document.getElementById('upload-img')
@@ -277,13 +276,13 @@
 
 //   
 //{
- 
+
 //        $("#mtitle").change(function () {
 //            var v = $(this).val();
 //            $.getJSON("/Story/Mission?mission=" + v, function (data) {
 //                console.log(data);
 //                $("#mtitle").append('<label>' + data+'</label>');
-                
+
 //            });
 //        });
 

@@ -27,13 +27,13 @@ namespace CiPlatform.Repository.Repository
             var User = _CiContext.Users.ToList();
             var Mission = _CiContext.Missions.ToList();
             var MissionApplications = _CiContext.MissionApplications.ToList();
-            
+            var timesheet = _CiContext.Timesheets.ToList();
             StoryView storyView = new StoryView();
             storyView.stories = Story;
             storyView.mission= Mission;
             storyView.user = User;
             storyView.missionApplication = MissionApplications;
-         
+            storyView.timesheet = timesheet;
 
             return storyView;
         }

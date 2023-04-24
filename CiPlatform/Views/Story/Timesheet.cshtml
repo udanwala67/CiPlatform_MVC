@@ -1,0 +1,247 @@
+﻿@model CiPlatform.Entitites.ViewModels.StoryView
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Edit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="~/css/storydetails.css">
+</head>
+
+<body>
+
+    <form method="post">
+        <nav class="navbar navbar-expand-md navbar-light header mb-4" aria-label="Eighth navbar example">
+            <div class="container">
+
+                <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                    <img src="~/Images/list.png">
+                </button>
+
+                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                    <div class="offcanvas-header">
+                        <h2>CI-PLATFORM</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                        <div class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @{
+                                    var firstname = Context.Session.GetString("Firstname");
+                                }
+                                @ViewBag.firstname
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                                <li>
+                                    <hr class="dropdown-divider" />
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                               aria-expanded="false">Policy</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            </ul>
+                        </li>
+                    </div>
+                </div>
+
+                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                           aria-expanded="false">Policy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @foreach (var p in Model.user)
+                {
+                    if (p.UserId == ViewBag.uid)
+                    {
+
+                        <div class="dropdown text-end user-profile ">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+
+                                @p.FirstName
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            </ul>
+                        </div>
+                    }
+                }
+            </div>
+        </nav>
+
+        <div class="container-fluid stickyheaderrrrrr p-5">
+            <h1>Timesheet</h1>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="border p-4">
+                        <div class="row">
+                            <div class="col-8 fs-3">Volunteering Hours</div>
+                            <div class="col-4 d-flex justify-content-center">
+                                <button type="button" class="btnAddVol" data-bs-toggle="modal" data-bs-target="#VolHours"><i class="bi bi-plus-circle-dotted me-2"></i>Add</button>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="VolHours" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-xl">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title fs-5" id="exampleModalLabel">Please input below Volunteering Hours</h2>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="my-2 px-2">
+                                            <label class="form-label mb-0">Mission</label>
+                                            <select class="form-select" id="timeMissionId">
+                                                *
+                                                <option selected disabled>Select Mission</option>
+                                                @foreach(var item in Model.missionApplication)
+                                                    {
+                                                    @if (item.UserId == ViewBag.uid && item.Mission.MissionType == "Time")
+                                                    {
+                                                    <option value="@item.Mission.MissionId">@item.Mission.Title</option>
+                                                    }
+                                                    }
+                                            </select>
+                                        </div>
+                                        <div class="my-2 px-2">
+                                            <label class="form-label mb-0">Date Volunteered</label>
+                                            <input type="date" class="form-control" placeholder="Select Date" id="timeMissionDate">
+                                        </div>
+                                        <div class="d-flex my-2">
+                                            <div class="col-lg-6 px-2">
+                                                <label class="form-label mb-0">Hours</label>
+                                                <input type="text" class="form-control" placeholder="Enter Spent Hours" id="hours">
+                                            </div>
+                                            <div class="col-lg-6 px-2">
+                                                <label class="form-label mb-0">Minutes</label>
+                                                <input type="text" class="form-control" placeholder="Enter Spent Minutes" id="minutes">
+                                            </div>
+                                        </div>
+                                        <div class="my-2 px-2">
+                                            <label class="form-label mb-0">Message</label>
+                                            <textarea class="form-control" rows="4" placeholder="Enter your message.." id="timeMissionMessage"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="modaladdskills" id="addTimeDetails" data-bs-dismiss="modal">Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-2" id="replaceTimeMission">
+                            @foreach(var i in Model.timesheet)
+                            {
+                                <span>@i.Notes</span>
+                            }
+                            @*  <partial name="_VolunteerTimeMission" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="border">
+                        <div class="border p-4">
+                            <div class="row">
+                                <div class="col-8 fs-3">Volunteering Goals</div>
+                                <div class="col-4 d-flex justify-content-center">
+                                    <button type="button" class="btnAddVol" data-bs-toggle="modal" data-bs-target="#VolGoal"><i class="bi bi-plus-circle-dotted me-2"></i>Add</button>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="VolGoal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered modal-xl">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h2 class="modal-title fs-5" id="exampleModalLabel">Please input below Volunteering Goal</h2>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="my-2 px-2">
+                                                <label class="form-label mb-0">Mission</label>
+                                                <select class="form-select" id="goalMissionId">
+                                                    <option selected disabled>Select Mission</option>
+                                                      @foreach (var item in Model.missionApplication)
+                                                        {
+                                                        @if (item.UserId == ViewBag.uid && item.Mission.MissionType == "Goal")
+                                                        {
+                                                        <option value="@item.Mission.MissionId">@item.Mission.Title</option>
+                                                        }
+                                                        }
+                                                </select>
+                                            </div>
+                                            <div class="my-2 px-2">
+                                                <label class="form-label mb-0">Actions</label>
+                                                <input type="text" class="form-control" placeholder="Enter Actions" id="actions">
+                                            </div>
+                                            <div class="my-2 px-2">
+                                                <label class="form-label mb-0">Date Volunteered</label>
+                                                <input type="date" class="form-control" placeholder="Select Date" id="goalMissionDate">
+                                            </div>
+                                            <div class="my-2 px-2">
+                                                <label class="form-label mb-0">Message</label>
+                                                <textarea class="form-control" rows="4" placeholder="Enter your message.." id="goalMissionMessage"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="button" class="modaladdskills" id="addGoalDetails" data-bs-dismiss="modal">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-2" id="replaceGoalMission">
+                                @* <partial name="_VolunteerGoalMission" />*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

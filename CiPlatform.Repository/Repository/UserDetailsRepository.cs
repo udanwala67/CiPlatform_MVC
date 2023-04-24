@@ -3,11 +3,14 @@ using CiPlatform.Entitites.Models;
 using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Repository.Interface;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Model = Microsoft.EntityFrameworkCore.DbLoggerCategory.Model;
 
 namespace CiPlatform.Repository.Repository
 {
@@ -82,7 +85,36 @@ namespace CiPlatform.Repository.Repository
             }
         }
 
-        
+        public void updatePass(int uid ,string oldpass,string newpass,string cnewpass)
+        {
+            var user = _CiContext.Users.Where(u => u.UserId == uid).FirstOrDefault();
+            
+
+            if (oldpass == user.Password)
+            {
+                if (newpass == cnewpass)
+                {
+                    user.Password = newpass;
+                    _CiContext.Users.Update(user);
+                    _CiContext.SaveChanges();
+                }
+            }
+        }
+
+        public void GetUserPhotoById(int uid)
+        {
+           /* var userp = _CiContext.Users.Where(x => x.UserId == uid).FirstOrDefault();
+           *//* string filename = Path.GetFileName();*//*
+            string UploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles", filename);
+            var filestream = new FileStream(UploadPath, FileMode.Create);
+            *//*Model.ImgAvatar.CopyTo(filestream);*//*
+            string dbfilepath = "/UploadedFiles/";
+            userp.Avatar = dbfilepath;
+            _CiContext.Users.Update(userp);
+            _CiContext.SaveChanges();*/
+
+        }
+
 
 
     }

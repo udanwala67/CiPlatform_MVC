@@ -208,8 +208,10 @@ namespace CiPlatform.Controllers
             /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+           
             _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);
-            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);   
+           
             return View(model);
         }
 
@@ -228,6 +230,38 @@ namespace CiPlatform.Controllers
             }
         }
 
+        public JsonResult getCities(int country)
+        {
+            var city = _ciContext.Cities.Where(c => c.CountryId == country);
+            return Json(city);
+        }
+
+        [HttpPost]
+        public IActionResult ChangePass(string oldpass,string newpass,string cnewpass)
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
+ 
+            return RedirectToAction("login","home");
+        }
+
+        public IActionResult getProfileImage(int uid)
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            _userDetailsRepository.GetUserPhotoById((int)user.UserId);
+
+
+
+            return View();
+        }
+        [HttpPost]
+
+        public IActionResult getProfileImage(UserProfileView userProfileView)
+        {
+            return View(userProfileView);
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

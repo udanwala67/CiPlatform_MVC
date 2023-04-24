@@ -16,7 +16,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="~/css/storydetails.css">
+    <link rel="stylesheet" href="~/css/UserEdit.css" type="text/css">
 
 
 </head>
@@ -49,9 +49,8 @@
                                 @ViewBag.firstname
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">New project</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -92,11 +91,10 @@
                         </ul>
                     </li>
                 </ul>
-                @foreach (var p in Model.users)
+                 @foreach (var p in Model.users)
                 {
                     if (p.UserId == ViewBag.uid)
                     {
-
                         <div class="dropdown text-end user-profile ">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                        aria-expanded="false">
@@ -105,9 +103,8 @@
                                 @p.FirstName
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>                               
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -135,7 +132,7 @@
                         }
 
                         <p class="my-2">@ViewBag.Name</p>
-                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword">Change Password</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword" asp-for ="UploadedFiles">Change Password</a>
                         <div class="modal fade" id="modalChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">

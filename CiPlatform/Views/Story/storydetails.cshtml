@@ -51,9 +51,8 @@
                                 @ViewBag.firstname
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">New project</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -107,9 +106,8 @@
                                 @p.FirstName
                             </a>
                             <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                 <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -159,7 +157,7 @@
                             <div class="parent storycard_container">
                                 <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png" alt="" class="imgcardstory" />
                                 <a asp-controller ="Story" asp-action ="Story_Details">
-                                <button type="button" class="btncardstory" >View Details
+                                <button type="button" class="btncardstory">View Details
                                     <img src="~/images/right-arrow2.png" class="ms-3" />
                                  </button>
                                  </a>

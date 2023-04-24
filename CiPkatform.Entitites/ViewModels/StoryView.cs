@@ -17,16 +17,17 @@ namespace CiPlatform.Entitites.ViewModels
         public List<StoryMedium> storyMedia { get; set; }
         public List<IFormFile> UploadedFiles { get; set; }
         public List<MissionApplication> missionApplication { get; set; }
+        public List<Timesheet> timesheet { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? url { get; set; }
         public DateTime? date { get; set; }
         public int mid { get; set; }
+        /*public List<MissionApplication> missionApplications { get; set; }*/
+
+
 
         //public Mission missions { get; set; }
-        // public MissionApplication missionApplication { get; set; }
-
-
         /* public List<Models.User> users { get;}*/
         /* public IFormFile StoryMedia { get; set; }
          public List<StoryMedium> storyMedia { get; set; }*/
