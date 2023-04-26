@@ -1,4 +1,20 @@
-﻿.story_container {
+﻿.btnAddVol {
+    width: 100%;
+    max-width: 160px;
+    height: 48px;
+    background: #f8863400;
+    border: 2px solid #f88634;
+    color: #f88634;
+    border-radius: 24px;
+}
+
+    .btnAddVol:hover {
+        background: #f88634;
+        color: white;
+    }
+
+
+.story_container {
     position: relative;
     margin-top: 20px;
     width: 100%;
@@ -169,7 +185,7 @@ display: none !important;
 }
 
 .form-control {
-    border: none !important;
+    border: 1px solid black;
 }
 
 .div {

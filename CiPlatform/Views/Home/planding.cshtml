@@ -354,3 +354,49 @@
         </div>
     </div>
 </div>*@
+
+
+
+@*public IActionResult VolunteerTimesheet()
+{
+int uid = (int)HttpContext.Session.GetInt32("UserId");
+ViewBag.uid = uid;
+var timeMission = _storyRepository.GetAllMissions(uid);
+return View(timeMission);
+}
+
+[HttpPost]
+public IActionResult AddTimeMission(VolunteerTimesheetView model)
+{
+int uid = (int)HttpContext.Session.GetInt32("UserId");
+_storyRepository.AddTimeTimesheet(model, uid);
+var timeMission = _storyRepository.GetAllMissions(uid);
+return PartialView("_VolunteerTimeMission", timeMission);
+}
+public IActionResult EditTimesheet(int tid)
+{
+var timesheet = _storyRepository.GetTimesheetById(tid);
+return Json(timesheet);
+}
+
+[HttpPost]
+public IActionResult AddGoalMission(VolunteerTimesheetView model)
+{
+int uid = (int)HttpContext.Session.GetInt32("UserId");
+_storyRepository.AddGoalTimesheet(model, uid);
+var goalMission = _storyRepository.GetAllMissions(uid);
+return PartialView("_VolunteerGoalMission", goalMission);
+}
+public IActionResult DeleteTimesheet(int tid)
+{
+_storyRepository.deleteTimesheet(tid);
+return RedirectToAction("VolunteerTimesheet", "StoryCard");
+}
+
+public IActionResult getDateRange(int missionId)
+{
+var data = _storyRepository.getRange(missionId);
+return Json(data);
+}
+
+}*@

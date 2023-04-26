@@ -67,8 +67,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/CiPlatform/CiPlatform/Views/Shared/_GoalMission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Hb2FsTWlzc2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/CiPlatform/CiPlatform/Views/Shared/_navbar1.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9uYXZiYXIxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/CiPlatform/CiPlatform/Views/Shared/_TimeMission.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9UaW1lTWlzc2lvbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/CiPlatform/CiPlatform/Views/Shared/_ValidationScriptsPartial.cshtml]

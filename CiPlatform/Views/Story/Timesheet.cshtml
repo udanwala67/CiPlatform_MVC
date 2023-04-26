@@ -1,4 +1,4 @@
-﻿@model CiPlatform.Entitites.ViewModels.StoryView
+﻿@model CiPlatform.Entitites.ViewModels.VolunteeringTimesheetView
 
 
 <!DOCTYPE html>
@@ -90,29 +90,29 @@
                         </ul>
                     </li>
                 </ul>
-                @foreach (var p in Model.user)
-                {
+                @*   @foreach (var p in Model.user)
+                    {
                     if (p.UserId == ViewBag.uid)
                     {
 
-                        <div class="dropdown text-end user-profile ">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                    <div class="dropdown text-end user-profile ">
+                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
 
-                                @p.FirstName
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                            </ul>
-                        </div>
+                    @p.FirstName
+                    </a>
+                    <ul class="dropdown-menu text-small">
+                    <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                    <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                    <li>
+                    <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                    </ul>
+                    </div>
                     }
-                }
+                    }*@
             </div>
         </nav>
 
@@ -138,15 +138,15 @@
                                         <div class="my-2 px-2">
                                             <label class="form-label mb-0">Mission</label>
                                             <select class="form-select" id="timeMissionId">
-                                                *
+                                               
                                                 <option selected disabled>Select Mission</option>
-                                                @foreach(var item in Model.missionApplication)
-                                                    {
+                                                @foreach (var item in Model.missionApplications)
+                                                {
                                                     @if (item.UserId == ViewBag.uid && item.Mission.MissionType == "Time")
                                                     {
-                                                    <option value="@item.Mission.MissionId">@item.Mission.Title</option>
+                                                        <option value="@item.Mission.MissionId">@item.Mission.Title</option>
                                                     }
-                                                    }
+                                                }
                                             </select>
                                         </div>
                                         <div class="my-2 px-2">
@@ -176,11 +176,7 @@
                             </div>
                         </div>
                         <div class="p-2" id="replaceTimeMission">
-                            @foreach(var i in Model.timesheet)
-                            {
-                                <span>@i.Notes</span>
-                            }
-                            @*  <partial name="_VolunteerTimeMission" />*@
+                            <partial name="_TimeMission" />
                         </div>
                     </div>
                 </div>
@@ -206,13 +202,13 @@
                                                 <label class="form-label mb-0">Mission</label>
                                                 <select class="form-select" id="goalMissionId">
                                                     <option selected disabled>Select Mission</option>
-                                                      @foreach (var item in Model.missionApplication)
-                                                        {
+                                                    @foreach (var item in Model.missionApplications)
+                                                    {
                                                         @if (item.UserId == ViewBag.uid && item.Mission.MissionType == "Goal")
                                                         {
-                                                        <option value="@item.Mission.MissionId">@item.Mission.Title</option>
+                                                            <option value="@item.Mission.MissionId">@item.Mission.Title</option>
                                                         }
-                                                        }
+                                                    }
                                                 </select>
                                             </div>
                                             <div class="my-2 px-2">
@@ -236,7 +232,7 @@
                                 </div>
                             </div>
                             <div class="p-2" id="replaceGoalMission">
-                                @* <partial name="_VolunteerGoalMission" />*@
+                                <partial name="_GoalMission" />
                             </div>
                         </div>
                     </div>

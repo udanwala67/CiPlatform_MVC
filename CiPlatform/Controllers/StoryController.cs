@@ -76,13 +76,61 @@ namespace CiPlatform.Controllers
        public IActionResult Timesheet()
         {
             string email = HttpContext.Session.GetString("Email");
-            long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
-            ViewBag.uid = user;
-            var timesheet = _storyRepository.GetStory();
-            return View(timesheet);
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            ViewBag.uid= (int)user.UserId;
+            var timeMission = _storyRepository.GetAllMissions(ViewBag.uid);
+            return View(timeMission);
 
+        }
+        public IActionResult AddTimeMission(VolunteeringTimesheetView model)
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            int uid = (int)user.UserId;
+            _storyRepository.AddTimeTimesheet(model, uid);
+            var timeMission = _storyRepository.GetAllMissions(uid);
+            return PartialView("_TimeMission", timeMission);
+        }
+
+     /*   public IActionResult VolunteerTimesheet()
+        {
+            int uid = (int)HttpContext.Session.GetInt32("UserId");
+            ViewBag.uid = uid;
+            var timeMission = _storyRepository.GetAllMissions(uid);
+            return View(timeMission);
+        }*/
+
+       
+        public IActionResult EditTimesheet(int tid)
+        {
+            var timesheet = _storyRepository.GetTimesheetById(tid);
+            return Json(timesheet);
+        }
+
+        [HttpPost]
+        public IActionResult AddGoalMission(VolunteeringTimesheetView model)
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            int uid = (int)user.UserId;
+            _storyRepository.AddGoalTimesheet(model, uid);
+            var goalMission = _storyRepository.GetAllMissions(uid);
+            return PartialView("_GoalMission", goalMission);
+        }
+        public IActionResult DeleteTimesheet(int tid)
+        {
+            _storyRepository.deleteTimesheet(tid);
+            return RedirectToAction("Timesheet", "Story");
+        }
+
+        public IActionResult getDateRange(int missionId)
+        {
+            var data = _storyRepository.getRange(missionId);
+            return Json(data);
         }
 
     }
+
 }
+
 

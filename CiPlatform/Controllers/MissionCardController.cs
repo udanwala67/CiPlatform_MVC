@@ -19,6 +19,7 @@ namespace CiPlatform.Controllers
             _CiRepository = ciRepository;
             _emailServices = emailServices;
         }
+       
         public IActionResult platformlandingpage(string searchQuery, string sortOrder, CityView cityView)
         {
             List<Mission> mission = _ciContext.Missions.ToList();
