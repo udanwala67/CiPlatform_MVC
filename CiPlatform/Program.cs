@@ -11,6 +11,7 @@ builder.Services.AddScoped<ICiRepository, CiRepository>();
 builder.Services.AddScoped<IStoryRepository, StoryRepository>();
 builder.Services.AddTransient<EmailServices>();
 builder.Services.AddScoped<IUserDetailsRepository, UserDetailsRepository>();
+builder.Services.AddScoped<IAdminRepository, AdminRepository>();    
 /*builder.Services.AddControllersWithViews();*/
 builder.Services.AddSession();
 

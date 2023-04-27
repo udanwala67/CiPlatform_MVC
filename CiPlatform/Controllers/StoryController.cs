@@ -45,6 +45,8 @@ namespace CiPlatform.Controllers
             long userid = _ciContext.Users.Where(u => u.Email == Email).Select(m => m.UserId).FirstOrDefault();
             _storyRepository.PushStory(userid ,storyView );
 
+           
+
 
             return View(stories);
 
@@ -62,7 +64,7 @@ namespace CiPlatform.Controllers
 
 
         /*----------------------------------------------storydetails and Story_Details aboth are different pages so take care--------------------------------------*/
-
+      
 
         public IActionResult Story_Details(int user, int missionId)
         {
@@ -77,7 +79,7 @@ namespace CiPlatform.Controllers
         {
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            ViewBag.uid= (int)user.UserId;
+            ViewBag.uid = (int)user.UserId;
             var timeMission = _storyRepository.GetAllMissions(ViewBag.uid);
             return View(timeMission);
 
@@ -91,14 +93,6 @@ namespace CiPlatform.Controllers
             var timeMission = _storyRepository.GetAllMissions(uid);
             return PartialView("_TimeMission", timeMission);
         }
-
-     /*   public IActionResult VolunteerTimesheet()
-        {
-            int uid = (int)HttpContext.Session.GetInt32("UserId");
-            ViewBag.uid = uid;
-            var timeMission = _storyRepository.GetAllMissions(uid);
-            return View(timeMission);
-        }*/
 
        
         public IActionResult EditTimesheet(int tid)

@@ -10,7 +10,7 @@ namespace CiPlatform.Entitites.ViewModels
 {
     public class UserProfileView
     {
-        public List<User> users { get; set; }
+        public List<User> user = new List<User>();
         public List<Skill> skills { get; set; }
         public List<UserSkill> userSkills { get; set; }
         public List<Country> country { get; set; }

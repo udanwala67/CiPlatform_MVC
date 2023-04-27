@@ -1,7 +1,5 @@
 ﻿@model CiPlatform.Entitites.ViewModels.UserProfileView
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,8 +15,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="~/css/UserEdit.css" type="text/css">
-
-
 </head>
 
 <body>
@@ -91,7 +87,7 @@
                         </ul>
                     </li>
                 </ul>
-                 @foreach (var p in Model.users)
+                 @foreach (var p in Model.user)
                 {
                     if (p.UserId == ViewBag.uid)
                     {
@@ -114,7 +110,7 @@
                     }
                 }
             </div>
-        </nav>
+    </nav>
     <div class="container-fluid stickyheader">
         <form method="post" asp-action="ChangeAvatar" asp-controller="Home" enctype="multipart/form-data">
             <div class="row mx-4">
@@ -252,7 +248,7 @@
                                 }
                             </ul>
                         </div>
-                        <button type="button" class="btnaddskills" data-bs-toggle="modal" data-bs-target="#modalAddSkills">Add Skills</button>
+                        <button type="button" class="btnaddskills mt-2" data-bs-toggle="modal" data-bs-target="#modalAddSkills">Add Skills</button>
                         <div class="modal fade" id="modalAddSkills" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog modal-xl modal-dialog-scrollable">
                                 <div class="modal-content">

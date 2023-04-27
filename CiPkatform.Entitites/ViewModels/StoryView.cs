@@ -23,7 +23,7 @@ namespace CiPlatform.Entitites.ViewModels
         public string? url { get; set; }
         public DateTime? date { get; set; }
         public int mid { get; set; }
-        /*public List<MissionApplication> missionApplications { get; set; }*/
+
 
 
 

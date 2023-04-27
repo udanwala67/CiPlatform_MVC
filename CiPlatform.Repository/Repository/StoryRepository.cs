@@ -94,9 +94,11 @@ namespace CiPlatform.Repository.Repository
         {
             var missionApp = _CiContext.MissionApplications.Where(a => a.DeletedAt == null).Include(m => m.Mission).ToList();
             var timesheet = _CiContext.Timesheets.Where(t => t.UserId == uid).Include(t => t.Mission).ToList();
+            var user = _CiContext.Users.ToList();
             VolunteeringTimesheetView model = new VolunteeringTimesheetView();
             model.missionApplications = missionApp;
             model.timesheets = timesheet;
+            model.user = user;
             return model;
         }
 
@@ -110,7 +112,7 @@ namespace CiPlatform.Repository.Repository
                 timesheet.Time = TimeSpan.Parse(model.hours.ToString() + ":" + model.minutes.ToString() + ":00");
                 timesheet.DateVolunteered = model.date;
                 timesheet.Notes = model.message;
-                timesheet.CreatedAt=DateTime.Now;
+                timesheet.CreatedAt = DateTime.Now;
                 _CiContext.Timesheets.Add(timesheet);
             }
             else
@@ -122,12 +124,12 @@ namespace CiPlatform.Repository.Repository
                 timesheet.Notes = model.message;
                 timesheet.CreatedAt = DateTime.Now;
                 _CiContext.Timesheets.Update(timesheet);
-                
+
             }
             _CiContext.SaveChanges();
-        }
+         }
 
-        public void AddGoalTimesheet(VolunteeringTimesheetView model, int uid)
+            public void AddGoalTimesheet(VolunteeringTimesheetView model, int uid)
         {
             if (model.tid == 0)
             {

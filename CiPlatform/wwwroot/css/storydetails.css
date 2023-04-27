@@ -242,3 +242,32 @@ display: none !important;
         background: #f88634;
         color: white;
     }
+
+
+.modalbtnclose {
+    width: 100%;
+    max-width: 160px;
+    background: #f8863400;
+    border: 2px solid #f88634;
+    color: #f88634;
+    border-radius: 24px;
+}
+
+    .modalbtnclose:hover {
+        background: #f88634;
+        color: white;
+    }
+
+.modaladdskills {
+    width: 100%;
+    max-width: 160px;
+    background: #f8863400;
+    border: 2px solid #f88634;
+    color: #f88634;
+    border-radius: 24px;
+}
+
+    .modaladdskills:hover {
+        background: #f88634;
+        color: white;
+    }

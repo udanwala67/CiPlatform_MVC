@@ -1,30 +1,4 @@
-﻿/*#profileimg {
-    width: 150px;
-    height: 150px;
-}
-
-.username {
-    font-weight: 500;
-    font-size: 22px;
-}
-
-.changepassword {
-    font-weight: lighter;
-    color: #414141;
-    font-size: 14px;
-}
-
-@media only screen and (max-width:768px) {
-    .adjust {
-        height: fit-content !important;
-    }
-
-        .adjust img {
-            margin-top: 0px;
-        }
-}
-*/
-@media screen and (min-width:767px) {
+﻿@media screen and (min-width:767px) {
 
     .btn,
     #offcanvasWithBothOptions {
@@ -108,31 +82,85 @@
     height: max-content;
 }
 
-.btnaddskills {
-    width: 100%;
-    max-width: 160px;
-    height: 48px;
-    background: #f8863400;
-    border: 2px solid #f88634;
-    color: #f88634;
-    border-radius: 24px;
+.iconuser {
+    text-decoration: none;
 }
 
-    .btnaddskills:hover {
-        background: #f88634;
-        color: white;
+.iconForpencil {
+    color: orange;
+}
+
+.iconForDelete {
+    color: black;
+}
+
+.overflow-tableEntry {
+    overflow: scroll;
+}
+
+.userdetails tr {
+    height: 5vh;
+}
+
+.overflow-tableEntry th {
+    vertical-align: middle;
+    height: 8vh;
+}
+
+
+.userdetails td {
+    vertical-align: middle;
+}
+
+.add {
+    border: 2px solid orange !important;
+    border-radius: 20px !important;
+    color: orange !important;
+    background-color: white !important;
+    width: 20%;
+    height: 80%;
+}
+
+@media (max-width: 1332px) {
+    .add {
+        width: 40%;
+    }
+}
+
+@media (max-width: 676px) {
+    .add {
+        width: 60%;
+    }
+}
+
+.iconForcheck {
+    color: #14C506;
+    font-size: 20px;
+}
+
+.iconForcross {
+    color: red;
+    font-size: 20px;
+}
+/*UserImage*/
+.img-wrap {
+    position: relative;
+}
+
+    .img-wrap:hover img {
+        opacity: 0.5;
     }
 
-.btnprofilesave {
-    width: 100%;
-    max-width: 160px;
-    height: 48px;
-    background: #f8863400;
-    border: 2px solid #f88634;
-    color: #f88634;
-    border-radius: 24px;
-}
-    .btnprofilesave:hover {
-        background: #f88634;
-        color: white;
+    .img-wrap:hover .icon {
+        display: block;
     }
+
+.icon {
+    position: absolute;
+    top: 35%;
+    left: 35%;
+}
+
+#profileimg {
+    height: 100px;
+}

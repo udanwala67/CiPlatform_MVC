@@ -107,21 +107,21 @@
                             if (p.UserId == ViewBag.uid)
                             {
 
-                                        <div class="dropdown text-end user-profile ">
-                                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                <div class="dropdown text-end user-profile ">
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                        <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
                                         @p.FirstName
-                                            </a>
-                                            <ul class="dropdown-menu text-small">
-                                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                                            </ul>
-                                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu text-small">
+                                        <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                    </ul>
+                                </div>
                             }
                         }
                     </div>
@@ -140,40 +140,40 @@
                             <label class="my-2">Select Mission</label>
 
 
-                            <select class="form-select"  name ="mid" aria-label="Default select example">
-                                 <option selected>select your mission</option>
+                            <select class="form-select" id="title" name="mid" aria-label="Default select example">
+                                <option selected>select your mission</option>
                                 @foreach (var m in Model.mission)
                                 {
                                     @if (m.MissionApplications.Where(b => b.UserId == ViewBag.uid && b.MissionId == m.MissionId).Count() > 0)
                                     {
-                                                <option value="@m.MissionId">@m.Title</option>
+                                        <option value="@m.MissionId">@m.Title</option>
                                     }
                                     else
                                     {
 
                                     }
 
-                                }                   
+                                }
                             </select>
                         </div>
 
                         <div class="col-lg-4">
                             <label class="my-2">My Story Title</label>
-                            <input type="text" asp-for ="Title"  class="form-control" id="storytitle" placeholder="Enter story title" />
+                            <input type="text" asp-for="Title" class="form-control" id="storytitle" placeholder="Enter story title" />
                         </div>
                         <div class="col-lg-4">
                             <label class="my-2">Date</label>
-                            <input type="date" asp-for ="date" class="form-control" id="sdate" />
+                            <input type="date" asp-for="date" class="form-control" id="sdate" />
                         </div>
                     </div>
                     <div class="row mx-1 my-2">
                         <label class="my-2">My Story</label>
-                        <textarea asp-for = "Description" id="ckeditorcontent" name="ckeditorcontent"></textarea>
+                        <textarea asp-for="Description" id="ckeditorcontent" name="ckeditorcontent"></textarea>
                         <script type="text/javascript">CKEDITOR.replace('ckeditorcontent');CKEDITOR.config.width='100%';CKEDITOR.config.height='275px';</script>
                     </div>
                     <div>
                         <label class="my-3">Enter Video URL</label>
-                        <input type="text" asp-for ="url" id = "url" class="form-control" placeholder="Enter your url" />
+                        <input type="text" asp-for="url" id="url" class="form-control" placeholder="Enter your url" />
                     </div>
 
 
@@ -189,9 +189,9 @@
 
                         <div class="form-group mt-3">
                             <label class="my-3" for="">Upload Your Photos</label>
-                            <input type="file" asp-for ="UploadedFiles" class="form-control" id="upload-img" multiple/>
+                            <input type="file" asp-for="UploadedFiles" class="form-control" id="upload-img" multiple />
                             <div class="upload_imagebox mb-3" id="upload_imagebox">
-                                <img src="~/images/drag-and-drop.png" asp-for="" id="myselectimg" />
+                                <img src="~/images/drag-and-drop.png" asp-for="uploadimg" id="myselectimg" />
 
 
                             </div>
@@ -200,7 +200,7 @@
 
                         </div>
 
-                        @*<div class="upload-container">
+                        @* <div class="upload-container">
                             <div class="icon-container">
                             <i class="fa fa-camera"></i>
                             <span>Upload Image or Video</span>
@@ -208,93 +208,195 @@
                             <input type="file" name="file" id="file" accept="image/*, video/*" style="display: none;" />
                             </div>*@
 
-                       <div class="row mb-2">
+                        <div class="row mb-2">
                             <div class="d-flex col-lg-6 my-2 my-lg-0 justify-content-center">
-                                <button type="button" asp-action="storydetails" asp-controller = "Story" class="btnstrcancel">Cancel</button>
+                                <button type="button" asp-action="storydetails" asp-controller="Story" class="btnstrcancel">Cancel</button>
                             </div>
                             <div class="d-flex col-lg-6 justify-content-center">
-                                <button type="submit" id = "save" class="btnstrss">Save</button>
-                                <button type="submit" id ="submitt" class="btnstrss ms-4">Submit</button>
+                                <button type="submit" id="save" class="btnstrss">Save</button>
+                                <button type="submit" id="submitt" class="btnstrss ms-4">Submit</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-          </div>
+        </div>
     </form>
 
 
     @*-------------------------------------------------------for image upload-----------------------------------------------------------*@
 
     <script>
-           var imgUpload = document.getElementById('upload-img')
-          , imgPreview = document.getElementById('img-preview')
-          , imgUploadForm = document.getElementById('form-upload')
-          , totalFiles
-          , previewTitle
-          , previewTitleText
-          , img;
+                   var imgUpload = document.getElementById('upload-img')
+                  , imgPreview = document.getElementById('img-preview')
+                  , imgUploadForm = document.getElementById('form-upload')
+                  , totalFiles
+                  , previewTitle
+                  , previewTitleText
+                  , img;
 
-        imgUpload.addEventListener('change', previewImgs, true);
+                imgUpload.addEventListener('change', previewImgs, true);
 
-        function previewImgs(event) {
-          totalFiles = imgUpload.files.length;
+                function previewImgs(event) {
+                  totalFiles = imgUpload.files.length;
 
-             if(!!totalFiles) {
-            imgPreview.classList.remove('img-thumbs-hidden');
-          }
+                     if(!!totalFiles) {
+                    imgPreview.classList.remove('img-thumbs-hidden');
+                  }
 
-          for(var i = 0; i < totalFiles; i++) {
-            wrapper = document.createElement('div');
-            wrapper.classList.add('wrapper-thumb', 'p-3');
-            removeBtn = document.createElement("span");
-            nodeRemove= document.createTextNode('x');
-            removeBtn.classList.add('remove-btn');
-            wrapper.appendChild(removeBtn);
-            removeBtn.appendChild(nodeRemove);
-            img = document.createElement('img');
-            img.src = URL.createObjectURL(event.target.files[i]);
-            img.classList.add('img-preview-thumb' , 'w-100', 'py-3');
-            wrapper.appendChild(img);
-            imgPreview.appendChild(wrapper);
+                  for(var i = 0; i < totalFiles; i++) {
+                    wrapper = document.createElement('div');
+                    wrapper.classList.add('wrapper-thumb', 'p-3');
+                    removeBtn = document.createElement("span");
+                    nodeRemove= document.createTextNode('x');
+                    removeBtn.classList.add('remove-btn');
+                    wrapper.appendChild(removeBtn);
+                    removeBtn.appendChild(nodeRemove);
+                    img = document.createElement('img');
+                    img.src = URL.createObjectURL(event.target.files[i]);
+                    img.classList.add('img-preview-thumb' , 'w-100', 'py-3');
+                    wrapper.appendChild(img);
+                    imgPreview.appendChild(wrapper);
 
-            $('.remove-btn').click(function(){
-              $(this).parent('.wrapper-thumb').remove();
-            });
-          }
-        }
+                    $('.remove-btn').click(function(){
+                      $(this).parent('.wrapper-thumb').remove();
+                    });
+                  }
+                }
 
-
-
-        h
-
-   //  ------------------------------------for displaying  applied missions------------------------------------------------
+           //  ------------------------------------for displaying  applied missions------------------------------------------------
 
 
 
+        //{
 
+        //        $("#mtitle").change(function () {
+        //            var v = $(this).val();
+        //            $.getJSON("/Story/Mission?mission=" + v, function (data) {
+        //                console.log(data);
+        //                $("#mtitle").append('<label>' + data+'</label>');
 
-//   
-//{
+        //            });
+        //        });
+        //}
 
-//        $("#mtitle").change(function () {
-//            var v = $(this).val();
-//            $.getJSON("/Story/Mission?mission=" + v, function (data) {
-//                console.log(data);
-//                $("#mtitle").append('<label>' + data+'</label>');
+    //    <script>
+    //            function getData(){
+    //            var mid = $('#mid').val();
+    //            console.log(mid);
+    //            $.ajax({
+    //            url: "/StoryCard/GetStoryData",
+    //            type: 'GET',
+    //            data:{
+    //            mid : mid
+    //            },
+    //            success: function (data) {
+    //            console.log(data);
+    //            if(data)
+    //            {
+    //            $('#storyId').val(data.story.storyId);
+    //            $('#sTitle').val(data.story.title);
+    //            CKEDITOR.instances['ckeditorcontent'].setData(data.story.description);
+    //            var inputDate = new Date(data.story.publishedAt);
+    //            date = inputDate.getDate();
+    //            month = inputDate.getMonth() + 1;
+    //            year = inputDate.getFullYear();
+    //            date = date.toString().padStart(2, '0');
+    //            month = month.toString().padStart(2, '0');
+    //            dateformat = year+'-'+month+'-'+date;
+    //            console.log(dateformat);
+    //            $('#sDate').val(dateformat);
+    //            $('#img-preview').empty();
+    //            imgs = "";
+    //            $.each(data.storyMedia,function(){
+    //            $.each(this,function(key,value){
+    //            if(key == 'path')
+    //            {
+    //            wrapper = document.createElement("div")
+    //            wrapper.classList.add("wrapper-thumb")
+    //            removeBtn = document.createElement("span")
+    //            nodeRemove = document.createTextNode("x")
+    //            removeBtn.classList.add("remove-btn")
+    //            removeBtn.appendChild(nodeRemove)
+    //            img = document.createElement("img")
+    //            img.src = value;
+    //            img.classList.add("img-preview-thumb")
+    //            wrapper.appendChild(img)
+    //            wrapper.appendChild(removeBtn)
+    //            imgPreview.appendChild(wrapper)
+    //            $(".remove-btn").click(function () {
+    //            $(this).parent(".wrapper-thumb").remove()
+    //            })
+    //            }
+    //            });
+    //            });
+    //            }
+    //            else{
 
-//            });
-//        });
+    //            alert("Share Your Story");
+    //            }
+    //            },
+    //            error: function (e) {
+    //            console.log(e);
+    //            }
+    //            });
+    //            }
 
-//}
+    //            $('#btnsubmit').click(function(){
+    //            var storyId = $('#storyId').val();
+    //            $.ajax({
+    //            url: "/StoryCard/ChangeStoryStatus",
+    //            type: 'POST',
+    //            data:{
+    //            storyId
+    //            },
+    //            success: function (data) {
+    //            alert("Successfully Submitted Story");
+    //            console.log(data);
+    //            },
+    //            error: function (e) {
+    //            console.log(e);
+    //            }
+    //            });
+    //            });
 
+    //            $('#btnSave').click(function(){
+    //            if($("#formShareStory").valid())
+    //            {
+    //            var mid = $('#mid').val();
+    //            var stitle = $('#sTitle').val();
+    //            var sdate = $('#sDate').val();
+    //            var stext = CKEDITOR.instances['ckeditorcontent'].getData();
+    //            var surl = $('#sUrl').val();
+    //            var srcList = [];
+    //            $('#img-preview img').each(function () {
+    //            var src = $(this).attr('src');
+    //            srcList.push(src);
+    //            });
+    //            console.log(surl);
+    //            $.ajax({
+    //            type:'POST',
+    //            url: '/StoryCard/Share_story',
+    //            data: {
+    //            mid:mid,
+    //            stitle:stitle,
+    //            sdate:sdate,
+    //            stext:stext,
+    //            surl:surl,
+    //            src:srcList,
+    //            },
+    //            success:function(data){
+    //            alert("Successfully saved as Draft");
+    //            console.log(data);
+    //            },
+    //            error:function(e){
+    //            console.log(e);
+    //            }
+    //            });
+    //            }
+    //            });
 
-
-
-
-
-
-    </script>
+    //</script>
 
 </body>
 </html>

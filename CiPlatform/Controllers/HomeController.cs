@@ -197,6 +197,7 @@ namespace CiPlatform.Controllers
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            ViewBag.uid = (int)user.UserId;
             return View(model);
 
         }
@@ -208,7 +209,7 @@ namespace CiPlatform.Controllers
             /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
             string email = HttpContext.Session.GetString("Email");
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-           
+            ViewBag.uid = (int)user.UserId;
             _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);   
            

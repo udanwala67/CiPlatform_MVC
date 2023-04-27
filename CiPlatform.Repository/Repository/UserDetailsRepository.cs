@@ -34,9 +34,10 @@ namespace CiPlatform.Repository.Repository
             var userskill = _CiContext.UserSkills.ToList();
             var country = _CiContext.Countries.ToList();
             var city = _CiContext.Cities.ToList();
-
+            
             UserProfileView profile = new UserProfileView();
-            profile.users = user;
+
+            profile.user = user;
             profile.skills = skill;
             profile.country = country;
             profile.city = city;
