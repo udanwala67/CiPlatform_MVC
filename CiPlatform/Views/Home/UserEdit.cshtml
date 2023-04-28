@@ -38,7 +38,7 @@
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                <img src="@Model.Avatar" alt="mdo" width="32" height="32" class="rounded-circle" />
                                 @{
                                     var firstname = Context.Session.GetString("Firstname");
                                 }
@@ -94,7 +94,7 @@
                         <div class="dropdown text-end user-profile ">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                <img src="@Model.Avatar" alt="mdo" width="40" height="40" class="rounded-circle">
 
                                 @p.FirstName
                             </a>
@@ -116,19 +116,23 @@
             <div class="row mx-4">
                 <div class="col-lg-3 d-flex justify-content-center">
                     <div class="userprofile">
-                        <input type="file" id="ImgAvatar" name="ImgAvatar" onchange="form.submit()" accept="image/jpg, image/jpeg, image/png" hidden />
+                        <input type="file" id="AvatarImage" name="AvatarImage" onchange="form.submit()" accept="image/jpg, image/jpeg, image/png" hidden />
 
                         @if (Model.Avatar != null)
                         {
-                            <img src="" class="rounded-circle" onclick="changeAvatar()" />
+                           @* var profileImagePath = "~" + @Model.Avatar;
+                            <div style="background-image: url(@profileImagePath);">*@
+
+                           
+                            <img src="@Model.Avatar" id="AvatarImage" class="rounded-circle" width="100" height="100" onclick="changeAvatar()" alt="dsjgfjdgdfh" />
                         }
                         else
                         {
-                            <img src="~/images/volunteer1.png" class="rounded-circle" onclick="changeAvatar()" />
+                            <img src="~/images/volunteer1.png" id="AvatarImage" class="rounded-circle" onclick="changeAvatar()" />
                         }
 
                         <p class="my-2">@ViewBag.Name</p>
-                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword" asp-for ="UploadedFiles">Change Password</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword" >Change Password</a>
                         <div class="modal fade" id="modalChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -138,15 +142,18 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="oldpass" placeholder="Enter Old Password">
+                                            <input type="password" class="form-control" id="oldpass"  placeholder="Enter Old Password">
+                                            @*<span asp-validation-for ="password" class = "text-danger"></span>*@
                                         </div>
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="newpass" placeholder="Enter New Password">
+                                            <input type="password" class="form-control" id="newpass"  placeholder="Enter New Password" required/>
+                                            @*<span asp-validation-for ="password" class = "text-danger"></span>*@
                                         </div>
                                         <div class="valid-feedback">Good</div>
                                         <div class="invalid-feedback">Wrong</div>
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="cnewpass" placeholder="Enter Confirm Password">
+                                            <input type="password" class="form-control" id="cnewpass"  placeholder="Enter Confirm Password" required/>
+                                            @*<span asp-validation-for ="ConfirmPassword" class = "text-danger"></span>*@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -347,34 +354,50 @@
         });
 
         $(function(){
-        $('#modalbtnchangepass').click(function(){
+    $('#modalbtnchangepass').click(function(){
         var oldpass = $('#oldpass').val();
         var newpass = $('#newpass').val();
         var cnewpass = $('#cnewpass').val();
+
+        // check if new password and confirm new password match
+        if (newpass !== cnewpass) {
+            alert("New password and confirm new password must match.");
+            return;
+        }
+
+        // validate new password format
+        if (!isValidPassword(newpass)) {
+            alert("New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
+            return;
+        }
 
         console.log(oldpass);
         console.log(newpass);
         console.log(cnewpass);
 
         $.ajax({
-        type:'POST',
-        url:'/Home/ChangePass',
-        data:{
-        oldpass:oldpass,
-        newpass:newpass,
-        cnewpass:cnewpass
-        },
-        success: function(result){
-        alert("Password Changed.");
-        },
-        error: function (xhr,status,error){
-        console.log(error);
-        }
-        })
+            type:'POST',
+            url:'/Home/ChangePass',
+            data:{
+                oldpass:oldpass,
+                newpass:newpass,
+                cnewpass:cnewpass
+            },
+            success: function(result){
+                alert("Password Changed.");
+            },
+            error: function (xhr,status,error){
+                console.log(error);
+            }
+        });
+    });
 
-
-        })
-        })
+     //function to validate password format
+        function isValidPassword(password) {
+        var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+        return regex.test(password);
+    }
+});
 
         $(function(){
         $('#postprofile').click(function(){
@@ -471,8 +494,35 @@
         })
 
 
-        function changeAvatar(){
-        $('#ImgAvatar').click();
+//    function changeAvatar() {
+//    // Create a new FormData object and append the selected file to it
+//    var formData = new FormData();
+//    formData.append("ImgAvatar", $("#ImgAvatar")[0].files[0]);
+
+//    // Send the AJAX request to the server
+//    $.ajax({
+//        url: '@Url.Action("ChangeAvtar", "Home")',
+//        type: 'POST',
+//        data: formData,
+//        processData: false,
+//        contentType: false,
+//        success: function (result) {
+//            // If the server returns a success message, update the avatar image
+//            if (result.success) {
+//                $("#avatarImage").attr("src", result.imageUrl);
+//            }
+//            else {
+//                alert("Error uploading image");
+//            }
+//        },
+//        error: function () {
+//            alert("Error uploading image");
+//        }
+//    });
+//}
+
+     function changeAvatar(){
+        $('#AvatarImage').click();
         }
 
         $('#country').on('change', function () {

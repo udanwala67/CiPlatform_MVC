@@ -4,6 +4,8 @@ using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Models;
 using CiPlatform.Repository.Interface;
 using CiPlatform.Repository.Repository;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
@@ -141,20 +143,23 @@ namespace CiPlatform.Controllers
             string email = resetView.Email;
             var passreset = new PasswordReset();
             var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();
-            /*if (form["confirmpass"] == form["password"])
-           {*/
+            if (form["confirmpass"] == form["password"])
+            {
 
-            user.Password = resetView.Password;
-            user.UpdatedAt = DateTime.Now;
-            _ciContext.Users.Update(user);
-            _ciContext.SaveChanges();
-            return RedirectToAction("login");
+                user.Password = resetView.Password;
+                user.UpdatedAt = DateTime.Now;
+                _ciContext.Users.Update(user);
+                _ciContext.SaveChanges();
+                return RedirectToAction("login");
+            }
+            else
+            {
+                return View();
+            }
         }
-        /* else{
-         return View()
-         }*/
+       
 
-        private object GenerateToken()
+    private object GenerateToken()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
@@ -195,6 +200,7 @@ namespace CiPlatform.Controllers
             /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
             ViewBag.Name = name;*/
             string email = HttpContext.Session.GetString("Email");
+
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
             ViewBag.uid = (int)user.UserId;
@@ -215,6 +221,43 @@ namespace CiPlatform.Controllers
            
             return View(model);
         }
+        [HttpPost]
+
+        public async Task<IActionResult> changeAvatar(UserProfileView model)
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.FirstOrDefault(u => u.Email == email);
+            int uid = (int)user.UserId;
+            var userp = _ciContext.Users.Where(x => x.UserId == uid).FirstOrDefault();
+            string filename = Path.GetFileName(model.AvatarImage.FileName);
+            string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles", filename);
+            var filestream = new FileStream(uploadPath, FileMode.Create);
+            model.AvatarImage.CopyTo(filestream);
+            string dbfilepath = "/UploadedFiles/" + filename;
+            userp.Avatar = dbfilepath;
+            _ciContext.Users.Update(userp);
+            _ciContext.SaveChanges();
+
+           /* var identity = User.Identity as ClaimsIdentity;
+            if (identity != null)
+            {
+                var existingClaim = identity.FindFirst("Avatar");
+
+                if (existingClaim != null)
+                {
+                    identity.RemoveClaim(existingClaim);
+                }
+
+                identity.AddClaim(new Claim("Avatar", userp.Avatar));
+                var authenticationProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authenticationProperties);
+            }*/
+            return RedirectToAction("UserEdit","Home");
+        }
+
 
         public JsonResult GetUserProfile()
         {
@@ -240,11 +283,19 @@ namespace CiPlatform.Controllers
         [HttpPost]
         public IActionResult ChangePass(string oldpass,string newpass,string cnewpass)
         {
-            string email = HttpContext.Session.GetString("Email");
-            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
- 
-            return RedirectToAction("login","home");
+                      
+                string email = HttpContext.Session.GetString("Email");
+                var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+                _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
+
+                return RedirectToAction("login", "home");
+            
+           
+            
+               /* // there was an error creating the user, display error messages
+                return RedirectToAction("UserEdit");*/
+            
+            
         }
 
         public IActionResult getProfileImage(int uid)

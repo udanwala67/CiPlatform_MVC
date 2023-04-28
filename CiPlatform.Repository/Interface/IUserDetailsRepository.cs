@@ -18,7 +18,7 @@ namespace CiPlatform.Repository.Interface
         public void SaveAllDetails(int uid, string fname, string lname, string employeeid, string title, string department, string profiletext, string volunteertext, int country, int city, string linkedinurl, string hiddentext);
 
         public void updatePass(int uid, string oldpass, string newpass, string cnewpass);
-        public void GetUserPhotoById(int uid);
+        public User GetUserPhotoById(int uid);
 
 
     }

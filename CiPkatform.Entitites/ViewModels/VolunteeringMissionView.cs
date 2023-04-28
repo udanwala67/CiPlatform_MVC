@@ -20,6 +20,7 @@ namespace CiPlatform.Entitites.ViewModels
         public List<Comment> comments { get; set; }
         public List<MissionApplication> application { get; set; }   
         public List<MissionDocument> document { get; set; }
+       
 
     }
 }

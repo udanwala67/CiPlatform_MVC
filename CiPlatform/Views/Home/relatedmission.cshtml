@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model CiPlatform.Entitites.ViewModels.UserProfileView
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -284,7 +286,7 @@
                     <div class="dropdown name">
                         <a class="text-reset dropdown-toggle d-flex align-items-center hidden-arrow" href="#"
                             id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                            <img src="~/Images/user-img-large.png" class="rounded-circle" height="40" width="40" alt=""
+                            <img src="@Model.Avatar" class="rounded-circle" height="40" width="40" alt=""
                                 loading="lazy" />
                             <span class="ms-2">Evan Donohue <img src="~/Images/drop-down.png"> </span>
                         </a>

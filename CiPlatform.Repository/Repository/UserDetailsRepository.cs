@@ -2,6 +2,8 @@
 using CiPlatform.Entitites.Models;
 using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Repository.Interface;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
@@ -102,19 +104,51 @@ namespace CiPlatform.Repository.Repository
             }
         }
 
-        public void GetUserPhotoById(int uid)
+        public void UpdateUserPhoto(int userId, string fileName)
         {
-           /* var userp = _CiContext.Users.Where(x => x.UserId == uid).FirstOrDefault();
-           *//* string filename = Path.GetFileName();*//*
-            string UploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles", filename);
-            var filestream = new FileStream(UploadPath, FileMode.Create);
-            *//*Model.ImgAvatar.CopyTo(filestream);*//*
-            string dbfilepath = "/UploadedFiles/";
-            userp.Avatar = dbfilepath;
-            _CiContext.Users.Update(userp);
-            _CiContext.SaveChanges();*/
+            var user = _CiContext.Users.Where(u => u.UserId == userId).FirstOrDefault();
+            if (user != null)
+            {
+                // Delete the old profile photo file, if it exists
+                if (!string.IsNullOrEmpty(user.Avatar))
+                {
+                    string oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploadedFiles", user.Avatar);
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        System.IO.File.Delete(oldFilePath);
+                    }
+                }
 
+                // Update the user's profile photo file name in the database
+                user.Avatar = fileName;
+                _CiContext.SaveChanges();
+            }
         }
+
+        public User GetUserPhotoById(int uid)
+        {
+            var userp = _CiContext.Users.FirstOrDefault(u => u.UserId == uid);
+            return userp;
+          /*  if (userp != null)
+            {
+                // Get the file name from the user's Avatar property
+                string fileName = Path.GetFileName(userp);
+
+                // Construct the full path to the file on the server
+                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedFiles", fileName);
+
+                // Return the file as a FileStreamResult
+                FileStream fileStream = new FileStream(filePath, FileMode.Open);
+                var fileStreamResult = new FileStreamResult(fileStream, "image/jpeg");
+                return;
+            }
+            else
+            {
+                return;
+            }*/
+        }
+
+
 
 
 
