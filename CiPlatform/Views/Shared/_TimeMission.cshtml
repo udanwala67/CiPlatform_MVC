@@ -91,7 +91,7 @@
                     </div>
                     <div class="my-2 px-2">
                         <label class="form-label mb-0">Message</label>
-<textarea class="form-control" rows="4" placeholder="Enter your message.." id="etimeMissionMessage"></textarea>
+                        <textarea class="form-control" rows="4" placeholder="Enter your message.." id="etimeMissionMessage"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -106,175 +106,238 @@
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 
 <script>
-            $(document).ready(function() {
-                $('#etimeMissionId').on('change', function () {
-                    var missionId = $(this).val();
+                $(document).ready(function() {
+                    $('#etimeMissionId').on('change', function () {
+                        var missionId = $(this).val();
+                        $.ajax({
+                            type: 'GET',
+                            url: '/Story/getDateRange',
+                            data: { missionId },
+                            success: function (data) {
+                                var startDate = new Date(data.startDate);
+                                date = startDate.getDate();
+                                month = startDate.getMonth() + 1;
+                                year = startDate.getFullYear();
+                                date = date.toString().padStart(2, '0');
+                                month = month.toString().padStart(2, '0');
+                                sdate = year + '-' + month + '-' + date;
+                                var endDate = new Date(data.endDate);
+                                date = endDate.getDate();
+                                month = endDate.getMonth() + 1;
+                                year = endDate.getFullYear();
+                                date = date.toString().padStart(2, '0');
+                                month = month.toString().padStart(2, '0');
+                                edate = year + '-' + month + '-' + date;
+                                $('#etimeMissionDate').attr("min", sdate);
+                                $('#etimeMissionDate').attr("max", edate);
+                                console.log(data);
+                            },
+                            error: function (e) {
+                                console.log(e);
+                            }
+                        })
+                    });
+                });
+
+
+            //    let formData = new FormData();
+            //        formData.append("hours", $("#ehours").val())
+            //        formData.append("minutes", $("#eminutes").val())
+            //        formData.append("message",$("#emessage").val())
+            //        formData.append("tid", $("#timesheetId").val())
+            //        //console.log(tid);
+
+            //$.ajax({
+
+            //        url: "/Story/AddTimeMission",
+            //        type: "POST",
+            //        data: formData,
+            //        contentType: false,
+            //        processData: false,
+            //        success: function (result) {
+            //        console.log(result);
+            //        if (result.isSuccess) {
+            //        //getAdminRecords(tabIndex);
+            //        $('#etimeMissionId').val(data.missionId);
+            //        toastr.success("Saved Successfully");
+            //        }
+            //        else {
+            //        $("#timeform").html(result);
+            //        CKEDITOR.replace("");
+            //     }
+            //   }
+            // });
+
+    //       function addTimeData() {
+    //            var missionId = $('#timeMissionId').val();
+    //            var date = $('#timeMissionDate').val();
+    //            var hours = $('#hours').val();
+    //            var minutes = $('#minutes').val();
+    //            var notes = $('#timeMissionMessage').val();
+
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: '/Story/AddTimeTimesheet',
+    //        data: {
+    //            missionId: missionId,
+    //            date: date,
+    //            hours: hours,
+    //            minutes: minutes,
+    //            notes: notes
+    //        },
+    //        success: function(data) {
+    //            // handle success response
+    //            console.log(data);
+    //        },
+    //        error: function(e) {
+    //            // handle error response
+    //            console.log(e);
+    //        }
+    //    });
+    //}
+
+               $('#addTimeDetails').click(function(){
+                    var tid = $('#timesheetid').val();
+                    console.log(tid);
+                    var timeMissionId = $('#etimeMissionId').val();
+                    var timeMissionDate = $('#etimeMissionDate').val();
+                    var hours = $('#ehours').val();
+                    var minutes = $('#eminutes').val();
+                    var timeMissionMessage = $('#etimeMissionMessage').val();
+                    console.log(timeMissionId);
+                    console.log(timeMissionDate);
+                    console.log(hours);
+                    console.log(minutes);
+                    console.log(timeMissionMessage);
+
                     $.ajax({
-                        type: 'GET',
-                        url: '/Story/getDateRange',
-                        data: { missionId },
-                        success: function (data) {
-                            var startDate = new Date(data.startDate);
-                            date = startDate.getDate();
-                            month = startDate.getMonth() + 1;
-                            year = startDate.getFullYear();
-                            date = date.toString().padStart(2, '0');
-                            month = month.toString().padStart(2, '0');
-                            sdate = year + '-' + month + '-' + date;
-                            var endDate = new Date(data.endDate);
-                            date = endDate.getDate();
-                            month = endDate.getMonth() + 1;
-                            year = endDate.getFullYear();
-                            date = date.toString().padStart(2, '0');
-                            month = month.toString().padStart(2, '0');
-                            edate = year + '-' + month + '-' + date;
-                            $('#etimeMissionDate').attr("min", sdate);
-                            $('#etimeMissionDate').attr("max", edate);
-                            console.log(data);
+                        type:'POST',
+                        url: '/Story/AddTimeTimeSheet',
+                        data:{
+                        'MissionId':timeMissionId,
+                        'date':timeMissionDate,
+                        'hours':hours,
+                        'minutes':minutes,
+                        'message':timeMissionMessage,
+                        'tid':tid,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            $('#replaceTimeMission').html(result);
                         },
                         error: function (e) {
-                            console.log(e);
                         }
+                    });
+                });
+
+
+
+
+                function EditTimeData(tid){
+                    console.log(tid);
+                    $.ajax({
+                        type:'GET',
+                        url: '/Story/EditTimesheet',
+                        data:{
+                            tid:tid,
+                        },
+                        success: function (data) {
+                            $('#etimeMissionId').val(data.missionId);
+                            var inputDate = new Date(data.dateVolunteered);
+                            date = inputDate.getDate();
+                            month = inputDate.getMonth() + 1;
+                            year = inputDate.getFullYear();
+                            date = date.toString().padStart(2, '0');
+                            month = month.toString().padStart(2, '0');
+                            dateformat = year+'-'+month+'-'+date;
+                            console.log(dateformat);
+                            $('#etimeMissionDate').val(dateformat);
+                            var time = (data.time).split(':');
+                            var hours = time[0];
+                            var minutes = time[1];
+                            $('#ehours').val(hours);
+                            $('#eminutes').val(minutes);
+                            $('#etimeMissionMessage').val(data.notes);
+                            $('#timesheetid').val(data.timesheetId);
+                            console.log(tid);
+                        },
+                        error: function (e) {
+                            }
                     })
-                });
-            });
+                }
+
+     
 
 
-        //    let formData = new FormData();
-        //        formData.append("hours", $("#ehours").val())
-        //        formData.append("minutes", $("#eminutes").val())
-        //        formData.append("message",$("#emessage").val())
-        //        formData.append("tid", $("#timesheetId").val())
-        //        //console.log(tid);
+                $('#updateTimeDetails').click(function(){
+                    var tid = $('#timesheetid').val();
+                    console.log(tid);
+                    var timeMissionId = $('#etimeMissionId').val();
+                    var timeMissionDate = $('#etimeMissionDate').val();
+                    var hours = $('#ehours').val();
+                    var minutes = $('#eminutes').val();
+                    var timeMissionMessage = $('#etimeMissionMessage').val();
+                    console.log(timeMissionId);
+                    console.log(timeMissionDate);
+                    console.log(hours);
+                    console.log(minutes);
+                    console.log(timeMissionMessage);
 
-        //$.ajax({
-
-        //        url: "/Story/AddTimeMission",
-        //        type: "POST",
-        //        data: formData,
-        //        contentType: false,
-        //        processData: false,
-        //        success: function (result) {
-        //        console.log(result);
-        //        if (result.isSuccess) {
-        //        //getAdminRecords(tabIndex);
-        //        $('#etimeMissionId').val(data.missionId);
-        //        toastr.success("Saved Successfully");
-        //        }
-        //        else {
-        //        $("#timeform").html(result);
-        //        CKEDITOR.replace("");
-        //     }
-        //   }
-        //});
-
-
-
-
-            function EditTimeData(tid){
-                console.log(tid);
-                $.ajax({
-                    type:'GET',
-                    url: '/Story/EditTimesheet',
-                    data:{
-                        tid:tid,
-                    },
-                    success: function (data) {
-                        $('#etimeMissionId').val(data.missionId);
-                        var inputDate = new Date(data.dateVolunteered);
-                        date = inputDate.getDate();
-                        month = inputDate.getMonth() + 1;
-                        year = inputDate.getFullYear();
-                        date = date.toString().padStart(2, '0');
-                        month = month.toString().padStart(2, '0');
-                        dateformat = year+'-'+month+'-'+date;
-                        console.log(dateformat);
-                        $('#etimeMissionDate').val(dateformat);
-                        var time = (data.time).split(':');
-                        var hours = time[0];
-                        var minutes = time[1];
-                        $('#ehours').val(hours);
-                        $('#eminutes').val(minutes);
-                        $('#etimeMissionMessage').val(data.notes);
-                        $('#timesheetid').val(data.timesheetId);
-                        console.log(tid);
-                    },
-                    error: function (e) {
+                    $.ajax({
+                        type:'POST',
+                        url: '/Story/AddTimeMission',
+                        data:{
+                        'MissionId':timeMissionId,
+                        'date':timeMissionDate,
+                        'hours':hours,
+                        'minutes':minutes,
+                        'message':timeMissionMessage,
+                        'tid':tid,
+                        },
+                        success: function (result) {
+                            console.log(result);
+                            $('#replaceTimeMission').html(result);
+                        },
+                        error: function (e) {
                         }
-                })
-            }
-
-
-
-            $('#updateTimeDetails').click(function(){
-                var tid = $('#timesheetid').val();
-                console.log(tid);
-                var timeMissionId = $('#etimeMissionId').val();
-                var timeMissionDate = $('#etimeMissionDate').val();
-                var hours = $('#ehours').val();
-                var minutes = $('#eminutes').val();
-                var timeMissionMessage = $('#etimeMissionMessage').val();
-                console.log(timeMissionId);
-                console.log(timeMissionDate);
-                console.log(hours);
-                console.log(minutes);
-                console.log(timeMissionMessage);
-
-                $.ajax({
-                    type:'POST',
-                    url: '/Story/AddTimeMission',
-                    data:{
-                    'MissionId':timeMissionId,
-                    'date':timeMissionDate,
-                    'hours':hours,
-                    'minutes':minutes,
-                    'message':timeMissionMessage,
-                    'tid':tid,
-                    },
-                    success: function (result) {
-                        console.log(result);
-                        $('#replaceTimeMission').html(result);
-                    },
-                    error: function (e) {
-                    }
+                    });
                 });
-            });
 
 
-            
-            function deleteData(tid){
-                console.log(tid);
-                $.ajax({
-                    type:'GET',
-                    url: '/Story/DeleteTimesheet',
-                    data:{
-                        tid:tid,
-                    },
 
-                    success: function (data) {
-                        $('#etimeMissionId').val(data.missionId);
-                        var inputDate = new Date(data.dateVolunteered);
-                        date = inputDate.getDate();
-                        month = inputDate.getMonth() + 1;
-                        year = inputDate.getFullYear();
-                        date = date.toString().padStart(2, '0');
-                        month = month.toString().padStart(2, '0');
-                        dateformat = year+'-'+month+'-'+date;
-                        console.log(dateformat);
-                        $('#etimeMissionDate').val(dateformat);
-                        var time = (data.time).split(':');
-                        var hours = time[0];
-                        var minutes = time[1];
-                        $('#ehours').val(hours);
-                        $('#eminutes').val(minutes);
-                        $('#etimeMissionMessage').val(data.notes);
-                        $('#timesheetid').val(data.timesheetId);
-                        console.log(tid);
-                    },
-                    error: function (e) {
-                        }
-                })
-            }
+                function deleteData(tid){
+                    console.log(tid);
+                    $.ajax({
+                        type:'GET',
+                        url: '/Story/DeleteTimesheet',
+                        data:{
+                            tid:tid,
+                        },
+
+                        success: function (data) {
+                            $('#etimeMissionId').val(data.missionId);
+                            var inputDate = new Date(data.dateVolunteered);
+                            date = inputDate.getDate();
+                            month = inputDate.getMonth() + 1;
+                            year = inputDate.getFullYear();
+                            date = date.toString().padStart(2, '0');
+                            month = month.toString().padStart(2, '0');
+                            dateformat = year+'-'+month+'-'+date;
+                            console.log(dateformat);
+                            $('#etimeMissionDate').val(dateformat);
+                            var time = (data.time).split(':');
+                            var hours = time[0];
+                            var minutes = time[1];
+                            $('#ehours').val(hours);
+                            $('#eminutes').val(minutes);
+                            $('#etimeMissionMessage').val(data.notes);
+                            $('#timesheetid').val(data.timesheetId);
+                            console.log(tid);
+                        },
+                        error: function (e) {
+                            }
+                    })
+                }
 </script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>

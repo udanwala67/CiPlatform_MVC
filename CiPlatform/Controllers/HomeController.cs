@@ -21,6 +21,7 @@ namespace CiPlatform.Controllers
         private readonly EmailServices _emailServices;
         private readonly CiContext _ciContext;
         private readonly IUserDetailsRepository _userDetailsRepository;
+        
         public ILogger<HomeController> Logger => _logger;
 
         public HomeController(ILogger<HomeController> logger, ICiRepository ciRepository, EmailServices emailServices, IUserDetailsRepository userDetailsRepository, CiContext ciContext)
@@ -46,23 +47,66 @@ namespace CiPlatform.Controllers
             return View();
         }
 
+        /* [HttpPost]
+
+         public IActionResult Login(User user)
+         {
+             var cuser = _CiRepository.GetUserEmail(user.Email);
+
+             if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
+             {
+                 HttpContext.Session.SetString("Email", cuser.Email);
+                 return RedirectToAction("platformlandingpage", "MissionCard");
+             }
+             else
+             {
+                 ModelState.AddModelError("Password", "Invalid email or password.");
+                 return View();
+             }
+         }*/
+
         [HttpPost]
 
-        public IActionResult Login(User user)
+        public IActionResult Login(User user, LoginView loginView)
         {
-            var cuser = _CiRepository.GetUserEmail(user.Email);
-
-            if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
+            var data = _ciContext.Users.Where(u => u.Email == loginView.Email).FirstOrDefault();
+            if (data != null)
             {
-                HttpContext.Session.SetString("Email", cuser.Email);
-                return RedirectToAction("platformlandingpage","MissionCard");
+                bool isValid = (data.Email == loginView.Email && data.Password == loginView.Password);
+                if (data.Role == "User")
+                {
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
+                    if (data.Avatar != null)
+                    {
+                        claims.Add(new Claim("Avatar", data.Avatar));
+                    }
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                    HttpContext.Session.SetString("Email", loginView.Email);
+                    HttpContext.Session.SetString("uid", (data.UserId.ToString()));
+                    TempData["success"] = "Login Successfull";
+                    return RedirectToAction("platformlandingpage", "MissionCard");
+                }
             }
-
             else
             {
-                ModelState.AddModelError("Password", "Invalid email or password.");
-                return View();
+                var claims = new List<Claim>();
+                claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
+                if (data.Role != null)
+                {
+                    claims.Add(new Claim("Avatar", data.Avatar));
+                }
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                HttpContext.Session.SetString("Email", user.Email);
+                TempData["success"] = "Login Successfull";
+                return RedirectToAction("platformlandingpage", "MissionCard");
             }
+            TempData["error"] = "Invalid email or password.";
+            return RedirectToAction("Login", "Home");
         }
 
 
@@ -117,6 +161,7 @@ namespace CiPlatform.Controllers
             {
 
                 _CiRepository.RegisterUser(user);
+                /*_ciContext.Users.Add(user);*/
                 return RedirectToAction("login","Home");
             }
             else
@@ -139,7 +184,7 @@ namespace CiPlatform.Controllers
         [HttpPost]
         public IActionResult resetpassword(ResetPasswordView resetView, IFormCollection form)
         {
-            /*string token = HttpContext.Session.GetString("token_session");*/
+            string token = HttpContext.Session.GetString("token_session");
             string email = resetView.Email;
             var passreset = new PasswordReset();
             var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();
@@ -238,7 +283,7 @@ namespace CiPlatform.Controllers
             _ciContext.Users.Update(userp);
             _ciContext.SaveChanges();
 
-           /* var identity = User.Identity as ClaimsIdentity;
+            var identity = User.Identity as ClaimsIdentity;
             if (identity != null)
             {
                 var existingClaim = identity.FindFirst("Avatar");
@@ -254,7 +299,7 @@ namespace CiPlatform.Controllers
                     IsPersistent = true,
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authenticationProperties);
-            }*/
+            }
             return RedirectToAction("UserEdit","Home");
         }
 
@@ -287,8 +332,7 @@ namespace CiPlatform.Controllers
                 string email = HttpContext.Session.GetString("Email");
                 var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
                 _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
-
-                return RedirectToAction("login", "home");
+                return RedirectToAction("Login", "Home");
             
            
             

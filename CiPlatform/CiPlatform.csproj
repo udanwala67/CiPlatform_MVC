@@ -32,6 +32,10 @@
     <None Include="wwwroot\UploadedFiles\Screenshot %2812%29.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Avatars\" />
+  </ItemGroup>
+
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="tasklist /fi &quot;imagename eq iisexpress.exe&quot; |find &quot;:&quot; &gt; nul&#xD;&#xA;if errorlevel 1 taskkill /f /im &quot;iisexpress.exe&quot;&#xD;&#xA;" />
   </Target>

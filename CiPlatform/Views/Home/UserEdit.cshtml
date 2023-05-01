@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="~/css/UserEdit.css" type="text/css">
@@ -19,64 +19,46 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-light header mb-4" aria-label="Eighth navbar example">
-            <div class="container">
+        <div class="container">
 
-                <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    <img src="~/Images/list.png">
-                </button>
+            <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                <img src="~/Images/list.png">
+            </button>
 
-                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
-                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+            <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                 id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
 
-                    <div class="offcanvas-header">
-                        <h2>CI-PLATFORM</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="@Model.Avatar" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                @{
-                                    var firstname = Context.Session.GetString("Firstname");
-                                }
-                                @ViewBag.firstname
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                               aria-expanded="false">Policy</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </div>
+                <div class="offcanvas-header">
+                    <h2>CI-PLATFORM</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
 
-                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
-                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                    <div class="dropdown text-end user-profile ">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            @if (User.FindFirst("Avatar") != null)
+                            {
+                                <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                            }
+
+                            @ViewBag.FirstName
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                            <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                        </ul>
+                    </div>
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                        <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                            aria-expanded="false">Policy</a>
@@ -86,30 +68,50 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
-                </ul>
-                 @foreach (var p in Model.user)
-                {
-                    if (p.UserId == ViewBag.uid)
-                    {
-                        <div class="dropdown text-end user-profile ">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                                <img src="@Model.Avatar" alt="mdo" width="40" height="40" class="rounded-circle">
-
-                                @p.FirstName
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>                               
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                            </ul>
-                        </div>
-                    }
-                }
+                </div>
             </div>
+
+            <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+            <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                       aria-expanded="false">Policy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @foreach (var p in Model.user)
+            {
+                if (p.UserId == ViewBag.uid)
+                {
+                    <div class="dropdown text-end user-profile ">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                            @if (User.FindFirst("Avatar") != null)
+                            {
+                                <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                            }
+
+                            @p.FirstName
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                            <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
     </nav>
     <div class="container-fluid stickyheader">
         <form method="post" asp-action="ChangeAvatar" asp-controller="Home" enctype="multipart/form-data">
@@ -120,10 +122,10 @@
 
                         @if (Model.Avatar != null)
                         {
-                           @* var profileImagePath = "~" + @Model.Avatar;
-                            <div style="background-image: url(@profileImagePath);">*@
+                            @* var profileImagePath = "~" + @Model.Avatar;
+                                <div style="background-image: url(@profileImagePath);">*@
 
-                           
+
                             <img src="@Model.Avatar" id="AvatarImage" class="rounded-circle" width="100" height="100" onclick="changeAvatar()" alt="dsjgfjdgdfh" />
                         }
                         else
@@ -132,7 +134,7 @@
                         }
 
                         <p class="my-2">@ViewBag.Name</p>
-                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword" >Change Password</a>
+                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword">Change Password</a>
                         <div class="modal fade" id="modalChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -142,17 +144,17 @@
                                     </div>
                                     <div class="modal-body">
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="oldpass"  placeholder="Enter Old Password">
+                                            <input type="password" class="form-control" id="oldpass" placeholder="Enter Old Password">
                                             @*<span asp-validation-for ="password" class = "text-danger"></span>*@
                                         </div>
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="newpass"  placeholder="Enter New Password" required/>
+                                            <input type="password" class="form-control" id="newpass" placeholder="Enter New Password" required />
                                             @*<span asp-validation-for ="password" class = "text-danger"></span>*@
                                         </div>
                                         <div class="valid-feedback">Good</div>
                                         <div class="invalid-feedback">Wrong</div>
                                         <div class="my-2 px-3">
-                                            <input type="password" class="form-control" id="cnewpass"  placeholder="Enter Confirm Password" required/>
+                                            <input type="password" class="form-control" id="cnewpass" placeholder="Enter Confirm Password" required />
                                             @*<span asp-validation-for ="ConfirmPassword" class = "text-danger"></span>*@
                                         </div>
                                     </div>
@@ -194,11 +196,11 @@
                         </div>
                         <div class="my-2 col-lg-12 px-3">
                             <label class="form-label mb-0">My Profile*</label>
-                      <textarea class="form-control" rows="4" placeholder="Enter your comments.." id="profiletext"></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Enter your comments.." id="profiletext"></textarea>
                         </div>
                         <div class="my-2 col-lg-12 px-3">
                             <label class="form-label mb-0">Why I Volunteer?*</label>
-                      <textarea class="form-control" rows="4" placeholder="Enter your comments.." id="volunteertext"></textarea>
+                            <textarea class="form-control" rows="4" placeholder="Enter your comments.." id="volunteertext"></textarea>
                         </div>
                     </div>
                     <div class="border-bottom my-2 mt-5"><h3 class="border-bottom mb-0">Address Information</h3></div>
@@ -328,227 +330,227 @@
     @*<partial name="_footer" />*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script>
-        $(document).ready(function () {
-        console.log("User Details");
-        $.ajax({
-        url: "/Home/GetUserProfile",
-        type: 'GET',
-        data:{},
-        success: function (data) {
-        console.log(data);
-        $('#fname').val(data.fname);
-        $('#lname').val(data.lname);
-        $('#employeeid').val(data.employeeid);
-        $('#title').val(data.title);
-        $('#department').val(data.department);
-        $('#profiletext').val(data.profiletext);
-        $('#volunteertext').val(data.volunteertext);
-        $('#city').val(data.cityId);
-        $('#country').val(data.countryId);
-        $('#linkedinUrl').val(data.linkedinUrl);
-        },
-        error: function (e) {
-        console.log(e);
-        }
-        });
-        });
+                $(document).ready(function () {
+                console.log("User Details");
+                $.ajax({
+                url: "/Home/GetUserProfile",
+                type: 'GET',
+                data:{},
+                success: function (data) {
+                console.log(data);
+                $('#fname').val(data.fname);
+                $('#lname').val(data.lname);
+                $('#employeeid').val(data.employeeid);
+                $('#title').val(data.title);
+                $('#department').val(data.department);
+                $('#profiletext').val(data.profiletext);
+                $('#volunteertext').val(data.volunteertext);
+                $('#city').val(data.cityId);
+                $('#country').val(data.countryId);
+                $('#linkedinUrl').val(data.linkedinUrl);
+                },
+                error: function (e) {
+                console.log(e);
+                }
+                });
+                });
 
-        $(function(){
-    $('#modalbtnchangepass').click(function(){
-        var oldpass = $('#oldpass').val();
-        var newpass = $('#newpass').val();
-        var cnewpass = $('#cnewpass').val();
+                $(function(){
+            $('#modalbtnchangepass').click(function(){
+                var oldpass = $('#oldpass').val();
+                var newpass = $('#newpass').val();
+                var cnewpass = $('#cnewpass').val();
 
-        // check if new password and confirm new password match
-        if (newpass !== cnewpass) {
-            alert("New password and confirm new password must match.");
-            return;
-        }
+                // check if new password and confirm new password match
+                if (newpass !== cnewpass) {
+                    alert("New password and confirm new password must match.");
+                    return;
+                }
 
-        // validate new password format
-        if (!isValidPassword(newpass)) {
-            alert("New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
-            return;
-        }
+                // validate new password format
+                if (!isValidPassword(newpass)) {
+                    alert("New password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
+                    return;
+                }
 
-        console.log(oldpass);
-        console.log(newpass);
-        console.log(cnewpass);
+                console.log(oldpass);
+                console.log(newpass);
+                console.log(cnewpass);
 
-        $.ajax({
-            type:'POST',
-            url:'/Home/ChangePass',
-            data:{
-                oldpass:oldpass,
-                newpass:newpass,
-                cnewpass:cnewpass
-            },
-            success: function(result){
-                alert("Password Changed.");
-            },
-            error: function (xhr,status,error){
-                console.log(error);
+                $.ajax({
+                    type:'POST',
+                    url:'/Home/ChangePass',
+                    data:{
+                        oldpass:oldpass,
+                        newpass:newpass,
+                        cnewpass:cnewpass
+                    },
+                    success: function(result){
+                        alert("Password Changed.");
+                    },
+                    error: function (xhr,status,error){
+                        console.log(error);
+                    }
+                });
+            });
+
+             //function to validate password format
+                function isValidPassword(password) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+                return regex.test(password);
             }
         });
-    });
 
-     //function to validate password format
-        function isValidPassword(password) {
-        var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
-        return regex.test(password);
-    }
-});
+                $(function(){
+                $('#postprofile').click(function(){
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var employeeid = $('#employeeid').val();
+                var title = $('#title').val();
+                var department = $('#department').val();
+                var profiletext = $('#profiletext').val();
+                var volunteertext = $('#volunteertext').val();
+                var country = $('#country').val();
+                var city = $('#city').val();
+                var linkedinUrl = $('#linkedinUrl').val();
+                var hiddentext = $('#hiddenskill').val();
+                console.log(hiddentext);
+                $.ajax({
+                type:'POST',
+                url:'/Home/UserEdit',
+                data:{
+                fname:fname,
+                lname:lname,
+                employeeid:employeeid,
+                title:title,
+                department:department,
+                profiletext:profiletext,
+                volunteertext:volunteertext,
+                country:country,
+                linkedinUrl:linkedinUrl,
+                hiddentext:hiddentext,
+                city:city,
+                },
+                success: function(result){
+                alert("Profile Updated.");
+                },
+                error: function (xhr,status,error){
+                console.log(error);
+                }
+                })
+                })
+                })
 
-        $(function(){
-        $('#postprofile').click(function(){
-        var fname = $('#fname').val();
-        var lname = $('#lname').val();
-        var employeeid = $('#employeeid').val();
-        var title = $('#title').val();
-        var department = $('#department').val();
-        var profiletext = $('#profiletext').val();
-        var volunteertext = $('#volunteertext').val();
-        var country = $('#country').val();
-        var city = $('#city').val();
-        var linkedinUrl = $('#linkedinUrl').val();
-        var hiddentext = $('#hiddenskill').val();
-        console.log(hiddentext);
-        $.ajax({
-        type:'POST',
-        url:'/Home/UserEdit',
-        data:{
-        fname:fname,
-        lname:lname,
-        employeeid:employeeid,
-        title:title,
-        department:department,
-        profiletext:profiletext,
-        volunteertext:volunteertext,
-        country:country,
-        linkedinUrl:linkedinUrl,
-        hiddentext:hiddentext,
-        city:city,
-        },
-        success: function(result){
-        alert("Profile Updated.");
-        },
-        error: function (xhr,status,error){
-        console.log(error);
-        }
-        })
-        })
-        })
+                $(function () {
+                $("body").on("click", ".list-group .list-group-item", function () {
+                $(this).toggleClass("active")
+                })
+                $(".list-arrows button").click(function () {
+                var $button = $(this),
+                actives = ""
+                if ($button.hasClass("move-left")) {
+                actives = $(".list-right ul li.active")
+                actives.clone().appendTo(".list-left ul")
+                actives.remove()
+                } else if ($button.hasClass("move-right")) {
+                actives = $(".list-left ul li.active")
+                actives.clone().appendTo(".list-right ul")
+                actives.remove()
+                }
+                })
+                $(".dual-list .selector").click(function () {
+                var $checkBox = $(this)
+                if (!$checkBox.hasClass("selected")) {
+                $checkBox
+                .addClass("selected")
+                .find("ul li:not(.active)")
+                .addClass("active")
+                $checkBox
+                .children("i")
+                } else {
+                $checkBox
+                .removeClass("selected")
+                .find("ul li.active")
+                .removeClass("active")
+                $checkBox
+                .children("i")
+                }
+                })
 
-        $(function () {
-        $("body").on("click", ".list-group .list-group-item", function () {
-        $(this).toggleClass("active")
-        })
-        $(".list-arrows button").click(function () {
-        var $button = $(this),
-        actives = ""
-        if ($button.hasClass("move-left")) {
-        actives = $(".list-right ul li.active")
-        actives.clone().appendTo(".list-left ul")
-        actives.remove()
-        } else if ($button.hasClass("move-right")) {
-        actives = $(".list-left ul li.active")
-        actives.clone().appendTo(".list-right ul")
-        actives.remove()
-        }
-        })
-        $(".dual-list .selector").click(function () {
-        var $checkBox = $(this)
-        if (!$checkBox.hasClass("selected")) {
-        $checkBox
-        .addClass("selected")
-        .find("ul li:not(.active)")
-        .addClass("active")
-        $checkBox
-        .children("i")
-        } else {
-        $checkBox
-        .removeClass("selected")
-        .find("ul li.active")
-        .removeClass("active")
-        $checkBox
-        .children("i")
-        }
-        })
-
-        $('#btnmodalskill').click(function(){
-        $('.skillshowdiv ul').empty();
-        console.log("hello");
-        var selectedskill = ""
-        selectedskill = $(".list-right ul li")
-        var a = [];
-        selectedskill.clone().appendTo(".skillshowdiv ul")
-        console.log(selectedskill);
-        for(i=0; i<selectedskill.length;i++)
-        {
-        console.log(selectedskill[i].id);
-        a+= selectedskill[i].id + ",";
-        }
-        $('#hiddenskill').val(a);
-        console.log(a);
-        })
-        })
+                $('#btnmodalskill').click(function(){
+                $('.skillshowdiv ul').empty();
+                console.log("hello");
+                var selectedskill = ""
+                selectedskill = $(".list-right ul li")
+                var a = [];
+                selectedskill.clone().appendTo(".skillshowdiv ul")
+                console.log(selectedskill);
+                for(i=0; i<selectedskill.length;i++)
+                {
+                console.log(selectedskill[i].id);
+                a+= selectedskill[i].id + ",";
+                }
+                $('#hiddenskill').val(a);
+                console.log(a);
+                })
+                })
 
 
-//    function changeAvatar() {
-//    // Create a new FormData object and append the selected file to it
-//    var formData = new FormData();
-//    formData.append("ImgAvatar", $("#ImgAvatar")[0].files[0]);
+        //    function changeAvatar() {
+        //    // Create a new FormData object and append the selected file to it
+        //    var formData = new FormData();
+        //    formData.append("ImgAvatar", $("#ImgAvatar")[0].files[0]);
 
-//    // Send the AJAX request to the server
-//    $.ajax({
-//        url: '@Url.Action("ChangeAvtar", "Home")',
-//        type: 'POST',
-//        data: formData,
-//        processData: false,
-//        contentType: false,
-//        success: function (result) {
-//            // If the server returns a success message, update the avatar image
-//            if (result.success) {
-//                $("#avatarImage").attr("src", result.imageUrl);
-//            }
-//            else {
-//                alert("Error uploading image");
-//            }
-//        },
-//        error: function () {
-//            alert("Error uploading image");
-//        }
-//    });
-//}
+        //    // Send the AJAX request to the server
+        //    $.ajax({
+        //        url: '@Url.Action("ChangeAvtar", "Home")',
+        //        type: 'POST',
+        //        data: formData,
+        //        processData: false,
+        //        contentType: false,
+        //        success: function (result) {
+        //            // If the server returns a success message, update the avatar image
+        //            if (result.success) {
+        //                $("#avatarImage").attr("src", result.imageUrl);
+        //            }
+        //            else {
+        //                alert("Error uploading image");
+        //            }
+        //        },
+        //        error: function () {
+        //            alert("Error uploading image");
+        //        }
+        //    });
+        //}
 
-     function changeAvatar(){
-        $('#AvatarImage').click();
-        }
+             function changeAvatar(){
+                $('#AvatarImage').click();
+                }
 
-        $('#country').on('change', function () {
-        var selectedcountry = $(this).val();
-        console.log(selectedcountry);
-        $.ajax({
-        url: "/Home/getCities",
-        data: { country: selectedcountry },
-        type: 'GET',
-        dataType: 'json',
-        success: function (result) {
-        console.log(result);
-        $('#city').empty();
-        $('#city').append('<option value="" selected disable>Select City</option>');
+                $('#country').on('change', function () {
+                var selectedcountry = $(this).val();
+                console.log(selectedcountry);
+                $.ajax({
+                url: "/Home/getCities",
+                data: { country: selectedcountry },
+                type: 'GET',
+                dataType: 'json',
+                success: function (result) {
+                console.log(result);
+                $('#city').empty();
+                $('#city').append('<option value="" selected disable>Select City</option>');
 
-        for(i=0;i<result.length;i++)
-        {
-        console.log(result[i].name);
-        $('#city').append('<option value="'+result[i].cityId+'">'+result[i].name+'</option>');
-        }
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-        console.log(xhr.responseText);
-        }
-        });
-        });
+                for(i=0;i<result.length;i++)
+                {
+                console.log(result[i].name);
+                $('#city').append('<option value="'+result[i].cityId+'">'+result[i].name+'</option>');
+                }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.responseText);
+                }
+                });
+                });
     </script>
 
 </body>

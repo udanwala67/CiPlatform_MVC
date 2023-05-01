@@ -18,7 +18,7 @@ namespace CiPlatform.Entitites.Models
         public string? Description { get; set; }
         public string Status { get; set; } = null!;
         public DateTime? PublishedAt { get; set; }
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public long? StoryViews { get; set; }

@@ -32,6 +32,7 @@ namespace CiPlatform.Repository.Repository
                 PhoneNumber = user.PhoneNumber,
                 Email = user.Email,
                 Password = user.Password,
+                Role = "User",
                 CityId = 1,
                 CountryId = 1,
                 CreatedAt = DateTime.Now,

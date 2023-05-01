@@ -57,15 +57,18 @@
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @if  (User.FindFirst("Avatar") != null)
+                                {
+                                        <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                }
                                 @{
                                     var firstname = Context.Session.GetString("Firstname");
                                 }
                                 @ViewBag.firstname
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -113,23 +116,26 @@
                     if (p.UserId == ViewBag.uid)
                     {
 
-                        <div class="dropdown text-end user-profile ">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                                <div class="dropdown text-end user-profile ">
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                        @if (User.FindFirst("Avatar") != null)
+                                {
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                }
 
                                 @p.FirstName
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                            </ul>
-                        </div>
+                                    </a>
+                                    <ul class="dropdown-menu text-small">
+                                        <li><a class="dropdown-item" href="#">New project...</a></li>
+                                        <li><a class="dropdown-item" href="#">Settings</a></li>
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                    </ul>
+                                </div>
                     }
                 }
             </div>
@@ -226,123 +232,123 @@
                             {
                                 @if (i.UserId == i.User.UserId)
                                 {
-                                 
-                                <div class="d-flex justify-content-between">
-                                        <div>
-                                            <div class="recentvol">
-                                                <img src="~/images/volunteer1.png" alt="">
-                                                <p>@i.User.FirstName @i.User.LastName</p>
+
+                          <div class="d-flex justify-content-between">
+                                                <div>
+                                                    <div class="recentvol">
+                                                        <img src="~/images/volunteer1.png" alt="">
+                                                        <p>@i.User.FirstName @i.User.LastName</p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex align-items-end">
+                                                    <p class="rounded-pill border px-3">@i.StoryViews Views</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="d-flex align-items-end">
-                                            <p class="rounded-pill border px-3">@i.StoryViews Views</p>
-                                        </div>
-                                    </div>
-                                    <div class="px-4 border-top border-bottom my-3">
-                                        <div class="row mx-0 py-3">
-                                            <div>@i.User.WhyIVolunteer</div>
-                                            <div>@Html.Raw(@i.Description)</div>
-                                        </div>
-                                    </div>
+                                            <div class="px-4 border-top border-bottom my-3">
+                                                <div class="row mx-0 py-3">
+                                                    <div>@i.User.WhyIVolunteer</div>
+                                                    <div>@Html.Raw(@i.Description)</div>
+                                                </div>
+                                            </div>
                                 }
 
 
-                                
-
-                                <div class="d-flex mt-3 justify-content-evenly">
-                                    <div>
-                                        <button type="button" class="btn btn-rounded btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:100%; ">
-                                            <img src="/Images/add1.png" alt=""> Recommend to a
-                                            Co-Worker
-                                        </button>
-
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-
-                                                        <style>
-                                                            table, th, td {
-                                                                border: 1px solid black;
-                                                            }
-                                                        </style>
 
 
+                               <div class="d-flex mt-3 justify-content-evenly">
+                                        <div>
+                                            <button type="button" class="btn btn-rounded btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:100%; ">
+                                                <img src="/Images/add1.png" alt=""> Recommend to a
+                                                Co-Worker
+                                            </button>
 
-                                                        <table style="width:100%">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>User Name</th>
-                                                                    <th>  Email</th>
-                                                                    <th>link of email</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>sahil</td>
-                                                                    <td>sahiludanwala6787@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahiludanwala6787@gmail.com">Send Link</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>sahil</td>
-                                                                    <td>sahilu@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahilu@gmail.com">Send Link</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>nevil</td>
-                                                                    <td>npsmtp217@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=npsmtp217@gmail.com">Send Link</a></td>
-                                                                </tr>
+                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
+                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <style>
+                                                                table, th, td {
+                                                                    border: 1px solid black;
+                                                                }
+                                                            </style>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                                                            <table style="width:100%">
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <th>User Name</th>
+                                                                        <th>  Email</th>
+                                                                        <th>link of email</th>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>sahil</td>
+                                                                        <td>sahiludanwala6787@gmail.com</td>
+                                                                        <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahiludanwala6787@gmail.com">Send Link</a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>sahil</td>
+                                                                        <td>sahilu@gmail.com</td>
+                                                                        <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahilu@gmail.com">Send Link</a></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>nevil</td>
+                                                                        <td>npsmtp217@gmail.com</td>
+                                                                        <td><a href="/MissionCard/coworker?missionId=1&amp;email=npsmtp217@gmail.com">Send Link</a></td>
+                                                                    </tr>
+
+
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
 
-                                    <div class="col-lg-6 d-flex justify-content-center">
-                                        <a asp-controller="MissionCard" asp-action="VolunteeringMission" asp-route-mid="@i.MissionId"
+                                        <div class="col-lg-6 d-flex justify-content-center">
+                                            <a asp-controller="MissionCard" asp-action="VolunteeringMission" asp-route-mid="@i.MissionId"
                                        class="my-2">
-                                            <button type="button" class="btnApply">
-                                                Open Mission
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                                <button type="button" class="btnApply">
+                                                    Open Mission
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                                  class="bi bi-arrow-right ms-3" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
+                                                        <path fill-rule="evenodd"
                                                       d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                                                </svg>
-                                            </button>
-                                        </a>
+                                                    </svg>
+                                                </button>
+                                            </a>
+                                        </div>
+
                                     </div>
 
-                                </div>
+                                    <div class="border-bottom mt-5"></div>
 
-                                <div class="border-bottom mt-5"></div>
-
-                }
+                                        }
                         </div>
                         <div class="col-xl-12 mb-5">
                             @foreach (var i in Model.stories)
                             {
                                 @if (i.MissionId == i.Mission.MissionId)
                                 {
-                                    <div class="nav-tabs border p-3">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab"
+                                            <div class="nav-tabs border p-3">
+                                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab"
                                         aria-controls="home" aria-selected="true">
                                             @i.Mission.Title
-                                        </button>
-                                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
+                                                </button>
+                                                <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
                                             @i.Mission.Description
-                                        </div>
-                                    </div>
+                                                </div>
+                                            </div>
                                 }
                             }
                         </div>

@@ -41,7 +41,10 @@
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @if (User.FindFirst("Avatar") != null)
+                                {
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                }
                                 @{
                                     var firstname = Context.Session.GetString("Firstname");
                                 }
@@ -90,29 +93,32 @@
                         </ul>
                     </li>
                 </ul>
-                   @foreach (var p in Model.user)
-                    {
+                @foreach (var p in Model.user)
+                {
                     if (p.UserId == ViewBag.uid)
                     {
 
-                    <div class="dropdown text-end user-profile ">
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                        <div class="dropdown text-end user-profile ">
+                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                       aria-expanded="false">
+                                @if (User.FindFirst("Avatar") != null)
+                                {
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                }
 
-                    @p.FirstName
-                    </a>
-                    <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                    <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                    </ul>
-                    </div>
+                                @p.FirstName
+                            </a>
+                            <ul class="dropdown-menu text-small">
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            </ul>
+                        </div>
                     }
-                    }
+                }
             </div>
         </nav>
 
@@ -138,7 +144,7 @@
                                         <div class="my-2 px-2">
                                             <label class="form-label mb-0">Mission</label>
                                             <select class="form-select" id="timeMissionId">
-                                               
+
                                                 <option selected disabled>Select Mission</option>
                                                 @foreach (var item in Model.missionApplications)
                                                 {
@@ -170,7 +176,8 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="button" class="modaladdskills" id="addTimeDetails" data-bs-dismiss="modal">Submit</button>                                        
+
+                                        <button type="button" class="modaladdskills" id="addTimeDetails" data-bs-dismiss="modal">Submit</button>
                                     </div>
                                 </div>
                             </div>

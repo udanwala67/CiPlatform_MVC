@@ -44,15 +44,18 @@
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                @if (User.FindFirst("Avatar") != null)
+                                {
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                }
                                 @{
                                     var firstname = Context.Session.GetString("Firstname");
                                 }
                                 @ViewBag.firstname
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
@@ -100,14 +103,17 @@
 
                         <div class="dropdown text-end user-profile ">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
+                                aria-expanded="false">
+                                 @if(User.FindFirst("Avatar") != null)
+                                {
+                                     <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />  
+                                }
 
                                 @p.FirstName
                             </a>
                             <ul class="dropdown-menu text-small">
-                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                 <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
+                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -142,7 +148,8 @@
             <p class="textstory">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             <div>
                 <a asp-controller="Story" asp-action="sharestory">
-                    <button class="btnstory">Share Your Story
+                    <button class="btnstory">
+                        Share Your Story
                         <img src="~/images/right-arrow2.png" class="ms-3" />
                     </button>
                 </a>
@@ -152,15 +159,16 @@
             <div class="row d-flex justify-content-around">
                 @foreach (var item in Model.stories)
                 {
-                    <div class="cardpdiv col-lg-4 col-md-6"  id= "myItems">  
+                    <div class="cardpdiv col-lg-4 col-md-6" id="myItems">
                         <div class="card card_hover">
                             <div class="parent storycard_container">
                                 <img src="~/images/Grow-Trees-On-the-path-to-environment-sustainability-3.png" alt="" class="imgcardstory" />
-                                <a asp-controller ="Story" asp-action ="Story_Details">
-                                <button type="button" class="btncardstory">View Details
-                                    <img src="~/images/right-arrow2.png" class="ms-3" />
-                                 </button>
-                                 </a>
+                                <a asp-controller="Story" asp-action="Story_Details">
+                                    <button type="button" class="btncardstory">
+                                        View Details
+                                        <img src="~/images/right-arrow2.png" class="ms-3" />
+                                    </button>
+                                </a>
                                 <div class="storyimg_text">
                                     Customer Experience
                                 </div>

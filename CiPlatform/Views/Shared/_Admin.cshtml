@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
@@ -17,103 +18,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <form method="post">
-        <nav class="navbar navbar-expand-md navbar-light header mb-4" aria-label="Eighth navbar example">
-            <div class="container">
 
-                <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    <img src="~/Images/list.png">
-                </button>
-
-                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
-                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-                    <div class="offcanvas-header">
-                        <h2>CI-PLATFORM</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="~/Images/user-img.png" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                @{
-                                    var firstname = Context.Session.GetString("Firstname");
-                                }
-                                @ViewBag.firstname
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                               aria-expanded="false">Policy</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-
-                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
-                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                           aria-expanded="false">Policy</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                @*    @foreach (var p in Model.user)
-                    {
-                    if (p.UserId == ViewBag.uid)
-                    {
-                    <div class="dropdown text-end user-profile ">
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                    <img src="~/Images/user-img.png" alt="mdo" width="40" height="40" class="rounded-circle">
-
-                    @p.FirstName
-                    </a>
-                    <ul class="dropdown-menu text-small">
-                    <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                    <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
-                    <li>
-                    <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
-                    </ul>
-                    </div>
-                    }
-                    }*@
-            </div>
-        </nav>
 
 
 
@@ -121,15 +32,100 @@
         <h4 class="mt-2 ms-3 border-bottom">User</h4>
         <div style="margin-top: 2%;" class=" ms-2 d-flex justify-content-between">
             <div class="col-6 position-relative" role="search">
-                <img src="~/images/search.png" alt="search-icon" style="margin-top:10px;" class="position-absolute ps-1">
-                <input class="form-control me-2 ps-5 pt-3 pb-3" id="search" type="search" style="height:70%;width:80%;" placeholder="Search"
-                       aria-label="Search">
+                <img src="~/images/search.png" alt="search-icon" style="margin-top:10px;"
+                     class="position-absolute ps-1">
+                <input class="form-control me-2 ps-5 pt-3 pb-3" id="search" type="search" style="height:70%;width:80%;"
+                       placeholder="Search" aria-label="Search">
             </div>
             <div class="col-4 d-flex justify-content-end">
-                <a class="add btn">
-                    @*asp-action="addUser" asp-controller="Admin"*@
+                @*<a class="add btn">
                     + Add
-                </a>
+                    </a>*@
+
+                <button type="button" class="add btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                    + Add
+                </button>
+                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title fs-5" id="exampleModalLabel">Add User</h2>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                               
+                                <div class="d-flex my-2">
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">First Name</label>
+                                        <input type="text" class="form-control" asp-for ="user.FirstName"  placeholder="Enter Your FirstName" id="FirstName">
+                                    </div>
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">Last Name</label>
+                                        <input type="text" class="form-control" asp-for = "user.LastName" placeholder="Enter Your LastName" id="LastName">
+                                    </div>
+                                </div>
+                                <div class="d-flex my-2">
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">Email</label>
+                                        <input type="email" class="form-control" asp-for = "user.Email" placeholder="Enter Your Email Address" id="hours">
+                                    </div>
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">Password</label>
+                                        <input type="password" class="form-control" asp-for = "user.Password" placeholder="Enter Your Password Here" id="minutes">
+                                    </div>
+                                </div>
+                                <div class="d-flex my-2">
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">Employee ID</label>
+                                        <input type="text" class="form-control" asp-for = "user.EmployeeId" placeholder="Enter Your Employee Id" id="hours">
+                                    </div>
+                                    <div class="col-lg-6 px-2">
+                                        <label class="form-label mb-0">Department</label>
+                                        <input type="text" class="form-control" asp-for = "user.Department" placeholder="Enter Your Department" id="minutes">
+                                    </div>
+                                </div>
+                                <div class="my-2 px-2">
+                                    <label class="form-label mb-0">My Profile</label>
+                                    <textarea class="form-control" asp-for = "user.ProfileText" rows="4" placeholder="Enter your comments.." id="timeMissionMessage"></textarea>
+                                </div>
+                                <div class="my-2 p-2">
+                                    <label class="form-label mb-0">Country*</label>
+                                    <select class="form-select mt-2" asp-for = "user.CountryId" id="country">
+                                        <option selected>Select your country</option>
+                                        @foreach (var item in Model.country)
+                                        {
+                                            <option value="@item.CountryId">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="my-2 p-2">
+                                    <label class="form-label mb-0">City*</label>
+                                    <select class="form-select mt-2" asp-for = "user.CityId" id="city">
+                                        @foreach (var item in Model.city)
+                                        {
+                                            <option value="@item.CityId">@item.Name</option>
+                                        }
+                                    </select>
+                                </div>
+
+                                <div class="my-1 p-2">
+                                    <label class="form-label">Status*</label>
+                                    <select class="form-select" asp-for = "user.Status" id="Status">
+                                        <option selected>Select your Status</option>
+                                        <option value="1">Activated</option>
+                                        <option value="2">Deactivated</option>                                      
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
+
+                              <a> <button type="submit" class="modalsavechanges" data-bs-dismiss="modal">Save Changes</button></a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -152,7 +148,7 @@
                         if (Model != null)
 
                         {
-                            foreach (var user in Model.user)
+                            foreach (var user in Model.users)
                             {
                                 <tr>
 
@@ -173,8 +169,14 @@
                                         }
                                     </td>
                                     <td style="text-align:center;">
-                                        <a class="btn iconuser" asp-action="EditUser" asp-controller="Admin" asp-route-id="@user.UserId"><i class="bi bi-pencil-square iconForpencil me-2"></i></a>
-                                        <a class="btn iconuser" onclick="DeleteDataSwal(@user.UserId)"><i class="bi bi-trash3 iconForDelete "></i></a>
+                                        <a class="btn iconuser" asp-action="EditUser" asp-controller="Admin"
+                                          asp-route-id="@user.UserId">
+                                          <i class="bi bi-pencil-square iconForpencil me-2"></i>
+                                         </a>
+                                        <a class="btn iconuser" asp-action = "DeleteUser" asp-controller="Admin" 
+                                           asp-route-uid ="@user.UserId">
+                                           <i class="bi bi-trash3 iconForDelete"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 /*DeleteUserByAdmin(@user.UserId)*/
@@ -187,11 +189,12 @@
         </div>
     </form>
 </body>
+
 </html>
 <script>
 
-             var objectJson = JsonConvert.DeserializeObject<ReadJson>(json);
-    foreach (var item in objectJson.Items)
+    var objectJson = JsonConvert.DeserializeObject < ReadJson > (json);
+    foreach(var item in objectJson.Items)
     {
         var url = item.Url;
         var user = item.ItemXpath;
@@ -207,5 +210,3 @@
         integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 <script src="~/js/UserPageForAdmin.js"></script>
-
-

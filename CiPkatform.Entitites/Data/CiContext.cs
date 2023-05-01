@@ -995,6 +995,10 @@ namespace CiPlatform.Entitites.Data
                     .HasColumnType("text")
                     .HasColumnName("profile_text");
 
+                entity.Property(e => e.Role)
+                    .HasMaxLength(20)
+                    .IsUnicode(false);
+
                 entity.Property(e => e.Status)
                     .HasColumnName("status")
                     .HasDefaultValueSql("((1))");

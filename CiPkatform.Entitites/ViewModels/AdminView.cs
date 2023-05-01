@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,27 +10,20 @@ namespace CiPlatform.Entitites.ViewModels
 {
     public class AdminView
     {
-        public List<User> user = new List<User>();
+        public User user { get; set; }
+        public List<User> users { get; set; }
+        public List<MissionSkill> missionSkills { get; set; }
+        public List<CmsPage> cmspages { get; set; }
+        public List<Mission> missions { get; set; }   
+        public List<MissionApplication> missionApplications { get; set; }
+        public List<MissionTheme> missionThemes { get; set; }
+        public List<Country> country { get; set; }
+        public List<City> city { get; set; }
+        public List<Skill> skills { get; set; }
+        public List<Story> stories { get; set; }
+        public List<Banner> banners { get; set; }
         public long UserId { get; set; }
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string Email { get; set; } = null!;
-        public string Password { get; set; } = null!;
-        public int PhoneNumber { get; set; }
-        public string? Avatar { get; set; }
-        public string? WhyIVolunteer { get; set; }
-        public string? EmployeeId { get; set; }
-        public string? Department { get; set; }
-        public long CityId { get; set; }
-        public long CountryId { get; set; }
-        public string? ProfileText { get; set; }
-        public string? LinkedInUrl { get; set; }
-        public string? Title { get; set; }
-        public int Status { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
-        public DateTime? DeletedAt { get; set; }
-
+        public IFormFile AvatarImage { get; set; }
     }
 
 }
