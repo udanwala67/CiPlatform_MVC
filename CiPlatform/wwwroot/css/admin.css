@@ -334,7 +334,7 @@ input[type=number] {
 
 .modalsavechanges {
     width: 100%;
-    max-width: 160px;
+    /*max-width: 160px;*/
     height: 48px;
     background: #f8863400;
     border: 2px solid #f88634;

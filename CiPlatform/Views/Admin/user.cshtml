@@ -55,7 +55,8 @@
                             </a>
                         </dt>
                         <dt class="mt-4">
-                            <a href = "#" class = "sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                            <a asp-action="CmsPage" asp-controller="Admin"
+                               class = "sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-file-earmark-fill me-2 sidebar-img"></i><span class="d-none d-lg-block d-md-none sidebar-text-font">CMS Page</span>
                             </a>
                         </dt>
@@ -130,12 +131,14 @@
                                 <div class="dropdown text-end user-profile mt-2">
                                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                                aria-expanded="false">
-                                        @if (User.FindFirst("Avatar") != null)
+                                       @* @if (User.FindFirst("Avatar") != null)
                                         {
                                             <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                        }
-
-                                        @p.FirstName
+                                        }*@                                       
+                                         
+                                         <img src="~/Images/user.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+                                          
+                                       @p.FirstName
                                     </a>
                                     <ul class="dropdown-menu text-small">
                                         <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>

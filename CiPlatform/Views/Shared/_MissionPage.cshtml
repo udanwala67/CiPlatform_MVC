@@ -2,7 +2,7 @@
 
 @*const { get } = require("jquery");
 
-const { ajax } = require("jquery");
+    const { ajax } = require("jquery");
 *@
 <!DOCTYPE html>
 
@@ -33,7 +33,7 @@ const { ajax } = require("jquery");
 
 
         <!-- user page -->
-        <h4 class="mt-2 ms-3 border-bottom">User</h4>
+        <h4 class="mt-2 ms-3 border-bottom">Mission</h4>
         <div style="margin-top: 2%;" class=" ms-2 d-flex justify-content-between">
             <div class="col-6 position-relative" role="search">
                 <img src="~/images/search.png" alt="search-icon" style="margin-top:10px;"
@@ -97,20 +97,20 @@ const { ajax } = require("jquery");
                                     <label class="form-label mb-0">Country*</label>
                                     <select class="form-select mt-2" asp-for="user.CountryId" id="country">
                                         <option selected>Select your country</option>
-                                        @foreach (var item in Model.country)
+                                       @* @foreach (var item in Model.country)
                                         {
                                             <option value="@item.CountryId">@item.Name</option>
-                                        }
+                                        }*@
                                     </select>
                                 </div>
 
                                 <div class="my-2 p-2">
                                     <label class="form-label mb-0">City*</label>
                                     <select class="form-select mt-2" asp-for="user.CityId" id="city">
-                                        @foreach (var item in Model.city)
+                                      @*  @foreach (var item in Model.city)
                                         {
                                             <option value="@item.CityId">@item.Name</option>
-                                        }
+                                        }*@
                                     </select>
                                 </div>
 
@@ -139,13 +139,11 @@ const { ajax } = require("jquery");
                 <thead style="background-color:#f8f9fc;">
                     <tr>
 
-                        <th style=" padding-left: 30px;" scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Employee Id</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Status</th>
-                        <th style="text-align:center;" scope="col">Action</th>
+                        <th style=" padding-left: 30px; padding-right :100px" scope="col">Mission Title</th>
+                        <th scope="col">Mission Type</th>
+                        <th scope="col">Start Date</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Action</th>                                              
                     </tr>
                 </thead>
                 <tbody class="userdetails">
@@ -153,29 +151,19 @@ const { ajax } = require("jquery");
                         if (Model != null)
 
                         {
-                            foreach (var user in Model.users)
+                            foreach (var mission in Model.missions)
                             {
                                 <tr>
 
-                                    <td style="padding-left: 30px;"><span>@user.FirstName</span></td>
-                                    <td>@user.LastName</td>
-                                    <td>@user.Email</td>
-                                    <td>@user.EmployeeId</td>
-                                    <td>@user.Department</td>
-                                    <td>
-                                        @if (user.Status == 1)
-                                        {
-                                            <span style="color:#14C506">Active</span>
-                                        }
-                                        else if (user.Status == 0)
-                                        {
-                                            <span style="color:red">In-Active</span>
-
-                                        }
-                                    </td>
+                                    <td style="padding-left: 30px;"><span>@mission.Title</span></td>
+                                    <td>@mission.MissionType</td>
+                                    <td>@mission.StartDate</td>
+                                    <td>@mission.EndDate</td>
+                                     
+                                    
                                     <td style="text-align:center;">
-                                        <a class="btn iconuser" asp-action="user" asp-controller="Admin" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                           asp-route-id="@user.UserId">
+                                        <a class="btn iconuser" asp-action="MissionPage" asp-controller="Admin" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                               asp-route-id="@mission.MissionId">
                                             <i class="bi bi-pencil-square iconForpencil me-2"></i>
                                         </a>
                                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -260,8 +248,8 @@ const { ajax } = require("jquery");
                                                 </div>
                                             </div>
                                         </div>
-                                       <a class="btn iconuser" asp-action="DeleteUser" asp-controller="Admin"
-                                         asp-route-uid="@user.UserId">
+                                        <a class="btn iconuser" asp-action="DeleteUser" asp-controller="Admin"
+                                         asp-route-uid="@mission.MissionId">
                                             <i class="bi bi-trash3 iconForDelete"></i>
                                         </a>
                                     </td>
@@ -280,7 +268,7 @@ const { ajax } = require("jquery");
 </html>
 <script>
 
-   
+
 
     $('#btnEditUser').click(function()
     {

@@ -1,4 +1,5 @@
 ﻿using CiPlatform.Entitites.Data;
+using CiPlatform.Entitites.Models;
 using CiPlatform.Entitites.ViewModels;
 using CiPlatform.Repository.Interface;
 using CiPlatform.Repository.Repository;
@@ -40,17 +41,40 @@ namespace CiPlatform.Controllers
 
         }
 
-        [HttpPost]
         public IActionResult DeleteUser(int uid)
         {
             _adminRepository.deleteUser(uid);
             var model = _adminRepository.GetData();
-            return PartialView("_Admin",model);
+           /* return RedirectToAction("user", "Admin");*/
+            return PartialView("_Admin");
+        }
+        public JsonResult getCities(string selectedcountry)
+        {
+            var con = _ciContext.Countries.Where(c => c.Name == selectedcountry).FirstOrDefault();
+            var city = _ciContext.Cities.Where(c => c.CountryId == con.CountryId);
+            return Json(city);
+        }
+        public IActionResult MissionPage()
+        {
+            string email = HttpContext.Session.GetString("Email");
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            ViewBag.uid = (int)user.UserId;
+            var model = _adminRepository.GetData();
+            return View(model);
         }
 
-        public IActionResult MissionPage()
+        [HttpPost]
+
+        public IActionResult MissionPage(AdminView model)
+        {
+            _adminRepository.AddUser(model);
+            return RedirectToAction("MissionPage");
+        }
+
+        public IActionResult CmsPage()
         {
             return View();
         }
+
     }
 }

@@ -69,9 +69,9 @@ namespace CiPlatform.Controllers
 
         public IActionResult Login(User user, LoginView loginView)
         {
+            
             var data = _ciContext.Users.Where(u => u.Email == loginView.Email).FirstOrDefault();
-            if (data != null)
-            {
+            
                 bool isValid = (data.Email == loginView.Email && data.Password == loginView.Password);
                 if (data.Role == "User")
                 {
@@ -89,21 +89,24 @@ namespace CiPlatform.Controllers
                     TempData["success"] = "Login Successfull";
                     return RedirectToAction("platformlandingpage", "MissionCard");
                 }
-            }
+            
             else
             {
-                var claims = new List<Claim>();
-                claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
-                if (data.Role != null)
+                if (data.Role == "Admin")
                 {
-                    claims.Add(new Claim("Avatar", data.Avatar));
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
+                    if (data.Avatar != null)
+                    {
+                        claims.Add(new Claim("Avatar", data.Avatar));
+                    }
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                    HttpContext.Session.SetString("Email", user.Email);
+                    TempData["success"] = "Login Successfull";
+                    return RedirectToAction("user", "Admin");
                 }
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal = new ClaimsPrincipal(identity);
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                HttpContext.Session.SetString("Email", user.Email);
-                TempData["success"] = "Login Successfull";
-                return RedirectToAction("platformlandingpage", "MissionCard");
             }
             TempData["error"] = "Invalid email or password.";
             return RedirectToAction("Login", "Home");

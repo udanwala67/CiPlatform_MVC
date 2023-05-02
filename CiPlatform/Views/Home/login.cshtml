@@ -84,12 +84,12 @@
       <div class="loginform">
           <div>
         <label for="exampleFormControlInput1" class="form-label email-2" asp-for ="Email">Email address</label>
-        <input type="email" class="form-control mb-0" id="exampleFormControlInput1" asp-for = "Email" placeholder="Enter Your Email Address">
+        <input type="email" class="form-control mb-0" id="exampleFormControlInput1" asp-for = "Email"  data-val-required="The Email field is required" placeholder="Enter Your Email Address">
           @Html.ValidationMessageFor(model => model.Email,"",new { @class = "text-danger"})
           </div>
           <div>
         <label for="exampleFormControlInput1" class="form-label pt-4" asp-for= "Password">Password</label>
-        <input type="password" class="form-control" id="exampleFormControlInput2" asp-for = "Password" placeholder="Enter Your Password">
+        <input type="password" class="form-control" id="exampleFormControlInput2" asp-for = "Password"  data-val-required="The Password field is required" placeholder="Enter Your Password">
          @Html.ValidationMessageFor(model => model.Password,"",new { @class = "text-danger"})
          </div>
 

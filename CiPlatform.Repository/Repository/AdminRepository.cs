@@ -21,7 +21,7 @@ namespace CiPlatform.Repository.Repository
         public AdminView GetData()
         {
 
-            var users = _CiContext.Users.ToList();
+            var users = _CiContext.Users.Where(user => user.DeletedAt == null).ToList();
             var cmspages = _CiContext.CmsPages.ToList();
             var missions = _CiContext.Missions.ToList();
             var missionApplications = _CiContext.MissionApplications.ToList();
@@ -88,7 +88,7 @@ namespace CiPlatform.Repository.Repository
                 user.CountryId = model.user.CountryId;
                 user.Status = model.user.Status;
                 user.CreatedAt = DateTime.Now;
-                if(model.AvatarImage != null)
+                if (model.AvatarImage != null)
                 {
                     string filename = Path.GetFileName(model.AvatarImage.FileName);
                     string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\Avatars", filename);
@@ -111,12 +111,13 @@ namespace CiPlatform.Repository.Repository
         public void deleteUser(int uid)
         {
             var user = _CiContext.Users.FirstOrDefault(x => x.UserId == uid);
-            if(user != null)
+            if (user != null)
             {
                 user.DeletedAt = DateTime.Now;
                 _CiContext.Users.Update(user);
             }
-            _CiContext.SaveChanges(true);
+            _CiContext.SaveChanges();
         }
+       
     }
 }

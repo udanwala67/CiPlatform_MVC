@@ -442,50 +442,50 @@
                 })
 
                 $(function () {
-                $("body").on("click", ".list-group .list-group-item", function () {
-                $(this).toggleClass("active")
-                })
-                $(".list-arrows button").click(function () {
-                var $button = $(this),
-                actives = ""
-                if ($button.hasClass("move-left")) {
-                actives = $(".list-right ul li.active")
-                actives.clone().appendTo(".list-left ul")
-                actives.remove()
-                } else if ($button.hasClass("move-right")) {
-                actives = $(".list-left ul li.active")
-                actives.clone().appendTo(".list-right ul")
-                actives.remove()
+                        $("body").on("click", ".list-group .list-group-item", function () {
+                        $(this).toggleClass("active")
+                        })
+                        $(".list-arrows button").click(function () {
+                        var $button = $(this),
+                        actives = ""
+                        if ($button.hasClass("move-left")) {
+                        actives = $(".list-right ul li.active")
+                        actives.clone().appendTo(".list-left ul")
+                        actives.remove()
+                        } else if ($button.hasClass("move-right")) {
+                        actives = $(".list-left ul li.active")
+                        actives.clone().appendTo(".list-right ul")
+                        actives.remove()
                 }
                 })
                 $(".dual-list .selector").click(function () {
-                var $checkBox = $(this)
-                if (!$checkBox.hasClass("selected")) {
-                $checkBox
-                .addClass("selected")
-                .find("ul li:not(.active)")
-                .addClass("active")
-                $checkBox
-                .children("i")
-                } else {
-                $checkBox
-                .removeClass("selected")
-                .find("ul li.active")
-                .removeClass("active")
-                $checkBox
-                .children("i")
+                    var $checkBox = $(this)
+                    if (!$checkBox.hasClass("selected")) {
+                    $checkBox
+                    .addClass("selected")
+                    .find("ul li:not(.active)")
+                    .addClass("active")
+                    $checkBox
+                    .children("i")
+                    } else {
+                    $checkBox
+                    .removeClass("selected")
+                    .find("ul li.active")
+                    .removeClass("active")
+                    $checkBox
+                    .children("i")
                 }
                 })
 
                 $('#btnmodalskill').click(function(){
-                $('.skillshowdiv ul').empty();
-                console.log("hello");
-                var selectedskill = ""
-                selectedskill = $(".list-right ul li")
-                var a = [];
-                selectedskill.clone().appendTo(".skillshowdiv ul")
-                console.log(selectedskill);
-                for(i=0; i<selectedskill.length;i++)
+                    $('.skillshowdiv ul').empty();
+                    console.log("hello");
+                    var selectedskill = ""
+                    selectedskill = $(".list-right ul li")
+                    var a = [];
+                    selectedskill.clone().appendTo(".skillshowdiv ul")
+                    console.log(selectedskill);
+                    for(i=0; i<selectedskill.length;i++)
                 {
                 console.log(selectedskill[i].id);
                 a+= selectedskill[i].id + ",";
