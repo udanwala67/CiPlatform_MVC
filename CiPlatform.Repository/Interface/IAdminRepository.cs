@@ -15,6 +15,6 @@ namespace CiPlatform.Repository.Interface
         public void AddUser(AdminView model);
         public User GetUser(int userId);
         public void deleteUser(int uid);
-        
+      /*  public GetApplicationRecords(int pageNumber, int pageSize, string keyword);*/
     }
 }

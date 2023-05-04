@@ -29,7 +29,11 @@ namespace CiPlatform.Controllers
         {
 
             var shares = _storyRepository.GetStory();
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
             ViewBag.uid = user;
 
@@ -39,15 +43,15 @@ namespace CiPlatform.Controllers
 
         [HttpPost]
         public IActionResult sharestory(StoryView storyView)
-         {
+        {
             var stories = _storyRepository.GetStory();
-            string Email = HttpContext.Session.GetString("Email");
-            long userid = _ciContext.Users.Where(u => u.Email == Email).Select(m => m.UserId).FirstOrDefault();
-            _storyRepository.PushStory(userid ,storyView );
-
-           
-
-
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+            long userid = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
+            _storyRepository.PushStory(userid, storyView);
             return View(stories);
 
         }
@@ -56,7 +60,11 @@ namespace CiPlatform.Controllers
         public IActionResult storydetails()
         {
             var sunglass = _storyRepository.GetStory();
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             return View(sunglass);
@@ -64,7 +72,7 @@ namespace CiPlatform.Controllers
 
 
         /*----------------------------------------------storydetails and Story_Details aboth are different pages so take care--------------------------------------*/
-      
+
 
         public IActionResult Story_Details(int user, int missionId)
         {
@@ -75,9 +83,15 @@ namespace CiPlatform.Controllers
         }
 
 
-       public IActionResult Timesheet()
+        public IActionResult Timesheet()
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             var timeMission = _storyRepository.GetAllMissions(ViewBag.uid);
@@ -86,7 +100,11 @@ namespace CiPlatform.Controllers
         }
         public IActionResult AddTimeMission(VolunteeringTimesheetView model)
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             int uid = (int)user.UserId;
             _storyRepository.AddTimeTimesheet(model, uid);
@@ -94,7 +112,7 @@ namespace CiPlatform.Controllers
             return PartialView("_TimeMission", timeMission);
         }
 
-       
+
         public IActionResult EditTimesheet(int tid)
         {
             var timesheet = _storyRepository.GetTimesheetById(tid);
@@ -104,7 +122,11 @@ namespace CiPlatform.Controllers
         [HttpPost]
         public IActionResult AddGoalMission(VolunteeringTimesheetView model)
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             int uid = (int)user.UserId;
             _storyRepository.AddGoalTimesheet(model, uid);

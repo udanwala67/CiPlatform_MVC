@@ -18,9 +18,9 @@ namespace CiPlatform.Entitites.ViewModels
         [StringLength(100, MinimumLength = 6, ErrorMessage = "Minimum 6 characters are required")]
         public string Password { get; set; } = null!;
         [Required]
-       /* [DataType(DataType.PhoneNumber)]*/
-       /* [StringLength(10,MinimumLength = 10, ErrorMessage = "Minimum 10 characters are required")]*/
-        public int PhoneNumber { get; set; }
+        [DataType(DataType.PhoneNumber)]
+        [StringLength(10, MinimumLength = 10, ErrorMessage = "Minimum 10 characters are required")]
+        public string PhoneNumber { get; set; }
         [Required]
         [DataType(DataType.Password)]
         /*[Display(Name = "Confirm Password")]*/

@@ -25,7 +25,7 @@ namespace CiPlatform.Entitites.Models
         public string? LastName { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-        public int PhoneNumber { get; set; }
+        public string? PhoneNumber { get; set; }
         public string? Avatar { get; set; }
         public string? WhyIVolunteer { get; set; }
         public string? EmployeeId { get; set; }

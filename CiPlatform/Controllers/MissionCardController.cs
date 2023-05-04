@@ -19,7 +19,7 @@ namespace CiPlatform.Controllers
             _CiRepository = ciRepository;
             _emailServices = emailServices;
         }
-       
+
         public IActionResult platformlandingpage(string searchQuery, string sortOrder, CityView cityView)
         {
             List<Mission> mission = _ciContext.Missions.ToList();
@@ -58,11 +58,11 @@ namespace CiPlatform.Controllers
                     break;
 
                 case "Oldest":
-                    mission = _ciContext.Missions.OrderByDescending(mission => mission.EndDate).ToList();
+                    mission = _ciContext.Missions.OrderBy(mission => mission.EndDate).ToList();
                     break;
 
                 case "Theme":
-                    mission = _ciContext.Missions.OrderByDescending(mission => mission.Theme).ToList();
+                    mission = _ciContext.Missions.OrderBy(mission => mission.Theme).ToList();
                     break;
             }
 
@@ -72,7 +72,11 @@ namespace CiPlatform.Controllers
                 var Theme = _ciContext.MissionThemes.FirstOrDefault(u => u.MissionThemeId == item.ThemeId);
                 /*var Availability = _ciContext.Missions.FirstOrDefault(u => u.Availability == item.Availability);*/
             }
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             ViewBag.mission = mission;
@@ -87,12 +91,17 @@ namespace CiPlatform.Controllers
         public IActionResult VolunteeringMission(int missionid, string theme)
         {
             ViewBag.missionid = missionid;
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+
 
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.theme = theme;
-            
-            
+
+
 
             if (user == null)
             {
@@ -102,39 +111,47 @@ namespace CiPlatform.Controllers
             {
                 ViewBag.uid = (int)user.UserId;
                 var mission = _CiRepository.GetMission();
-                
+
                 return View(mission);
             }
         }
 
-        public IActionResult applyvol(int userId,int missionId)
+        public IActionResult applyvol(int userId, int missionId)
         {
             _CiRepository.applyvol(userId, missionId);
-            return RedirectToAction("VolunteeringMission", "MissionCard" , new { missionId = missionId });
+            return RedirectToAction("VolunteeringMission", "MissionCard", new { missionId = missionId });
         }
 
-        public IActionResult AddtoFav(int mid)
+        public IActionResult AddtoFav(int mid, string theme, int pageType)
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             int uid = (int)user.UserId;
             _CiRepository.AddToFavourite(uid, mid);
             ViewBag.mid = mid;
-            return RedirectToAction("platformlandingpage");
+            if (pageType == 1)
+            {
+                return RedirectToAction("platformlandingpage");
+            }
+            else if (pageType == 2)
+            {
+                return RedirectToAction("VolunteeringMission", new { missionid = mid, theme = theme });
+            }
+            else
+            {
+                return NotFound();
+            }
         }
 
         public IActionResult coworker(int missionId, string email)
         {
-            UriBuilder builder = new UriBuilder();
-            builder.Scheme = "https";
-            builder.Host = "localhost";
-            builder.Port = 7148;
-            builder.Path = "MissionCard/VolunteeringMission";
-            builder.Query = "?missionid=" + missionId;
 
-            var resetLink = builder.ToString();
-
-            _emailServices.SendEmailAsync(email, "Recommend Coworker", resetLink);
+            var link = Url.Action("VolunteeringMission", "MissionCard", new { missionid = missionId, theme = string.Empty }, "https");
+            _emailServices.SendEmailAsync(email, "Recommend Coworker", link);
 
             return RedirectToAction("VolunteeringMission", new { missionId = missionId });
         }
@@ -155,6 +172,14 @@ namespace CiPlatform.Controllers
             return RedirectToAction("VolunteeringMission");
         }
 
-        
+        public IActionResult UpdateRating(int ratingScore, int missionId, int userId)
+        {
+            _CiRepository.UpdateRating(ratingScore, missionId, userId);
+
+            ViewBag.missionId = missionId;
+            ViewBag.uid = userId;
+
+            return PartialView("_userRating", ratingScore);
+        }
     }
 }

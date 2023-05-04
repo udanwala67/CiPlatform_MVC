@@ -56,17 +56,19 @@
                         </dt>
                         <dt class="mt-4">
                             <a asp-action="CmsPage" asp-controller="Admin"
-                               class = "sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                               class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-file-earmark-fill me-2 sidebar-img"></i><span class="d-none d-lg-block d-md-none sidebar-text-font">CMS Page</span>
                             </a>
                         </dt>
                         <dt class="mt-4 ">
-                            <a href="#" class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                             <a asp-action="MissionTheme" asp-controller="Admin"
+                                class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-grid-1x2-fill sidebar-img me-2"></i> <span class="d-none d-lg-block d-md-none sidebar-text-font">Mission Theme</span>
                             </a>
                         </dt>
                         <dt class="mt-4 ">
-                            <a href="#" class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                             <a asp-action="MissionSkills" asp-controller="Admin"
+                             class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-tools sidebar-img me-2"></i><span class="d-none d-lg-block d-md-none sidebar-text-font">
                                     Mission
                                     Skills
@@ -74,7 +76,7 @@
                             </a>
                         </dt>
                         <dt class="mt-4 ">
-                            <a asp-action="MissionApplicationPage" asp-controller="Admin"
+                            <a asp-action="MissionApplication" asp-controller="Admin"
                                class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-folder2 me-2 sidebar-img"></i><span class="d-none d-lg-block d-md-none sidebar-text-font">
                                     Mission
@@ -123,7 +125,7 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
-                        @foreach (var p in Model.users)
+                         @foreach (var p in Model.users)
                         {
                             if (p.UserId == ViewBag.uid)
                             {
@@ -146,15 +148,16 @@
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                        <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
                                     </ul>
                                 </div>
                             }
                         }
-                        <script type="text/javascript">
+
+                        @*   <script type="text/javascript">
                             window.history.forward();
                             function noBack() { window.history.forward(); }
-                        </script>
+                            </script>*@
 
                     </div>
                 </div>
@@ -164,7 +167,7 @@
                     @*   @await Html.PartialAsync("~/Views/Shared/_Admin.cshtml")
                         @* @RenderBody()*@
 
-                    <partial name = "_Admin" />
+                    <partial name="_Admin" />
 
                 </div>
 
@@ -260,8 +263,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
-  
 
+<partial Name = "_Footer" />
 
 
 </body>

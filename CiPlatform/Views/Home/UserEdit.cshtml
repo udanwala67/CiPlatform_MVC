@@ -11,10 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="~/css/UserEdit.css" type="text/css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
 </head>
 
 <body>
@@ -51,7 +52,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
                         </ul>
                     </div>
 
@@ -71,7 +72,7 @@
                 </div>
             </div>
 
-            <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+            <img src="~/Images/logo.png" asp-action = "platformlandingpage" asp-controller = "MissionCard" alt="CI-PLATFORM" class="me-5">
             <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
@@ -106,7 +107,7 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
                         </ul>
                     </div>
                 }
@@ -126,15 +127,18 @@
                                 <div style="background-image: url(@profileImagePath);">*@
 
 
-                            <img src="@Model.Avatar" id="AvatarImage" class="rounded-circle" width="100" height="100" onclick="changeAvatar()" alt="dsjgfjdgdfh" />
+                            <img src="@Model.Avatar" id="AvatarImage" class="rounded-circle profileImage" onclick="changeAvatar()" alt="dsjgfjdgdfh" />
                         }
                         else
                         {
                             <img src="~/images/volunteer1.png" id="AvatarImage" class="rounded-circle" onclick="changeAvatar()" />
                         }
 
-                        <p class="my-2">@ViewBag.Name</p>
-                        <a data-bs-toggle="modal" data-bs-target="#modalChangePassword">Change Password</a>
+
+                        <div class="text-center">
+                            <p class="my-2">@ViewBag.FullName</p>
+                            <a data-bs-toggle="modal" data-bs-target="#modalChangePassword">Change Password</a>
+                        </div>
                         <div class="modal fade" id="modalChangePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -245,9 +249,9 @@
                     <div class="my-4">
                         <div class="skillshowdiv">
                             <ul class="list-group border">
-                                @foreach (var item in Model.skills)
+                                @foreach (var item2 in Model.userSkills)
                                 {
-                                    @foreach (var item2 in Model.userSkills)
+                                    @foreach (var item in Model.skills)
                                     {
                                         @if (item2.SkillId == item.SkillId)
                                         {
@@ -314,7 +318,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
-                                        <button type="button" id="btnmodalskill" class="modaladdskills">Add Skill</button>
+                                        <button type="button" class="modaladdskills" id="btnmodalskill">Add Skill</button>
                                     </div>
                                 </div>
                             </div>
@@ -338,16 +342,16 @@
                 data:{},
                 success: function (data) {
                 console.log(data);
-                $('#fname').val(data.fname);
-                $('#lname').val(data.lname);
-                $('#employeeid').val(data.employeeid);
+                $('#fname').val(data.firstName);
+                $('#lname').val(data.lastName);
+                $('#employeeid').val(data.employeeId);
                 $('#title').val(data.title);
                 $('#department').val(data.department);
-                $('#profiletext').val(data.profiletext);
-                $('#volunteertext').val(data.volunteertext);
+                $('#profiletext').val(data.profileText);
+                $('#volunteertext').val(data.whyIVolunteer);
                 $('#city').val(data.cityId);
                 $('#country').val(data.countryId);
-                $('#linkedinUrl').val(data.linkedinUrl);
+                $('#linkedinUrl').val(data.linkedInUrl);
                 },
                 error: function (e) {
                 console.log(e);
@@ -432,7 +436,7 @@
                 city:city,
                 },
                 success: function(result){
-                alert("Profile Updated.");
+                toastr.success('Profile Updated');
                 },
                 error: function (xhr,status,error){
                 console.log(error);
@@ -477,22 +481,24 @@
                 }
                 })
 
-                $('#btnmodalskill').click(function(){
-                    $('.skillshowdiv ul').empty();
-                    console.log("hello");
-                    var selectedskill = ""
-                    selectedskill = $(".list-right ul li")
-                    var a = [];
-                    selectedskill.clone().appendTo(".skillshowdiv ul")
-                    console.log(selectedskill);
-                    for(i=0; i<selectedskill.length;i++)
-                {
-                console.log(selectedskill[i].id);
-                a+= selectedskill[i].id + ",";
-                }
-                $('#hiddenskill').val(a);
-                console.log(a);
-                })
+                    $('#btnmodalskill').click(function()
+                    {
+                        $('.skillshowdiv ul').empty();
+                        console.log("hello");
+                        var selectedskill = ""
+                        selectedskill = $(".list-right ul li")
+                        var a = [];
+                        selectedskill.clone().appendTo(".skillshowdiv ul")
+                        console.log(selectedskill);
+                        for(i=0; i<selectedskill.length;i++)
+                        {
+                            console.log(selectedskill[i].id);
+                            a+= selectedskill[i].id + ",";
+                        }
+                        $('#hiddenskill').val(a);
+                        console.log(a);
+                        $("#modalAddSkills").modal("hide");
+                    })
                 })
 
 

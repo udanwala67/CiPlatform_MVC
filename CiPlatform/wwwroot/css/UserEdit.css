@@ -24,6 +24,7 @@
         }
 }
 */
+
 @media screen and (min-width:767px) {
 
     .btn,
@@ -137,3 +138,8 @@
         color: white;
     }
 
+.profileImage {
+    height: 175px;
+    width: 175px;
+    object-fit: cover;
+}

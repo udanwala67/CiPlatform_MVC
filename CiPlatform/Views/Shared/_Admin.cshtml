@@ -93,7 +93,7 @@ const { ajax } = require("jquery");
                                     <label class="form-label mb-0">My Profile</label>
                                     <textarea class="form-control" asp-for="user.ProfileText" rows="4" placeholder="Enter your comments.." id="profileTxt"></textarea>
                                 </div>
-                                <div class="my-2 p-2">
+                                @*<div class="my-2 p-2">
                                     <label class="form-label mb-0">Country*</label>
                                     <select class="form-select mt-2" asp-for="user.CountryId" id="country">
                                         <option selected>Select your country</option>
@@ -102,9 +102,9 @@ const { ajax } = require("jquery");
                                             <option value="@item.CountryId">@item.Name</option>
                                         }
                                     </select>
-                                </div>
+                                </div>*@
 
-                                <div class="my-2 p-2">
+                              @*  <div class="my-2 p-2">
                                     <label class="form-label mb-0">City*</label>
                                     <select class="form-select mt-2" asp-for="user.CityId" id="city">
                                         @foreach (var item in Model.city)
@@ -112,7 +112,7 @@ const { ajax } = require("jquery");
                                             <option value="@item.CityId">@item.Name</option>
                                         }
                                     </select>
-                                </div>
+                                </div>*@
 
                                 <div class="my-1 p-2">
                                     <label class="form-label">Status*</label>

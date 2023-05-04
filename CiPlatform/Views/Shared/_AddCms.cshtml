@@ -1,0 +1,88 @@
+﻿<div class="container mt-3" id = "exampleModal123">
+                    <div class="fs-3">Share your story</div>
+                    <div class="row mt-4">
+
+                        @*<div class="col-lg-4">
+
+                            <label class="my-2">Select Mission</label>
+
+
+                            <select class="form-select" id="title" name="mid" aria-label="Default select example">
+                                <option selected>select your mission</option>
+                                @foreach (var m in Model.mission)
+                                {
+                                    @if (m.MissionApplications.Where(b => b.UserId == ViewBag.uid && b.MissionId == m.MissionId).Count() > 0)
+                                    {
+                                                <option value="@m.MissionId">@m.Title</option>
+                                    }
+                                    else
+                                    {
+
+                                    }
+
+                                }
+                            </select>
+                        </div>*@
+
+                        <div class="col-lg-4">
+                            <label class="my-2">My Story Title</label>
+                            <input type="text" @*asp-for="Title"*@ class="form-control" id="storytitle" placeholder="Enter story title" />
+                        </div>
+                        <div class="col-lg-4">
+                            <label class="my-2">Date</label>
+                            <input type="date" @*asp-for="date*@" class="form-control" id="sdate" />
+                        </div>
+                    </div>
+                    <div class="row mx-1 my-2">
+                        <label class="my-2">My Story</label>
+                        <textarea @* asp-for="Description"*@ id="ckeditorcontent" name="ckeditorcontent"></textarea>
+                        <script type="text/javascript">CKEDITOR.replace('ckeditorcontent');CKEDITOR.config.width='100%';CKEDITOR.config.height='275px';</script>
+                    </div>
+                    <div>
+                        <label class="my-3">Enter Video URL</label>
+                        <input type="text" @*asp-for="url"*@ id="url" class="form-control" placeholder="Enter your url" />
+                    </div>
+
+
+                    <div class="my-3">
+
+                        @*<div class="upload_box">
+                            <div class="upload_imagebox my-3" id="upload_imagebox">
+                            <img src="~/images/drag-and-drop.png" asp-for="StoryMedia" id="myselectimg" />
+                            <input type="file" name="file" id="file" accept="image/*, video/*" style="display: none;" multiple />
+                            </div>
+                            </div>*@
+
+
+                        <div class="form-group mt-3">
+                            <label class="my-3" for="">Upload Your Photos</label>
+                            <input type="file" @*asp-for="UploadedFiles"*@ class="form-control" id="upload-img" multiple />
+                            <div class="upload_imagebox mb-3" id="upload_imagebox">
+                                <img src="~/images/drag-and-drop.png" asp-for="uploadimg" id="myselectimg" />
+
+
+                            </div>
+                            <div class="img-thumbs img-thumbs-hidden" id="img-preview"></div>
+
+
+                        </div>
+
+                        @* <div class="upload-container">
+                            <div class="icon-container">
+                            <i class="fa fa-camera"></i>
+                            <span>Upload Image or Video</span>
+                            </div>
+                            <input type="file" name="file" id="file" accept="image/*, video/*" style="display: none;" />
+                            </div>*@
+
+                        <div class="row mb-2">
+                            <div class="d-flex col-lg-6 my-2 my-lg-0 justify-content-center">
+                                <button type="button" asp-action="storydetails" asp-controller="Story" class="btnstrcancel">Cancel</button>
+                            </div>
+                            <div class="d-flex col-lg-6 justify-content-center">
+                                <button type="submit" id="save" class="btnstrss">Save</button>
+                                <button type="submit" id="submitt" class="btnstrss ms-4">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>

@@ -1,0 +1,40 @@
+﻿@model CiPlatform.Entitites.ViewModels.ContactUsView
+<div class="modal-dialog">
+    <div class="modal-content rounded-1 p-2">
+        <div class="modal-header border-0">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Contact Us</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post" id="contactUsForm">
+            <div class="modal-body py-0">
+                    <input asp-for="UserId" type="hidden"/>
+                <div>
+                    <label asp-for="Name">Name*</label>
+                    <input asp-for="Name" class="form-control" placeholder="Enter Full Name" disabled/>
+                    <input asp-for="Name" class="form-control" type="hidden"/>
+                    <span asp-validation-for="Name" class="text-danger ms-2 fw-normal"></span>
+                </div>
+                <div class="">
+                    <label asp-for="Email">Email*</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter Email Address" disabled/>
+                    <input asp-for="Email" class="form-control" type="hidden"/>
+                    <span asp-validation-for="Email" class="text-danger ms-2 fw-normal"></span>
+                </div>
+                <div class="">
+                    <label asp-for="Subject">Subject*</label>
+                    <input asp-for="Subject" class="form-control" placeholder="Enter your subject"/>
+                    <span asp-validation-for="Subject" class="text-danger ms-2 fw-normal"></span>
+                </div>
+                <div class="">
+                    <label asp-for="Message">Message*</label>
+                    <textarea asp-for="Message" class="form-control" placeholder="Enter your message here..." rows="5"></textarea>
+                    <span asp-validation-for="Message" class="text-danger ms-2 fw-normal"></span>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-outline-secondary border-2 rounded-pill px-3" data-bs-dismiss="modal">Cancle</button>
+                <button type="button" class="btn login-btn px-4" onclick="contactUsSubmit()">Save</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -33,7 +33,7 @@ namespace CiPlatform.Repository.Repository
             string userAvtar = _CiContext.Users.Where(u=>u.UserId == uid).Select(u=>u.Avatar).FirstOrDefault();
             var user = _CiContext.Users.ToList();
             var skill = _CiContext.Skills.ToList();
-            var userskill = _CiContext.UserSkills.ToList();
+            var userskill = _CiContext.UserSkills.Where(skill => skill.UserId == uid).ToList();
             var country = _CiContext.Countries.ToList();
             var city = _CiContext.Cities.ToList();
             
@@ -65,10 +65,10 @@ namespace CiPlatform.Repository.Repository
             user.CreatedAt = DateTime.Now;
             user.UpdatedAt = DateTime.Now;
             _CiContext.Users.Update(user);
-            _CiContext.Database.ExecuteSqlRaw($"delete from user_skill where user_id={uid}");
             _CiContext.SaveChanges();
             if(hiddentext != null)
             {
+                _CiContext.Database.ExecuteSqlRaw($"delete from user_skill where user_id={uid}");
                 List<int> list = new List<int>();
                 string a = hiddentext.Remove(hiddentext.Length - 1,1);
                 list = a.Split(',').Select(int.Parse).ToList();

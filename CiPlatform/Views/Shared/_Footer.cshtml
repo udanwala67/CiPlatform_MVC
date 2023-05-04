@@ -1,0 +1,74 @@
+﻿
+<div class="modal fade" id="contactUs" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div id="contactUsContainer"></div>
+</div>
+
+<footer class="navbar bg-light border-top footer">
+    <div class="container-xxl py-4">
+        <a role= "button" asp-action="PolicyPage" asp-controller="Home">Privacy Policy</a>
+
+        <a onclick="getContactUs()" role="button">Contact Us</a>
+    </div>
+</footer>
+
+ <script src="~/js/Footer.js" asp-append-version="true"></script>
+
+ <script>
+ function getContactUs() {
+    $.ajax({
+        url: "/User/GetContactUs",
+        type: "GET",
+        success: function (result) {
+            if (result.isRedirect) {
+                window.location.href = result.redirectUrl;
+            }
+            $("#contactUsContainer").html(result);
+            $("#contactUs").modal("show");
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            if (jqXHR.status === 401) {
+                location.reload()
+            }
+            else {
+                console.error(errorThrown);
+                alert('An error occurred: ' + errorThrown);
+            }
+        }
+    })
+}
+
+function contactUsSubmit() {
+    $.validator.unobtrusive.parse("#contactUsForm");
+    $("#contactUsForm").validate();
+    if ($("#contactUsForm").valid()) {
+        var data = $("#contactUsForm").serialize();
+        $.ajax({
+            url: "/User/PostContactUs",
+            type: "POST",
+            data: data,
+            success: function (result) {
+                if (result.isRedirect) {
+                    window.location.href = result.redirectUrl;
+                }
+                if (result.isSuccess) {
+                    toastr.success("Saved Successfully.");
+                    $("#contactUs").modal("hide");
+                }
+                else {
+                    $("#contactUsContainer").html(result);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status === 401) {
+                    location.reload()
+                }
+                else {
+                    console.error(errorThrown);
+                    alert('An error occurred: ' + errorThrown);
+                }
+            }
+        })
+    }
+}
+
+</script>

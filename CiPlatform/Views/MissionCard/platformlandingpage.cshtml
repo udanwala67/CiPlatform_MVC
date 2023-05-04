@@ -14,15 +14,16 @@
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-  
+
     <link rel="stylesheet" href="~/css/platformlandingpage.css">
     <script type="text/javascript" src="~/js/Home.js"></script>
 
 </head>
 <body>
     <form method="post">
+       
         <!-- ------------------first navbar----------------------------------- -->
-        <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+      @*  <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
             <div class="container">
 
                 <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
@@ -42,10 +43,10 @@
                         <div class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          
-                                @if(User.FindFirst("Avatar") != null)
+
+                                @if (User.FindFirst("Avatar") != null)
                                 {
-                                     <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />  
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
                                 }
                                 @{
                                     var firstname = Context.Session.GetString("Firstname");
@@ -54,12 +55,12 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Login">Log out</a>
+                                    <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Log out</a>
                                 </li>
                             </ul>
                         </div>
@@ -72,7 +73,7 @@
                             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                                aria-expanded="false">Policy</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" asp-controller="Home" asp-action="PolicyPage">Policy Page</a></li>
                                 <li><a class="dropdown-item" href="#">Another action</a></li>
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
@@ -80,7 +81,7 @@
                     </div>
                 </div>
 
-                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5 navbar-brand">
                 <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
@@ -89,7 +90,7 @@
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                            aria-expanded="false">Policy</a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" asp-controller="Home" asp-action="PolicyPage">Policy Page</a></li>
                             <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
@@ -102,264 +103,30 @@
                         <div class="dropdown text-end user-profile ">
                             <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                        aria-expanded="false">
-                                @if(User.FindFirst("Avatar") != null)
+                                @if (User.FindFirst("Avatar") != null)
                                 {
-                                     <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />  
+                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
                                 }
                                 @p.FirstName
                             </a>
                             <ul class="dropdown-menu text-small">
                                 <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller ="Story">Volunteering TimeSheet</a></li>                               
+                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
-                                <li><a class="dropdown-item" asp-action="Login" asp-controller="Home">Log out</a></li>
+                                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
                             </ul>
                         </div>
                     }
                 }
             </div>
-        </nav>
-
+        </nav>*@
+        <partial Name = "_navbar1" />
         <!------------------------------------------------ second navbar----------------------------------- -->
 
-        <nav class="navbar navbar-expand-md navbar-lighte header2" aria-label="Second navbar example">
-            <div class="container">
-                <div class="col-9 col-lg-6 col-md-5 me-2">
-                    <form role="search" class="d-flex">
+        <partial Name = "_navbar2" />
 
-                        <input type="search" class="form-control searchbox" placeholder="Search mission....." aria-label="Search"
-                               id="search_bar" name="searchQuery" value="@ViewBag.InputSearch" onkeyup="mysearchFun()">
-                    </form>
-                </div>
-
-                <button class="btn hamburger" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#filteroffcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    <img src="~/Images/filter.png">
-                </button>
-
-                @*--------------------------------------------OffCanvas for 2nd navbar------------------------*@
-
-                <div class="offcanvas offcanvas-end offcanvas2" data-bs-scroll="true" tabindex="-1"
-                     id="filteroffcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-                    <div class="offcanvas-header ">
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 ">
-                        <li class="nav-item dropdown mt-3">
-                          <select class="form-select border border-top-0 border-bottom-0" style="height:100%;border-radius: 0px;" aria-label="Country" id="CountryList">
-                                <option value="India">Country</option>
-                                @foreach (var item in Model.country)
-                                {
-                                    <option value="@item.Name">@item.Name</option>
-                                }
-                            </select>
-
-                           @* <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-
-                                @foreach (var item in Model.country)
-                                {
-                                    <li>
-                                        <a class="dropdown-item p-0 mt-1" href="#">
-                                              <input type="checkbox" id="" class="checkbox ms-3 " id="@item.Name" value="@item.Name">
-                                            @item.Name
-                                        </a>
-                                    </li>
-                                }
-                                
-                            </ul>*@
-
-                        </li>
-
-                        <li class="nav-item dropdown">
-                              <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <p class="me-auto mt-2">City</p>
-                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
-                            </a>
-                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="CityList">
-
-                                @*@foreach (var item in Model.city)
-                                    {
-                                    <li>
-                                    <a class="dropdown-item p-0 mt-1" href="#">
-                                    <input type="checkbox" id="FilterData" class="checkbox ms-3 " value="@item.Name">
-                                    @item.Name
-                                    </a>
-                                    </li>
-                                    }*@
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                Theme
-                            </a>
-                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-
-                                @foreach (var item in Model.missionTheme)
-                                {
-                                    <li>
-
-                                        <a class="dropdown-item p-0 mt-1" href="#">
-                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
-                                            @item.Title
-                                        </a>
-
-                                    </li>
-
-                                }
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                Skill
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item p-0 mt-1" href="#">
-                                        <input type="checkbox" value="Skill1" name="Skill1" id=""
-                                               class="ms-3 checkbox ">Skill1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item p-0 mt-1" href="#">
-                                        <input type="checkbox" value="Skill2" name="Skill2" id=""
-                                               class="ms-3 checkbox ">Skill2
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item p-0 mt-1" href="#">
-                                        <input type="checkbox" value="Skill3" name="Skill3" id=""
-                                               class="ms-3 checkbox ">Skill3
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                    </div>
-                </div>
-
-                @* ------------------------------ 2nd navbar for wider display----------------------------*@
-
-                <div class="second-div col-lg-6 col-md-7">
-                    <ul class="navbar-nav">
-                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item">
-                            <select class="form-select border border-top-0 border-bottom-0" style="height:100%;border-radius: 0px;" aria-label="Country" id="country_list">
-                                <option value="India">Country</option>
-                                @foreach (var item in Model.country)
-                                {
-                                    <option value="@item.Name">@item.Name</option>
-                                }
-                            </select>
-                            @*<a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                <p class="me-auto mt-2">Country</p>
-                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
-                                </a>*@
-
-                            @*<ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="ItemList">
-
-                                @foreach (var item in Model.country)                          // id="@item.CountryId
-                                {
-                                <li>
-                                <a class="dropdown-item p-0 mt-1" href="#">
-                                <input type="checkbox" class="checkbox ms-3 " id="FilterData" value="@item.Name" name="country" onchange="updateUrlForCountry()">
-                                @item.Name
-                                </a>
-                                </li>
-
-                                }
-
-                                </ul>*@
-                        </li>
-
-                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item" id="city_filter">
-                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <p class="me-auto mt-2">City</p>
-                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
-                            </a>
-                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;" id="city_list">
-
-                                @*@foreach (var item in Model.city)
-                                    {
-                                    <li>
-                                    <a class="dropdown-item p-0 mt-1" href="#">
-                                    <input type="checkbox" id="FilterData" class="checkbox ms-3 " value="@item.Name">
-                                    @item.Name
-                                    </a>
-                                    </li>
-                                    }*@
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item">
-                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <p class="me-auto mt-2">Theme</p>
-                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
-                            </a>
-                            <ul class="dropdown-menu" style="height:200px; overflow-y:auto;">
-
-                                @foreach (var item in Model.missionTheme)
-                                {
-                                    <li>
-                                        <a class="dropdown-item p-0 mt-1" href="#">
-                                            <input type="checkbox" class="checkbox ms-3 " id="FilterTheme" value="@item.Title">
-                                            @item.Title
-                                        </a>
-                                    </li>
-                                }
-
-                            </ul>
-                        </li>
-
-                        <li class="nav-item col-lg-3 col-md-3 dropdown filter-item filter-item-skill">
-                            <a class="nav-link dropdown d-flex" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                <p class="me-auto mt-2">Skill</p>
-                                <img src="~/Images/drop-down.png" alt="" height="10%" width="10%" class="mt-3">
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <input type="checkbox" value="Skill1" name="Skill1" id="FilterData"
-                                               class="ms-3 checkbox ">Skill1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <input type="checkbox" value="Skill2" name="Skill2" id="FilterData"
-                                               class="ms-3 checkbox ">Skill2
-                                    </a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <input type="checkbox" value="Skill3" name="Skill3" id="FilterData"
-                                               class="ms-3 checkbox ">Skill3
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
 
         @* ---------------------------- body of platform landing page--------------------------------------------*@
 
@@ -371,7 +138,7 @@
                     @* @ViewBag.TotalMissions*@
                     <div class="firstdiv me-auto d-flex">
                         <h4 class="me-2">Explore</h4>
-                        <h4>@ViewBag.TotalMissions missions</h4>
+                        <h4><span id="missionCount">@ViewBag.TotalMissions</span> missions</h4>
                     </div>
 
                     <div class="sort-list-grid d-flex">
@@ -432,7 +199,7 @@
 
                                         @if (@item.FavoriteMissions.Where(f => f.MissionId == @item.MissionId && f.UserId == @ViewBag.uid).Count() > 0)
                                         {
-                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId" asp-route-theme="" asp-route-pageType="1">
                                                 <button class="mb-2 landing-page-btn-img">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
                                                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
@@ -442,7 +209,7 @@
                                         }
                                         else
                                         {
-                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId">
+                                            <a asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@item.MissionId" asp-route-theme="" asp-route-pageType="1">
                                                 <button class="mb-2 landing-page-btn-img">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-heart" viewBox="0 0 16 16">
                                                         <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z" />
@@ -520,49 +287,26 @@
                                         @item.ShortDescription
                                     </p>
 
-                                    <div class="d-flex">
+                                    <div class="d-flex justify-content-between">
                                         <div class="card-text">@item.OrganizationName</div>
-
-                                        @{
-                                            mr = 0;
-                                            var count = 0;
-
-
-                                            @foreach (var rating in item.MissionRatings)
-                                            {
-
-                                                @if (rating.MissionId == item.MissionId)
+                                        <div>
+                                            @{
+                                                var missionRating = 0;
+                                                if (item.MissionRatings.Any())
                                                 {
-                                                    mr = rating.Rating + mr;
-                                                    count = count + 1;
+                                                    missionRating = (int)item.MissionRatings.Average(rating => rating.Rating);
                                                 }
-                                                tr = mr + tr;
 
-
-
-                                            }
-                                            @if (count > 0)
-                                            {
-                                                double num = mr / count;
-                                                int avg = Convert.ToInt32(num);
-                                                @for (var i = 0; i < avg; i++)
+                                                for (var i = 0; i < missionRating; i++)
                                                 {
-                                                    <img src="~/images/selected-star.png" class="mx-auto imgstar" />
+                                                    <i class="bi bi-star-fill text-warning mx-1"></i>
                                                 }
-                                                @for (var i = avg + 1; i <= 5; i++)
+                                                for (var i = missionRating + 1; i <= 5; i++)
                                                 {
-                                                    <img src="~/images/star-empty.png" class="mx-auto imgstar" />
+                                                    <i class="bi bi-star mx-1"></i>
                                                 }
                                             }
-                                            else
-                                            {
-                                                @for (var i = 1; i <= 5; i++)
-                                                {
-                                                    <img src="~/images/star-empty.png" class="m-auto imgstar" />
-                                                }
-                                            }
-                                        }
-
+                                        </div>
                                     </div>
 
                                     <div class="rule mt-1">
@@ -581,7 +325,7 @@
                                     <div class="d-flex mx-2 mt-2">
                                         <div><img src="~/Images/Seats-left.png" class="mt-0"></div>
                                         <div class="ms-2">
-                                            @item.Availability <p class="seat">25 Sests Left</p>
+                                            <p class="seat">25 Sests Left</p>
                                         </div>
 
 
@@ -627,254 +371,277 @@
                 }
 
             </div>
-   </form>
+    </form>
 </body>
 
 
         </div>
-        <div id="pagination" class="pagination justify-content-center">
-            <ul class="pagination"></ul>
-        </div>
+<div id="pagination" class="pagination justify-content-center">
+    <ul class="pagination"></ul>
+</div>
 
-        <hr />
-        <footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
-    
+<hr />
+<footer class="container mb-3"><a asp-action="NoMissionFound" class="text-secondary">Privacy Policy</a></footer>
+
 </html>
-    <script>
+<script>
 
 
 
- //------------------------------------------------FilterData for city-------------------------------------------
+    //------------------------------------------------FilterData for city-------------------------------------------
 
-                                                $(document).ready(function () {
-                                            $('#city_filter').change(function () {
-                                                var selectCity = $('input[type=checkbox][name="city"]:checked').map(function () {
-                                                    return $(this).val();
-                                                }).get();
+                                                   $(document).ready(function () {
+                                               $('#city_filter').change(function () {
+                                                   var selectCity = $('input[type=checkbox][name="city"]:checked').map(function () {
+                                                       return $(this).val();
+                                                   }).get();
 
-                                                if (selectCity.length > 0) {
-                                                    $('.cardpdiv').hide();
-                                                    $.each(selectCity, function (index, value) {
-                                                        $('.cardpdiv:contains("' + value + '")').show();
+                                                   if (selectCity.length > 0) {
+                                                       ////if(selectCity.length == 1){
+                                                       ////    var count = 0;
+                                                       ////}
+                                                       ////else{
+                                                       ////    var  count=$('#missionCount').html();
+                                                       ////}
+                                                       //var count = 0;
+                                                       $('.cardpdiv').hide();
+                                                       $.each(selectCity, function (index, value) {
+                                                           $('.cardpdiv:contains("' + value + '")').show();
+                                                           //if($('.cardpdiv:contains("' + value + '")').html() != undefined){
+                                                           //   count++;
+                                                           //}
+                                                       });
+                                                       //$('#missionCount').html(count);
+                                                   }
 
-                                                    });
-                                                } else {
-                                                    $('.cardpdiv').show();
-                                                }
-                                            });
-                                            });
-
-
-
- //------------------------------------------------FilterData for city offcanvas-------------------------------------------
-
-                                            $(document).ready(function () {
-                                            $('#CityFilter').change(function () {
-                                                var selectCity = $('input[type=checkbox][name="city"]:checked').map(function () {
-                                                    return $(this).val();
-                                                }).get();
-
-                                                if (selectCity.length > 0) {
-                                                    $('.cardpdiv').hide();
-                                                    $.each(selectCity, function (index, value) {
-                                                        $('.cardpdiv:contains("' + value + '")').show();
-
-                                                    });
-                                                } else {
-                                                    $('.cardpdiv').show();
-                                                }
-                                            });
-                                            });
+                                                   else {
+                                                       $('.cardpdiv').show();
+                                                   }
+                                               });
+                                               });
 
 
 
+    //------------------------------------------------FilterData for city offcanvas-------------------------------------------
 
-                        //-------------------------------------------------filterData for theme-----------------------------------------
+                                               $(document).ready(function () {
+                                               $('#CityFilter').change(function () {
+                                                   var selectCity = $('input[type=checkbox][name="city"]:checked').map(function () {
+                                                       return $(this).val();
+                                                   }).get();
 
-                                            $(document).ready(function () {
-                                    $('input[type=checkbox][id=FilterTheme]').change(function () {
-                                        var selectTheme = $('input[type=checkbox][id=FilterTheme]:checked').map(function () {
-                                            return $(this).val();
-                                        }).get();
+                                                   if (selectCity.length > 0) {
+                                                       var count = 0;
+                                                       $('.cardpdiv').hide();
+                                                       $.each(selectCity, function (index, value) {
+                                                           $('.cardpdiv:contains("' + value + '")').show();
+                                                             count++;
+                                                       });
+                                                      $('#missionCount').html(count);
+                                                   }
 
-                                        if (selectTheme.length > 0) {
-                                            $('.cardpdiv').hide();
-                                            $.each(selectTheme, function (index, value) {
-                                                $('.cardpdiv:contains("' + value + '")').show();
-                                            });
-                                        } else {
-                                            $('.cardpdiv').show();
-                                        }
-                                    });
-                                });
-
-                        // ----------------------------------------for GRID VIEW and LIST VIEW---------------------------------------------
-
-                                                        var card = document.getElementsByClassName("missioncard")
-                                                        var cardimg = document.getElementsByClassName("card-img");
-                                                        var carddisplay = document.getElementsByClassName("card");
-                                                        var theme = document.getElementsByClassName("theme-btn");
-                                                        if (localStorage.getItem("view") === "list")
-                                                        {
-                                                        list();
-                                                        }
-                                                        function list()
-                                                        {
-                                                        localStorage.setItem("view", "list");
-                                                        for (i = 0; i < card.length; i++) {
-                                                        card[i].style.width = "100%";
-                                                        card[i].style.marginTop = "1%";
-                                                        carddisplay[i].style.display = "flex";
-                                                        carddisplay[i].style.flexDirection = "row";
-                                                        cardimg[i].style.height = "48vh";
-                                                        theme[i].style.top = "95%";
-                                                        // theme[i].style.left = "34%";
-                                                        }
-                                                        }
-                                                        function grid() {
-                                                        localStorage.setItem("view" ,"grid");
-                                                        for (i = 0; i < card.length; i++) {
-                                                        if (screen.width > 1023) {
-                                                        card[i].style.width = "33%";
-                                                        carddisplay[i].style.flexDirection = "column";
-                                                        cardimg[i].style.width = "100%";
-                                                        theme[i].style.top = "95%";
-                                                        theme[i].style.left = "35%";
-                                                        }
-                                                        else {
-                                                        card[i].style.width = "50%";
-                                                        carddisplay[i].style.flexDirection = "column";
-                                                        cardimg[i].style.width = "100%";
-                                                        theme[i].style.top = "95%";
-                                                        theme[i].style.left = "35%";
-                                                        }
-                                                        }
-                                                        }
-
-
-                           //--------------------------------------------------pagination---------------------------------
-
-                                                 const items = document.querySelectorAll('#myItems');
-                                                const itemsPerPage = 6;
-                                                const totalPages = Math.ceil(items.length / itemsPerPage);
-                                                console.log(items);
-                                                function displayPage(pageNumber) {
-                                                const startIndex = (pageNumber - 1) * itemsPerPage;
-                                                const endIndex = startIndex + itemsPerPage;
-                                                items.forEach((item, index) => {
-                                                if (index >= startIndex && index < endIndex) {
-                                                item.style.display = 'block';
-                                                }
-                                                else {
-                                                item.style.display = 'none';
-                                                }
-                                                });
-                                                }
-                                                function createPaginationLinks() {
-                                                const pagination = document.querySelector('#pagination .pagination');
-                                                for (let i = 1; i <= totalPages; i++) {
-                                                const listItem = document.createElement('li');
-                                                listItem.classList.add('page-item');
-                                                const link = document.createElement('a');
-                                                link.href = '#';
-                                                link.textContent = i;
-                                                link.classList.add('page-link');
-                                                link.addEventListener('click', (event) => {
-                                                event.preventDefault();
-                                                displayPage(i);
-                                                });
-                                                listItem.appendChild(link);
-                                                pagination.appendChild(listItem);
-                                                }
-                                                }
-                                                displayPage(1);
-                                                createPaginationLinks();
+                                                   else {
+                                                       $('.cardpdiv').show();
+                                                   }
+                                               });
+                                               });
 
 
 
 
+                           //-------------------------------------------------filterData for theme-----------------------------------------
+
+                                       $(document).ready(function () {
+                                       $('input[type=checkbox][id=FilterTheme]').change(function () {
+                                           var selectTheme = $('input[type=checkbox][id=FilterTheme]:checked').map(function () {
+                                               return $(this).val();
+                                           }).get();
+
+                                           if (selectTheme.length > 0) {
+                                               var count = 0;
+                                               $('.cardpdiv').hide();
+                                               $.each(selectTheme, function (index, value) {
+                                                   $('.cardpdiv:contains("' + value + '")').show();
+                                                   count++;
+                                               });
+                                               $('#missionCount').html(count);
+                                           }
+                                           else {
+                                               $('.cardpdiv').show();
+                                           }
+                                       });
+                                   });
+
+                           // ----------------------------------------for GRID VIEW and LIST VIEW---------------------------------------------
+
+                                                           var card = document.getElementsByClassName("missioncard")
+                                                           var cardimg = document.getElementsByClassName("card-img");
+                                                           var carddisplay = document.getElementsByClassName("card");
+                                                           var theme = document.getElementsByClassName("theme-btn");
+                                                           if (localStorage.getItem("view") === "list")
+                                                           {
+                                                           list();
+                                                           }
+                                                           function list()
+                                                           {
+                                                           localStorage.setItem("view", "list");
+                                                           for (i = 0; i < card.length; i++) {
+                                                           card[i].style.width = "100%";
+                                                           card[i].style.marginTop = "1%";
+                                                           carddisplay[i].style.display = "flex";
+                                                           carddisplay[i].style.flexDirection = "row";
+                                                           cardimg[i].style.height = "48vh";
+                                                           theme[i].style.top = "95%";
+                                                           // theme[i].style.left = "34%";
+                                                           }
+                                                           }
+                                                           function grid() {
+                                                           localStorage.setItem("view" ,"grid");
+                                                           for (i = 0; i < card.length; i++) {
+                                                           if (screen.width > 1023) {
+                                                           card[i].style.width = "33%";
+                                                           carddisplay[i].style.flexDirection = "column";
+                                                           cardimg[i].style.width = "100%";
+                                                           theme[i].style.top = "95%";
+                                                           theme[i].style.left = "35%";
+                                                           }
+                                                           else {
+                                                           card[i].style.width = "50%";
+                                                           carddisplay[i].style.flexDirection = "column";
+                                                           cardimg[i].style.width = "100%";
+                                                           theme[i].style.top = "95%";
+                                                           theme[i].style.left = "35%";
+                                                           }
+                                                           }
+                                                           }
+
+
+                              //--------------------------------------------------pagination---------------------------------
+
+                                                    const items = document.querySelectorAll('#myItems');
+                                                   const itemsPerPage = 6;
+                                                   const totalPages = Math.ceil(items.length / itemsPerPage);
+                                                   console.log(items);
+                                                   function displayPage(pageNumber) {
+                                                   const startIndex = (pageNumber - 1) * itemsPerPage;
+                                                   const endIndex = startIndex + itemsPerPage;
+                                                   items.forEach((item, index) => {
+                                                   if (index >= startIndex && index < endIndex) {
+                                                   item.style.display = 'block';
+                                                   }
+                                                   else {
+                                                   item.style.display = 'none';
+                                                   }
+                                                   });
+                                                   }
+                                                   function createPaginationLinks() {
+                                                   const pagination = document.querySelector('#pagination .pagination');
+                                                   for (let i = 1; i <= totalPages; i++) {
+                                                   const listItem = document.createElement('li');
+                                                   listItem.classList.add('page-item');
+                                                   const link = document.createElement('a');
+                                                   link.href = '#';
+                                                   link.textContent = i;
+                                                   link.classList.add('page-link');
+                                                   link.addEventListener('click', (event) => {
+                                                   event.preventDefault();
+                                                   displayPage(i);
+                                                   });
+                                                   listItem.appendChild(link);
+                                                   pagination.appendChild(listItem);
+                                                   }
+                                                   }
+                                                   displayPage(1);
+                                                   createPaginationLinks();
 
 
 
 
-                 /*--------------------------------------------------Searching-----------------------------------------------------------*/
 
 
-                       function mysearchFun() {
-                        console.log("Hello");
-                        var input = document.getElementById("search_bar");
-                        console.log(input);
-                        var lower = input.value.toLowerCase();
-                        var card = document.getElementsByClassName("cardpdiv");
-                        console.log(card);
-
-                        for (i = 0; i < card.length; i++) {
-
-                            var title = card[i].getElementsByClassName("card-title")[0];
-                            console.log(title);
-                            if (title.innerHTML.toLowerCase().indexOf(lower) > -1) {
-                                card[i].style.display = "";
-
-                            }
-                            else {
-                                card[i].style.display = "none";
-                            }
-                        }
-                    }
 
 
-        /*--------------------------------------------------------Country----------------------------------------------------- */
+                    /*--------------------------------------------------Searching-----------------------------------------------------------*/
 
-                    $(document).ready(function () {
-                $('#country_list').on('change', function () {
-                var selectedcountry = $(this).val();
-                console.log(selectedcountry);
-                $.ajax({
-                url: "/MissionCard/getCities",
-                data: { country: selectedcountry },
-                type: 'GET',
-                dataType: 'json',
-                success: function (result) {
-                console.log(result);
-                var city = "";
-                $.each(result, function (key, value) {
-                city += '<li><a class="dropdown-item"><input class="me-2" name="city" type="checkbox" value="' + value.name + '" /> <label>' + value.name + '</label></a></li>'
-                });
-                $('#city_list').html(city);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-                }
-                });
-                });
-                });
 
- /*--------------------------------------------country For OFFcanvas----------------------------------*/
-                
-                    $(document).ready(function () {
-                $('#CountryList').on('change', function () {
-                var selectedcountry = $(this).val();
-                console.log(selectedcountry);
-                $.ajax({
-                url: "/MissionCard/getCities",
-                data: { country: selectedcountry },
-                type: 'GET',
-                dataType: 'json',
-                success: function (result) {
-                console.log(result);
-                var city = "";
-                $.each(result, function (key, value) {
-                city += '<li><a class="dropdown-item"><input class="me-2" name="city" type="checkbox" value="' + value.name + '" /> <label>' + value.name + '</label></a></li>'
-                });
-                $('#CityList').html(city);
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                console.log(xhr.responseText);
-                }
-                });
-                });
-                });
+                          function mysearchFun() {
+                               console.log("Hello");
+                               var input = document.getElementById("search_bar");
+                               console.log(input);
+                               var lower = input.value.toLowerCase();
+                               var card = document.getElementsByClassName("cardpdiv");
+                               console.log(card);
 
-    </script>
+                           var count = 0;
+                           for (i = 0; i < card.length; i++) {
+
+                               var title = card[i].getElementsByClassName("card-title")[0];
+                               console.log(title);
+
+                               if (title.innerHTML.toLowerCase().indexOf(lower) > -1) {
+                                   card[i].style.display = "";
+                                   count++;
+                               }
+                               else {
+                                   card[i].style.display = "none";
+                               }
+                           }
+                           $('#missionCount').html(count);
+                          }
+
+
+           /*--------------------------------------------------------Country----------------------------------------------------- */
+
+                       $(document).ready(function () {
+                   $('#country_list').on('change', function () {
+                   var selectedcountry = $(this).val();
+                   console.log(selectedcountry);
+                   $.ajax({
+                   url: "/MissionCard/getCities",
+                   data: { country: selectedcountry },
+                   type: 'GET',
+                   dataType: 'json',
+                   success: function (result) {
+                   console.log(result);
+                   var city = "";
+                   $.each(result, function (key, value) {
+                   city += '<li><a class="dropdown-item"><input class="me-2" name="city" type="checkbox" value="' + value.name + '" /> <label>' + value.name + '</label></a></li>'
+                   });
+                   $('#city_list').html(city);
+                   },
+                   error: function (xhr, ajaxOptions, thrownError) {
+                   console.log(xhr.responseText);
+                   }
+                   });
+                   });
+                   });
+
+    /*--------------------------------------------country For OFFcanvas----------------------------------*/
+
+                   $(document).ready(function () {
+                   $('#CountryList').on('change', function () {
+                   var selectedcountry = $(this).val();
+                   console.log(selectedcountry);
+                   $.ajax({
+                   url: "/MissionCard/getCities",
+                   data: { country: selectedcountry },
+                   type: 'GET',
+                   dataType: 'json',
+                   success: function (result) {
+                   console.log(result);
+                   var city = "";
+                   $.each(result, function (key, value) {
+                   city += '<li><a class="dropdown-item"><input class="me-2" name="city" type="checkbox" value="' + value.name + '" /> <label>' + value.name + '</label></a></li>'
+                   });
+                   $('#CityList').html(city);
+                   },
+                   error: function (xhr, ajaxOptions, thrownError) {
+                   console.log(xhr.responseText);
+                   }
+                   });
+                   });
+                   });
+
+</script>
 
 

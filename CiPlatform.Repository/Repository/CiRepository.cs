@@ -117,6 +117,32 @@ namespace CiPlatform.Repository.Repository
             _CiContext.Add(missionApplication);
             _CiContext.SaveChanges();
         }
+
+        public void UpdateRating(int ratingScore, int missionId, int userId)
+        {
+            var rating = _CiContext.MissionRatings.FirstOrDefault(rating => rating.UserId == userId && rating.MissionId == missionId);
+
+            if(rating == null)
+            {
+                var newRating = new MissionRating()
+                {
+                    UserId = userId,
+                    MissionId = missionId,
+                    Rating = ratingScore,
+                    CreatedAt = DateTime.Now
+                };
+
+                _CiContext.MissionRatings.Add(newRating);
+            }
+            else
+            {
+                rating.Rating = ratingScore;
+
+                _CiContext.MissionRatings.Update(rating);
+            }
+
+            _CiContext.SaveChanges();
+        }
     }
 }
 

@@ -33,12 +33,12 @@
 
 
         <!-- user page -->
-        <h4 class="mt-2 ms-3 border-bottom">Mission</h4>
+        <h4 class="mt-2 ms-3 border-bottom">Cms Page</h4>
         <div style="margin-top: 2%;" class=" ms-2 d-flex justify-content-between">
             <div class="col-6 position-relative" role="search">
                 <img src="~/images/search.png" alt="search-icon" style="margin-top:10px;"
                      class="position-absolute ps-1">
-                <input class="form-control me-2 ps-5 pt-3 pb-3" id="search" type="search" style="height:70%;width:80%;"
+                <input class="form-control me-2 ps-5 pt-3 pb-3"  id="search" type="search" style="height:70%;width:80%;"
                        placeholder="Search" aria-label="Search">
             </div>
             <div class="col-4 d-flex justify-content-end">
@@ -46,91 +46,10 @@
                     + Add
                     </a>*@
 
-                <button type="button" class="add btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                <button type="button" class="add btn"  asp-controller ="Admin" asp-action ="_AddCms">
                     + Add
                 </button>
-                <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2 class="modal-title fs-5" id="exampleModalLabel">Edit User Details</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">First Name</label>
-                                        <input type="text" class="form-control" asp-for="user.FirstName" placeholder="Enter Your FirstName" id="firstname">
-                                        @Html.ValidationMessageFor(model => model.user.FirstName,"",new { @class = "text-danger"})
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Last Name</label>
-                                        <input type="text" class="form-control" asp-for="user.LastName" placeholder="Enter Your LastName" id="lastname">
-                                    </div>
-                                </div>
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Email</label>
-                                        <input type="email" class="form-control" asp-for="user.Email" placeholder="Enter Your Email Address" id="email">
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Password</label>
-                                        <input type="password" class="form-control" asp-for="user.Password" placeholder="Enter Your Password Here" id="password">
-                                    </div>
-                                </div>
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Employee ID</label>
-                                        <input type="text" class="form-control" asp-for="user.EmployeeId" placeholder="Enter Your Employee Id" id="employeeId">
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Department</label>
-                                        <input type="text" class="form-control" asp-for="user.Department" placeholder="Enter Your Department" id="department">
-                                    </div>
-                                </div>
-                                <div class="my-2 px-2">
-                                    <label class="form-label mb-0">My Profile</label>
-                                    <textarea class="form-control" asp-for="user.ProfileText" rows="4" placeholder="Enter your comments.." id="profileTxt"></textarea>
-                                </div>
-                                <div class="my-2 p-2">
-                                    <label class="form-label mb-0">Country*</label>
-                                    <select class="form-select mt-2" asp-for="user.CountryId" id="country">
-                                        <option selected>Select your country</option>
-                                        @* @foreach (var item in Model.country)
-                                            {
-                                            <option value="@item.CountryId">@item.Name</option>
-                                            }*@
-                                    </select>
-                                </div>
-
-                                <div class="my-2 p-2">
-                                    <label class="form-label mb-0">City*</label>
-                                    <select class="form-select mt-2" asp-for="user.CityId" id="city">
-                                        @*  @foreach (var item in Model.city)
-                                            {
-                                            <option value="@item.CityId">@item.Name</option>
-                                            }*@
-                                    </select>
-                                </div>
-
-                                <div class="my-1 p-2">
-                                    <label class="form-label">Status*</label>
-                                    <select class="form-select" asp-for="user.Status" id="status">
-                                        <option selected>Select your Status</option>
-                                        <option value="1">Activated</option>
-                                        <option value="0">Deactivated</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
-
-                                <a> <button type="submit" id="btnEditUser" class="modalsavechanges" data-bs-dismiss="modal">Save Changes</button></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </div>
 
@@ -139,10 +58,8 @@
                 <thead style="background-color:#f8f9fc;">
                     <tr>
 
-                        <th style=" padding-left: 30px; padding-right :100px" scope="col">Mission Title</th>
-                        <th scope="col">Mission Type</th>
-                        <th scope="col">Start Date</th>
-                        <th scope="col">End Date</th>
+                        <th style=" padding-left: 30px; padding-right :400px" scope="col">Title</th>
+                        <th style=" padding-left: 0px; padding-right :50px"scope="col">Status</th>                    
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -151,19 +68,15 @@
                         if (Model != null)
 
                         {
-                            foreach (var mission in Model.missions)
+                            foreach (var cms in Model.cmspages)
                             {
                                 <tr>
 
-                                    <td style="padding-left: 30px;"><span>@mission.Title</span></td>
-                                    <td>@mission.MissionType</td>
-                                    <td>@mission.StartDate</td>
-                                    <td>@mission.EndDate</td>
-
-
+                                    <td style="padding-left: 30px;"><span>@cms.Title</span></td>
+                                    <td>@cms.Status</td>                                  
                                     <td style="text-align:center;">
-                                        <a class="btn iconuser" asp-action="MissionPage" asp-controller="Admin" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                               asp-route-id="@mission.MissionId">
+                                        <a class="btn iconuser" asp-action="CmsPage" asp-controller="Admin" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                                             asp-route-id="@cms.CmsPageId">
                                             <i class="bi bi-pencil-square iconForpencil me-2"></i>
                                         </a>
                                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -242,14 +155,13 @@
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="modalbtnclose" data-bs-dismiss="modal">Close</button>
-
                                                         <a> <button type="submit" id="btnEditUser" class="modalsavechanges" data-bs-dismiss="modal">Save Changes</button></a>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <a class="btn iconuser" asp-action="DeleteUser" asp-controller="Admin"
-                               asp-route-uid="@mission.MissionId">
+                                           asp-route-uid="@cms.CmsPageId">
                                             <i class="bi bi-trash3 iconForDelete"></i>
                                         </a>
                                     </td>

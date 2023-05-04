@@ -1,0 +1,192 @@
+﻿@model CiPlatform.Entitites.ViewModels.UserProfileView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="~/css/admin.css">
+    <script type="text/javascript" src="~/js/Home.js"></script>
+
+</head>
+<body>
+
+    <!-- ------------------first navbar----------------------------------- -->
+    <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
+        <div class="container">
+
+            <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+                <img src="~/Images/list.png">
+            </button>
+
+            <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
+                 id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+
+                <div class="offcanvas-header">
+                    <h2>CI-PLATFORM</h2>
+                    <button type="button" class="btn-close " data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
+                           role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                            @if (User.FindFirst("Avatar") != null)
+                            {
+                                <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                            }
+                            @{
+                                var firstname = Context.Session.GetString("Firstname");
+                            }
+                            @ViewBag.firstname
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                            <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Log out</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                           aria-expanded="false">Policy</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </div>
+
+            <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
+            <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                       aria-expanded="false">Policy</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+            </ul>
+            @foreach (var p in Model.user)
+            {
+                if (p.UserId == ViewBag.uid)
+                {
+                    <div class="dropdown text-end user-profile ">
+                        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                            @if (User.FindFirst("Avatar") != null)
+                            {
+                                <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                            }
+                            @p.FirstName
+                        </a>
+                        <ul class="dropdown-menu text-small">
+                            <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
+                            <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
+                        </ul>
+                    </div>
+                }
+            }
+        </div>
+    </nav>
+    <div class="container-xxl mt-5">
+        <h2 class="fw-normal pb-3">Privacy and Cookies Policy</h2>
+
+        <div class="row position-relative">
+            <div class="col-12 col-md-3 pe-4 position-sticky top-0 bg-light z-2">
+                <div id="policy-list" class="d-flex flex-column position-sticky top-0">
+                    <a class="py-3 d-flex justify-content-between align-items-center border-bottom" href="#policy-item-1">Introduction <i class="bi bi-chevron-right"></i></a>
+                    <a class="py-3 d-flex justify-content-between align-items-center border-bottom" href="#policy-item-2">How does use cookies? <i class="bi bi-chevron-right"></i></a>
+                    <a class="py-3 d-flex justify-content-between align-items-center border-bottom" href="#policy-item-3">How to manage your cookie preferences?<i class="bi bi-chevron-right"></i></a>
+                </div>
+            </div>
+            <div class="col-12 col-md-9 mt-3">
+                <div data-bs-spy="scroll" data-bs-target="#policy-list" data-bs-smooth-scroll="true" tabindex="0">
+                    <div id="policy-item-1">
+                        <h4 class="fw-normal mb-4">Introduction</h4>
+                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                        <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <hr class="my-5" />
+                    <div id="policy-item-2">
+                        <h4 class="fw-normal mb-4">How does use cookies?</h4>
+                        <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        <h6>Why Optimy Uses These Technologies?</h6>
+                        <p> We use these technologies for a number of purposes, such as:</p>
+                        <ul class="mb-4">
+                            <li>
+                                But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.
+                            </li>
+                            <li>
+                                Maecenas vel elit eleifend tortor pellentesque congue.
+                            </li>
+                            <li>Integer quis mauris eleifend, hendrerit sapien non, rutrum nibh.</li>
+                            <li>Nulla vitae nulla ut massa placerat suscipit.</li>
+                            <li>
+                                Etiam auctor nulla vitae nibh ullamcorper, at interdum quam scelerisque.
+                            </li>
+                        </ul>
+                        <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                    </div>
+                    <hr class="my-5" />
+                    <div id="policy-item-3">
+                        <h4 class="fw-normal mb-4">How to manage your cookie preferences?</h4>
+                        <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+                        <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                    </div>
+                    <ul class="mb-4">
+                        <li>
+                            But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain.
+                        </li>
+                        <li>
+                            Maecenas vel elit eleifend tortor pellentesque congue.
+                        </li>
+                        <li>Integer quis mauris eleifend, hendrerit sapien non, rutrum nibh.</li>
+                        <li>Nulla vitae nulla ut massa placerat suscipit.</li>
+                        <li>
+                            Etiam auctor nulla vitae nibh ullamcorper, at interdum quam scelerisque.
+                        </li>
+                    </ul>
+                    <p class="mb-4">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
+
+                    <hr class="my-5" />
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@*<partial name="_Footer" />*@

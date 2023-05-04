@@ -341,6 +341,7 @@ input[type=number] {
     color: #f88634;
     border-radius: 24px;
 }
+
     .modalsavechanges:hover {
         background: #f88634;
         color: white;
@@ -361,4 +362,14 @@ input[type=number] {
         background: #f88634;
         color: white;
     }
+/*------------------------------------------for privacy-policy pages-------------------*/
 
+
+#policy-list .active {
+    color: black;
+    font-weight: 400;
+}
+
+#policy-list .bi {
+    font-size: 16px;
+}

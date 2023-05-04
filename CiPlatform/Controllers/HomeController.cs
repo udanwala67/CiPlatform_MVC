@@ -21,7 +21,7 @@ namespace CiPlatform.Controllers
         private readonly EmailServices _emailServices;
         private readonly CiContext _ciContext;
         private readonly IUserDetailsRepository _userDetailsRepository;
-        
+
         public ILogger<HomeController> Logger => _logger;
 
         public HomeController(ILogger<HomeController> logger, ICiRepository ciRepository, EmailServices emailServices, IUserDetailsRepository userDetailsRepository, CiContext ciContext)
@@ -31,7 +31,7 @@ namespace CiPlatform.Controllers
             _emailServices = emailServices;
             _userDetailsRepository = userDetailsRepository;
             _ciContext = ciContext;
-            
+
         }
 
 
@@ -65,15 +65,20 @@ namespace CiPlatform.Controllers
              }
          }*/
 
+
         [HttpPost]
 
-        public IActionResult Login(User user, LoginView loginView)
+        public IActionResult Login(LoginView loginView)
         {
-            
-            var data = _ciContext.Users.Where(u => u.Email == loginView.Email).FirstOrDefault();
-            
+
+            var data = _CiRepository.GetUserEmail(loginView.Email);
+
+            if (data != null)
+            {
                 bool isValid = (data.Email == loginView.Email && data.Password == loginView.Password);
-                if (data.Role == "User")
+
+
+                if (isValid && data.Role == "User")
                 {
                     var claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
@@ -86,14 +91,11 @@ namespace CiPlatform.Controllers
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                     HttpContext.Session.SetString("Email", loginView.Email);
                     HttpContext.Session.SetString("uid", (data.UserId.ToString()));
-                    TempData["success"] = "Login Successfull";
                     return RedirectToAction("platformlandingpage", "MissionCard");
                 }
-            
-            else
-            {
-                if (data.Role == "Admin")
+                else if (isValid && data.Role == "Admin")
                 {
+
                     var claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
                     if (data.Avatar != null)
@@ -103,15 +105,21 @@ namespace CiPlatform.Controllers
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    HttpContext.Session.SetString("Email", user.Email);
-                    TempData["success"] = "Login Successfull";
+                    HttpContext.Session.SetString("Email", loginView.Email);
                     return RedirectToAction("user", "Admin");
                 }
             }
-            TempData["error"] = "Invalid email or password.";
-            return RedirectToAction("Login", "Home");
+            // The email or password is not valid, so return an error response
+            TempData["Error"] = "Invalid Email or Password!";
+            return View(loginView);
         }
 
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("Email");
+            HttpContext.Session.Remove("uid");
+            return RedirectToAction("login");
+        }
 
         public IActionResult forgotpassword()
         {
@@ -123,32 +131,41 @@ namespace CiPlatform.Controllers
         public IActionResult Forgotpassword(ForgotPasswordView forgotView, PasswordReset passwordReset)
 
         {
-            string email = forgotView.Email;
-            string token = (string)GenerateToken();
-            UriBuilder builder = new UriBuilder();
-            builder.Scheme = "https";
-            builder.Host = "localhost";
-            builder.Port = 7148;
-            builder.Path = "Home/resetpassword";
-            builder.Query = "token=" + token + "&email=" + email;
-            _CiRepository.SaveToken(email, token);
-
-            var resetLink = builder.ToString();
-            _emailServices.SendEmailAsync(email, "Reset Password Link", resetLink);
-
-            /*("token_session", token.ToString());*/
-
-            HttpContext.Session.SetString("token_session", token.ToString());
-            var view = new PasswordReset()
+            if (!ModelState.IsValid)
             {
-                Email = email,
-                Token = token,
-                CreatedAt = DateTime.Now,
-            };
+                return View(forgotView);
+            }
+            else
+            {
+                var existingUser = _CiRepository.GetUserEmail(forgotView.Email);
+                if (existingUser == null)
+                {
+                    ModelState.AddModelError("Email", "Email does not exist. Please enter valid email.");
+                    return View();
+                }
+                string email = forgotView.Email;
+                string token = (string)GenerateToken();
 
-            _ciContext.PasswordResets.Add(view);
-            _ciContext.SaveChanges();
-            return RedirectToAction("login");
+                _CiRepository.SaveToken(email, token);
+
+                var resetLink = Url.Action("resetpassword", "Home", new { token = token, email = email }, "https");
+                _emailServices.SendEmailAsync(email, "Reset Password Link", resetLink);
+
+                /*("token_session", token.ToString());*/
+
+                HttpContext.Session.SetString("token_session", token.ToString());
+                var view = new PasswordReset()
+                {
+                    Email = email,
+                    Token = token,
+                    CreatedAt = DateTime.Now,
+                };
+
+                _ciContext.PasswordResets.Add(view);
+                _ciContext.SaveChanges();
+                TempData["success"] = "Email sent successfully.";
+                return View(forgotView);
+            }
         }
         public IActionResult registration()
         {
@@ -160,16 +177,25 @@ namespace CiPlatform.Controllers
 
         public IActionResult Registration(User user)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
 
-                _CiRepository.RegisterUser(user);
-                /*_ciContext.Users.Add(user);*/
-                return RedirectToAction("login","Home");
+                return View();
             }
             else
             {
-                return View();
+                var existingUser = _CiRepository.GetUserEmail(user.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("Email", "Email already exist. Please enter another email.");
+                    return View();
+                }
+
+                _CiRepository.RegisterUser(user);
+                /*_ciContext.Users.Add(user);*/
+                return RedirectToAction("login", "Home");
+
             }
         }
         [HttpGet]
@@ -185,19 +211,19 @@ namespace CiPlatform.Controllers
         }
 
         [HttpPost]
-        public IActionResult resetpassword(ResetPasswordView resetView, IFormCollection form)
+        public IActionResult resetpassword(ResetPasswordView resetView)
         {
-            string token = HttpContext.Session.GetString("token_session");
+            var token = HttpContext.Session.GetString("token_session");
             string email = resetView.Email;
             var passreset = new PasswordReset();
             var user = _ciContext.Users.Where(x => x.Email == resetView.Email).FirstOrDefault();
-            if (form["confirmpass"] == form["password"])
+            if (ModelState.IsValid)
             {
-
                 user.Password = resetView.Password;
                 user.UpdatedAt = DateTime.Now;
                 _ciContext.Users.Update(user);
                 _ciContext.SaveChanges();
+                TempData["success"] = "Password changed successfully";
                 return RedirectToAction("login");
             }
             else
@@ -205,9 +231,9 @@ namespace CiPlatform.Controllers
                 return View();
             }
         }
-       
 
-    private object GenerateToken()
+
+        private object GenerateToken()
         {
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
             var random = new Random();
@@ -236,7 +262,7 @@ namespace CiPlatform.Controllers
         {
             return View();
         }
-     
+
         public IActionResult planding()
         {
             return View();
@@ -247,11 +273,15 @@ namespace CiPlatform.Controllers
             var identity = User.Identity as ClaimsIdentity;
             /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;
             ViewBag.Name = name;*/
-            string email = HttpContext.Session.GetString("Email");
-
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
             ViewBag.uid = (int)user.UserId;
+            ViewBag.FullName = user.FirstName + " " + user.LastName;
             return View(model);
 
         }
@@ -261,19 +291,27 @@ namespace CiPlatform.Controllers
         {
             var identity = User.Identity as ClaimsIdentity;
             /*string name = identity.FindFirst(ClaimTypes.NameIdentifier).Value;*/
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);
-            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);   
-           
+            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+
             return View(model);
         }
         [HttpPost]
 
         public async Task<IActionResult> changeAvatar(UserProfileView model)
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.FirstOrDefault(u => u.Email == email);
             int uid = (int)user.UserId;
             var userp = _ciContext.Users.Where(x => x.UserId == uid).FirstOrDefault();
@@ -303,13 +341,17 @@ namespace CiPlatform.Controllers
                 };
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authenticationProperties);
             }
-            return RedirectToAction("UserEdit","Home");
+            return RedirectToAction("UserEdit", "Home");
         }
 
 
-        public JsonResult GetUserProfile()
+        public IActionResult GetUserProfile()
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             var profile = _userDetailsRepository.GetUserById((int)user.UserId);
             if (profile != null)
@@ -329,20 +371,24 @@ namespace CiPlatform.Controllers
         }
 
         [HttpPost]
-        public IActionResult ChangePass(string oldpass,string newpass,string cnewpass)
+        public IActionResult ChangePass(string oldpass, string newpass, string cnewpass)
         {
-                      
-                string email = HttpContext.Session.GetString("Email");
-                var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-                _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
-                return RedirectToAction("Login", "Home");
-            
-           
-            
-               /* // there was an error creating the user, display error messages
-                return RedirectToAction("UserEdit");*/
-            
-            
+
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            _userDetailsRepository.updatePass((int)user.UserId, oldpass, newpass, cnewpass);
+            return RedirectToAction("Login", "Home");
+
+
+
+            /* // there was an error creating the user, display error messages
+             return RedirectToAction("UserEdit");*/
+
+
         }
 
         public IActionResult getProfileImage(int uid)
@@ -366,6 +412,22 @@ namespace CiPlatform.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult PolicyPage()
+        {
+            var email = HttpContext.Session.GetString("Email");
+
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+
+            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
+            var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            ViewBag.uid = (int)user.UserId;
+            return View(model);
+
         }
     }
 }

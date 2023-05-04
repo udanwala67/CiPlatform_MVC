@@ -12,7 +12,7 @@ namespace CiPlatform.Controllers
         private readonly CiContext _ciContext;
         private readonly IAdminRepository _adminRepository;
 
-        public AdminController(IAdminRepository adminRepository,CiContext ciContext)
+        public AdminController(IAdminRepository adminRepository, CiContext ciContext)
         {
             _ciContext = ciContext;
             _adminRepository = adminRepository;
@@ -20,11 +20,16 @@ namespace CiPlatform.Controllers
 
         public IActionResult user()
         {
-            string email = HttpContext.Session.GetString("Email");
-            var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
-            ViewBag.uid = (int)user.UserId;
-            var model = _adminRepository.GetData();
-            return View(model);
+            var shares = _adminRepository.GetData();
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
+            long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
+            ViewBag.uid = user;
+
+            return View(shares);
         }
         [HttpPost]
 
@@ -33,7 +38,7 @@ namespace CiPlatform.Controllers
             _adminRepository.AddUser(model);
             return RedirectToAction("user");
         }
-    
+
         public IActionResult GetUserData(int uid)
         {
             var user = _adminRepository.GetUser(uid);
@@ -45,7 +50,7 @@ namespace CiPlatform.Controllers
         {
             _adminRepository.deleteUser(uid);
             var model = _adminRepository.GetData();
-           /* return RedirectToAction("user", "Admin");*/
+            /* return RedirectToAction("user", "Admin");*/
             return PartialView("_Admin");
         }
         public JsonResult getCities(string selectedcountry)
@@ -56,7 +61,11 @@ namespace CiPlatform.Controllers
         }
         public IActionResult MissionPage()
         {
-            string email = HttpContext.Session.GetString("Email");
+            var email = HttpContext.Session.GetString("Email");
+            if (string.IsNullOrEmpty(email))
+            {
+                return Unauthorized();
+            }
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             var model = _adminRepository.GetData();
@@ -76,5 +85,32 @@ namespace CiPlatform.Controllers
             return View();
         }
 
+
+
+        public IActionResult MissionTheme()
+        {
+            return View();
+        }
+
+        public IActionResult MissionSkills()
+        {
+            return View();
+        }
+
+        public IActionResult MissionApplication()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult MissionApplication(AdminView model)
+        {
+            _adminRepository.GetData();
+            return View();
+        }
+
+        public IActionResult StoryPage()
+        {
+            return View();
+        }
     }
 }
