@@ -29,128 +29,15 @@
 
 <body>
 
+       <partial Name = "_Header" />
 
     <div class="d-flex">
         <div class="col-md-1 col-0 border-bottom"></div>
 
         <!--Main Navigation-->
         <div class="col-md-10 col-12">
-            <header>
-
-
-
-                <!-- --------------------------------------first navbar-------------------------------------->
-
-
-                <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
-                    <div class="container">
-
-                        <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" id="hamburgerbut"
-                                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                            <img src="~/Images/list.png">
-                        </button>
-
-                        <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
-                             id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-                            <div class="offcanvas-header">
-                                <h2>CI-PLATFORM</h2>
-                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                            </div>
-
-                            <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
-                                <div class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
-                                       role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        @if (User.FindFirst("Avatar") != null)
-                                        {
-                                            <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                        }
-                                        @{
-                                            var firstname = Context.Session.GetString("Firstname");
-                                        }
-                                        @ViewBag.firstname
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider" />
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Log out</a>
-                                        </li>
-                                    </ul>
-                                </div>
-
-                                <li class="nav-item">
-                                    <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                       aria-expanded="false">Policy</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="#">Action</a></li>
-                                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </div>
-                        </div>
-
-                        <img src="~/Images/logo.png" asp-action = "platformlandingpage" asp-controller = "MissionCard" alt="CI-PLATFORM" class="me-5">
-                        <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                   aria-expanded="false">Policy</a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        @foreach (var p in Model.user)
-                        {
-                            if (p.UserId == ViewBag.uid)
-                            {
-
-                                <div class="dropdown text-end user-profile ">
-                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                        @if (User.FindFirst("Avatar") != null)
-                                        {
-                                            <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                        }
-                                        @p.FirstName
-                                    </a>
-                                    <ul class="dropdown-menu text-small">
-                                        <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
-                                    </ul>
-                                </div>
-                            }
-                        }
-                    </div>
-                </nav>
-
-            </header>
             @{
-
-
-
                 int mid = ViewBag.missionid;
-
-
-
             }
 
             @{
@@ -300,7 +187,7 @@
                                     @if (s.FavoriteMissions.Where(f => f.MissionId == s.MissionId && f.UserId == ViewBag.uid).Count() > 0)
                                     {
 
-                                        <button type="button" class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;">
+                                        <button type="button" class="btn btn-outline-dark btn-rounded volbtn">
                                             <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId" asp-route-theme="@s.Theme.Title" asp-route-pageType="2">
                                                 @*<button class="btn btn-outline-dark btn-rounded px-2" style="width:100%; border-radius: 5px;"> *@
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -312,7 +199,7 @@
                                     }
                                     else
                                     {
-                                        <button type="button" class="btn btn-outline-dark btn-rounded" style="width:100%; border-radius: 5px;">
+                                        <button type="button" class="btn btn-outline-dark btn-rounded volbtn">
                                             <a style="color:black" asp-controller="MissionCard" asp-action="AddtoFav" asp-route-mid="@s.MissionId" asp-route-theme="@s.Theme.Title" asp-route-pageType="2">
 
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
@@ -325,10 +212,8 @@
                                     }
                                 </div>
                                 <div>
-                                    <button type="button" class="btn btn-outline-dark btn-rounded" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                            style="width:100%; border-radius: 5px;">
-                                        <img src="~/Images/add1.png" alt=""> Recommend to a
-                                        Co-Worker
+                                    <button type="button" class="btn btn-outline-dark btn-rounded volbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">                                           
+                                        <img src="~/Images/add1.png" alt=""> Recommend To a Co-Worker
                                     </button>
 
                                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

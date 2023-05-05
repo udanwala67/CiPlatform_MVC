@@ -134,21 +134,26 @@
 
 /*----------------------------navbar--------------------------------------------------*/
 
+
 @media screen and (min-width:767px) {
 
-    .btn,
-    #offcanvasWithBothOptions {
+
+    #mainHeader .myToggleButton {
         display: none;
     }
 
 
-    .hamburger,
-    #offcanvasWithBothOptions,
-    #filteroffcanvasWithBothOptions {
+    #mainHeader .hamburger,
+    #mainHeader #offcanvasWithBothOptions,
+    #mainHeader #filteroffcanvasWithBothOptions {
         display: none;
     }
 
-    .nav-brand {
+    #mainHeader #hamburgerbut {
+        display: none;
+    }
+
+    #mainHeader .nav-brand {
         display: none;
     }
 }

@@ -25,46 +25,59 @@ namespace CiPlatform.Controllers
 
         }
 
-        public IActionResult sharestory()
+        public IActionResult sharestory(long storyId)
         {
-
-            var shares = _storyRepository.GetStory();
             var email = HttpContext.Session.GetString("Email");
             if (string.IsNullOrEmpty(email))
             {
                 return Unauthorized();
             }
-            long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
-            ViewBag.uid = user;
+            var shares = _storyRepository.GetStory(storyId);
+            if(string.IsNullOrEmpty(shares.Status) || shares.Status == "DRAFT")
+            {
+                long user = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
+                ViewBag.uid = user;
 
-            return View(shares);
+                return View(shares);
+            }
+            return RedirectToAction("storydetails", "Story");
         }
 
 
         [HttpPost]
         public IActionResult sharestory(StoryView storyView)
         {
-            var stories = _storyRepository.GetStory();
+            //var stories = _storyRepository.GetStory();
             var email = HttpContext.Session.GetString("Email");
             if (string.IsNullOrEmpty(email))
             {
                 return Unauthorized();
             }
             long userid = _ciContext.Users.Where(u => u.Email == email).Select(m => m.UserId).FirstOrDefault();
-            _storyRepository.PushStory(userid, storyView);
-            return View(stories);
+            var storyId = _storyRepository.PushStory(userid, storyView);
+            if(storyId != 0)
+            {
+                TempData["Success"] = "Story Saved Successfully";   
+            }
+            return RedirectToAction("sharestory",new {storyId});
 
         }
 
+        public IActionResult submitStory(long storyId)
+        {
+            _storyRepository.SubmitStory(storyId);
+            TempData["Success"] = "Story submitted successfully";
+            return RedirectToAction("storydetails", "Story");
+        }
 
         public IActionResult storydetails()
         {
-            var sunglass = _storyRepository.GetStory();
             var email = HttpContext.Session.GetString("Email");
             if (string.IsNullOrEmpty(email))
             {
                 return Unauthorized();
             }
+            var sunglass = _storyRepository.GetStory(0);
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.uid = (int)user.UserId;
             return View(sunglass);
@@ -74,11 +87,12 @@ namespace CiPlatform.Controllers
         /*----------------------------------------------storydetails and Story_Details aboth are different pages so take care--------------------------------------*/
 
 
-        public IActionResult Story_Details(int user, int missionId)
+        public IActionResult Story_Details(long storyId)
         {
-            ViewBag.uid = (int)user.CompareTo(missionId);
-            ViewBag.missionid = missionId;
-            var sunglass1 = _storyRepository.GetStory();
+            //ViewBag.uid = (int)user.CompareTo(missionId);
+            //ViewBag.missionid = missionId;
+            var sunglass1 = _storyRepository.GetStory(storyId);
+            ViewBag.StoryId = storyId;
             return View(sunglass1);
         }
 
@@ -119,7 +133,7 @@ namespace CiPlatform.Controllers
             return Json(timesheet);
         }
 
-        [HttpPost]
+
         public IActionResult AddGoalMission(VolunteeringTimesheetView model)
         {
             var email = HttpContext.Session.GetString("Email");

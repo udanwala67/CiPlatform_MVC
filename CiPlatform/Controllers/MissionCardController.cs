@@ -51,21 +51,7 @@ namespace CiPlatform.Controllers
             int TotalMissions = mission.Count();
             ViewBag.TotalMissions = TotalMissions;
 
-            switch (sortOrder)
-            {
-                case "Newest":
-                    mission = _ciContext.Missions.OrderByDescending(m => m.StartDate).ToList();
-                    break;
-
-                case "Oldest":
-                    mission = _ciContext.Missions.OrderBy(mission => mission.EndDate).ToList();
-                    break;
-
-                case "Theme":
-                    mission = _ciContext.Missions.OrderBy(mission => mission.Theme).ToList();
-                    break;
-            }
-
+       
             foreach (var item in mission)
             {
                 var City = _ciContext.Cities.FirstOrDefault(u => u.CityId == item.CityId);
@@ -97,10 +83,8 @@ namespace CiPlatform.Controllers
                 return Unauthorized();
             }
 
-
             var user = _ciContext.Users.Where(u => u.Email == email).FirstOrDefault();
             ViewBag.theme = theme;
-
 
 
             if (user == null)
@@ -150,8 +134,9 @@ namespace CiPlatform.Controllers
         public IActionResult coworker(int missionId, string email)
         {
 
-            var link = Url.Action("VolunteeringMission", "MissionCard", new { missionid = missionId, theme = string.Empty }, "https");
-            _emailServices.SendEmailAsync(email, "Recommend Coworker", link);
+            var link = Url.Action("VolunteeringMission", "MissionCard", new { missionid = missionId, theme = string.Empty });
+            var redirectLink = Url.Action("Login", "Home", new { returnUrl = link }, "https");
+            _emailServices.SendEmailAsync(email, "Recommend Coworker", redirectLink);
 
             return RedirectToAction("VolunteeringMission", new { missionId = missionId });
         }

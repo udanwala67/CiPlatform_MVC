@@ -1,7 +1,7 @@
 ﻿<nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
-    <div class="container">
+    <div class="container" id="mainHeader">
 
-        <button class="btn btn-dark " type="button" data-bs-toggle="offcanvas"
+        <button class="btn btn-dark myToggleButton" type="button" data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
             <img src="~/Images/list.png">
         </button>
@@ -23,10 +23,10 @@
                         {
                             <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
                         }
-                        @{
-                            var firstname = Context.Session.GetString("Firstname");
+                        @if (User.FindFirst("FullName") != null)
+                        {
+                            @User.FindFirst("FullName").Value
                         }
-                        @ViewBag.firstname
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5 navbar-brand">
+        <a asp-action="platformlandingpage" asp-controller="MissionCard"> <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5 navbar-brand"></a>
         <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
@@ -71,30 +71,33 @@
                 </ul>
             </li>
         </ul>
-        @foreach (var p in Model.user)
-        {
-            if (p.UserId == ViewBag.uid)
+        @*@foreach (var p in Model.user)
             {
-                <div class="dropdown text-end user-profile ">
-                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
+            if (p.UserId == ViewBag.uid)
+            {*@
+        <div class="dropdown text-end user-profile ">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
                aria-expanded="false">
-                        @if (User.FindFirst("Avatar") != null)
-                        {
-                            <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                        }
-                        @p.FirstName
-                    </a>
-                    <ul class="dropdown-menu text-small">
-                        <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                        <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
-                    </ul>
-                </div>
-            }
-        }
+                @if (User.FindFirst("Avatar") != null)
+                {
+                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
+                }
+                @if (User.FindFirst("FullName") != null)
+                {
+                    @User.FindFirst("FullName").Value
+                }
+            </a>
+            <ul class="dropdown-menu text-small">
+                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">My Profile</a></li>
+                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
+            </ul>
+        </div>
+        
     </div>
+    
 </nav>
 

@@ -24,12 +24,12 @@
         {
             if (item.Mission.MissionType == "Goal" && item.Mission.DeletedAt == null)
             {
-                <tr>
-                    <td>@item.Mission.Title</td>
-                    <td>@item.DateVolunteered.ToString().Split(" ")[0]</td>
-                    <td>@item.Action</td>
-                    <td><a onclick="EditData(@item.TimesheetId)" data-bs-toggle="modal" data-bs-target="#EditVolGoal"><i class="bi bi-pencil-square"></i></a><a onclick="deleteData(@item.TimesheetId)" data-bs-toggle="modal" data-bs-target="#deleteGoalModal"><i class="bi bi-trash-fill ms-2"></i></a></td>
-                </tr>
+                                        <tr>
+                                            <td>@item.Mission.Title</td>
+                                            <td>@item.DateVolunteered.ToString().Split(" ")[0]</td>
+                                            <td>@item.Action</td>
+                                            <td><a onclick="EditData(@item.TimesheetId)" data-bs-toggle="modal" data-bs-target="#EditVolGoal"><i class="bi bi-pencil-square"></i></a><a onclick="deleteData(@item.TimesheetId)" data-bs-toggle="modal" data-bs-target="#deleteGoalModal"><i class="bi bi-trash-fill ms-2"></i></a></td>
+                                        </tr>
             }
         }
     </tbody>
@@ -66,7 +66,7 @@
                         {
                             @if (item.UserId == ViewBag.uid && item.Mission.MissionType == "Goal")
                             {
-                                <option value="@item.Mission.MissionId">@item.Mission.Title</option>
+                                                        <option value="@item.Mission.MissionId">@item.Mission.Title</option>
                             }
                         }
                     </select>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="my-2 px-2">
                     <label class="form-label mb-0">Message</label>
-<textarea class="form-control" rows="4" placeholder="Enter your message.." id="egoalMissionMessage"></textarea>
+                     <textarea class="form-control" rows="4" placeholder="Enter your message.." id="egoalMissionMessage"></textarea>
                 </div>
             </div>
             <div class="modal-footer">
@@ -100,94 +100,93 @@
     $('#egoalMissionId').on('change', function () {
     var missionId = $(this).val();
     $.ajax({
-    type:'GET',
-    url:'/Story/getDateRange',
-    data:{missionId},
-    success:function(data){
-    var startDate = new Date(data.startDate);
-    date = startDate.getDate();
-    month = startDate.getMonth() + 1;
-    year = startDate.getFullYear();
-    date = date.toString().padStart(2, '0');
-    month = month.toString().padStart(2, '0');
-    sdate = year+'-'+month+'-'+date;
-    var endDate = new Date(data.endDate);
-    date = endDate.getDate();
-    month = endDate.getMonth() + 1;
-    year = endDate.getFullYear();
-    date = date.toString().padStart(2, '0');
-    month = month.toString().padStart(2, '0');
-    edate = year+'-'+month+'-'+date;
-    $('#egoalMissionDate').attr("min",sdate);
-    $('#egoalMissionDate').attr("max",edate);
-    console.log(data);
+            type:'GET',
+            url:'/Story/getDateRange',
+            data:{missionId},
+            success:function(data){
+            var startDate = new Date(data.startDate);
+            date = startDate.getDate();
+            month = startDate.getMonth() + 1;
+            year = startDate.getFullYear();
+            date = date.toString().padStart(2, '0');
+            month = month.toString().padStart(2, '0');
+            sdate = year+'-'+month+'-'+date;
+            var endDate = new Date(data.endDate);
+            date = endDate.getDate();
+            month = endDate.getMonth() + 1;
+            year = endDate.getFullYear();
+            date = date.toString().padStart(2, '0');
+            month = month.toString().padStart(2, '0');
+            edate = year+'-'+month+'-'+date;
+            $('#egoalMissionDate').attr("min",sdate);
+            $('#egoalMissionDate').attr("max",edate);
+            console.log(data);
     },
-    error:function(e){
-    console.log(e);
-    }
-    })
-    });
-    });
-
-    
-              function addGoalDetails(tid){
-            console.log(tid);
-            $.ajax({
-                type:'GET',
-                url: '/Story/AddGoalTimeSheet',
-                data:{
-                    tid:tid,
-                },
-
-                success: function (data) {
-                    $('#egoalMissionId').val(data.missionId);
-                    var inputDate = new Date(data.dateVolunteered);
-                    date = inputDate.getDate();
-                    month = inputDate.getMonth() + 1;
-                    year = inputDate.getFullYear();
-                    date = date.toString().padStart(2, '0');
-                    month = month.toString().padStart(2, '0');
-                    dateformat = year+'-'+month+'-'+date;
-                    console.log(dateformat);
-                    $('#egoalMissionDate').val(dateformat);
-                    var time = (data.time).split(':');
-                    var hours = time[0];
-                    var minutes = time[1];
-                    $('#ehours').val(hours);
-                    $('#eminutes').val(minutes);
-                    $('#etimeMissionMessage').val(data.notes);
-                    $('#timesheetid').val(data.timesheetId);
-                    console.log(tid);
-                },
-                error: function (e) {
-                    }
-            })
+        error:function(e){
+        console.log(e);
         }
+      })
+     });
+   });
+
+
+           $('#addGoalDetails').click(function(){
+                   debugger;
+                    var tid = $('#timesheetid').val();
+                    console.log(tid);
+                    var goalMissionId = $('#goalMissionId').val();
+                    var goalMissionDate = $('#goalMissionDate').val();
+                    var action = $('#actions').val();
+                    var goalMissionMessage = $('#goalMissionMessage').val();
+                    console.log(goalMissionId);
+                    console.log(goalMissionDate);
+                    console.log(action);
+                    console.log(goalMissionMessage);
+
+                    $.ajax({
+                        type:'POST',
+                        url: '/Story/AddGoalMission',
+                        data:{
+                        'MissionId':goalMissionId,
+                        'date':goalMissionDate,
+                        'action':action,
+                        'message':goalMissionMessage,
+                        'tid':tid,
+                        },  
+                       success: function (data) {
+                           debugger;
+                         console.log(data);
+                         $("#replaceGoalMission").html(data);
+                        },
+                        error: function (e) {
+                        }
+                    });
+                });
 
     function EditData(tid){
     console.log(tid);
-    $.ajax({
-    type:'GET',
-    url: '/Story/EditTimesheet',
-    data:{
-    tid:tid,
-    },
-    success: function (data) {
-    console.log(data);
-    $('#egoalMissionId').val(data.missionId);
-    var inputDate = new Date(data.dateVolunteered);
-    date = inputDate.getDate();
-    month = inputDate.getMonth() + 1;
-    year = inputDate.getFullYear();
-    date = date.toString().padStart(2, '0');
-    month = month.toString().padStart(2, '0');
-    dateformat = year+'-'+month+'-'+date;
-    console.log(dateformat);
-    $('#egoalMissionDate').val(dateformat);
-    $('#eactions').val(data.action);
-    $('#egoalMissionMessage').val(data.notes);
-    $('#timesheetid').val(data.timesheetId);
-    console.log(tid);
+            $.ajax({
+            type:'GET',
+            url: '/Story/EditTimesheet',
+            data:{
+            tid:tid,
+            },
+            success: function (data) {
+            console.log(data);
+            $('#egoalMissionId').val(data.missionId);
+            var inputDate = new Date(data.dateVolunteered);
+            date = inputDate.getDate();
+            month = inputDate.getMonth() + 1;
+            year = inputDate.getFullYear();
+            date = date.toString().padStart(2, '0');
+            month = month.toString().padStart(2, '0');
+            dateformat = year+'-'+month+'-'+date;
+            console.log(dateformat);
+            $('#egoalMissionDate').val(dateformat);
+            $('#eactions').val(data.action);
+            $('#egoalMissionMessage').val(data.notes);
+            $('#timesheetid').val(data.timesheetId);
+            console.log(tid);
     },
     error: function (e) {
     }
@@ -255,6 +254,7 @@
             })
         }
 </script>
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 @*<script>
@@ -263,4 +263,4 @@
     var tablee = $('#dataTableGoal').DataTable();
     });
 
-</script>*@
+            </script>*@

@@ -7,7 +7,7 @@
     }
 }
 
-@for (var i = 0; i < ratingScore; i++)
+@for (var i = 1; i <= ratingScore; i++)
 {
     <h4 class="bi bi-star-fill text-warning mx-1" role="button" onclick="UserRating(@i, @ViewBag.missionId, @ViewBag.uid)"></h4>
 }

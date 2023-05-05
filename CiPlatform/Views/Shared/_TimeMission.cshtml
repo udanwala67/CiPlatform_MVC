@@ -197,13 +197,14 @@
     //}
 
                $('#addTimeDetails').click(function(){
+                   debugger;
                     var tid = $('#timesheetid').val();
                     console.log(tid);
-                    var timeMissionId = $('#etimeMissionId').val();
-                    var timeMissionDate = $('#etimeMissionDate').val();
-                    var hours = $('#ehours').val();
-                    var minutes = $('#eminutes').val();
-                    var timeMissionMessage = $('#etimeMissionMessage').val();
+                    var timeMissionId = $('#timeMissionId').val();
+                    var timeMissionDate = $('#timeMissionDate').val();
+                    var hours = $('#hours').val();
+                    var minutes = $('#minutes').val();
+                    var timeMissionMessage = $('#timeMissionMessage').val();
                     console.log(timeMissionId);
                     console.log(timeMissionDate);
                     console.log(hours);
@@ -212,7 +213,7 @@
 
                     $.ajax({
                         type:'POST',
-                        url: '/Story/AddTimeTimeSheet',
+                        url: '/Story/AddTimeMission',
                         data:{
                         'MissionId':timeMissionId,
                         'date':timeMissionDate,
@@ -220,10 +221,11 @@
                         'minutes':minutes,
                         'message':timeMissionMessage,
                         'tid':tid,
-                        },
-                        success: function (result) {
-                            console.log(result);
-                            $('#replaceTimeMission').html(result);
+                        },  
+                       success: function (data) {
+                           debugger;
+                         console.log(data);
+                         $("#replaceTimeMission").html(data);
                         },
                         error: function (e) {
                         }
@@ -266,8 +268,8 @@
                     })
                 }
 
-     
 
+           
 
                 $('#updateTimeDetails').click(function(){
                     var tid = $('#timesheetid').val();

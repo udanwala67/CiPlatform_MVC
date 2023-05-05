@@ -12,8 +12,9 @@ namespace CiPlatform.Repository.Interface
     public interface IStoryRepository
     {
 
-        public StoryView GetStory();
-        public void PushStory(long userid, StoryView storyView);
+        public StoryView GetStory(long storyId);
+        public long PushStory(long userid, StoryView storyView);
+        public void SubmitStory(long storyId);
         public VolunteeringTimesheetView GetAllMissions(int uid);
         public void AddTimeTimesheet(VolunteeringTimesheetView model, int uid);
         public void AddGoalTimesheet(VolunteeringTimesheetView model, int uid);

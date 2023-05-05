@@ -29,9 +29,6 @@
 <body>
     <form method="post">
 
-
-
-
         <!-- user page -->
         <h4 class="mt-2 ms-3 border-bottom">Mission</h4>
         <div style="margin-top: 2%;" class=" ms-2 d-flex justify-content-between">
@@ -58,69 +55,85 @@
                             </div>
                             <div class="modal-body">
 
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">First Name</label>
-                                        <input type="text" class="form-control" asp-for="user.FirstName" placeholder="Enter Your FirstName" id="firstname">
-                                        @Html.ValidationMessageFor(model => model.user.FirstName,"",new { @class = "text-danger"})
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Last Name</label>
-                                        <input type="text" class="form-control" asp-for="user.LastName" placeholder="Enter Your LastName" id="lastname">
-                                    </div>
-                                </div>
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Email</label>
-                                        <input type="email" class="form-control" asp-for="user.Email" placeholder="Enter Your Email Address" id="email">
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Password</label>
-                                        <input type="password" class="form-control" asp-for="user.Password" placeholder="Enter Your Password Here" id="password">
-                                    </div>
-                                </div>
-                                <div class="d-flex my-2">
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Employee ID</label>
-                                        <input type="text" class="form-control" asp-for="user.EmployeeId" placeholder="Enter Your Employee Id" id="employeeId">
-                                    </div>
-                                    <div class="col-lg-6 px-2">
-                                        <label class="form-label mb-0">Department</label>
-                                        <input type="text" class="form-control" asp-for="user.Department" placeholder="Enter Your Department" id="department">
-                                    </div>
-                                </div>
-                                <div class="my-2 px-2">
-                                    <label class="form-label mb-0">My Profile</label>
-                                    <textarea class="form-control" asp-for="user.ProfileText" rows="4" placeholder="Enter your comments.." id="profileTxt"></textarea>
-                                </div>
-                                <div class="my-2 p-2">
-                                    <label class="form-label mb-0">Country*</label>
-                                    <select class="form-select mt-2" asp-for="user.CountryId" id="country">
-                                        <option selected>Select your country</option>
-                                       @* @foreach (var item in Model.country)
-                                        {
-                                            <option value="@item.CountryId">@item.Name</option>
-                                        }*@
-                                    </select>
-                                </div>
+                                <div class="container mt-3">
+                                    <div class="fs-3">Share your story</div>
+                                    <div class="row mt-4">
 
-                                <div class="my-2 p-2">
-                                    <label class="form-label mb-0">City*</label>
-                                    <select class="form-select mt-2" asp-for="user.CityId" id="city">
-                                      @*  @foreach (var item in Model.city)
-                                        {
-                                            <option value="@item.CityId">@item.Name</option>
-                                        }*@
-                                    </select>
-                                </div>
+                                       @* <div class="col-lg-3">
+                                            <label class="my-2">Select Theme</label>
+                                            <input type="text" class="form-control" id="storytitle" placeholder="Enter story title" />
+                                        </div>*@
+                                        <div class="col-lg-3">
+                                            <label class="my-2">Select Mission</label>
 
-                                <div class="my-1 p-2">
-                                    <label class="form-label">Status*</label>
-                                    <select class="form-select" asp-for="user.Status" id="status">
-                                        <option selected>Select your Status</option>
-                                        <option value="1">Activated</option>
-                                        <option value="0">Deactivated</option>
-                                    </select>
+
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option selected>select your mission</option>
+                                               
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="my-2">Start Date</label>
+                                            <input type="date" class="form-control" id="sdate" />
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label class="my-2">End Date</label>
+                                            <input type="date" class="form-control" id="sdate" />
+                                        </div>
+
+                                    </div>
+                                    <div class="row mx-1 my-2">
+                                        <label class="my-2">My Story</label>
+                                        <textarea></textarea>
+                                        <script type="text/javascript">CKEDITOR.replace('Description');CKEDITOR.config.width='100%';CKEDITOR.config.height='275px';</script>
+                                    </div>
+                                    <div>
+                                        <label class="my-3">Enter Video URL</label>
+                                        <input type="text" id="url" class="form-control" placeholder="Enter your url" />
+                                    </div>
+
+
+                                    <div class="my-3">
+
+                                        @*<div class="upload_box">
+                                            <div class="upload_imagebox my-3" id="upload_imagebox">
+                                            <img src="~/images/drag-and-drop.png" asp-for="StoryMedia" id="myselectimg" />
+                                            <input type="file" name="file" id="file" accept="image/*, video/*" style="display: none;" multiple />
+                                            </div>
+                                            </div>*@
+
+
+                                        <div class="form-group mt-3">
+                                            <label class="my-3" for="">Upload Your Photos</label>
+                                            <input type="file" class="form-control" id="upload-img" multiple />
+                                            <div class="upload_imagebox mb-3" id="upload_imagebox">
+                                                <img src="~/images/drag-and-drop.png" asp-for="uploadimg" id="myselectimg" />
+
+
+                                            </div>
+                                            <div class="img-thumbs img-thumbs-hidden" id="img-preview"></div>
+
+
+                                        </div>
+
+                                        @* <div class="upload-container">
+                                            <div class="icon-container">
+                                            <i class="fa fa-camera"></i>
+                                            <span>Upload Image or Video</span>
+                                            </div>
+                                            <input type="file" name="file" id="file" accept="image/*, video/*" style="display: none;" />
+                                            </div>*@
+
+                                        <div class="row mb-2">
+                                            <div class="d-flex col-lg-6 my-2 my-lg-0 justify-content-center">
+                                                <button type="button" asp-action="storydetails" asp-controller="Story" class="btnstrcancel">Cancel</button>
+                                            </div>
+                                            <div class="d-flex col-lg-6 justify-content-center">
+                                                <button type="submit" id="save" class="btnstrss">Save</button>
+                                                <a asp-action="submitStory" asp-controller="Story" role="button" class="btn btnstrss ms-4">Submit</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -143,7 +156,7 @@
                         <th scope="col">Mission Type</th>
                         <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
-                        <th scope="col">Action</th>                                              
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody class="userdetails">
@@ -159,11 +172,11 @@
                                     <td>@mission.MissionType</td>
                                     <td>@mission.StartDate</td>
                                     <td>@mission.EndDate</td>
-                                     
-                                    
+
+
                                     <td style="text-align:center;">
                                         <a class="btn iconuser" asp-action="MissionPage" asp-controller="Admin" data-bs-toggle="modal" data-bs-target="#exampleModal1"
-                                             asp-route-id="@mission.MissionId">
+                               asp-route-id="@mission.MissionId">
                                             <i class="bi bi-pencil-square iconForpencil me-2"></i>
                                         </a>
                                         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -249,7 +262,7 @@
                                             </div>
                                         </div>
                                         <a class="btn iconuser" asp-action="DeleteUser" asp-controller="Admin"
-                                         asp-route-uid="@mission.MissionId">
+                               asp-route-uid="@mission.MissionId">
                                             <i class="bi bi-trash3 iconForDelete"></i>
                                         </a>
                                     </td>

@@ -18,11 +18,13 @@ namespace CiPlatform.Entitites.ViewModels
         public List<IFormFile> UploadedFiles { get; set; }
         public List<MissionApplication> missionApplication { get; set; }
         public List<Timesheet> timesheet { get; set; }
+        public long StoryId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? url { get; set; }
         public DateTime? date { get; set; }
         public int mid { get; set; }
+        public string? Status { get; set; } = string.Empty;
 
 
 

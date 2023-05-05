@@ -84,18 +84,24 @@
 
 
 @media screen and (min-width:767px) {
-    .btn, #offcanvasWithBothOptions {
+
+
+    #mainHeader .myToggleButton {
         display: none;
     }
 
 
-    .hamburger,
-    #offcanvasWithBothOptions,
-    #filteroffcanvasWithBothOptions {
+    #mainHeader .hamburger,
+    #mainHeader #offcanvasWithBothOptions,
+    #mainHeader #filteroffcanvasWithBothOptions {
         display: none;
     }
 
-    .nav-brand {
+    #mainHeader #hamburgerbut {
+        display: none;
+    }
+
+    #mainHeader .nav-brand {
         display: none;
     }
 }
@@ -130,15 +136,12 @@ display: none !important;
 .offcanvas2 {
     width: max-content !important;
 }
-
+/*
 .form-control {
-    border: 1px dotted black;
-    
-}
+    border: none !important;
+}*/
 
-
-.div
-{
+.div {
     border: 1px solid black;
 }
 

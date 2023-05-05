@@ -42,71 +42,63 @@ namespace CiPlatform.Controllers
         }
 
 
-        public IActionResult login()
+        public IActionResult login(string? returnUrl)
         {
+            var userEmail = HttpContext.Session.GetString("Email");
+            if (userEmail != null)
+            {
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("platformlandingpage", "MissionCard");
+                }
+            }
             return View();
         }
-
-        /* [HttpPost]
-
-         public IActionResult Login(User user)
-         {
-             var cuser = _CiRepository.GetUserEmail(user.Email);
-
-             if (cuser != null && cuser.Password.Equals(user.Password) && ModelState.IsValid)
-             {
-                 HttpContext.Session.SetString("Email", cuser.Email);
-                 return RedirectToAction("platformlandingpage", "MissionCard");
-             }
-             else
-             {
-                 ModelState.AddModelError("Password", "Invalid email or password.");
-                 return View();
-             }
-         }*/
 
 
         [HttpPost]
 
-        public IActionResult Login(LoginView loginView)
+        public IActionResult Login(LoginView loginView, string? returnUrl)
         {
-
+            
             var data = _CiRepository.GetUserEmail(loginView.Email);
 
             if (data != null)
             {
                 bool isValid = (data.Email == loginView.Email && data.Password == loginView.Password);
 
-
-                if (isValid && data.Role == "User")
+                if (isValid)
                 {
                     var claims = new List<Claim>();
                     claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
                     if (data.Avatar != null)
                     {
                         claims.Add(new Claim("Avatar", data.Avatar));
+                        claims.Add(new Claim("FullName", data.FirstName + " " + data.LastName));
                     }
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var principal = new ClaimsPrincipal(identity);
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
                     HttpContext.Session.SetString("Email", loginView.Email);
                     HttpContext.Session.SetString("uid", (data.UserId.ToString()));
-                    return RedirectToAction("platformlandingpage", "MissionCard");
-                }
-                else if (isValid && data.Role == "Admin")
-                {
 
-                    var claims = new List<Claim>();
-                    claims.Add(new Claim(ClaimTypes.Name, data.FirstName));
-                    if (data.Avatar != null)
+                    if (!string.IsNullOrEmpty(returnUrl))
                     {
-                        claims.Add(new Claim("Avatar", data.Avatar));
+                        return Redirect(returnUrl);
                     }
-                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var principal = new ClaimsPrincipal(identity);
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    HttpContext.Session.SetString("Email", loginView.Email);
-                    return RedirectToAction("user", "Admin");
+                    if (data.Role == "User")
+                    {
+                        
+                        return RedirectToAction("platformlandingpage", "MissionCard");
+                    }
+                    else if (data.Role == "Admin")
+                    {
+                        return RedirectToAction("user", "Admin");
+                    }
                 }
             }
             // The email or password is not valid, so return an error response
@@ -282,6 +274,7 @@ namespace CiPlatform.Controllers
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
             ViewBag.uid = (int)user.UserId;
             ViewBag.FullName = user.FirstName + " " + user.LastName;
+
             return View(model);
 
         }
@@ -300,6 +293,23 @@ namespace CiPlatform.Controllers
             ViewBag.uid = (int)user.UserId;
             _userDetailsRepository.SaveAllDetails((int)user.UserId, fname, lname, employeeid, title, department, profiletext, volunteertext, country, city, linkedinurl, hiddentext);
             var model = _userDetailsRepository.GetUserProfile((int)user.UserId);
+            
+            if (identity != null)
+            {
+                var existingClaim = identity.FindFirst("FullName");
+
+                if (existingClaim != null)
+                {
+                    identity.RemoveClaim(existingClaim);
+                }
+
+                identity.AddClaim(new Claim("FullName", fname+" "+lname ));
+                var authenticationProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                };
+                 HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity), authenticationProperties);
+            }
 
             return View(model);
         }

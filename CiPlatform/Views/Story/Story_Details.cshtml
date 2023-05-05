@@ -15,7 +15,7 @@
 
     <link rel="icon" href="" type="image/x-icon">
 
-    <link rel="stylesheet" href="~/css/platformlandingpage.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
@@ -26,6 +26,7 @@
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css" rel="stylesheet" />
     <!-- MDB -->
+     <link rel="stylesheet" href="~/css/storydetails.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"></script>
 
 </head>
@@ -33,333 +34,229 @@
 @*  <script type="text/javascript" src="~/js/Home.js"></script>*@
 <body>
     <form method="post">
-        <!-- --------------------------------------------first navbar----------------------------------------------------->
+        <!-----------------------------------------------first navbar----------------------------------------------------->
 
+        <partial Name="_Header" />
 
-
-        <nav class="navbar navbar-expand-md navbar-light header " aria-label="Eighth navbar example">
-            <div class="container">
-
-                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" id="hamburgerbut"
-                        data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
-                    <img src="~/Images/list.png">
-                </button>
-
-                <div class="offcanvas offcanvas-start offcanvas1" data-bs-scroll="true" tabindex="-1"
-                     id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-
-                    <div class="offcanvas-header">
-                        <h2>CI-PLATFORM</h2>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-
-                    <div class="offcanvas-body navbar-nav me-auto mb-2 mb-lg-0 align-self-center">
-                        <div class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle link-dark border-0" href="#" id="navbarDropdown"
-                               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                @if (User.FindFirst("Avatar") != null)
-                                {
-                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                }
-                                @{
-                                    var firstname = Context.Session.GetString("Firstname");
-                                }
-                                @ViewBag.firstname
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
-                                <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
-                                <li>
-                                    <hr class="dropdown-divider" />
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Log out</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                               aria-expanded="false">Policy</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
-                                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                            </ul>
-                        </li>
-                    </div>
-                </div>
-
-                <img src="~/Images/logo.png" alt="CI-PLATFORM" class="me-5">
-                <ul class="navbar-nav first-nav me-auto mb-2 mb-lg-0 ">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Story" asp-action="storydetails">Story</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                           aria-expanded="false">Policy</a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-
-
-                @foreach (var p in Model.user)
-                {
-                    if (p.UserId == ViewBag.uid)
-                    {
-
-                        <div class="dropdown text-end user-profile ">
-                            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                       aria-expanded="false">
-                                @if (User.FindFirst("Avatar") != null)
-                                {
-                                    <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                }
-
-                                @p.FirstName
-                            </a>
-                            <ul class="dropdown-menu text-small">
-                                <li><a class="dropdown-item" href="#">New project...</a></li>
-                                <li><a class="dropdown-item" href="#">Settings</a></li>
-                                <li><a class="dropdown-item" href="#">Profile</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" asp-action="Logout" asp-controller="Home">Log out</a></li>
-                            </ul>
-                        </div>
-                    }
-                }
-            </div>
-        </nav>
-
-        <!------------------------------------------------ second navbar----------------------------------- -->
         @*----------------------------------main div start from here------------------------------------------*@
 
 
-        <div class="d-flex">
-            <div class="col-md-10 col-12">
-
-                <div class="container-fluid">
-
-                    <div class="row mt-4 mediavolunteer">
-                        <div class="col-lg-6 ">
-                            <!-- Carousel wrapper -->
-                            <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark"
-                                 data-mdb-ride="carousel">
-                                <!-- Slides -->
-                                <div class="carousel-inner mb-5">
-                                    <div class="carousel-item active" style="height: 60.5vh;">
-                                        <img src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
-                                             class="d-block w-100" alt="..." style="height: 100%;" />
-                                    </div>
-                                    <div class="carousel-item" style="height: 60.5vh" ;>
-                                        <img src="~/Images/img1.png" class="d-block w-100" alt="..."
-                                             style="height: 100%;" />
-                                    </div>
-                                    <div class="carousel-item" style="height: 60.5vh">
-                                        <img src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
-                                             class="d-block w-100" alt="..." style="height: 100%;" />
-                                    </div>
-                                    <div class="carousel-item" style="height: 60.5vh">
-                                        <img src="~/Images/img11.png" class="d-block w-100" alt="..."
-                                             style="height: 100%;" />
-                                    </div>
-                                    <div class="carousel-item" style="height: 60.5vh">
-                                        <img src="~/Images/Plantation-and-Afforestation-programme.png" class="d-block w-100"
-                                             alt="..." style="height: 100%;" />
-                                    </div>
-                                </div>
-                                <!-- Slides -->
-                                <!-- Controls -->
-                                <button class="carousel-control-prev" type="button"
-                                        data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                        data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                                <!-- Controls -->
-                                <!-- Thumbnails -->
-                                <div class="carousel-indicators list-inline thumbnailimg img-fluid" style="margin-bottom: -20px;">
-                                    <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
-                                            class="active" aria-current="true" aria-label="Slide 1" style="width: 40%;">
-                                        <img class="d-block w-100"
-                                             src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
-                                             class="img-fluid" />
-                                    </button>
-                                    <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
-                                            aria-label="Slide 2" style="width: 40%;">
-                                        <img class="d-block w-100" src="~/Images/img1.png" class="img-fluid" />
-                                    </button>
-                                    <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
-                                            aria-label="Slide 3" style="width: 40%;">
-                                        <img class="d-block w-100"
-                                             src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
-                                             class="img-fluid" />
-                                    </button>
-                                    <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="3"
-                                            aria-label="Slide 4" style="width: 40%;">
-                                        <img class="d-block w-100" src="~/Images/img11.png" class="img-fluid" />
-                                    </button>
-                                    <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="4"
-                                            aria-label="Slide 5" style="width: 40%;">
-                                        <img class="d-block w-100"
-                                             src="~/Images/Plantation-and-Afforestation-programme-1.png" class="img-fluid" />
-                                    </button>
-
-                                </div>
-                                <!-- Thumbnails -->
+        <div class="container">
+            <div class="row mt-4 mediavolunteer">
+                <div class="col-lg-7 ">
+                    <!-- Carousel wrapper -->
+                    <div id="carouselExampleIndicators" class="carousel slide carousel-fade carousel-dark"
+                         data-mdb-ride="carousel">
+                        <!-- Slides -->
+                        <div class="carousel-inner mb-5">
+                            <div class="carousel-item active" style="height: 60.5vh;">
+                                <img src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-4.png"
+                                     class="d-block w-100" alt="..." style="height: 100%;" />
                             </div>
-                            <!-- Carousel wrapper -->
+                            <div class="carousel-item" style="height: 60.5vh" ;>
+                                <img src="~/Images/img1.png" class="d-block w-100" alt="..."
+                                     style="height: 100%;" />
+                            </div>
+                            <div class="carousel-item" style="height: 60.5vh">
+                                <img src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                                     class="d-block w-100" alt="..." style="height: 100%;" />
+                            </div>
+                            <div class="carousel-item" style="height: 60.5vh">
+                                <img src="~/Images/img11.png" class="d-block w-100" alt="..."
+                                     style="height: 100%;" />
+                            </div>
+                            <div class="carousel-item" style="height: 60.5vh">
+                                <img src="~/Images/Plantation-and-Afforestation-programme.png" class="d-block w-100"
+                                     alt="..." style="height: 100%;" />
+                            </div>
                         </div>
+                        <!-- Slides -->
+                        <!-- Controls -->
+                        <button class="carousel-control-prev" type="button"
+                                data-mdb-target="#carouselExampleIndicators" data-mdb-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button"
+                                data-mdb-target="#carouselExampleIndicators" data-mdb-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                        <!-- Controls -->
+                        <!-- Thumbnails -->
+                        <div class="carousel-indicators list-inline thumbnailimg img-fluid" style="margin-bottom: -20px;">
+                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="0"
+                                    class="active" aria-current="true" aria-label="Slide 1" style="width: 40%;">
+                                <img class="d-block w-100"
+                                     src="~/Images/CSR-initiative-stands-for-Coffee--and-Farmer-Equity-1.png"
+                                     class="img-fluid" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="1"
+                                    aria-label="Slide 2" style="width: 40%;">
+                                <img class="d-block w-100" src="~/Images/img1.png" class="img-fluid" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="2"
+                                    aria-label="Slide 3" style="width: 40%;">
+                                <img class="d-block w-100"
+                                     src="~/Images/Grow-Trees-On-the-path-to-environment-sustainability-2.png"
+                                     class="img-fluid" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="3"
+                                    aria-label="Slide 4" style="width: 40%;">
+                                <img class="d-block w-100" src="~/Images/img11.png" class="img-fluid" />
+                            </button>
+                            <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="4"
+                                    aria-label="Slide 5" style="width: 40%;">
+                                <img class="d-block w-100"
+                                     src="~/Images/Plantation-and-Afforestation-programme-1.png" class="img-fluid" />
+                            </button>
+
+                        </div>
+                        <!-- Thumbnails -->
+                    </div>
+                    <!-- Carousel wrapper -->
+                </div>
 
 
-                        <div class="col-lg-6" style="margin-top: 0.5%;">
+                <div class="col-lg-5" style="margin-top: 0.5%;">
+                    @{
+                        var story = Model?.stories.FirstOrDefault(story => story.StoryId == Model.StoryId);
 
-                            @foreach (var i in Model.stories)
+                        if (story != null)
+                        {
+                            var user = Model?.user.FirstOrDefault(user => user.UserId == story.UserId);
+
+
+                            if (user != null)
                             {
-                                @if (i.UserId == i.User.UserId)
-                                {
 
-                                    <div class="d-flex justify-content-between">
-                                        <div>
-                                            <div class="recentvol">
-                                                <img src="~/images/volunteer1.png" alt="">
-                                                <p>@i.User.FirstName @i.User.LastName</p>
-                                            </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="text-center">
+                                        <div class="recentvol">
+                                            @if (user.Avatar != null)
+                                            {
+                                                <img src="@user.Avatar" alt="" class="rounded-circle object-fit-cover" style="height:100px; width: 100px">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/Images/user1.png" alt="" class="rounded-circle object-fit-cover" style="height:100px; width: 100px">
+                                            }
                                         </div>
-                                        <div class="d-flex align-items-end">
-                                            <p class="rounded-pill border px-3">@i.StoryViews Views</p>
-                                        </div>
-
-                                        <div class="px-4 border-top border-bottom my-3">
-                                            <div class="row mx-0 py-3">
-                                                <div>@i.User.WhyIVolunteer</div>
-                                                <div>@Html.Raw(@i.Description)</div>
-                                            </div>
-                                        </div>
+                                        <p>@user.FirstName @user.LastName</p>
                                     </div>
-                                }
+                                    <div class="d-flex align-items-end">
+                                        <p class="rounded-pill border px-3">@story.StoryViews Views</p>
+                                    </div>
+                                </div>
+                                <div class="px-4 border-top mt-3">
+                                    <div class="row">
+                                        <div>@user.WhyIVolunteer</div> 
+                                        <br></br>
+                                        <div>@Html.Raw(story.Description)</div>
+                                        <br>
+                                        
+                                    </div>
+                                </div>
+                            }
 
 
 
 
-                                <div class="d-flex mt-3 justify-content-evenly">
-                                    <div>
-                                        <button type="button" class="btn btn-rounded btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" style="width:100%; ">
-                                            <img src="/Images/add1.png" alt=""> Recommend to a
-                                            Co-Worker
-                                        </button>
+                            <div class="d-flex mt-3 justify-content-evenly">
+                                <div>
+                                    <button type="button" class="btn rounded-pill btn-outline-warning btnApply my-2" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        >
+                                        <img src="~/Images/add1.png" alt=""> Recommend to a
+                                        Co-Worker
+                                    </button>
 
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Recommend To a Co-Worker</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
 
-                                                        <style>
-                                                            table, th, td {
-                                                                border: 1px solid black;
-                                                            }
-                                                        </style>
-
-
-
-                                                        <table style="width:100%">
-                                                            <tbody>
-                                                                <tr>
-                                                                    <th>User Name</th>
-                                                                    <th>  Email</th>
-                                                                    <th>link of email</th>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>sahil</td>
-                                                                    <td>sahiludanwala6787@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahiludanwala6787@gmail.com">Send Link</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>sahil</td>
-                                                                    <td>sahilu@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=sahilu@gmail.com">Send Link</a></td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>nevil</td>
-                                                                    <td>npsmtp217@gmail.com</td>
-                                                                    <td><a href="/MissionCard/coworker?missionId=1&amp;email=npsmtp217@gmail.com">Send Link</a></td>
-                                                                </tr>
+                                                    <style>
+                                                        table, th, td {
+                                                            border: 1px solid black;
+                                                        }
+                                                    </style>
 
 
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    </div>
+
+                                                    <table style="width:100%">
+                                                        <tr>
+                                                            <th>User Name</th>
+                                                            <th>  Email</th>
+                                                            <th>link of email</th>
+                                                        </tr>
+                                                        @foreach (var r in Model.user)
+                                                        {
+                                                            <tr>
+                                                                <td>@r.FirstName</td>
+                                                                <td>@r.Email</td>
+                                                                <td><a asp-controller="MissionCard" asp-action="coworker" asp-route-missionId="@ViewBag.missionid" asp-route-email="@r.Email">Send Link</a></td>
+                                                            </tr>
+                                                        }
+
+
+                                                    </table>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
-
-                                    <div class="col-lg-6 d-flex justify-content-center">
-                                        <a asp-controller="MissionCard" asp-action="VolunteeringMission" asp-route-mid="@i.MissionId"
-                                       class="my-2">
-                                            <button type="button" class="btnApply">
-                                                 Open Mission
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                 class="bi bi-arrow-right ms-3" viewBox="0 0 16 16">
-                                                    <path fill-rule="evenodd"
-                                                      d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-
                                 </div>
 
-                                <div class="border-bottom mt-5"></div>
-
-                            }
-                        </div>
-                        <div class="col-xl-12 mb-5">
-                            @foreach (var i in Model.stories)
-                            {
-                                @if (i.MissionId == i.Mission.MissionId)
-                                {
-                                    <div class="nav-tabs border p-3">
-                                        <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab"
-                                        aria-controls="home" aria-selected="true">
-                                            @i.Mission.Title
+                                <div class="col-lg-6 d-flex justify-content-center">
+                                    <a asp-controller="MissionCard" asp-action="VolunteeringMission" asp-route-missionid="@Model.mid"
+                               class="my-2">
+                                        <button type="button" class="btnApply btn rounded-pill btn-outline-warning">
+                                            Open Mission
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                             class="bi bi-arrow-right ms-3" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
+                                            </svg>
                                         </button>
-                                        <div class="tab-pane fade show active" id="tab-1" role="tabpanel">
-                                            @i.Mission.Description
-                                        </div>
-                                    </div>
-                                }
-                            }
-                        </div>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                           
 
 
-                    </div>
-
+                        }
+                    }
+                </div>
+                <div class="col-xl-12 my-5 p-3">
+                    @{
+                        var i = Model?.mission.FirstOrDefault(mission => mission.MissionId == Model.mid);
+                        if (i != null)
+                        {
+                            <div class="nav-tabs border p-3">
+                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab"
+                                    aria-controls="home" aria-selected="true">
+                                    @i.Title
+                                </button>
+                                <div class="tab-pane fade show active mt-4 p-2" id="tab-1" role="tabpanel">
+                                    @i.Description
+                                </div>
+                            </div>
+                        }
+                    }
                 </div>
 
+
             </div>
+
+        </div>
 
     </form>
 </body>
