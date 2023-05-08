@@ -329,6 +329,7 @@ namespace CiPlatform.Controllers
             string uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\UploadedFiles", filename);
             var filestream = new FileStream(uploadPath, FileMode.Create);
             model.AvatarImage.CopyTo(filestream);
+            filestream.Flush();
             string dbfilepath = "/UploadedFiles/" + filename;
             userp.Avatar = dbfilepath;
             _ciContext.Users.Update(userp);

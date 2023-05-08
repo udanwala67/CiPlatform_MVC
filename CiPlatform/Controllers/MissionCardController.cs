@@ -20,7 +20,7 @@ namespace CiPlatform.Controllers
             _emailServices = emailServices;
         }
 
-        public IActionResult platformlandingpage(string searchQuery, string sortOrder, CityView cityView)
+        public IActionResult platformlandingpage(string searchQuery, CityView cityView)
         {
             List<Mission> mission = _ciContext.Missions.ToList();
             var ms = _CiRepository.GetMission();

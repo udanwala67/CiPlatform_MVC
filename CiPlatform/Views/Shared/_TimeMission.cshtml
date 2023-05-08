@@ -221,7 +221,7 @@
                         'minutes':minutes,
                         'message':timeMissionMessage,
                         'tid':tid,
-                        },  
+                        },
                        success: function (data) {
                            debugger;
                          console.log(data);
@@ -269,7 +269,7 @@
                 }
 
 
-           
+
 
                 $('#updateTimeDetails').click(function(){
                     var tid = $('#timesheetid').val();
@@ -308,32 +308,20 @@
 
 
                 function deleteData(tid){
+                    debugger;
                     console.log(tid);
                     $.ajax({
-                        type:'GET',
+                        type:'POST',
                         url: '/Story/DeleteTimesheet',
                         data:{
                             tid:tid,
                         },
 
                         success: function (data) {
-                            $('#etimeMissionId').val(data.missionId);
-                            var inputDate = new Date(data.dateVolunteered);
-                            date = inputDate.getDate();
-                            month = inputDate.getMonth() + 1;
-                            year = inputDate.getFullYear();
-                            date = date.toString().padStart(2, '0');
-                            month = month.toString().padStart(2, '0');
-                            dateformat = year+'-'+month+'-'+date;
-                            console.log(dateformat);
-                            $('#etimeMissionDate').val(dateformat);
-                            var time = (data.time).split(':');
-                            var hours = time[0];
-                            var minutes = time[1];
-                            $('#ehours').val(hours);
-                            $('#eminutes').val(minutes);
-                            $('#etimeMissionMessage').val(data.notes);
-                            $('#timesheetid').val(data.timesheetId);
+                          debugger
+                          if(data.isSuccess){
+                              location.reload();
+                          }
                             console.log(tid);
                         },
                         error: function (e) {

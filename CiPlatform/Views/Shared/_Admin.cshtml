@@ -27,9 +27,7 @@ const { ajax } = require("jquery");
 </head>
 
 <body>
-    <form method="post">
-
-
+     <form method="post" asp-action="user" asp-controller="Admin" enctype="multipart/form-data">
 
 
         <!-- user page -->
@@ -53,7 +51,7 @@ const { ajax } = require("jquery");
                     <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h2 class="modal-title fs-5" id="exampleModalLabel">Edit User Details</h2>
+                                <h2 class="modal-title fs-5" id="exampleModalLabel">Add User</h2>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -266,7 +264,7 @@ const { ajax } = require("jquery");
                                         </a>
                                     </td>
                                 </tr>
-                                /*DeleteUserByAdmin(@user.UserId)*/
+                               
                             }
                         }
                     }
@@ -282,7 +280,7 @@ const { ajax } = require("jquery");
 
    
 
-    $('#btnEditUser').click(function()
+    $('#').click(function()
     {
         var userid = $('#userId').val();
         var Efirstname = $('#Efirstname').val();
@@ -294,55 +292,84 @@ const { ajax } = require("jquery");
         var EprofileTxt= $("#EprofileTxt").val();
         var Ecity = $("#Ecity").val();
         var Ecountry = $("#Ecountry").val();
-        var Estatus = $("Estatus").val();
+        var Estatus = $("#Estatus").val();
     })
 
-    //$.ajax({
-    //    url : "Admin/user",
-    //    type = 'POST',
-    //    data: {
-    //        'user.UserId' : userid,
-    //        'user.FirstName' : Efirstname,
-    //        'user.LastName'  : Elastname,
-    //        'user.Email' : Eemail,
-    //        'user.Password' : Epassword,
-    //        'user.EmployeeId' : EemployeeId,
-    //        'user.Department' : Edepartment,
-    //        'user.ProfileText' : EprofileTxt,
-    //        'user.CountryId' : Ecountry,
-    //        'user.CityId' : Ecity,
-    //        'user.Status' : Estatus
-    //    },
-    //    success:  function (data) {
-    //        console.log(data);
-    //        $('#replaceUserList').html(data);
-    //    }
-    //})
+    $.ajax({
+        url : "Admin/user",
+        type = 'POST',
+        data: {
+            'user.UserId' : userid,
+            'user.FirstName' : Efirstname,
+            'user.LastName'  : Elastname,
+            'user.Email' : Eemail,
+            'user.Password' : Epassword,
+            'user.EmployeeId' : EemployeeId,
+            'user.Department' : Edepartment,
+            'user.ProfileText' : EprofileTxt,
+            'user.CountryId' : Ecountry,
+            'user.CityId' : Ecity,
+            'user.Status' : Estatus
+        },
+        success:  function (data) {
+            console.log(data);
+            $('#replaceUserList').html(data);
+        }
+    })
 
      $('#country').on('change', function () {
                 var selectedcountry = $(this).val();
                 console.log(selectedcountry);
                 $.ajax({
-                url: "/Home/getCities",
-                data: { country: selectedcountry },
-                type: 'GET',
-                dataType: 'json',
+                    url: "/Home/getCities",
+                    data: { country: selectedcountry },
+                    type: 'GET',
+                    dataType: 'json',
                 success: function (result) {
                 console.log(result);
-                $('#city').empty();
-                $('#city').append('<option value="" selected disable>Select City</option>');
+                    $('#city').empty();
+                    $('#city').append('<option value="" selected disable>Select City</option>');
 
                 for(i=0;i<result.length;i++)
                 {
-                console.log(result[i].name);
-                $('#city').append('<option value="'+result[i].cityId+'">'+result[i].name+'</option>');
+                    console.log(result[i].name);
+                    $('#city').append('<option value="'+result[i].cityId+'">'+result[i].name+'</option>');
                 }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                 console.log(xhr.responseText);
                 }
-                });
-                });
+              });
+            });
+
+
+
+                    $('#btnEditUser').click(function()
+                 {
+                     $.ajax({
+                         ttype:'GET',
+                        url: '/Admin/user',
+                        data:{
+                            userid:userid;
+                        },
+                        success: function(data){
+                            $("#userId").val(data.userid)';
+                            $("#EFirstName").val(data.Efirstname);
+                            $("#ElastName").val(data.Elastname);
+                            $("#Eemail").val(data.Eemail);
+                            $("#Epassword").val(data.Epassword);
+                            $("#EDepartment").val(data.Edepartment);
+                            $("#EProfileText").val(data.EprofileTxt);
+                            $("#EcountryId").val(data.Ecountry);
+                            $("#ECityId").val(data.Ecity);
+                            $("#Ecountry").val(data.Ecountry);
+                            $("#Estatus").val(data.Estatus);
+                            console.log(userid);
+
+
+                        }
+
+                     })
 
 </script>
 

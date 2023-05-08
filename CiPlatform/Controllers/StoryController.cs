@@ -149,8 +149,12 @@ namespace CiPlatform.Controllers
         }
         public IActionResult DeleteTimesheet(int tid)
         {
+           
             _storyRepository.deleteTimesheet(tid);
-            return RedirectToAction("Timesheet", "Story");
+            return Json(new
+            {
+                isSuccess = true
+            });
         }
 
         public IActionResult getDateRange(int missionId)

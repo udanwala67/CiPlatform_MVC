@@ -18,9 +18,11 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
-
+    <script type="text/javascript" src="~/ckeditor/ckeditor.js"></script>
     <link rel="stylesheet" href="~/css/admin.css">
     <title>CMS Page</title>
 </head>
@@ -61,14 +63,14 @@
                             </a>
                         </dt>
                         <dt class="mt-4 ">
-                             <a asp-action="MissionTheme" asp-controller="Admin"
-                                class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                            <a asp-action="MissionTheme" asp-controller="Admin"
+                               class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-grid-1x2-fill sidebar-img me-2"></i> <span class="d-none d-lg-block d-md-none sidebar-text-font">Mission Theme</span>
                             </a>
                         </dt>
                         <dt class="mt-4 ">
-                             <a asp-action="MissionSkills" asp-controller="Admin"
-                             class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
+                            <a asp-action="MissionSkills" asp-controller="Admin"
+                               class="sidebarcontent d-flex p-0 atMediumConvertIntoColum">
                                 <i class="bi bi-tools sidebar-img me-2"></i><span class="d-none d-lg-block d-md-none sidebar-text-font">
                                     Mission
                                     Skills
@@ -125,24 +127,23 @@
                                 <li><a class="dropdown-item" href="#">Something else here</a></li>
                             </ul>
                         </div>
-                         @foreach (var p in Model.users)
+                        @foreach (var p in Model.users)
                         {
                             if (p.UserId == ViewBag.uid)
                             {
 
                                 <div class="dropdown text-end user-profile mt-2">
-                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-                               aria-expanded="false">
-                                       @* @if (User.FindFirst("Avatar") != null)
-                                        {
+                                    <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @* @if (User.FindFirst("Avatar") != null)
+                                            {
                                             <img src="@User.FindFirst("Avatar").Value" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                        }*@                                       
-                                         
-                                         <img src="~/Images/user.png" alt="mdo" width="32" height="32" class="rounded-circle" />
-                                          
-                                       @p.FirstName
+                                            }*@
+
+                                        <img src="~/Images/user.png" alt="mdo" width="32" height="32" class="rounded-circle" />
+
+                                        @p.FirstName
                                     </a>
-                                    <ul class="dropdown-menu text-small">
+                                    <ul class="dropdown-menu text-small" id="dropdown">
                                         <li><a class="dropdown-item" asp-action="UserEdit" asp-controller="Home">Add Profile</a></li>
                                         <li><a class="dropdown-item" asp-action="Timesheet" asp-controller="Story">Volunteering TimeSheet</a></li>
                                         <li>
@@ -194,7 +195,8 @@
                                     </a>
                                 </dt>
                                 <dt class="mt-3 ">
-                                    <a onclick="getmissions()" class="sidebarcontent d-flex atMediumConvertIntoColum">
+                                    <a onclick="getmissions()"
+                                       class="sidebarcontent d-flex atMediumConvertIntoColum">
                                         <i class="bi bi-bullseye sidebar-img me-2"></i><span class="pt-1 sidebar-text-font">Mission</span>
                                     </a>
                                 </dt>
@@ -264,7 +266,7 @@
             integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
             crossorigin="anonymous"></script>
 
-<partial Name = "_Footer" />
+    <partial Name="_Footer" />
 
 
 </body>

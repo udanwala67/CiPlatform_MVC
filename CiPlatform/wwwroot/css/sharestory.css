@@ -231,3 +231,19 @@ display: none !important;
         box-shadow: 0px 0px 3px grey;
         transition: all .3s ease-in-out;
     }
+
+
+.btnsub {
+    width: 100%;
+    max-width: 160px;
+    height: 48px;
+    background: #f8863400;
+    border: 2px solid #f88634;
+    color: #f88634;
+    border-radius: 24px;
+}
+
+    .btnsub:hover {
+        background: #f88634;
+        color: white;
+    }

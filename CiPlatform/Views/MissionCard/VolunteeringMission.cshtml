@@ -519,7 +519,7 @@
                             </div>
                             <div class="tab-content ms-3 mt-3">
                                 <div class="d-flex border-bottom mt-2 ">
-                                    <p> Skills</p>
+                                    <p> Rating</p>
                                     <p class="ms-5" style=" font-size: 10px ;color: #757575;">
                                         @{
                                             var avg = 0;
@@ -761,7 +761,7 @@
 
                                             @if (item.MissionType == "Time")
                                             {
-                                                <div class="ms-auto"><img src="~/Images/deadline.png" class="mt-2"></div>
+                                                <div class="ms-auto progressbar"><img src="~/Images/deadline.png" class="mt-2"></div>
                                                 <div class="ms-2">
                                                     @item.EndDate.ToString().Split(" ")[0] <p>Deadline</p>
                                                 </div>
